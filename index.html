@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sayı Avcısı - Pre-Alpha 2</title>
+    <title>Sayı Avcısı - Pre-Alpha 3</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -384,6 +384,13 @@
         }
 
     </style>
+    <!-- PWA: Ana Ekran İkonu -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIlNhecSxIEF2Y8Sxc8SxIiwgInNob3J0X25hbWUiOiAiU2F5xLEgQXZjxLFzxLEiLCAiZGVzY3JpcHRpb24iOiAiRMO8bnlhIEt1cGFzxLEgJiBDT07EsEZBIE1hdGVtYXRpayBPeXVudSIsICJpY29ucyI6IFt7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFpwWlhkQ2IzZzlJakFnTUNBeE9USWdNVGt5SWo0S0lDQThaR1ZtY3o0S0lDQWdJRHhzYVc1bFlYSkhjbUZrYVdWdWRDQnBaRDBpWW1jaUlIZ3hQU0l3SWlCNU1UMGlNQ0lnZURJOUlqQWlJSGt5UFNJeElqNEtJQ0FnSUNBZ1BITjBiM0FnYjJabWMyVjBQU0l3SWlCemRHOXdMV052Ykc5eVBTSWpZVE13TURFMklpOCtDaUFnSUNBZ0lEeHpkRzl3SUc5bVpuTmxkRDBpTVNJZ2MzUnZjQzFqYjJ4dmNqMGlJelV3TURBd09DSXZQZ29nSUNBZ1BDOXNhVzVsWVhKSGNtRmthV1Z1ZEQ0S0lDQThMMlJsWm5NK0NpQWdQSEpsWTNRZ2QybGtkR2c5SWpFNU1pSWdhR1ZwWjJoMFBTSXhPVElpSUhKNFBTSXpOaUlnWm1sc2JEMGlkWEpzS0NOaVp5a2lMejRLSUNBOElTMHRJRVp2YjNSaVlXeHNJSEJsYm5SaFoyOXVJSEJoZEhSbGNtNGdMUzArQ2lBZ1BHTnBjbU5zWlNCamVEMGlPVFlpSUdONVBTSTRNaUlnY2owaU5EWWlJR1pwYkd3OUltNXZibVVpSUhOMGNtOXJaVDBpY21kaVlTZ3lOVFVzTWpVMUxESTFOU3d3TGpJMUtTSWdjM1J5YjJ0bExYZHBaSFJvUFNJeklpOCtDaUFnUENFdExTQlRiMk5qWlhJZ1ltRnNiQ0J6YVcxd2JHbG1hV1ZrSUMwdFBnb2dJRHhqYVhKamJHVWdZM2c5SWprMklpQmplVDBpT0RJaUlISTlJak0ySWlCbWFXeHNQU0lqWm1abUlpQnZjR0ZqYVhSNVBTSXdMamsxSWk4K0NpQWdQR05wY21Oc1pTQmplRDBpT1RZaUlHTjVQU0k0TWlJZ2NqMGlNellpSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaUl6TXpNeUlnYzNSeWIydGxMWGRwWkhSb1BTSXhMalVpTHo0S0lDQThJUzB0SUZCbGJuUmhaMjl1SUhCaGRHTm9aWE1nTFMwK0NpQWdQSEJ2YkhsbmIyNGdjRzlwYm5SelBTSTVOaXcxT0NBeE1EVXNOalVnTVRBeUxEYzFJRGt3TERjMUlEZzNMRFkxSWlCbWFXeHNQU0lqTWpJeUlpOCtDaUFnUEhCdmJIbG5iMjRnY0c5cGJuUnpQU0k1Tml3eE1EWWdPRGNzT1RrZ09UQXNPRGtnTVRBeUxEZzVJREV3TlN3NU9TSWdabWxzYkQwaUl6SXlNaUl2UGdvZ0lEeHdiMng1WjI5dUlIQnZhVzUwY3owaU56TXNOeklnT0RBc05qVWdPRGNzTnpJZ09EUXNPRE1nTnpNc09ETWlJR1pwYkd3OUlpTXlNaklpTHo0S0lDQThjRzlzZVdkdmJpQndiMmx1ZEhNOUlqRXhPU3czTWlBeE1USXNOalVnTVRBMUxEY3lJREV3T0N3NE15QXhNVGtzT0RNaUlHWnBiR3c5SWlNeU1qSWlMejRLSUNBOGNHOXNlV2R2YmlCd2IybHVkSE05SWpjekxEa3lJRGN6TERneUlEZzBMRGd5SURnM0xEa3pJRGd3TERrNUlpQm1hV3hzUFNJak1qSXlJaTgrQ2lBZ1BIQnZiSGxuYjI0Z2NHOXBiblJ6UFNJeE1Ua3NPVElnTVRFNUxEZ3lJREV3T0N3NE1pQXhNRFVzT1RNZ01URXlMRGs1SWlCbWFXeHNQU0lqTWpJeUlpOCtDaUFnUENFdExTQkJjSEFnYm1GdFpTQXRMVDRLSUNBOGRHVjRkQ0I0UFNJNU5pSWdlVDBpTVRRNElpQjBaWGgwTFdGdVkyaHZjajBpYldsa1pHeGxJaUJtYjI1MExXWmhiV2xzZVQwaUowRnlhV0ZzSUVKc1lXTnJKeXh6WVc1ekxYTmxjbWxtSWlCbWIyNTBMWE5wZW1VOUlqRTRJaUJtYjI1MExYZGxhV2RvZEQwaU9UQXdJaUJtYVd4c1BTSWpabVptSWlCc1pYUjBaWEl0YzNCaFkybHVaejBpTVNJK1UwRlpTVHd2ZEdWNGRENEtJQ0E4ZEdWNGRDQjRQU0k1TmlJZ2VUMGlNVFk0SWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElpQm1iMjUwTFdaaGJXbHNlVDBpSjBGeWFXRnNJRUpzWVdOckp5eHpZVzV6TFhObGNtbG1JaUJtYjI1MExYTnBlbVU5SWpFNElpQm1iMjUwTFhkbGFXZG9kRDBpT1RBd0lpQm1hV3hzUFNJalptWmpZemc0SWlCc1pYUjBaWEl0YzNCaFkybHVaejBpTVNJK1FWWkRTVk5KUEM5MFpYaDBQZ284TDNOMlp6ND0iLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3N2Zyt4bWwifSwgeyJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhacFpYZENiM2c5SWpBZ01DQXhPVElnTVRreUlqNEtJQ0E4WkdWbWN6NEtJQ0FnSUR4c2FXNWxZWEpIY21Ga2FXVnVkQ0JwWkQwaVltY2lJSGd4UFNJd0lpQjVNVDBpTUNJZ2VESTlJakFpSUhreVBTSXhJajRLSUNBZ0lDQWdQSE4wYjNBZ2IyWm1jMlYwUFNJd0lpQnpkRzl3TFdOdmJHOXlQU0lqWVRNd01ERTJJaTgrQ2lBZ0lDQWdJRHh6ZEc5d0lHOW1abk5sZEQwaU1TSWdjM1J2Y0MxamIyeHZjajBpSXpVd01EQXdPQ0l2UGdvZ0lDQWdQQzlzYVc1bFlYSkhjbUZrYVdWdWRENEtJQ0E4TDJSbFpuTStDaUFnUEhKbFkzUWdkMmxrZEdnOUlqRTVNaUlnYUdWcFoyaDBQU0l4T1RJaUlISjRQU0l6TmlJZ1ptbHNiRDBpZFhKc0tDTmlaeWtpTHo0S0lDQThJUzB0SUVadmIzUmlZV3hzSUhCbGJuUmhaMjl1SUhCaGRIUmxjbTRnTFMwK0NpQWdQR05wY21Oc1pTQmplRDBpT1RZaUlHTjVQU0k0TWlJZ2NqMGlORFlpSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaWNtZGlZU2d5TlRVc01qVTFMREkxTlN3d0xqSTFLU0lnYzNSeWIydGxMWGRwWkhSb1BTSXpJaTgrQ2lBZ1BDRXRMU0JUYjJOalpYSWdZbUZzYkNCemFXMXdiR2xtYVdWa0lDMHRQZ29nSUR4amFYSmpiR1VnWTNnOUlqazJJaUJqZVQwaU9ESWlJSEk5SWpNMklpQm1hV3hzUFNJalptWm1JaUJ2Y0dGamFYUjVQU0l3TGprMUlpOCtDaUFnUEdOcGNtTnNaU0JqZUQwaU9UWWlJR041UFNJNE1pSWdjajBpTXpZaUlHWnBiR3c5SW01dmJtVWlJSE4wY205clpUMGlJek16TXlJZ2MzUnliMnRsTFhkcFpIUm9QU0l4TGpVaUx6NEtJQ0E4SVMwdElGQmxiblJoWjI5dUlIQmhkR05vWlhNZ0xTMCtDaUFnUEhCdmJIbG5iMjRnY0c5cGJuUnpQU0k1Tml3MU9DQXhNRFVzTmpVZ01UQXlMRGMxSURrd0xEYzFJRGczTERZMUlpQm1hV3hzUFNJak1qSXlJaTgrQ2lBZ1BIQnZiSGxuYjI0Z2NHOXBiblJ6UFNJNU5pd3hNRFlnT0Rjc09Ua2dPVEFzT0RrZ01UQXlMRGc1SURFd05TdzVPU0lnWm1sc2JEMGlJekl5TWlJdlBnb2dJRHh3YjJ4NVoyOXVJSEJ2YVc1MGN6MGlOek1zTnpJZ09EQXNOalVnT0Rjc056SWdPRFFzT0RNZ056TXNPRE1pSUdacGJHdzlJaU15TWpJaUx6NEtJQ0E4Y0c5c2VXZHZiaUJ3YjJsdWRITTlJakV4T1N3M01pQXhNVElzTmpVZ01UQTFMRGN5SURFd09DdzRNeUF4TVRrc09ETWlJR1pwYkd3OUlpTXlNaklpTHo0S0lDQThjRzlzZVdkdmJpQndiMmx1ZEhNOUlqY3pMRGt5SURjekxEZ3lJRGcwTERneUlEZzNMRGt6SURnd0xEazVJaUJtYVd4c1BTSWpNakl5SWk4K0NpQWdQSEJ2YkhsbmIyNGdjRzlwYm5SelBTSXhNVGtzT1RJZ01URTVMRGd5SURFd09DdzRNaUF4TURVc09UTWdNVEV5TERrNUlpQm1hV3hzUFNJak1qSXlJaTgrQ2lBZ1BDRXRMU0JCY0hBZ2JtRnRaU0F0TFQ0S0lDQThkR1Y0ZENCNFBTSTVOaUlnZVQwaU1UUTRJaUIwWlhoMExXRnVZMmh2Y2owaWJXbGtaR3hsSWlCbWIyNTBMV1poYldsc2VUMGlKMEZ5YVdGc0lFSnNZV05ySnl4ellXNXpMWE5sY21sbUlpQm1iMjUwTFhOcGVtVTlJakU0SWlCbWIyNTBMWGRsYVdkb2REMGlPVEF3SWlCbWFXeHNQU0lqWm1abUlpQnNaWFIwWlhJdGMzQmhZMmx1WnowaU1TSStVMEZaU1R3dmRHVjRkRDRLSUNBOGRHVjRkQ0I0UFNJNU5pSWdlVDBpTVRZNElpQjBaWGgwTFdGdVkyaHZjajBpYldsa1pHeGxJaUJtYjI1MExXWmhiV2xzZVQwaUowRnlhV0ZzSUVKc1lXTnJKeXh6WVc1ekxYTmxjbWxtSWlCbWIyNTBMWE5wZW1VOUlqRTRJaUJtYjI1MExYZGxhV2RvZEQwaU9UQXdJaUJtYVd4c1BTSWpabVpqWXpnNElpQnNaWFIwWlhJdGMzQmhZMmx1WnowaU1TSStRVlpEU1ZOSlBDOTBaWGgwUGdvOEwzTjJaejQ9IiwgInNpemVzIjogIjUxMng1MTIiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn1dLCAic3RhcnRfdXJsIjogIi4vIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsICJ0aGVtZV9jb2xvciI6ICIjN2EwMDExIiwgImJhY2tncm91bmRfY29sb3IiOiAiIzdhMDAxMSJ9">
+    <meta name="theme-color" content="#7a0011">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sayı Avcısı">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYTMwMDE2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzUwMDAwOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSIzNiIgZmlsbD0idXJsKCNiZykiLz4KICA8IS0tIEZvb3RiYWxsIHBlbnRhZ29uIHBhdHRlcm4gLS0+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI4MiIgcj0iNDYiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjI1KSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPCEtLSBTb2NjZXIgYmFsbCBzaW1wbGlmaWVkIC0tPgogIDxjaXJjbGUgY3g9Ijk2IiBjeT0iODIiIHI9IjM2IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjk1Ii8+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI4MiIgcj0iMzYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8IS0tIFBlbnRhZ29uIHBhdGNoZXMgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSI5Niw1OCAxMDUsNjUgMTAyLDc1IDkwLDc1IDg3LDY1IiBmaWxsPSIjMjIyIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI5NiwxMDYgODcsOTkgOTAsODkgMTAyLDg5IDEwNSw5OSIgZmlsbD0iIzIyMiIvPgogIDxwb2x5Z29uIHBvaW50cz0iNzMsNzIgODAsNjUgODcsNzIgODQsODMgNzMsODMiIGZpbGw9IiMyMjIiLz4KICA8cG9seWdvbiBwb2ludHM9IjExOSw3MiAxMTIsNjUgMTA1LDcyIDEwOCw4MyAxMTksODMiIGZpbGw9IiMyMjIiLz4KICA8cG9seWdvbiBwb2ludHM9IjczLDkyIDczLDgyIDg0LDgyIDg3LDkzIDgwLDk5IiBmaWxsPSIjMjIyIi8+CiAgPHBvbHlnb24gcG9pbnRzPSIxMTksOTIgMTE5LDgyIDEwOCw4MiAxMDUsOTMgMTEyLDk5IiBmaWxsPSIjMjIyIi8+CiAgPCEtLSBBcHAgbmFtZSAtLT4KICA8dGV4dCB4PSI5NiIgeT0iMTQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ0FyaWFsIEJsYWNrJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmIiBsZXR0ZXItc3BhY2luZz0iMSI+U0FZSTwvdGV4dD4KICA8dGV4dCB4PSI5NiIgeT0iMTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ0FyaWFsIEJsYWNrJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZjYzg4IiBsZXR0ZXItc3BhY2luZz0iMSI+QVZDSVNJPC90ZXh0Pgo8L3N2Zz4=">
 </head>
 <body>
 
@@ -421,6 +428,7 @@
             <text x="70" y="14" font-size="6" fill="#fff" font-family="'Press Start 2P',monospace" font-weight="bold" text-anchor="middle">PRE-ALPHA 3</text>
         </svg>
     </div>
+    <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:#ffcc88;text-align:center;margin-bottom:5px;letter-spacing:1px;text-shadow:1px 1px 0 #7a0011;">⚽ DÜNYA KUPASI &amp; CONİFA ⚽</div>
     <div class="splash-title" style="color:#fff;text-shadow:0 0 18px #fff,2px 2px 0 #7a0011;">SAYI<br>AVCISI</div>
     <!-- Türk Bayrakları yan yana -->
     <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-top:6px;">
@@ -485,6 +493,13 @@
         <button onclick="setLang('uz');markSplashLang('uz')" id="splashLangUZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇺🇿</button>
         <button onclick="setLang('ht');markSplashLang('ht')" id="splashLangHT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇭🇹</button>
     </div>
+    <!-- Ses & Tema butonları - Splash -->
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;margin-bottom:2px;">
+        <button id="splashSoundBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
+            style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🔊 SES</button>
+        <button id="splashThemeBtn" onclick="toggleTheme()" title="Aydınlık/Karanlık Tema"
+            style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🌙 TEMA</button>
+    </div>
     <button id="splashStartBtn" onclick="splashStart()" style="margin-top:14px;padding:12px 36px;font-family:'Press Start 2P',monospace;font-size:11px;background:#fff;color:#e30a17;border:3px solid #fff;border-radius:10px;cursor:pointer;box-shadow:0 0 18px #ffffff88;animation:blink 1s step-end infinite;font-weight:bold;">▶ BAŞLA</button>
     
     <!-- 🏆 ŞAMPİYON KARTLARI (yanıp sönmeyen, statik) -->
@@ -515,6 +530,13 @@
 </div>
 
 <!-- ══════════ OYUN ══════════ -->
+    <!-- Ses & Tema Butonları (sabit köşe) -->
+    <div id="settingsBar" style="position:fixed;top:8px;right:8px;z-index:500;display:flex;gap:6px;">
+        <button id="soundToggleBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
+            style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">🔊</button>
+        <button id="themeToggleBtn" onclick="toggleTheme()" title="Aydınlık/Karanlık Tema"
+            style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">🌙</button>
+    </div>
 <div class="container">
     <div class="app-logo" style="display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;">
         <!-- Türk bayrağı SVG 1 -->
@@ -550,9 +572,16 @@
             <polygon points="560,230 576.5,277.3 626.6,278.4 586.6,308.7 601.1,356.6 560,328 518.9,356.6 533.4,308.7 493.4,278.4 543.5,277.3" fill="#e30a17"/>
         </svg>
     </div>
-    <h1 id="mainTitle" style="color:#fff;text-shadow:2px 2px 0 #7a0011;">Matematik Oyunları</h1>
+    <h1 id="mainTitle" style="color:#fff;text-shadow:2px 2px 0 #7a0011;">Dünya Kupası &amp; CONİFA</h1>
     <div id="prealphaSubtitle" style="font-size:9px;color:#fff;margin-top:-8px;margin-bottom:8px;font-weight:bold;letter-spacing:1px;"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> PRE-ALPHA 3 · 15 TEMMUZ ANMA <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> ∞</div>
 
+    <!-- Ses & Tema - Ana Ekran -->
+    <div style="display:flex;gap:8px;justify-content:center;margin-bottom:8px;margin-top:2px;">
+        <button id="mainSoundBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
+            style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.35);background:rgba(0,0,0,0.35);color:#fff;cursor:pointer;">🔊 SES</button>
+        <button id="mainThemeBtn" onclick="toggleTheme()" title="Aydınlık/Karanlık Tema"
+            style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.35);background:rgba(0,0,0,0.35);color:#fff;cursor:pointer;">🌙 TEMA</button>
+    </div>
     <!-- MOD SEÇİM EKRANI -->
     <div id="modeScreen" style="display:flex;flex-direction:column;align-items:center;width:100%;">
         <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;justify-content:center;">
@@ -781,7 +810,7 @@
 <path d="M 60 32 Q 68 36 64 48" stroke="#aaa" stroke-width="1.5" fill="none"/>
 </svg></div>
                 <div class="mode-name" style="color:#88aaff;" id="modeNameEuro28">Avrupa Şampiyonası 2028</div>
-                <div class="mode-desc" id="descEuro28"><span style="color:#88aaff;"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg> 🇮🇪 İngiltere & İrlanda · 9 Haz - 9 Tem 2028</span><br><span id="euro28CountdownBadge" style="font-size:9px;color:#88aaff;background:rgba(100,150,255,0.15);padding:1px 5px;border-radius:4px;">🔒 ...</span></div>
+                <div class="mode-desc" id="descEuro28"><span style="color:#88aaff;"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg> <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#169B62"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#FF883E"/></svg> İngiltere & İrlanda · 9 Haz - 9 Tem 2028</span><br><span id="euro28CountdownBadge" style="font-size:9px;color:#88aaff;background:rgba(100,150,255,0.15);padding:1px 5px;border-radius:4px;">🔒 ...</span></div>
             </div>
             <!-- 🥇 AVRUPA ULUSLAR LİGİ (locked) -->
             <div class="mode-card" id="modeCardNations" onclick="checkNationsLeague()" style="border-color:rgba(0,200,150,0.4);background:linear-gradient(135deg,#001a14,#002a20);opacity:0.7;">
@@ -1793,7 +1822,7 @@ const LANG = {
         hintVeryClose: ' (Çok yakın! 🔥)', hintClose: ' (Yakın! 😮)', hintFar: ' (Biraz uzak 🤔)', hintVeryFar: ' (Uzak 🤔)', hintWayFar: ' (Çok uzak! 😅)',
         loseEasy: 'Tekrar yaparsın!', loseMedium: 'Yaparsın koçum!', loseHard: 'Çok zordu biliyorum!', loseUltra: 'İmkansıza yakındı!',
         cooldownWait: 'Bekle biraz',
-        mathGames: 'Matematik Oyunları',
+        mathGames: '⚽ Dünya Kupası & CONİFA',
         descGuess: 'Sayıları tahmin et<br>ve bul!',
         descEbob: 'EBOB &amp; EKOK bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '4 işlem çöz!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -1905,7 +1934,7 @@ const LANG = {
         hintVeryClose: ' (Very close! 🔥)', hintClose: ' (Close! 😮)', hintFar: ' (A bit far 🤔)', hintVeryFar: ' (Far 🤔)', hintWayFar: ' (Way too far! 😅)',
         loseEasy: 'You\'ll get it next time!', loseMedium: 'You can do it!', loseHard: 'That was really hard!', loseUltra: 'That was nearly impossible!',
         cooldownWait: 'Please wait',
-        mathGames: 'Math Games',
+        mathGames: '⚽ World Cup & CONIFA',
         descGuess: 'Guess the numbers<br>and find them!',
         descEbob: 'GCD &amp; LCM bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Solve 4 operations!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2017,7 +2046,7 @@ const LANG = {
         hintVeryClose: ' (Vicinissimo! 🔥)', hintClose: ' (Vicino! 😮)', hintFar: ' (Un po\' lontano 🤔)', hintVeryFar: ' (Lontano 🤔)', hintWayFar: ' (Troppo lontano! 😅)',
         loseEasy: 'Riprova!', loseMedium: 'Ce la farai!', loseHard: 'Era davvero difficile!', loseUltra: 'Era quasi impossibile!',
         cooldownWait: 'Aspetta un po\'',
-        mathGames: 'Giochi Matematici',
+        mathGames: '⚽ Coppa del Mondo & CONIFA',
         descGuess: 'Indovina i numeri<br>e trovali!',
         descEbob: 'MCD &amp; mcm bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Risolvi 4 operazioni!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2129,7 +2158,7 @@ const LANG = {
         hintVeryClose: ' (¡Muy cerca! 🔥)', hintClose: ' (¡Cerca! 😮)', hintFar: ' (Un poco lejos 🤔)', hintVeryFar: ' (Lejos 🤔)', hintWayFar: ' (¡Muy lejos! 😅)',
         loseEasy: '¡Inténtalo de nuevo!', loseMedium: '¡Tú puedes!', loseHard: '¡Era muy difícil!', loseUltra: '¡Era casi imposible!',
         cooldownWait: 'Espera un poco',
-        mathGames: 'Juegos Matemáticos',
+        mathGames: '⚽ Copa del Mundo & CONIFA',
         descGuess: 'Adivina los números<br>y encuéntralos!',
         descEbob: 'MCD &amp; mcm bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '¡Resuelve 4 operaciones!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2241,7 +2270,7 @@ const LANG = {
         hintVeryClose: ' (ძალიან ახლოს! 🔥)', hintClose: ' (ახლოს! 😮)', hintFar: ' (ცოტა შორს 🤔)', hintVeryFar: ' (შორს 🤔)', hintWayFar: ' (ძალიან შორს! 😅)',
         loseEasy: 'სცადეთ ისევ!', loseMedium: 'შეგიძლიათ!', loseHard: 'ძალიან რთული!', loseUltra: 'თითქმის შეუძლებელი!',
         cooldownWait: 'დაელოდეთ',
-        mathGames: 'მათემატიკური თამაშები',
+        mathGames: '⚽ მსოფლიო თასი & CONIFA',
         descGuess: 'გამოიცანი რიცხვები<br>და იპოვე!',
         descEbob: 'სდგ &amp; სჯო bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '4 მოქმედება ამოხსენი!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2353,7 +2382,7 @@ const LANG = {
         hintVeryClose: ' (Çox yaxın! 🔥)', hintClose: ' (Yaxın! 😮)', hintFar: ' (Bir az uzaq 🤔)', hintVeryFar: ' (Uzaq 🤔)', hintWayFar: ' (Çox uzaq! 😅)',
         loseEasy: 'Yenidən cəhd et!', loseMedium: 'Bacararsınız!', loseHard: 'Çox çətin idi!', loseUltra: 'Demək olar ki, imkansız!',
         cooldownWait: 'Gözləyin',
-        mathGames: 'Riyaziyyat Oyunları',
+        mathGames: '⚽ Dünya Kuboku & CONIFA',
         descGuess: 'Rəqəmləri tap<br>və tamaşa et!',
         descEbob: 'ƏBOB &amp; ƏKOB bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '4 əməliyyat həll et!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2465,7 +2494,7 @@ const LANG = {
         hintVeryClose: ' (とても近い！🔥)', hintClose: ' (近い！😮)', hintFar: ' (少し遠い 🤔)', hintVeryFar: ' (遠い 🤔)', hintWayFar: ' (とても遠い！😅)',
         loseEasy: 'また挑戦しよう！', loseMedium: 'できるよ！', loseHard: 'とても難しかった！', loseUltra: 'ほぼ不可能だった！',
         cooldownWait: 'お待ちください',
-        mathGames: '数学ゲーム',
+        mathGames: '⚽ ワールドカップ & CONIFA',
         descGuess: '数字を推測して<br>見つけよう！',
         descEbob: '最大公約数 &amp; 最小公倍数 bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '4則演算を解こう！<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2577,7 +2606,7 @@ const LANG = {
         hintVeryClose: ' (非常接近！🔥)', hintClose: ' (接近！😮)', hintFar: ' (有点远 🤔)', hintVeryFar: ' (远 🤔)', hintWayFar: ' (太远了！😅)',
         loseEasy: '再试一次！', loseMedium: '你可以的！', loseHard: '真的很难！', loseUltra: '几乎不可能！',
         cooldownWait: '请稍候',
-        mathGames: '数学游戏',
+        mathGames: '⚽ 世界杯 & CONIFA',
         descGuess: '猜数字<br>并找到它！',
         descEbob: '最大公因数 &amp; 最小公倍数 bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '解四则运算！<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2689,7 +2718,7 @@ const LANG = {
         hintVeryClose: ' (Sehr nah! 🔥)', hintClose: ' (Nah! 😮)', hintFar: ' (Etwas weit 🤔)', hintVeryFar: ' (Weit 🤔)', hintWayFar: ' (Sehr weit! 😅)',
         loseEasy: 'Versuch es nochmal!', loseMedium: 'Du schaffst das!', loseHard: 'Das war sehr schwer!', loseUltra: 'Fast unmöglich!',
         cooldownWait: 'Bitte warten',
-        mathGames: 'Mathematikspiele',
+        mathGames: '⚽ Weltmeisterschaft & CONIFA',
         descGuess: 'Zahlen erraten<br>und finden!',
         descEbob: 'ggT &amp; kgV bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Löse 4 Rechenarten!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2801,7 +2830,7 @@ const LANG = {
         hintVeryClose: ' (Très proche! 🔥)', hintClose: ' (Proche! 😮)', hintFar: ' (Un peu loin 🤔)', hintVeryFar: ' (Loin 🤔)', hintWayFar: ' (Très loin! 😅)',
         loseEasy: 'Réessayez!', loseMedium: 'Vous pouvez!', loseHard: 'C\'était très difficile!', loseUltra: 'Presque impossible!',
         cooldownWait: 'Patientez',
-        mathGames: 'Jeux Mathématiques',
+        mathGames: '⚽ Coupe du Monde & CONIFA',
         descGuess: 'Devinez les nombres<br>et trouvez-les!',
         descEbob: 'PGCD &amp; PPCM bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Résous 4 opérations!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2913,7 +2942,7 @@ const LANG = {
         hintVeryClose: ' (Πολύ κοντά! 🔥)', hintClose: ' (Κοντά! 😮)', hintFar: ' (Λίγο μακριά 🤔)', hintVeryFar: ' (Μακριά 🤔)', hintWayFar: ' (Πολύ μακριά! 😅)',
         loseEasy: 'Προσπαθήστε ξανά!', loseMedium: 'Μπορείτε!', loseHard: 'Ήταν πολύ δύσκολο!', loseUltra: 'Σχεδόν αδύνατο!',
         cooldownWait: 'Παρακαλώ περιμένετε',
-        mathGames: 'Μαθηματικά Παιχνίδια',
+        mathGames: '⚽ Παγκόσμιο Κύπελλο & CONIFA',
         descGuess: 'Μαντέψτε αριθμούς<br>και βρείτε τους!',
         descEbob: 'ΜΚΔ &amp; ΕΚΠ bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Λύσε 4 πράξεις!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3025,7 +3054,7 @@ const LANG = {
         hintVeryClose: ' (Очень близко! 🔥)', hintClose: ' (Близко! 😮)', hintFar: ' (Немного далеко 🤔)', hintVeryFar: ' (Далеко 🤔)', hintWayFar: ' (Очень далеко! 😅)',
         loseEasy: 'Попробуйте ещё раз!', loseMedium: 'Вы сможете!', loseHard: 'Было очень сложно!', loseUltra: 'Почти невозможно!',
         cooldownWait: 'Пожалуйста, подождите',
-        mathGames: 'Математические игры',
+        mathGames: '⚽ Чемпионат мира & CONIFA',
         descGuess: 'Угадай числа<br>и найди их!',
         descEbob: 'НОД &amp; НОК bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Реши 4 действия!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3136,7 +3165,7 @@ const LANG = {
         hintVeryClose: ' (قريب جداً! 🔥)', hintClose: ' (قريب! 😮)', hintFar: ' (بعيد قليلاً 🤔)', hintVeryFar: ' (بعيد 🤔)', hintWayFar: ' (بعيد جداً! 😅)',
         loseEasy: 'حاول مرة أخرى!', loseMedium: 'أنت تستطيع!', loseHard: 'كان صعباً جداً!', loseUltra: 'كان شبه مستحيل!',
         cooldownWait: 'انتظر من فضلك',
-        mathGames: 'الألعاب الرياضية',
+        mathGames: '⚽ كأس العالم & CONIFA',
         descGuess: 'خمّن الأرقام<br>وابحث عنها!',
         descEbob: 'ق.م.أ &amp; م.م.أ bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'حل 4 عمليات!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3248,7 +3277,7 @@ const LANG = {
         hintVeryClose: ' (Muito perto! 🔥)', hintClose: ' (Perto! 😮)', hintFar: ' (Um pouco longe 🤔)', hintVeryFar: ' (Longe 🤔)', hintWayFar: ' (Muito longe! 😅)',
         loseEasy: 'Tente novamente!', loseMedium: 'Você consegue!', loseHard: 'Foi muito difícil!', loseUltra: 'Quase impossível!',
         cooldownWait: 'Por favor, aguarde',
-        mathGames: 'Jogos Matemáticos',
+        mathGames: '⚽ Copa do Mundo & CONIFA',
         descGuess: 'Adivinhe os números<br>e encontre-os!',
         descEbob: 'MDC &amp; MMC bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Resolva 4 operações!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3360,7 +3389,7 @@ const LANG = {
         hintVeryClose: ' (Дуже близько! 🔥)', hintClose: ' (Близько! 😮)', hintFar: ' (Трохи далеко 🤔)', hintVeryFar: ' (Далеко 🤔)', hintWayFar: ' (Дуже далеко! 😅)',
         loseEasy: 'Спробуйте ще раз!', loseMedium: 'Ви зможете!', loseHard: 'Було дуже важко!', loseUltra: 'Майже неможливо!',
         cooldownWait: 'Будь ласка, зачекайте',
-        mathGames: 'Математичні ігри',
+        mathGames: '⚽ Чемпіонат світу & CONIFA',
         descGuess: 'Вгадай числа<br>і знайди їх!',
         descEbob: 'НСД &amp; НСК bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Вирішуй 4 дії!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3459,7 +3488,7 @@ const LANG = {
         statsBtn: 'آمار',
         statsTitle: '📊 آمار بازی',
         statsClose: 'بستن',
-        mathGames: 'بازی‌های ریاضی',
+        mathGames: '⚽ جام جهانی & CONIFA',
         placeholder: 'حدس...',
         ebobTitle: 'ب.م.م و ك.م.م',
         islemTitle: '۴ عملیات',
@@ -3551,7 +3580,7 @@ const LANG = {
         statsBtn: '통계',
         statsTitle: '📊 게임 통계',
         statsClose: '닫기',
-        mathGames: '수학 게임',
+        mathGames: '⚽ 월드컵 & CONIFA',
         placeholder: '추측...',
         ebobTitle: '최대공약수 & 최소공배수',
         islemTitle: '사칙연산',
@@ -3648,7 +3677,7 @@ const LANG = {
         statsBtn: 'Statistieken',
         statsTitle: '📊 SPELSTATISTIEKEN',
         statsClose: 'Sluiten',
-        mathGames: 'Wiskundespellen',
+        mathGames: '⚽ Wereldkampioenschap & CONIFA',
         placeholder: 'Gok...',
         ebobTitle: 'GGD & KGV',
         islemTitle: '4 Bewerkingen',
@@ -3745,7 +3774,7 @@ const LANG = {
         statsBtn: 'Statistik',
         statsTitle: '📊 SPELSTATISTIK',
         statsClose: 'Stäng',
-        mathGames: 'Matematikspel',
+        mathGames: '⚽ VM & CONIFA',
         placeholder: 'Gissning...',
         ebobTitle: 'SGD & MGM',
         islemTitle: '4 Räknesätt',
@@ -3842,7 +3871,7 @@ const LANG = {
         statsBtn: 'Statistikk',
         statsTitle: '📊 SPILLSTATISTIKK',
         statsClose: 'Lukk',
-        mathGames: 'Mattespill',
+        mathGames: '⚽ VM & CONIFA',
         placeholder: 'Gjetning...',
         ebobTitle: 'SFF & MFM',
         islemTitle: '4 Regnearter',
@@ -3939,7 +3968,7 @@ const LANG = {
         statsBtn: 'Statistiky',
         statsTitle: '📊 HERNÍ STATISTIKY',
         statsClose: 'Zavřít',
-        mathGames: 'Matematické hry',
+        mathGames: '⚽ Mistrovství světa & CONIFA',
         placeholder: 'Odhad...',
         ebobTitle: 'NSD & NSN',
         islemTitle: '4 Operace',
@@ -4036,7 +4065,7 @@ const LANG = {
         statsBtn: 'Statistike',
         statsTitle: '📊 STATISTIKE IGRE',
         statsClose: 'Zatvori',
-        mathGames: 'Matematičke igre',
+        mathGames: '⚽ Svjetsko Prvens. & CONIFA',
         placeholder: 'Procjena...',
         ebobTitle: 'NZD & NZS',
         islemTitle: '4 Operacije',
@@ -4133,7 +4162,7 @@ const LANG = {
         statsBtn: 'Statistike',
         statsTitle: '📊 STATISTIKE IGRE',
         statsClose: 'Zatvori',
-        mathGames: 'Matematičke igre',
+        mathGames: '⚽ Svjetsko Prvens. & CONIFA',
         placeholder: 'Procjena...',
         ebobTitle: 'NZM & NZV',
         islemTitle: '4 Operacije',
@@ -4327,7 +4356,7 @@ const LANG = {
         statsBtn: 'Estatistik',
         statsTitle: '📊 ESTATISTIK JWÈT',
         statsClose: 'Fèmen',
-        mathGames: 'Jwèt Matematik',
+        mathGames: '⚽ Koup Monn & CONIFA',
         placeholder: 'Devinèt...',
         descGuess: 'Devine nimewo yo!',
         descEbob: 'Jwenn PGCD & PPCM!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -9984,6 +10013,96 @@ function markSplashLang(lang) {
     setSplashText('splashLangInfoTxt', t.langInfo);
     setSplashText('splashUpdate2Txt', t.upd2);
 }
+
+// ══════════ SES AÇMA/KAPAMA ══════════
+let soundEnabled = true;
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    syncSoundBtns();
+    // AudioContext durdur/devam
+    if (typeof audioCtx !== 'undefined' && audioCtx) {
+        if (!soundEnabled && audioCtx.state === 'running') audioCtx.suspend();
+        else if (soundEnabled && audioCtx.state === 'suspended') audioCtx.resume();
+    }
+    // bgmGain
+    if (typeof bgmGain !== 'undefined' && bgmGain) bgmGain.gain.value = soundEnabled ? 0.18 : 0;
+    localStorage.setItem('sa_sound', soundEnabled ? '1' : '0');
+}
+
+// ══════════ AYDINLIK / KARANLIK TEMA ══════════
+let darkTheme = true;
+
+// Tüm ses butonlarının ikonunu güncelle
+function syncSoundBtns() {
+    const on = soundEnabled;
+    const small = on ? '🔊' : '🔇';
+    const full  = on ? '🔊 SES' : '🔇 SES';
+    ['soundToggleBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=small;});
+    ['splashSoundBtn','mainSoundBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=full;});
+}
+
+// Tüm tema butonlarının ikonunu güncelle
+function syncThemeBtns() {
+    const dark = darkTheme;
+    const small = dark ? '🌙' : '☀️';
+    const full  = dark ? '🌙 TEMA' : '☀️ TEMA';
+    ['themeToggleBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=small;});
+    ['splashThemeBtn','mainThemeBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=full;});
+}
+
+function toggleTheme() {
+    darkTheme = !darkTheme;
+    syncThemeBtns();
+    applyColorTheme();
+    localStorage.setItem('sa_theme', darkTheme ? 'dark' : 'light');
+}
+
+// Renk teması uygula — oyunun kendi applyTheme(color) fonksiyonuyla çakışmaz
+function applyColorTheme() {
+    // SADECE splash ekranı ve mathBg arka planını değiştir.
+    // Container ve oyun renkleri oyunun kendi applyTheme(color) fonksiyonuna ait — ona dokunmuyoruz.
+    const mathBg = document.getElementById('mathBg');
+    const splash  = document.getElementById('splashScreen');
+
+    if (darkTheme) {
+        if (mathBg) mathBg.style.background = 'radial-gradient(ellipse at center, #a30016 0%, #7a0011 50%, #500008 100%)';
+        if (splash) {
+            splash.style.background = 'radial-gradient(ellipse at center, #111111 0%, #0a0a0a 50%, #050505 100%)';
+            splash.style.color = '#ffffff';
+        }
+        // Splash metin renklerini orijinaline döndür
+        document.querySelectorAll('#splashScreen .splash-title, #splashScreen .splash-sub, #splashScreen .splash-version, #splashScreen .splash-credits, #splashScreen .splash-update, #splashScreen .splash-test, #splashScreen .splash-lang, #splashScreen .splash-update2').forEach(el => el.style.color = '');
+    } else {
+        if (mathBg) mathBg.style.background = 'radial-gradient(ellipse at center, #d4a070 0%, #c88040 50%, #a06020 100%)';
+        if (splash) {
+            splash.style.background = 'radial-gradient(ellipse at center, #fffbe8 0%, #fdf0cc 50%, #f5e0a0 100%)';
+            splash.style.color = '#2a0008';
+        }
+        // Splash metin renklerini koyu yap
+        document.querySelectorAll('#splashScreen .splash-title, #splashScreen .splash-credits').forEach(el => el.style.color = '#2a0008');
+        document.querySelectorAll('#splashScreen .splash-sub').forEach(el => el.style.color = '#7a3010');
+        document.querySelectorAll('#splashScreen .splash-version, #splashScreen .splash-update, #splashScreen .splash-update2').forEach(el => el.style.color = '#8B0000');
+        document.querySelectorAll('#splashScreen .splash-test, #splashScreen .splash-lang').forEach(el => el.style.color = '#5a2000');
+    }
+}
+
+// Kaydedilmiş tercihleri yükle (DOMContentLoaded'da çağrılır)
+function initPrefs() {
+    const snd = localStorage.getItem('sa_sound');
+    const thm = localStorage.getItem('sa_theme');
+    if (snd === '0') {
+        soundEnabled = false;
+        if (typeof audioCtx !== 'undefined' && audioCtx && audioCtx.state === 'running') audioCtx.suspend();
+        if (typeof bgmGain !== 'undefined' && bgmGain) bgmGain.gain.value = 0;
+        syncSoundBtns();
+    }
+    if (thm === 'light') {
+        darkTheme = false;
+        syncThemeBtns();
+        applyColorTheme();
+    }
+}
+document.addEventListener('DOMContentLoaded', initPrefs);
 </script>
 
 <!-- ══════════ İSTATİSTİK PENCERESİ (MODAL) ══════════ -->
