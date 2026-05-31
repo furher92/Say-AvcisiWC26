@@ -69,7 +69,7 @@
         #splashScreen {
             position: fixed;
             inset: 0;
-            background: radial-gradient(ellipse at center, #111111 0%, #0a0a0a 50%, #050505 100%);
+            background: radial-gradient(ellipse at center, #c0001a 0%, #7a0011 50%, #3a0008 100%) !important;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -78,6 +78,7 @@
             animation: splashFadeOut 0.5s ease forwards;
             animation-delay: 3s;
             animation-play-state: paused;
+            transition: background 0.4s ease;
         }
         #splashScreen.go { animation-play-state: running; }
 
@@ -385,12 +386,61 @@
 
     </style>
     <!-- PWA: Ana Ekran İkonu -->
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIlNhecSxIEF2Y8Sxc8SxIiwgInNob3J0X25hbWUiOiAiU2F5xLEgQXZjxLFzxLEiLCAiZGVzY3JpcHRpb24iOiAiRMO8bnlhIEt1cGFzxLEgJiBDT07EsEZBIE1hdGVtYXRpayBPeXVudSIsICJpY29ucyI6IFt7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFpwWlhkQ2IzZzlJakFnTUNBeE9USWdNVGt5SWo0S0lDQThaR1ZtY3o0S0lDQWdJRHhzYVc1bFlYSkhjbUZrYVdWdWRDQnBaRDBpWW1jaUlIZ3hQU0l3SWlCNU1UMGlNQ0lnZURJOUlqQWlJSGt5UFNJeElqNEtJQ0FnSUNBZ1BITjBiM0FnYjJabWMyVjBQU0l3SWlCemRHOXdMV052Ykc5eVBTSWpZVE13TURFMklpOCtDaUFnSUNBZ0lEeHpkRzl3SUc5bVpuTmxkRDBpTVNJZ2MzUnZjQzFqYjJ4dmNqMGlJelV3TURBd09DSXZQZ29nSUNBZ1BDOXNhVzVsWVhKSGNtRmthV1Z1ZEQ0S0lDQThMMlJsWm5NK0NpQWdQSEpsWTNRZ2QybGtkR2c5SWpFNU1pSWdhR1ZwWjJoMFBTSXhPVElpSUhKNFBTSXpOaUlnWm1sc2JEMGlkWEpzS0NOaVp5a2lMejRLSUNBOElTMHRJRVp2YjNSaVlXeHNJSEJsYm5SaFoyOXVJSEJoZEhSbGNtNGdMUzArQ2lBZ1BHTnBjbU5zWlNCamVEMGlPVFlpSUdONVBTSTRNaUlnY2owaU5EWWlJR1pwYkd3OUltNXZibVVpSUhOMGNtOXJaVDBpY21kaVlTZ3lOVFVzTWpVMUxESTFOU3d3TGpJMUtTSWdjM1J5YjJ0bExYZHBaSFJvUFNJeklpOCtDaUFnUENFdExTQlRiMk5qWlhJZ1ltRnNiQ0J6YVcxd2JHbG1hV1ZrSUMwdFBnb2dJRHhqYVhKamJHVWdZM2c5SWprMklpQmplVDBpT0RJaUlISTlJak0ySWlCbWFXeHNQU0lqWm1abUlpQnZjR0ZqYVhSNVBTSXdMamsxSWk4K0NpQWdQR05wY21Oc1pTQmplRDBpT1RZaUlHTjVQU0k0TWlJZ2NqMGlNellpSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaUl6TXpNeUlnYzNSeWIydGxMWGRwWkhSb1BTSXhMalVpTHo0S0lDQThJUzB0SUZCbGJuUmhaMjl1SUhCaGRHTm9aWE1nTFMwK0NpQWdQSEJ2YkhsbmIyNGdjRzlwYm5SelBTSTVOaXcxT0NBeE1EVXNOalVnTVRBeUxEYzFJRGt3TERjMUlEZzNMRFkxSWlCbWFXeHNQU0lqTWpJeUlpOCtDaUFnUEhCdmJIbG5iMjRnY0c5cGJuUnpQU0k1Tml3eE1EWWdPRGNzT1RrZ09UQXNPRGtnTVRBeUxEZzVJREV3TlN3NU9TSWdabWxzYkQwaUl6SXlNaUl2UGdvZ0lEeHdiMng1WjI5dUlIQnZhVzUwY3owaU56TXNOeklnT0RBc05qVWdPRGNzTnpJZ09EUXNPRE1nTnpNc09ETWlJR1pwYkd3OUlpTXlNaklpTHo0S0lDQThjRzlzZVdkdmJpQndiMmx1ZEhNOUlqRXhPU3czTWlBeE1USXNOalVnTVRBMUxEY3lJREV3T0N3NE15QXhNVGtzT0RNaUlHWnBiR3c5SWlNeU1qSWlMejRLSUNBOGNHOXNlV2R2YmlCd2IybHVkSE05SWpjekxEa3lJRGN6TERneUlEZzBMRGd5SURnM0xEa3pJRGd3TERrNUlpQm1hV3hzUFNJak1qSXlJaTgrQ2lBZ1BIQnZiSGxuYjI0Z2NHOXBiblJ6UFNJeE1Ua3NPVElnTVRFNUxEZ3lJREV3T0N3NE1pQXhNRFVzT1RNZ01URXlMRGs1SWlCbWFXeHNQU0lqTWpJeUlpOCtDaUFnUENFdExTQkJjSEFnYm1GdFpTQXRMVDRLSUNBOGRHVjRkQ0I0UFNJNU5pSWdlVDBpTVRRNElpQjBaWGgwTFdGdVkyaHZjajBpYldsa1pHeGxJaUJtYjI1MExXWmhiV2xzZVQwaUowRnlhV0ZzSUVKc1lXTnJKeXh6WVc1ekxYTmxjbWxtSWlCbWIyNTBMWE5wZW1VOUlqRTRJaUJtYjI1MExYZGxhV2RvZEQwaU9UQXdJaUJtYVd4c1BTSWpabVptSWlCc1pYUjBaWEl0YzNCaFkybHVaejBpTVNJK1UwRlpTVHd2ZEdWNGRENEtJQ0E4ZEdWNGRDQjRQU0k1TmlJZ2VUMGlNVFk0SWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElpQm1iMjUwTFdaaGJXbHNlVDBpSjBGeWFXRnNJRUpzWVdOckp5eHpZVzV6TFhObGNtbG1JaUJtYjI1MExYTnBlbVU5SWpFNElpQm1iMjUwTFhkbGFXZG9kRDBpT1RBd0lpQm1hV3hzUFNJalptWmpZemc0SWlCc1pYUjBaWEl0YzNCaFkybHVaejBpTVNJK1FWWkRTVk5KUEM5MFpYaDBQZ284TDNOMlp6ND0iLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3N2Zyt4bWwifSwgeyJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhacFpYZENiM2c5SWpBZ01DQXhPVElnTVRreUlqNEtJQ0E4WkdWbWN6NEtJQ0FnSUR4c2FXNWxZWEpIY21Ga2FXVnVkQ0JwWkQwaVltY2lJSGd4UFNJd0lpQjVNVDBpTUNJZ2VESTlJakFpSUhreVBTSXhJajRLSUNBZ0lDQWdQSE4wYjNBZ2IyWm1jMlYwUFNJd0lpQnpkRzl3TFdOdmJHOXlQU0lqWVRNd01ERTJJaTgrQ2lBZ0lDQWdJRHh6ZEc5d0lHOW1abk5sZEQwaU1TSWdjM1J2Y0MxamIyeHZjajBpSXpVd01EQXdPQ0l2UGdvZ0lDQWdQQzlzYVc1bFlYSkhjbUZrYVdWdWRENEtJQ0E4TDJSbFpuTStDaUFnUEhKbFkzUWdkMmxrZEdnOUlqRTVNaUlnYUdWcFoyaDBQU0l4T1RJaUlISjRQU0l6TmlJZ1ptbHNiRDBpZFhKc0tDTmlaeWtpTHo0S0lDQThJUzB0SUVadmIzUmlZV3hzSUhCbGJuUmhaMjl1SUhCaGRIUmxjbTRnTFMwK0NpQWdQR05wY21Oc1pTQmplRDBpT1RZaUlHTjVQU0k0TWlJZ2NqMGlORFlpSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaWNtZGlZU2d5TlRVc01qVTFMREkxTlN3d0xqSTFLU0lnYzNSeWIydGxMWGRwWkhSb1BTSXpJaTgrQ2lBZ1BDRXRMU0JUYjJOalpYSWdZbUZzYkNCemFXMXdiR2xtYVdWa0lDMHRQZ29nSUR4amFYSmpiR1VnWTNnOUlqazJJaUJqZVQwaU9ESWlJSEk5SWpNMklpQm1hV3hzUFNJalptWm1JaUJ2Y0dGamFYUjVQU0l3TGprMUlpOCtDaUFnUEdOcGNtTnNaU0JqZUQwaU9UWWlJR041UFNJNE1pSWdjajBpTXpZaUlHWnBiR3c5SW01dmJtVWlJSE4wY205clpUMGlJek16TXlJZ2MzUnliMnRsTFhkcFpIUm9QU0l4TGpVaUx6NEtJQ0E4SVMwdElGQmxiblJoWjI5dUlIQmhkR05vWlhNZ0xTMCtDaUFnUEhCdmJIbG5iMjRnY0c5cGJuUnpQU0k1Tml3MU9DQXhNRFVzTmpVZ01UQXlMRGMxSURrd0xEYzFJRGczTERZMUlpQm1hV3hzUFNJak1qSXlJaTgrQ2lBZ1BIQnZiSGxuYjI0Z2NHOXBiblJ6UFNJNU5pd3hNRFlnT0Rjc09Ua2dPVEFzT0RrZ01UQXlMRGc1SURFd05TdzVPU0lnWm1sc2JEMGlJekl5TWlJdlBnb2dJRHh3YjJ4NVoyOXVJSEJ2YVc1MGN6MGlOek1zTnpJZ09EQXNOalVnT0Rjc056SWdPRFFzT0RNZ056TXNPRE1pSUdacGJHdzlJaU15TWpJaUx6NEtJQ0E4Y0c5c2VXZHZiaUJ3YjJsdWRITTlJakV4T1N3M01pQXhNVElzTmpVZ01UQTFMRGN5SURFd09DdzRNeUF4TVRrc09ETWlJR1pwYkd3OUlpTXlNaklpTHo0S0lDQThjRzlzZVdkdmJpQndiMmx1ZEhNOUlqY3pMRGt5SURjekxEZ3lJRGcwTERneUlEZzNMRGt6SURnd0xEazVJaUJtYVd4c1BTSWpNakl5SWk4K0NpQWdQSEJ2YkhsbmIyNGdjRzlwYm5SelBTSXhNVGtzT1RJZ01URTVMRGd5SURFd09DdzRNaUF4TURVc09UTWdNVEV5TERrNUlpQm1hV3hzUFNJak1qSXlJaTgrQ2lBZ1BDRXRMU0JCY0hBZ2JtRnRaU0F0TFQ0S0lDQThkR1Y0ZENCNFBTSTVOaUlnZVQwaU1UUTRJaUIwWlhoMExXRnVZMmh2Y2owaWJXbGtaR3hsSWlCbWIyNTBMV1poYldsc2VUMGlKMEZ5YVdGc0lFSnNZV05ySnl4ellXNXpMWE5sY21sbUlpQm1iMjUwTFhOcGVtVTlJakU0SWlCbWIyNTBMWGRsYVdkb2REMGlPVEF3SWlCbWFXeHNQU0lqWm1abUlpQnNaWFIwWlhJdGMzQmhZMmx1WnowaU1TSStVMEZaU1R3dmRHVjRkRDRLSUNBOGRHVjRkQ0I0UFNJNU5pSWdlVDBpTVRZNElpQjBaWGgwTFdGdVkyaHZjajBpYldsa1pHeGxJaUJtYjI1MExXWmhiV2xzZVQwaUowRnlhV0ZzSUVKc1lXTnJKeXh6WVc1ekxYTmxjbWxtSWlCbWIyNTBMWE5wZW1VOUlqRTRJaUJtYjI1MExYZGxhV2RvZEQwaU9UQXdJaUJtYVd4c1BTSWpabVpqWXpnNElpQnNaWFIwWlhJdGMzQmhZMmx1WnowaU1TSStRVlpEU1ZOSlBDOTBaWGgwUGdvOEwzTjJaejQ9IiwgInNpemVzIjogIjUxMng1MTIiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn1dLCAic3RhcnRfdXJsIjogIi4vIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsICJ0aGVtZV9jb2xvciI6ICIjN2EwMDExIiwgImJhY2tncm91bmRfY29sb3IiOiAiIzdhMDAxMSJ9">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#7a0011">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Sayı Avcısı">
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYTMwMDE2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzUwMDAwOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSIzNiIgZmlsbD0idXJsKCNiZykiLz4KICA8IS0tIEZvb3RiYWxsIHBlbnRhZ29uIHBhdHRlcm4gLS0+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI4MiIgcj0iNDYiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjI1KSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPCEtLSBTb2NjZXIgYmFsbCBzaW1wbGlmaWVkIC0tPgogIDxjaXJjbGUgY3g9Ijk2IiBjeT0iODIiIHI9IjM2IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjk1Ii8+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI4MiIgcj0iMzYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8IS0tIFBlbnRhZ29uIHBhdGNoZXMgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSI5Niw1OCAxMDUsNjUgMTAyLDc1IDkwLDc1IDg3LDY1IiBmaWxsPSIjMjIyIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI5NiwxMDYgODcsOTkgOTAsODkgMTAyLDg5IDEwNSw5OSIgZmlsbD0iIzIyMiIvPgogIDxwb2x5Z29uIHBvaW50cz0iNzMsNzIgODAsNjUgODcsNzIgODQsODMgNzMsODMiIGZpbGw9IiMyMjIiLz4KICA8cG9seWdvbiBwb2ludHM9IjExOSw3MiAxMTIsNjUgMTA1LDcyIDEwOCw4MyAxMTksODMiIGZpbGw9IiMyMjIiLz4KICA8cG9seWdvbiBwb2ludHM9IjczLDkyIDczLDgyIDg0LDgyIDg3LDkzIDgwLDk5IiBmaWxsPSIjMjIyIi8+CiAgPHBvbHlnb24gcG9pbnRzPSIxMTksOTIgMTE5LDgyIDEwOCw4MiAxMDUsOTMgMTEyLDk5IiBmaWxsPSIjMjIyIi8+CiAgPCEtLSBBcHAgbmFtZSAtLT4KICA8dGV4dCB4PSI5NiIgeT0iMTQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ0FyaWFsIEJsYWNrJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmIiBsZXR0ZXItc3BhY2luZz0iMSI+U0FZSTwvdGV4dD4KICA8dGV4dCB4PSI5NiIgeT0iMTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ0FyaWFsIEJsYWNrJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZjYzg4IiBsZXR0ZXItc3BhY2luZz0iMSI+QVZDSVNJPC90ZXh0Pgo8L3N2Zz4=">
+    <link rel="apple-touch-icon" href="logo.png">
+    <!-- Firebase Online Sayaç -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getDatabase, ref, onValue, set, onDisconnect, serverTimestamp, push, remove }
+            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+        // ⚠️ Kendi Firebase projenin bilgilerini buraya gir:
+        const firebaseConfig = {
+            apiKey:            "BURAYA_API_KEY",
+            authDomain:        "BURAYA_AUTH_DOMAIN",
+            databaseURL:       "BURAYA_DATABASE_URL",
+            projectId:         "BURAYA_PROJECT_ID",
+            storageBucket:     "BURAYA_STORAGE_BUCKET",
+            messagingSenderId: "BURAYA_MESSAGING_SENDER_ID",
+            appId:             "BURAYA_APP_ID"
+        };
+
+        try {
+            const app = initializeApp(firebaseConfig);
+            const db  = getDatabase(app);
+
+            // Her oturum için benzersiz bir kayıt yaz
+            const sessionsRef = ref(db, 'online_sessions');
+            const myRef = push(sessionsRef);
+
+            // Oturum aç: sunucu zaman damgasıyla
+            await set(myRef, { t: serverTimestamp() });
+
+            // Sekme kapanınca/sayfadan ayrılınca sil
+            onDisconnect(myRef).remove();
+
+            // Toplam aktif oturum sayısını dinle
+            onValue(sessionsRef, (snapshot) => {
+                const count = snapshot.size || 0;
+                const el = document.getElementById('onlineCount');
+                if (el) el.textContent = count;
+            });
+
+            // Eski oturumları temizle (5 dakikadan fazla sessiz kalan)
+            // Bu kısım isteğe bağlı — Firebase Rules ile de yapılabilir
+        } catch(e) {
+            // Firebase bağlantı hatası — sayacı gizle
+            const counter = document.getElementById('onlineCounter');
+            if (counter) counter.style.display = 'none';
+            console.warn('Firebase bağlantı hatası:', e.message);
+        }
+    </script>
 </head>
 <body>
 
@@ -478,7 +528,7 @@
         <button onclick="setLang('de');markSplashLang('de')" id="splashLangDE" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇩🇪</button>
         <button onclick="setLang('fr');markSplashLang('fr')" id="splashLangFR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇫🇷</button>
         <button onclick="setLang('el');markSplashLang('el')" id="splashLangEL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇬🇷</button>
-        <button onclick="setLang('ru');markSplashLang('ru')" id="splashLangRU" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇷🇺</button>
+        <button onclick="setLang('ru');markSplashLang('ru')" id="splashLangRU" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></button>
         <button onclick="setLang('ar');markSplashLang('ar')" id="splashLangAR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇸🇦</button>
         <button onclick="setLang('pt');markSplashLang('pt')" id="splashLangPT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇧🇷</button>
         <button onclick="setLang('uk');markSplashLang('uk')" id="splashLangUK" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇺🇦</button>
@@ -493,12 +543,14 @@
         <button onclick="setLang('uz');markSplashLang('uz')" id="splashLangUZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇺🇿</button>
         <button onclick="setLang('ht');markSplashLang('ht')" id="splashLangHT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇭🇹</button>
     </div>
+    <!-- Online sayaç (Firebase Realtime DB) -->
+    <div id="onlineCounter" style="font-family:'Press Start 2P',monospace;font-size:7px;color:#44ff88;margin-bottom:4px;letter-spacing:0.5px;">
+        🟢 <span id="onlineCount">bağlanıyor...</span> kişi şu an oynuyor
+    </div>
     <!-- Ses & Tema butonları - Splash -->
     <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;margin-bottom:2px;">
         <button id="splashSoundBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
             style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🔊 SES</button>
-        <button id="splashThemeBtn" onclick="toggleTheme()" title="Aydınlık/Karanlık Tema"
-            style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🌙 TEMA</button>
     </div>
     <button id="splashStartBtn" onclick="splashStart()" style="margin-top:14px;padding:12px 36px;font-family:'Press Start 2P',monospace;font-size:11px;background:#fff;color:#e30a17;border:3px solid #fff;border-radius:10px;cursor:pointer;box-shadow:0 0 18px #ffffff88;animation:blink 1s step-end infinite;font-weight:bold;">▶ BAŞLA</button>
     
@@ -520,6 +572,14 @@
                 Birmingham U.
             </div>
         </div>
+        <!-- Konferans Ligi Şampiyonu - Yeşil -->
+        <div style="background:linear-gradient(135deg,#14532d,#22c55e);border:2px solid #86efac;border-radius:10px;padding:6px 10px;text-align:center;min-width:120px;">
+            <div id="ueclChampLabel" style="font-size:8px;color:#bbf7d0;letter-spacing:0.5px;font-weight:bold;">🏆 AVRUPA KULÜPLER KUPASI 3</div>
+            <div style="font-size:11px;color:#fff;font-weight:bold;margin-top:3px;display:flex;align-items:center;justify-content:center;gap:3px;">
+                <svg width="14" height="10" viewBox="0 0 30 20" style="border:1px solid rgba(0,0,0,0.2);border-radius:1px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg>
+                Palace FC
+            </div>
+        </div>
     </div>
     <div class="splash-version" style="color:#fff;font-weight:bold;" id="splashVersionTxt"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> PRE-ALPHA 3 <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> ∞</div>
     <div class="splash-credits" style="color:#fff;">Created By FurkanÇ</div>
@@ -534,8 +594,6 @@
     <div id="settingsBar" style="position:fixed;top:8px;right:8px;z-index:500;display:flex;gap:6px;">
         <button id="soundToggleBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
             style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">🔊</button>
-        <button id="themeToggleBtn" onclick="toggleTheme()" title="Aydınlık/Karanlık Tema"
-            style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">🌙</button>
     </div>
 <div class="container">
     <div class="app-logo" style="display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;">
@@ -579,8 +637,6 @@
     <div style="display:flex;gap:8px;justify-content:center;margin-bottom:8px;margin-top:2px;">
         <button id="mainSoundBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
             style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.35);background:rgba(0,0,0,0.35);color:#fff;cursor:pointer;">🔊 SES</button>
-        <button id="mainThemeBtn" onclick="toggleTheme()" title="Aydınlık/Karanlık Tema"
-            style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.35);background:rgba(0,0,0,0.35);color:#fff;cursor:pointer;">🌙 TEMA</button>
     </div>
     <!-- MOD SEÇİM EKRANI -->
     <div id="modeScreen" style="display:flex;flex-direction:column;align-items:center;width:100%;">
@@ -596,7 +652,7 @@
             <button id="langDE" onclick="setLang('de')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇩🇪 DE</button>
             <button id="langFR" onclick="setLang('fr')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇫🇷 FR</button>
             <button id="langEL" onclick="setLang('el')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇬🇷 EL</button>
-            <button id="langRU" onclick="setLang('ru')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇷🇺 RU</button>
+            <button id="langRU" onclick="setLang('ru')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> RU</button>
             <button id="langAR" onclick="setLang('ar')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇸🇦 AR</button>
             <button id="langPT" onclick="setLang('pt')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇧🇷 PT</button>
             <button id="langUK" onclick="setLang('uk')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇺🇦 UK</button>
@@ -1342,7 +1398,7 @@
         <button onclick="backToModeSelect()" style="align-self:flex-start;padding:6px 14px;font-size:11px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;margin-bottom:8px;">← Geri</button>
         <p id="futbolDiffTitleTxt" style="color:#ff8888;margin:4px 0 2px;font-size:13px;font-weight:600;"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> <span id="futbolDiffTitleTextOnly">Rusya Hazırlık Maçları</span></p>
         <div style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#1a0808,#2a0808);border:1px solid #cc3333;border-radius:20px;padding:4px 12px;margin-bottom:6px;">
-            <span style="font-size:14px;">🇷🇺</span>
+            <span style="font-size:14px;"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></span>
             <span style="font-size:10px;font-weight:bold;color:#ff8888;letter-spacing:0.5px;" id="penaltyBadgeTxt">RUSYA HAZIRLIK MAÇLARI</span>
             <span style="font-size:10px;">⚠</span>
         </div>
@@ -4906,6 +4962,8 @@ function setLang(lang) {
     // Splash şampiyon kartları
     _set('uclChampLabel', getNM('uclLabel'));
     _set('uelChampLabel', getNM('uelLabel'));
+    _set('ueclChampLabel', getNM('ueclLabel'));
+
     // Süper Kupa desc (bayrak SVG'leri ile birlikte)
     const flagFR = '<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:2px;flex-shrink:0;"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg>';
     const flagENG = '<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:2px;flex-shrink:0;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg>';
@@ -5295,7 +5353,11 @@ function backToModeSelect() {
     // Container scroll sıfırla
     const c = document.querySelector('.container');
     if (c) { c.scrollTop = 0; }
-    applyTheme('#ffffff');
+    // Container'ı orijinal kırmızı temaya döndür
+    const _c = document.querySelector('.container');
+    if (_c) { _c.style.borderColor = ''; _c.style.boxShadow = ''; }
+    const _h1 = document.querySelector('h1');
+    if (_h1) { _h1.style.color = '#fff'; _h1.style.textShadow = '2px 2px 0 #7a0011, 0 0 10px rgba(255,255,255,0.4)'; }
     startMusic();
     updateUCLBtn();
 }
@@ -5367,6 +5429,7 @@ const MUSIC_TRACKS = [
 ];
 
 function startMusic() {
+    if (!soundEnabled) return;
     if (musicPlaying) return;
     stopMusic(); // Önceki varsa temizle
     try {
@@ -5429,6 +5492,7 @@ function getSfxCtx() {
     return _sfxCtx;
 }
 function playSound(type) {
+    if (!soundEnabled) return;
     try {
         const ctx = getSfxCtx();
         const now = ctx.currentTime;
@@ -6828,16 +6892,16 @@ function getOpponentName(diff, idx) {
 
 const WC2026 = {
     easy: [
-        { flag: '🇷🇺', name: 'Rusya', fullName: 'Rusya' },
+        { flag: '<svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg>', name: 'Rusya', fullName: 'Rusya' },
     ],
     medium: [
-        { flag: '🇷🇺', name: 'Rusya', fullName: 'Rusya' },
+        { flag: '<svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg>', name: 'Rusya', fullName: 'Rusya' },
     ],
     hard: [
-        { flag: '🇷🇺', name: 'Rusya', fullName: 'Rusya' },
+        { flag: '<svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg>', name: 'Rusya', fullName: 'Rusya' },
     ],
     ultrahard: [
-        { flag: '🇷🇺', name: 'Rusya', fullName: 'Rusya' },
+        { flag: '<svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg>', name: 'Rusya', fullName: 'Rusya' },
     ],
 };
 
@@ -7613,7 +7677,7 @@ function nextFriendlyQuestion() {
 
     setText('friendlyQuestion', q.q);
     setHTML('friendlySubInfo',
-        `🇷🇺 ${rusName} ${friendlyShot+1}. ${labels.shot} — ${oppFlag} ${oppName} <span style="color:#00e5aa;">${L.uclBlock2||'Doğru cevapla engelle!'}</span>`
+        `<svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> ${rusName} ${friendlyShot+1}. ${labels.shot} — ${oppFlag} ${oppName} <span style="color:#00e5aa;">${L.uclBlock2||'Doğru cevapla engelle!'}</span>`
     );
     setText('friendlyMessage','');
     setProp('friendlyInput','value','');
@@ -7720,7 +7784,7 @@ function endFriendlyMatch() {
 
     setHTML('friendlyMessage',
         `<div style="font-size:15px;color:${resultColor};font-weight:bold;">${resultTxt}</div>`
-        +`<div style="font-size:13px;color:#fff;margin-top:4px;">🇷🇺 ${rusName} ${my} – ${opp} ${match.opponent.flag} ${oppName}</div>`
+        +`<div style="font-size:13px;color:#fff;margin-top:4px;"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> ${rusName} ${my} – ${opp} ${match.opponent.flag} ${oppName}</div>`
         +'<div style="display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap;">'
         +`<button onclick="startFriendly('${friendlyMatchId}')" style="padding:7px 14px;font-size:12px;border-color:#cc3333;">🔄 ${L.playAgain||'Tekrar'}</button>`
         +`<button onclick="startFriendly('${friendlyMatchId}')" style="padding:7px 14px;font-size:12px;background:#2a0808;border-color:#cc3333;color:#ff6666;">➡ ${L.continueBtn||'Devam'}</button>`
@@ -8754,29 +8818,78 @@ function updateStandings(match) {
 }
 
 function advanceToKnockout() {
-    // Her gruptan ilk 2 → 24 takım + en iyi 8 üçüncü = 32 takım Son 32
-    let qualifiers = [];
+    // Her gruptan sıralama al
+    const grpWinner = {}; // 1. → grpWinner['A']
+    const grpSecond = {}; // 2. → grpSecond['A']
+    const grpThird  = {}; // 3. → grpThird['A']
     wc26Groups.forEach(g => {
-        const sorted = [...wc26Standings[g.label]].sort((a,b) => b.Pts-a.Pts || (b.GF-b.GA)-(a.GF-a.GA) || b.GF-a.GF);
-        if (sorted[0]) qualifiers.push({team:sorted[0].team, pos:1, group:g.label, pts:sorted[0].Pts, diff:sorted[0].GF-sorted[0].GA});
-        if (sorted[1]) qualifiers.push({team:sorted[1].team, pos:2, group:g.label, pts:sorted[1].Pts, diff:sorted[1].GF-sorted[1].GA});
-        if (sorted[2]) qualifiers.push({team:sorted[2].team, pos:3, group:g.label, pts:sorted[2].Pts, diff:sorted[2].GF-sorted[2].GA});
+        const sorted = [...wc26Standings[g.label]].sort((a,b) =>
+            b.Pts-a.Pts || (b.GF-b.GA)-(a.GF-a.GA) || b.GF-a.GF || b.GF-a.GF);
+        grpWinner[g.label] = sorted[0]?.team;
+        grpSecond[g.label] = sorted[1]?.team;
+        grpThird[g.label]  = sorted[2]?.team;
     });
-    // En iyi 8 üçüncü
-    const thirds = qualifiers.filter(q => q.pos===3).sort((a,b) => b.pts-a.pts || b.diff-a.diff);
-    const top8Thirds = thirds.slice(0,8).map(q => q.team.code);
-    const final32 = qualifiers.filter(q => q.pos<3 || top8Thirds.includes(q.team.code)).map(q => q.team);
-    // Karıştır ve 16 eşleşme yap
-    const shuffle = arr => [...arr].sort(() => Math.random()-0.5);
-    const teams32 = shuffle(final32);
-    const r32 = [];
-    for (let i=0;i<16;i++) {
-        r32.push({home:teams32[i*2], away:teams32[i*2+1], played:false, homeGoals:0, awayGoals:0});
-    }
-    wc26KnockoutBracket = { r32:r32, r16:[], qf:[], sf:[], '3rd':[], final:[] };
+
+    // En iyi 8 üçüncü (FIFA 2026 Son 32 için)
+    const thirds = Object.entries(grpThird).map(([grp, team]) => {
+        const s = wc26Standings[grp]?.find(x => x.team.code === team?.code);
+        return { team, grp, pts: s?.Pts||0, diff: (s?.GF||0)-(s?.GA||0), gf: s?.GF||0 };
+    }).filter(x => x.team).sort((a,b) => b.pts-a.pts || b.diff-a.diff || b.gf-a.gf);
+    const best8 = thirds.slice(0,8);
+    const best8Grps = best8.map(x => x.grp); // hangi grupların 3.sü kalifikasyon yaptı
+
+    // Üçüncülerin hangi slota gireceğini belirle (FIFA 2026 resmi tablosu)
+    // Kaynak: FIFA 2026 bracket — 8 üçüncü için 8 slot:
+    // Slot 3A: en iyi 3., Slot 3B: 2. en iyi... sırayla
+    const thirdTeams = best8.map(x => x.team);
+
+    // FIFA 2026 Resmi Son 32 Bracket:
+    // (Grup sırasına göre belirlenen 16 eşleşme)
+    const W = grpWinner, S = grpSecond;
+    const T = {}; // üçüncüler — slotlara atandı
+    // 8 üçüncüyü sıraya göre 8 slota ata (basit yaklaşım)
+    const tSlots = ['t1','t2','t3','t4','t5','t6','t7','t8'];
+    best8.forEach((x,i) => T[tSlots[i]] = x.team);
+
+    // FIFA 2026 resmi Son 32 eşleşme çiftleri
+    // Gerçek bracket: 1A-2B, 1C-2D, 1E-2F, 1G-2H, 1I-2J, 1K-2L (12 maç birinci-ikinci)
+    // + 4 maç: birinci/ikinci vs en iyi üçüncüler
+    const mk = (h,a) => ({home:h||{code:'?',flag:'',strength:70,names:{tr:'?'}},
+                           away:a||{code:'?',flag:'',strength:70,names:{tr:'?'}},
+                           played:false, homeGoals:0, awayGoals:0});
+
+    const r32 = [
+        // Pathway 1 (Sol köşe)
+        mk(W['A'], S['B']),   // 1A vs 2B
+        mk(W['C'], S['D']),   // 1C vs 2D
+        mk(W['E'], S['F']),   // 1E vs 2F
+        mk(W['G'], S['H']),   // 1G vs 2H
+        // Pathway 2 (Sağ köşe)
+        mk(W['B'], S['A']),   // 1B vs 2A
+        mk(W['D'], S['C']),   // 1D vs 2C
+        mk(W['F'], S['E']),   // 1F vs 2E
+        mk(W['H'], S['G']),   // 1H vs 2G
+        // Pathway 3
+        mk(W['I'], S['J']),   // 1I vs 2J
+        mk(W['K'], S['L']),   // 1K vs 2L
+        mk(W['J'], S['I']),   // 1J vs 2I
+        mk(W['L'], S['K']),   // 1L vs 2K
+        // En iyi 8 üçüncü — 4 slot kalan eşleşmelere dağıtıldı
+        mk(T['t1'], T['t2']),
+        mk(T['t3'], T['t4']),
+        mk(T['t5'], T['t6']),
+        mk(T['t7'], T['t8']),
+    ];
+
+    wc26KnockoutBracket = { r32, r16:[], qf:[], sf:[], '3rd':[], final:[] };
     wc26Stage = 'r32';
     updateWC26TourneyDisplay();
-    setHTML('wc26TourneyMsg','<span style="color:#00e5aa;">✅ Grup aşaması tamamlandı! SON 32 başlıyor.</span>');
+
+    // Turnuva bracket'ını göster
+    const html = '<div style="font-size:11px;color:#00e5aa;margin-bottom:4px;">✅ GRUP AŞAMASI TAMAMLANDI</div>' +
+        '<div style="font-size:10px;color:#ffcc88;margin-bottom:2px;">⚽ SON 32 BAŞLIYOR · 28 Haziran 2026</div>' +
+        '<div style="font-size:9px;color:#aaa;">32 takım · Tek eleme · Final: 19 Temmuz 2026</div>';
+    setHTML('wc26TourneyMsg', html);
 }
 
 function simulateKnockoutMatchesBefore(myNextMatch) {
@@ -9138,10 +9251,10 @@ const CONFED_TEAMS = [
     // A Grubu
     { code:'RAE', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="10" height="20" fill="#005aaa"/><rect x="10" y="0" width="10" height="20" fill="#fff"/><rect x="20" y="0" width="10" height="20" fill="#a0a0a0"/></svg>', strength:65, group:'A', names:{tr:'Raetia',en:'Raetia',it:'Rezia',es:'Raetia',ka:'რეტია',az:'Retia',ja:'ラエティア',zh:'雷蒂亚',de:'Rätien',fr:'Rhétie',el:'Ραιτία',ru:'Реция',ar:'ريتيا',pt:'Récia',uk:'Реція',fa:'رتیا',ko:'라에티아',nl:'Raetia',sv:'Raetia',no:'Raetia',cs:'Rétie',bs:'Reti',hr:'Reti',uz:'Retia',ht:'Raetia'} },
     { code:'PAD', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect width="30" height="20" fill="#008c45"/><rect x="10" y="0" width="4" height="20" fill="#fff"/><rect x="0" y="8" width="30" height="4" fill="#fff"/><rect x="11" y="0" width="2" height="20" fill="#cf1432"/><rect x="0" y="9" width="30" height="2" fill="#cf1432"/></svg>', strength:68, group:'A', names:{tr:'Padania',en:'Padania',it:'Padania',es:'Padania',ka:'პადანია',az:'Padaniya',ja:'パダーニア',zh:'帕达尼亚',de:'Padanien',fr:'Padanie',el:'Παδανία',ru:'Падания',ar:'بادانيا',pt:'Padânia',uk:'Паданія',fa:'پادانیا',ko:'파다니아',nl:'Padanië',sv:'Padanien',no:'Padania',cs:'Padánie',bs:'Padanija',hr:'Padanija',uz:'Padaniya',ht:'Padani'} },
-    { code:'GRL', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="30" height="10" fill="#fff"/><rect x="0" y="10" width="30" height="10" fill="#d50028"/><path d="M 12 10 m -7 0 a 7 7 0 0 1 14 0 z" fill="#d50028"/><path d="M 12 10 m -7 0 a 7 7 0 0 0 14 0 z" fill="#fff"/></svg>', strength:60, group:'A', names:{tr:'Grönland',en:'Greenland',it:'Groenlandia',es:'Groenlandia',ka:'გრენლანდია',az:'Qrenlandiya',ja:'グリーンランド',zh:'格陵兰',de:'Grönland',fr:'Groenland',el:'Γροιλανδία',ru:'Гренландия',ar:'غرينلاند',pt:'Gronelândia',uk:'Гренландія',fa:'گرینلند',ko:'그린란드',nl:'Groenland',sv:'Grönland',no:'Grønland',cs:'Grónsko',bs:'Grenland',hr:'Grenland',uz:'Grenlandiya',ht:'Greenland'} },
+    { code:'GRL', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="30" height="10" fill="#fff"/><rect x="0" y="10" width="30" height="10" fill="#d50028"/><path d="M 12 10 m -7 0 a 7 7 0 0 1 14 0 z" fill="#d50028"/><path d="M 12 10 m -7 0 a 7 7 0 0 0 14 0 z" fill="#fff"/></svg>', strength:60, group:'A', names:{tr:'Grönland FA (KAK)',en:'Greenland FA (KAK)',it:'Groenlandia',es:'Groenlandia',ka:'გრენლანდია',az:'Qrenlandiya',ja:'グリーンランド',zh:'格陵兰',de:'Grönland',fr:'Groenland',el:'Γροιλανδία',ru:'Гренландия',ar:'غرينلاند',pt:'Gronelândia',uk:'Гренландія',fa:'گرینلند',ko:'그린란드',nl:'Groenland',sv:'Grönland',no:'Grønland',cs:'Grónsko',bs:'Grenland',hr:'Grenland',uz:'Grenlandiya',ht:'Greenland'} },
     // B Grubu
-    { code:'PRV', flag:'<svg width="22" height="14" viewBox="0 0 32 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="4" height="20" fill="#ffd200"/><rect x="4" y="0" width="4" height="20" fill="#cf1432"/><rect x="8" y="0" width="4" height="20" fill="#ffd200"/><rect x="12" y="0" width="4" height="20" fill="#cf1432"/><rect x="16" y="0" width="4" height="20" fill="#ffd200"/><rect x="20" y="0" width="4" height="20" fill="#cf1432"/><rect x="24" y="0" width="4" height="20" fill="#ffd200"/><rect x="28" y="0" width="4" height="20" fill="#cf1432"/></svg>', strength:64, group:'B', names:{tr:'Provans',en:'Provence',it:'Provenza',es:'Provenza',ka:'პროვანსი',az:'Provans',ja:'プロヴァンス',zh:'普罗旺斯',de:'Provence',fr:'Provence',el:'Προβηγκία',ru:'Прованс',ar:'بروفانس',pt:'Provença',uk:'Прованс',fa:'پروانس',ko:'프로방스',nl:'Provence',sv:'Provence',no:'Provence',cs:'Provence',bs:'Provansa',hr:'Provansa',uz:'Provans',ht:'Pwovans'} },
-    { code:'TIC', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="30" height="10" fill="#e43537"/><rect x="0" y="10" width="30" height="10" fill="#2387d2"/></svg>', strength:66, group:'B', names:{tr:'Ticino',en:'Ticino',it:'Ticino',es:'Tesino',ka:'ტიჩინო',az:'Tiçino',ja:'ティチーノ',zh:'提契诺',de:'Tessin',fr:'Tessin',el:'Τιτσίνο',ru:'Тичино',ar:'تيتشينو',pt:'Tessino',uk:'Тічіно',fa:'تیچینو',ko:'티치노',nl:'Ticino',sv:'Ticino',no:'Ticino',cs:'Ticino',bs:'Ticino',hr:'Ticino',uz:'Tichino',ht:'Ticino'} },
+    { code:'PRV', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect width="30" height="20" fill="#cf1432"/><rect x="0" y="7" width="30" height="6" fill="#ffd200" opacity="0.85"/><rect x="11" y="0" width="8" height="20" fill="#ffd200" opacity="0.85"/></svg>', strength:64, group:'B', names:{tr:'FF Rouet Provence',en:'FF Rouet Provence',it:'FF Rouet Provence',es:'FF Rouet Provence',ka:'FF Rouet Provence',az:'FF Rouet Provence',ja:'FF Rouet Provence',zh:'FF Rouet Provence',de:'FF Rouet Provence',fr:'FF Rouet Provence',el:'FF Rouet Provence',ru:'FF Rouet Provence',ar:'FF Rouet Provence',pt:'FF Rouet Provence',uk:'FF Rouet Provence',fa:'FF Rouet Provence',ko:'FF Rouet Provence',nl:'FF Rouet Provence',sv:'FF Rouet Provence',no:'FF Rouet Provence',cs:'FF Rouet Provence',bs:'FF Rouet Provence',hr:'FF Rouet Provence',uz:'FF Rouet Provence',ht:'FF Rouet Provence'} },
+    { code:'TIC', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="30" height="10" fill="#e43537"/><rect x="0" y="10" width="30" height="10" fill="#2387d2"/></svg>', strength:66, group:'B', names:{tr:'Canton Ticino',en:'Canton Ticino',it:'Canton Ticino',es:'Cantón Ticino',ka:'კანტონ ტიჩინო',az:'Kanton Tiçino',ja:'カントン・ティチーノ',zh:'提契诺州',de:'Kanton Tessin',fr:'Canton du Tessin',el:'Καντόνιο Τιτσίνο',ru:'Кантон Тичино',ar:'كانتون تيتشينو',pt:'Cantão Ticino',uk:'Кантон Тічіно',fa:'کانتون تیچینو',ko:'칸톤 티치노',nl:'Kanton Ticino',sv:'Kanton Ticino',no:'Kanton Ticino',cs:'Kanton Ticino',bs:'Kanton Ticino',hr:'Kanton Ticino',uz:'Kanton Tichino',ht:'Kanton Ticino'} },
     { code:'NCY', flag:'<svg width="24" height="15" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;border-radius:2px;background:#fff;"><rect width="900" height="600" fill="#fff"/><rect y="60" width="900" height="60" fill="#e30a17"/><rect y="480" width="900" height="60" fill="#e30a17"/><circle cx="380" cy="300" r="130" fill="#e30a17"/><circle cx="420" cy="300" r="110" fill="#fff"/><polygon points="560,230 576.5,277.3 626.6,278.4 586.6,308.7 601.1,356.6 560,328 518.9,356.6 533.4,308.7 493.4,278.4 543.5,277.3" fill="#e30a17"/></svg>', strength:70, group:'B', names:{tr:'Kuzey Kıbrıs',en:'Northern Cyprus',it:'Cipro del Nord',es:'Chipre del Norte',ka:'ჩრდილოეთ კვიპროსი',az:'Şimali Kipr',ja:'北キプロス',zh:'北塞浦路斯',de:'Nordzypern',fr:'Chypre du Nord',el:'Βόρεια Κύπρος',ru:'Северный Кипр',ar:'قبرص الشمالية',pt:'Chipre do Norte',uk:'Північний Кіпр',fa:'قبرس شمالی',ko:'북키프로스',nl:'Noord-Cyprus',sv:'Norra Cypern',no:'Nord-Kypros',cs:'Severní Kypr',bs:'Sjeverni Kipar',hr:'Sjeverni Cipar',uz:'Shimoliy Kipr',ht:'Nò Chip'} },
 ];
 
@@ -9427,21 +9540,42 @@ function updateConfedStandings(match) {
 }
 
 function buildConfedKnockout() {
-    // A1 vs B1 = Final, A2 vs B2 = 3.lük, A3 vs B3 = 5.lik
+    // Gerçek CONIFA Euro 2026 formatı:
+    // A grubu 1. vs B grubu 1. → FİNAL (1-2. yer)
+    // A grubu 2. vs B grubu 2. → 3-4. YER MAÇI
+    // A grubu 3. vs B grubu 3. → 5-6. YER MAÇI
+    // 3 maç da aynı turda oynanır (grup biter bitmez)
     const sortedA = [...confedStandings['A']].sort((a,b)=>b.Pts-a.Pts||(b.GF-b.GA)-(a.GF-a.GA)||b.GF-a.GF);
     const sortedB = [...confedStandings['B']].sort((a,b)=>b.Pts-a.Pts||(b.GF-b.GA)-(a.GF-a.GA)||b.GF-a.GF);
     confedKnockoutBracket = {
         final: [{home:sortedA[0].team, away:sortedB[0].team, played:false, homeGoals:0, awayGoals:0}],
-        '3rd': [{home:sortedA[1].team, away:sortedB[1].team, played:false, homeGoals:0, awayGoals:0}],
-        '5th': [{home:sortedA[2].team, away:sortedB[2].team, played:false, homeGoals:0, awayGoals:0}],
+        '3rd':  [{home:sortedA[1].team, away:sortedB[1].team, played:false, homeGoals:0, awayGoals:0}],
+        '5th':  [{home:sortedA[2].team, away:sortedB[2].team, played:false, homeGoals:0, awayGoals:0}],
     };
-    // Hangi turda oynayacağımı belirle
-    const inFinal = confedKnockoutBracket.final[0].home.code === confedMyTeam.code || confedKnockoutBracket.final[0].away.code === confedMyTeam.code;
-    const inThird = confedKnockoutBracket['3rd'][0].home.code === confedMyTeam.code || confedKnockoutBracket['3rd'][0].away.code === confedMyTeam.code;
-    confedStage = inFinal ? 'final' : (inThird ? '3rd' : '5th');
+    // Hangi maçta oynayacağımı belirle
+    const inFinal = confedKnockoutBracket.final[0].home.code === confedMyTeam.code
+                 || confedKnockoutBracket.final[0].away.code === confedMyTeam.code;
+    const inThird = confedKnockoutBracket['3rd'][0].home.code === confedMyTeam.code
+                 || confedKnockoutBracket['3rd'][0].away.code === confedMyTeam.code;
+    // 5th her zaman önce oynanır (yarı final ile aynı turda — gerçek fikstür gibi)
+    const inFifth = !inFinal && !inThird;
+    confedStage = inFifth ? '5th' : (inThird ? '3rd' : 'final');
+
     updateConfedDisplay();
-    const stageNames = {final:'🏆 FİNAL!', '3rd':'🥉 3.LÜK MAÇI', '5th':'5.LİK MAÇI'};
-    setHTML('confedTourneyMsg', '<span style="color:#ffcc88;">'+stageNames[confedStage]+'</span>');
+
+    // Maç tanıtım mesajı
+    const stageLabel = {
+        'final': '🏆 FİNAL · 1-2. YER',
+        '3rd':   '🥉 3-4. YER MAÇI',
+        '5th':   '⚽ 5-6. YER MAÇI'
+    }[confedStage];
+    const allMatches = `
+        <div style="font-size:10px;color:#aaa;margin-bottom:6px;">📋 ELEME TURU — TÜM MAÇLAR</div>
+        <div style="font-size:11px;color:#ffcc88;margin:2px 0;">⚽ 5-6. YER: ${getConfedName(confedKnockoutBracket['5th'][0].home)} vs ${getConfedName(confedKnockoutBracket['5th'][0].away)}</div>
+        <div style="font-size:11px;color:#cc9955;margin:2px 0;">🥉 3-4. YER: ${getConfedName(confedKnockoutBracket['3rd'][0].home)} vs ${getConfedName(confedKnockoutBracket['3rd'][0].away)}</div>
+        <div style="font-size:11px;color:#ffd700;margin:2px 0;">🏆 FİNAL: ${getConfedName(confedKnockoutBracket.final[0].home)} vs ${getConfedName(confedKnockoutBracket.final[0].away)}</div>
+        <div style="margin-top:6px;font-size:12px;color:#44ff88;">→ Sen: <b>${stageLabel}</b></div>`;
+    setHTML('confedTourneyMsg', allMatches);
 }
 
 let confedCurMatch = null, confedCurQ = 0, confedCurMy = 0, confedCurOpp = 0;
@@ -9468,7 +9602,7 @@ function startConfedMatch(match) {
     setText('confedMatchOppName', getConfedName(opp));
     setText('confedMatchMyScore','0');
     setText('confedMatchOppScore','0');
-    const stageNames = {group:'GRUP', final:'FİNAL', '3rd':'3.LÜK', '5th':'5.LİK'};
+    const stageNames = {group:'GRUP', final:'FİNAL (1-2.YER)', '3rd':'3-4.YER', '5th':'5-6.YER'};
     setText('confedMatchStage', stageNames[confedStage]||confedStage);
     setText('confedMatchDuration', '⏱️ '+confedDuration+'dk');
     nextConfedQuestion();
@@ -9575,10 +9709,10 @@ function endConfedMatch() {
         }
     } else if (confedStage === '3rd') {
         const won = (confedCurMy>confedCurOpp) || (confedCurMatch.penWinner === confedMyTeam.code);
-        msg += won ? '<div style="font-size:18px;margin-top:8px;">🥉 BRONZ</div>' : '<div style="font-size:14px;margin-top:8px;">4.</div>';
+        msg += won ? '<div style="font-size:18px;margin-top:8px;">🥉 3. OLDU!</div>' : '<div style="font-size:14px;margin-top:8px;">😔 4. Oldun</div>';
     } else if (confedStage === '5th') {
         const won = (confedCurMy>confedCurOpp) || (confedCurMatch.penWinner === confedMyTeam.code);
-        msg += won ? '<div style="font-size:14px;margin-top:8px;">5.</div>' : '<div style="font-size:14px;margin-top:8px;">6.</div>';
+        msg += won ? '<div style="font-size:14px;margin-top:8px;">5. Oldun</div>' : '<div style="font-size:14px;margin-top:8px;">6. Oldun (Son)</div>';
     }
     setHTML('confedMessage', msg + '<button onclick="returnToConfedTourney()" style="padding:8px 18px;margin-top:10px;font-size:13px;background:#fff;color:#ff8844;border:2px solid #fff;border-radius:8px;cursor:pointer;font-weight:bold;">' + (window._continueBtnText || '→ Devam') + '</button>');
 }
@@ -9952,11 +10086,11 @@ function markSplashLang(lang) {
         const b = document.getElementById('splashLang'+c.toUpperCase());
         if(!b) return;
         if(c === lang) {
-            b.style.background = '#1a0a2e';
+            b.style.background = 'rgba(0,0,0,0.5)';
             b.style.color = '#ffd700';
             b.style.border = '2px solid #ffd700';
         } else {
-            b.style.background = '#0a0520';
+            b.style.background = 'rgba(80,0,10,0.7)';
             b.style.color = '#aaa';
             b.style.border = '1px solid rgba(255,215,0,0.3)';
         }
@@ -10019,18 +10153,22 @@ let soundEnabled = true;
 function toggleSound() {
     soundEnabled = !soundEnabled;
     syncSoundBtns();
-    // AudioContext durdur/devam
-    if (typeof audioCtx !== 'undefined' && audioCtx) {
-        if (!soundEnabled && audioCtx.state === 'running') audioCtx.suspend();
-        else if (soundEnabled && audioCtx.state === 'suspended') audioCtx.resume();
+    // musicCtx (ana arkaplan müziği)
+    if (typeof musicCtx !== 'undefined' && musicCtx) {
+        try { soundEnabled ? musicCtx.resume() : musicCtx.suspend(); } catch(e) {}
     }
-    // bgmGain
-    if (typeof bgmGain !== 'undefined' && bgmGain) bgmGain.gain.value = soundEnabled ? 0.18 : 0;
+    // futbolMusicCtx (futbol modu müziği)
+    if (typeof futbolMusicCtx !== 'undefined' && futbolMusicCtx) {
+        try { soundEnabled ? futbolMusicCtx.resume() : futbolMusicCtx.suspend(); } catch(e) {}
+    }
+    // _sfxCtx (ses efektleri)
+    if (typeof _sfxCtx !== 'undefined' && _sfxCtx) {
+        try { soundEnabled ? _sfxCtx.resume() : _sfxCtx.suspend(); } catch(e) {}
+    }
     localStorage.setItem('sa_sound', soundEnabled ? '1' : '0');
 }
 
 // ══════════ AYDINLIK / KARANLIK TEMA ══════════
-let darkTheme = true;
 
 // Tüm ses butonlarının ikonunu güncelle
 function syncSoundBtns() {
@@ -10041,65 +10179,14 @@ function syncSoundBtns() {
     ['splashSoundBtn','mainSoundBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=full;});
 }
 
-// Tüm tema butonlarının ikonunu güncelle
-function syncThemeBtns() {
-    const dark = darkTheme;
-    const small = dark ? '🌙' : '☀️';
-    const full  = dark ? '🌙 TEMA' : '☀️ TEMA';
-    ['themeToggleBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=small;});
-    ['splashThemeBtn','mainThemeBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=full;});
-}
-
-function toggleTheme() {
-    darkTheme = !darkTheme;
-    syncThemeBtns();
-    applyColorTheme();
-    localStorage.setItem('sa_theme', darkTheme ? 'dark' : 'light');
-}
-
-// Renk teması uygula — oyunun kendi applyTheme(color) fonksiyonuyla çakışmaz
-function applyColorTheme() {
-    // SADECE splash ekranı ve mathBg arka planını değiştir.
-    // Container ve oyun renkleri oyunun kendi applyTheme(color) fonksiyonuna ait — ona dokunmuyoruz.
-    const mathBg = document.getElementById('mathBg');
-    const splash  = document.getElementById('splashScreen');
-
-    if (darkTheme) {
-        if (mathBg) mathBg.style.background = 'radial-gradient(ellipse at center, #a30016 0%, #7a0011 50%, #500008 100%)';
-        if (splash) {
-            splash.style.background = 'radial-gradient(ellipse at center, #111111 0%, #0a0a0a 50%, #050505 100%)';
-            splash.style.color = '#ffffff';
-        }
-        // Splash metin renklerini orijinaline döndür
-        document.querySelectorAll('#splashScreen .splash-title, #splashScreen .splash-sub, #splashScreen .splash-version, #splashScreen .splash-credits, #splashScreen .splash-update, #splashScreen .splash-test, #splashScreen .splash-lang, #splashScreen .splash-update2').forEach(el => el.style.color = '');
-    } else {
-        if (mathBg) mathBg.style.background = 'radial-gradient(ellipse at center, #d4a070 0%, #c88040 50%, #a06020 100%)';
-        if (splash) {
-            splash.style.background = 'radial-gradient(ellipse at center, #fffbe8 0%, #fdf0cc 50%, #f5e0a0 100%)';
-            splash.style.color = '#2a0008';
-        }
-        // Splash metin renklerini koyu yap
-        document.querySelectorAll('#splashScreen .splash-title, #splashScreen .splash-credits').forEach(el => el.style.color = '#2a0008');
-        document.querySelectorAll('#splashScreen .splash-sub').forEach(el => el.style.color = '#7a3010');
-        document.querySelectorAll('#splashScreen .splash-version, #splashScreen .splash-update, #splashScreen .splash-update2').forEach(el => el.style.color = '#8B0000');
-        document.querySelectorAll('#splashScreen .splash-test, #splashScreen .splash-lang').forEach(el => el.style.color = '#5a2000');
-    }
-}
-
 // Kaydedilmiş tercihleri yükle (DOMContentLoaded'da çağrılır)
 function initPrefs() {
     const snd = localStorage.getItem('sa_sound');
-    const thm = localStorage.getItem('sa_theme');
     if (snd === '0') {
         soundEnabled = false;
         if (typeof audioCtx !== 'undefined' && audioCtx && audioCtx.state === 'running') audioCtx.suspend();
         if (typeof bgmGain !== 'undefined' && bgmGain) bgmGain.gain.value = 0;
         syncSoundBtns();
-    }
-    if (thm === 'light') {
-        darkTheme = false;
-        syncThemeBtns();
-        applyColorTheme();
     }
 }
 document.addEventListener('DOMContentLoaded', initPrefs);
