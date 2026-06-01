@@ -11,6 +11,8 @@
 
         /* ── MATEMATİK FORMÜL ARKA PLAN ── */
         body {
+            overscroll-behavior-y: contain;
+            -webkit-overflow-scrolling: touch;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #7a0011;
             color: #ffffff;
@@ -394,53 +396,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Sayı Avcısı">
     <link rel="apple-touch-icon" href="logo.png">
-    <!-- Firebase Online Sayaç -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getDatabase, ref, onValue, set, onDisconnect, serverTimestamp, push, remove }
-            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
-        // ⚠️ Kendi Firebase projenin bilgilerini buraya gir:
-        const firebaseConfig = {
-            apiKey:            "BURAYA_API_KEY",
-            authDomain:        "BURAYA_AUTH_DOMAIN",
-            databaseURL:       "BURAYA_DATABASE_URL",
-            projectId:         "BURAYA_PROJECT_ID",
-            storageBucket:     "BURAYA_STORAGE_BUCKET",
-            messagingSenderId: "BURAYA_MESSAGING_SENDER_ID",
-            appId:             "BURAYA_APP_ID"
-        };
-
-        try {
-            const app = initializeApp(firebaseConfig);
-            const db  = getDatabase(app);
-
-            // Her oturum için benzersiz bir kayıt yaz
-            const sessionsRef = ref(db, 'online_sessions');
-            const myRef = push(sessionsRef);
-
-            // Oturum aç: sunucu zaman damgasıyla
-            await set(myRef, { t: serverTimestamp() });
-
-            // Sekme kapanınca/sayfadan ayrılınca sil
-            onDisconnect(myRef).remove();
-
-            // Toplam aktif oturum sayısını dinle
-            onValue(sessionsRef, (snapshot) => {
-                const count = snapshot.size || 0;
-                const el = document.getElementById('onlineCount');
-                if (el) el.textContent = count;
-            });
-
-            // Eski oturumları temizle (5 dakikadan fazla sessiz kalan)
-            // Bu kısım isteğe bağlı — Firebase Rules ile de yapılabilir
-        } catch(e) {
-            // Firebase bağlantı hatası — sayacı gizle
-            const counter = document.getElementById('onlineCounter');
-            if (counter) counter.style.display = 'none';
-            console.warn('Firebase bağlantı hatası:', e.message);
-        }
-    </script>
 </head>
 <body>
 
@@ -543,44 +498,15 @@
         <button onclick="setLang('uz');markSplashLang('uz')" id="splashLangUZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇺🇿</button>
         <button onclick="setLang('ht');markSplashLang('ht')" id="splashLangHT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇭🇹</button>
     </div>
-    <!-- Online sayaç (Firebase Realtime DB) -->
-    <div id="onlineCounter" style="font-family:'Press Start 2P',monospace;font-size:7px;color:#44ff88;margin-bottom:4px;letter-spacing:0.5px;">
-        🟢 <span id="onlineCount">bağlanıyor...</span> kişi şu an oynuyor
-    </div>
     <!-- Ses & Tema butonları - Splash -->
     <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;margin-bottom:2px;">
         <button id="splashSoundBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
             style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🔊 SES</button>
     </div>
+
     <button id="splashStartBtn" onclick="splashStart()" style="margin-top:14px;padding:12px 36px;font-family:'Press Start 2P',monospace;font-size:11px;background:#fff;color:#e30a17;border:3px solid #fff;border-radius:10px;cursor:pointer;box-shadow:0 0 18px #ffffff88;animation:blink 1s step-end infinite;font-weight:bold;">▶ BAŞLA</button>
     
-    <!-- 🏆 ŞAMPİYON KARTLARI (yanıp sönmeyen, statik) -->
-    <div style="display:flex;gap:8px;margin-top:12px;justify-content:center;flex-wrap:wrap;">
-        <!-- Şampiyonlar Ligi Şampiyonu - Mavi -->
-        <div style="background:linear-gradient(135deg,#1e3a8a,#3b82f6);border:2px solid #93c5fd;border-radius:10px;padding:6px 10px;text-align:center;min-width:120px;">
-            <div id="uclChampLabel" style="font-size:8px;color:#bfdbfe;letter-spacing:0.5px;font-weight:bold;">🏆 AVRUPA KULÜPLER KUPASI</div>
-            <div style="font-size:11px;color:#fff;font-weight:bold;margin-top:3px;display:flex;align-items:center;justify-content:center;gap:3px;">
-                <svg width="14" height="10" viewBox="0 0 30 20" style="border:1px solid rgba(0,0,0,0.2);border-radius:1px;"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg>
-                Paris FC
-            </div>
-        </div>
-        <!-- Avrupa Ligi Şampiyonu - Turuncu -->
-        <div style="background:linear-gradient(135deg,#7c2d12,#f97316);border:2px solid #fdba74;border-radius:10px;padding:6px 10px;text-align:center;min-width:120px;">
-            <div id="uelChampLabel" style="font-size:8px;color:#fed7aa;letter-spacing:0.5px;font-weight:bold;">🏆 AVRUPA KULÜPLER KUPASI 2</div>
-            <div style="font-size:11px;color:#fff;font-weight:bold;margin-top:3px;display:flex;align-items:center;justify-content:center;gap:3px;">
-                <svg width="14" height="10" viewBox="0 0 30 20" style="border:1px solid rgba(0,0,0,0.2);border-radius:1px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg>
-                Birmingham U.
-            </div>
-        </div>
-        <!-- Konferans Ligi Şampiyonu - Yeşil -->
-        <div style="background:linear-gradient(135deg,#14532d,#22c55e);border:2px solid #86efac;border-radius:10px;padding:6px 10px;text-align:center;min-width:120px;">
-            <div id="ueclChampLabel" style="font-size:8px;color:#bbf7d0;letter-spacing:0.5px;font-weight:bold;">🏆 AVRUPA KULÜPLER KUPASI 3</div>
-            <div style="font-size:11px;color:#fff;font-weight:bold;margin-top:3px;display:flex;align-items:center;justify-content:center;gap:3px;">
-                <svg width="14" height="10" viewBox="0 0 30 20" style="border:1px solid rgba(0,0,0,0.2);border-radius:1px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg>
-                Palace FC
-            </div>
-        </div>
-    </div>
+
     <div class="splash-version" style="color:#fff;font-weight:bold;" id="splashVersionTxt"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> PRE-ALPHA 3 <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> ∞</div>
     <div class="splash-credits" style="color:#fff;">Created By FurkanÇ</div>
     <div class="splash-update" style="color:#fff; font-family:'Press Start 2P',monospace; font-size:7px; margin-top:8px; text-align:center;line-height:1.6;" id="splashUpdateTxt"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> 15 TEMMUZ ŞEHİTLERİ VE ANMA GÜNÜ KUTLU OLSUN <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg></div>
@@ -695,9 +621,12 @@
                 <div class="mode-desc" id="descSozel">TYT: Sözel problem çöz!<br><span style="font-size:9px;color:#ffaa33;background:rgba(255,160,50,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span></div>
             </div>
             <div class="mode-card" onclick="selectMode('futbol')" style="border-color:rgba(255,80,80,0.4);background:linear-gradient(135deg,#1a0a0a,#2a0808);">
-                <div class="mode-icon"><svg width="42" height="28" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,0.3);"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></div>
-                <div class="mode-name" style="color:#ff8888;" id="modeNameFutbol">Rusya Hazırlık Maçları</div>
-                <div class="mode-desc" id="descFutbol">FIFA banı! Hazırlık maçları<br><span style="font-size:9px;color:#ff8888;background:rgba(255,80,80,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span></div>
+                <div class="mode-icon" style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <svg viewBox="0 0 90 24" width="72" height="19" style="display:block;"><text x="3" y="20" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="22" fill="#1a4faa" letter-spacing="4">FIA</text></svg>
+                  <svg viewBox="0 0 100 100" width="40" height="40" style="display:block;"><defs><radialGradient id="tirog" cx="38%" cy="32%" r="65%"><stop offset="0" stop-color="#5577ff"/><stop offset="0.5" stop-color="#2244cc"/><stop offset="1" stop-color="#0a1a88"/></radialGradient><clipPath id="tiroclip"><circle cx="50" cy="50" r="46"/></clipPath></defs><circle cx="50" cy="50" r="46" fill="url(#tirog)" stroke="#112299" stroke-width="1"/><path d="M 8 45 Q 22 25 42 35 Q 55 42 50 62 Q 44 78 20 80 Q 4 68 8 45 Z" fill="#fff" opacity="0.92" clip-path="url(#tiroclip)"/><path d="M 92 45 Q 78 25 58 35 Q 45 42 50 62 Q 56 78 80 80 Q 96 68 92 45 Z" fill="#fff" opacity="0.92" clip-path="url(#tiroclip)"/><rect x="43" y="36" width="4" height="22" rx="2" fill="#2244cc" opacity="0.8"/><rect x="49" y="33" width="4" height="25" rx="2" fill="#2244cc" opacity="0.8"/><rect x="55" y="36" width="4" height="22" rx="2" fill="#2244cc" opacity="0.8"/><ellipse cx="35" cy="32" rx="12" ry="7" fill="#fff" opacity="0.3"/><circle cx="50" cy="50" r="46" fill="none" stroke="#1133aa" stroke-width="0.8"/></svg>
+                </div>
+                <div class="mode-name" style="color:#ff8888;" id="modeNameFutbol">Hazırlık Maçları</div>
+                <div class="mode-desc" id="descFutbol">⚽ Hazırlık Maçları<br><span style="font-size:9px;color:#ff8888;background:rgba(255,80,80,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span></div>
             </div>
             <div class="mode-card" onclick="selectMode('hiz')" style="border-color:rgba(255,80,80,0.4);">
                 <div class="mode-icon">🚀</div>
@@ -1234,10 +1163,68 @@
             <button onclick="backToModeSelect()" style="padding:6px 14px;font-size:11px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;cursor:pointer;">← Geri</button>
             <button onclick="backToModeSelect()" style="padding:6px 14px;font-size:11px;background:#7a0011;border:1px solid #e30a17;border-radius:8px;color:#fff;cursor:pointer;font-weight:bold;">🏠 Ana Ekran</button>
         </div>
-        <div style="text-align:center;width:100%;padding:8px 0;background:linear-gradient(90deg,#e30a17,#fff,#e30a17);border-radius:10px;margin-bottom:8px;">
+<!-- Lisanssız Dünya Kupası 2026 Logo (orijinal tasarım) -->
+<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;">
+  <svg viewBox="0 0 60 70" width="44" height="51" style="display:block;">
+    <defs><linearGradient id="cupg26" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="0.4" stop-color="#f59e0b"/><stop offset="1" stop-color="#92400e"/></linearGradient></defs>
+    <!-- Kupa gövde -->
+    <path d="M20 8 L40 8 L38 38 Q38 48 30 53 Q22 48 22 38 Z" fill="url(#cupg26)" stroke="#78350f" stroke-width="0.8"/>
+    <!-- Kulplar -->
+    <path d="M20 12 Q10 18 14 30" stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M40 12 Q50 18 46 30" stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Boyun -->
+    <rect x="26" y="52" width="8" height="5" fill="url(#cupg26)"/>
+    <rect x="22" y="57" width="16" height="3.5" fill="url(#cupg26)" rx="1"/>
+    <!-- Parlama -->
+    <ellipse cx="26" cy="28" rx="3" ry="12" fill="#fef3c7" opacity="0.4"/>
+    <!-- Küre (üst) -->
+    <ellipse cx="30" cy="9" rx="8" ry="7" fill="url(#cupg26)" stroke="#78350f" stroke-width="0.5"/>
+    <ellipse cx="30" cy="9" rx="8" ry="2.5" fill="none" stroke="#92400e" stroke-width="0.5" opacity="0.5"/>
+  </svg>
+  <div style="font-family:Arial Black,Arial,sans-serif;line-height:1;text-align:center;">
+    <div style="font-size:36px;font-weight:900;color:#fff;text-shadow:2px 2px 0 #7a0011;letter-spacing:-2px;">26</div>
+    <div style="font-size:8px;font-weight:bold;color:#ffcc88;letter-spacing:2px;">DÜNYA KUPASI</div>
+  </div>
+</div>        <div style="text-align:center;width:100%;padding:8px 0;background:linear-gradient(90deg,#e30a17,#fff,#e30a17);border-radius:10px;margin-bottom:8px;">
             <div style="color:#fff;font-size:14px;font-weight:bold;text-shadow:1px 1px 0 #000;">🌍 <span id="wc26TitleTxt">ULUSLAR ŞAMPİYONASI 2026</span> 🌍</div>
             <div style="color:#fff;font-size:10px;text-shadow:1px 1px 0 #000;">🇺🇸🇨🇦🇲🇽 ABD · Kanada · Meksika</div>
         </div>
+<svg viewBox="0 0 100 100" width="70" height="70" style="display:block;margin:4px auto;">
+  <defs>
+    <radialGradient id="tball" cx="40%" cy="35%" r="60%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.7" stop-color="#f0f0f0"/>
+      <stop offset="1" stop-color="#d8d8d8"/>
+    </radialGradient>
+    <clipPath id="tclip"><circle cx="50" cy="50" r="46"/></clipPath>
+  </defs>
+  <!-- Top gövdesi -->
+  <circle cx="50" cy="50" r="46" fill="url(#tball)" stroke="#ccc" stroke-width="1"/>
+  <!-- Kırmızı dalgalı panel -->
+  <path d="M 4 55 Q 15 20 35 30 Q 50 38 45 60 Q 38 80 15 85 Q 6 75 4 55 Z"
+        fill="#e30a17" opacity="0.85" clip-path="url(#tclip)"/>
+  <!-- Yeşil dalgalı panel -->
+  <path d="M 96 55 Q 85 20 65 30 Q 50 38 55 60 Q 62 80 85 85 Q 94 75 96 55 Z"
+        fill="#00a651" opacity="0.85" clip-path="url(#tclip)"/>
+  <!-- Mavi merkez panel -->
+  <path d="M 35 30 Q 50 10 65 30 Q 75 50 65 70 Q 50 85 35 70 Q 25 50 35 30 Z"
+        fill="#003087" opacity="0.80" clip-path="url(#tclip)"/>
+  <!-- Cyan vurgu şeridi -->
+  <path d="M 42 18 Q 50 8 58 18 Q 65 35 58 52 Q 50 62 42 52 Q 35 35 42 18 Z"
+        fill="#00b5e2" opacity="0.5" clip-path="url(#tclip)"/>
+  <!-- Altın yıldızlar -->
+  <text x="30" y="48" font-size="9" fill="#FFD700" opacity="0.9">★</text>
+  <text x="62" y="48" font-size="9" fill="#FFD700" opacity="0.9">★</text>
+  <text x="46" y="68" font-size="9" fill="#FFD700" opacity="0.9">★</text>
+  <text x="30" y="68" font-size="7" fill="#FFD700" opacity="0.7">★</text>
+  <text x="62" y="68" font-size="7" fill="#FFD700" opacity="0.7">★</text>
+  <!-- Parlama -->
+  <ellipse cx="36" cy="33" rx="10" ry="6" fill="#fff" opacity="0.35"/>
+  <!-- Dikiş çizgileri -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="0.8"/>
+  <path d="M 50 4 Q 58 25 50 50 Q 42 25 50 4" fill="none" stroke="#bbb" stroke-width="0.6" opacity="0.5"/>
+  <path d="M 50 96 Q 58 75 50 50 Q 42 75 50 96" fill="none" stroke="#bbb" stroke-width="0.6" opacity="0.5"/>
+</svg>
         <p id="wc26SelectCountryTxt" style="color:#fff;margin:4px 0;font-size:12px;font-weight:bold;">⚽ Ülkeni seç:</p>
         <p style="color:#aaa;font-size:10px;margin:0 0 8px;" id="wc26InfoTxt">48 ülke · Grup + Eleme · Şampiyon ol!</p>
         <div id="wc26CountryList" style="display:flex;flex-direction:column;gap:4px;width:100%;max-height:55vh;overflow-y:auto;padding:6px;background:rgba(255,255,255,0.05);border-radius:8px;">
@@ -1396,31 +1383,139 @@
     </div>
     <div id="futbolDiffScreen" style="display:none;flex-direction:column;align-items:center;width:100%;">
         <button onclick="backToModeSelect()" style="align-self:flex-start;padding:6px 14px;font-size:11px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;margin-bottom:8px;">← Geri</button>
-        <p id="futbolDiffTitleTxt" style="color:#ff8888;margin:4px 0 2px;font-size:13px;font-weight:600;"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> <span id="futbolDiffTitleTextOnly">Rusya Hazırlık Maçları</span></p>
+        <p id="futbolDiffTitleTxt" style="color:#ff8888;margin:4px 0 2px;font-size:13px;font-weight:600;"><svg viewBox="0 0 100 100" width="22" height="22" style="vertical-align:middle;margin-right:4px;">
+  <rect width="100" height="100" rx="12" fill="#1a3a8a"/>
+  <text x="50" y="38" text-anchor="middle" font-size="22" font-weight="900" fill="#fff" font-family="Arial Black,sans-serif">⚽</text>
+  <text x="50" y="62" text-anchor="middle" font-size="14" font-weight="900" fill="#FFD700" font-family="Arial Black,sans-serif">UAFA</text>
+  <text x="50" y="76" text-anchor="middle" font-size="9" fill="#aac" font-family="Arial,sans-serif">HAZIRLIK</text>
+</svg> <span id="futbolDiffTitleTextOnly">Hazırlık Maçları</span></p>
         <div style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#1a0808,#2a0808);border:1px solid #cc3333;border-radius:20px;padding:4px 12px;margin-bottom:6px;">
-            <span style="font-size:14px;"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></span>
-            <span style="font-size:10px;font-weight:bold;color:#ff8888;letter-spacing:0.5px;" id="penaltyBadgeTxt">RUSYA HAZIRLIK MAÇLARI</span>
+            <span style="font-size:10px;font-weight:bold;color:#ff8888;letter-spacing:0.5px;" id="penaltyBadgeTxt">HAZIRLIK MAÇLARI</span>
             <span style="font-size:10px;">⚠</span>
         </div>
-        <!-- UCL Final Butonu Pre-Alpha 3'te kaldırıldı -->
-
         <!-- Hazırlık Maçları Bölümü -->
         <div style="margin-top:10px;width:100%;">
             <div style="font-size:10px;color:#888;text-align:center;margin-bottom:6px;letter-spacing:1px;">── <span id="friendlyHeaderTxt">HAZIRLIK MAÇLARI</span> ──</div>
             <!-- Rusya vs Mısır KALDIRILDI -->
+            <!-- 5 Haziran 2026 -->
+            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 5 HAZİRAN 2026 · CUMA ──</div>
             <!-- Rusya vs Burkina Faso -->
-            <button onclick="startFriendly('rus_bfa')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+            <button onclick="startFriendly('rus_bfa')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);" title="5 Haziran 2026 · Cuma · 20:00">
                 <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> <span id="friendlyRusName2" style="color:#ff6666;">Rusya</span> <span id="friendlyBannedLbl2" style="color:#555;font-size:10px;">⚠yasaklı</span></span>
                 <span style="color:#888;font-size:11px;">vs</span>
                 <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#EF2B2D"/><rect y="10" width="30" height="10" fill="#009E49"/><polygon points="15,6 16,9 19,9 16.5,11 17.5,14 15,12 12.5,14 13.5,11 11,9 14,9" fill="#FCD116"/></svg> <span id="friendlyBfaName" style="color:#ffcc88;">Burkina Faso</span></span>
-                <span id="friendlyDiffBfa" style="font-size:10px;color:#888;">🟡 Orta</span>
+                <span style="font-size:10px;color:#aaa;">🕐 20:00</span>
             </button>
+            <!-- 9 Haziran 2026 -->
+            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 9 HAZİRAN 2026 · SALI ──</div>
             <!-- Rusya vs Trinidad ve Tobago -->
             <button onclick="startFriendly('rus_tnt')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
                 <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> <span id="friendlyRusName3" style="color:#ff6666;">Rusya</span> <span id="friendlyBannedLbl3" style="color:#555;font-size:10px;">⚠yasaklı</span></span>
                 <span style="color:#888;font-size:11px;">vs</span>
                 <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#DA1A35"/><polygon points="0,0 8,0 30,18 30,20 22,20 0,2" fill="#fff"/><polygon points="2,0 6,0 26,20 22,20" fill="#000"/></svg> <span id="friendlyTntName" style="color:#ffcc88;">Trinidad ve Tobago</span></span>
-                <span id="friendlyDiffTnt" style="font-size:10px;color:#888;">🟢 Kolay</span>
+                <span style="font-size:10px;color:#aaa;">🕐 20:00</span>
+            </button>
+            <!-- 1 Haziran 2026 -->
+            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 1 HAZİRAN 2026 ──</div>
+            <button onclick="startFriendly('tur_mkd')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 900 600" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="900" height="600" fill="#e30a17"/><circle cx="425" cy="300" r="120" fill="#fff"/><circle cx="465" cy="300" r="96" fill="#e30a17"/><polygon points="583,300 600,253 608,302 655,317 612,325 615,374 583,338 552,374 555,325 511,317 558,302 567,253" fill="#fff"/></svg> <span style="color:#ffcc88;">Türkiye</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#d4af37"/><rect x="12" width="6" height="20" fill="#ce2028"/><rect y="7" width="30" height="6" fill="#ce2028"/></svg> <span style="color:#ffcc88;">K. Makedonya</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 20:30</span>
+            </button>
+            <button onclick="startFriendly('nor_swe')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#EF2B2D"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#003087"/><rect y="9" width="30" height="2" fill="#003087"/></svg> <span style="color:#ffcc88;">Norveç</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#006AA7"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#FECC02"/><rect y="9" width="30" height="2" fill="#FECC02"/></svg> <span style="color:#ffcc88;">İsveç</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 20:00</span>
+            </button>
+            <button onclick="startFriendly('aut_tun')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#ED2939"/><rect y="7" width="30" height="6" fill="#fff"/></svg> <span style="color:#ffcc88;">Avusturya</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#E70013"/><rect y="7" width="30" height="6" fill="#fff"/><circle cx="15" cy="10" r="4" fill="#E70013"/></svg> <span style="color:#ffcc88;">Tunus</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
+            </button>
+            <!-- 2 Haziran 2026 -->
+            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 2 HAZİRAN 2026 ──</div>
+            <button onclick="startFriendly('col_crc')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#FCD116"/><rect y="7" width="30" height="6" fill="#003087"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Kolombiya</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#002B7F"/><rect x="12" width="6" height="20" fill="#CE1126"/><polygon points="8,8 15,3 22,8 19,16 11,16" fill="#fff"/></svg> <span style="color:#ffcc88;">Kosta Rika</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 02:00</span>
+            </button>
+            <button onclick="startFriendly('hrv_bel')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#FF0000"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#0000FF"/></svg> <span style="color:#ffcc88;">Hırvatistan</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#FFD700"/><rect x="20" width="10" height="20" fill="#FF0000"/></svg> <span style="color:#ffcc88;">Belçika</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 19:00</span>
+            </button>
+            <button onclick="startFriendly('wal_gha')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#00B140"/><rect y="5" width="30" height="4" fill="#fff"/><rect y="11" width="30" height="4" fill="#fff"/><rect x="8" width="14" height="20" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Galler</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#006B3F"/><rect y="7" width="30" height="6" fill="#FCD116"/><rect y="13" width="30" height="7" fill="#CE1126"/><circle cx="15" cy="10" r="3" fill="#000"/></svg> <span style="color:#ffcc88;">Gana</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
+            </button>
+            <!-- 3 Haziran 2026 -->
+            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 3 HAZİRAN 2026 ──</div>
+            <button onclick="startFriendly('pol_nga')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#DC143C"/></svg> <span style="color:#ffcc88;">Polonya</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#008751"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#008751"/></svg> <span style="color:#ffcc88;">Nijerya</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
+            </button>
+            <button onclick="startFriendly('ned_alg')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg> <span style="color:#ffcc88;">Hollanda</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#006233"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="11.5" width="7" height="20" fill="#D21034"/></svg> <span style="color:#ffcc88;">Cezayir</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
+            </button>
+            <button onclick="startFriendly('lux_ita')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#EF3340"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#009F6B"/></svg> <span style="color:#ffcc88;">Lüksemburg</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE2B37"/></svg> <span style="color:#ffcc88;">İtalya</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
+            </button>
+            <!-- 4 Haziran 2026 -->
+            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 4 HAZİRAN 2026 ──</div>
+            <button onclick="startFriendly('svn_cyp')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#003DA5"/><rect y="7" width="30" height="6" fill="#fff"/><rect x="12" width="6" height="20" fill="#fff"/></svg> <span style="color:#ffcc88;">Slovenya</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><ellipse cx="15" cy="9" rx="6" ry="4" fill="#D77A2A"/><path d="M11,13 Q15,16 19,13" stroke="#4a7a3a" stroke-width="1" fill="none"/><circle cx="11" cy="13" r="0.8" fill="#4a7a3a"/><circle cx="19" cy="13" r="0.8" fill="#4a7a3a"/></svg> <span style="color:#ffcc88;">Kıbrıs</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 19:00</span>
+            </button>
+            <button onclick="startFriendly('esp_irq')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AA151B"/><rect y="7" width="30" height="6" fill="#F1BF00"/><rect y="13" width="30" height="7" fill="#AA151B"/></svg> <span style="color:#ffcc88;">İspanya</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CE1126"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/><text x="15" y="11.5" text-anchor="middle" font-size="4.5" fill="#007A3D" font-family="serif">الله أكبر</text></svg> <span style="color:#ffcc88;">Irak</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 22:00</span>
+            </button>
+            <button onclick="startFriendly('fra_civ')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> <span style="color:#ffcc88;">Fransa</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#F77F00"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#009A44"/></svg> <span style="color:#ffcc88;">Fildişi Sahili</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 22:10</span>
+            </button>
+            <!-- 5 Haziran 2026 -->
+            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 5 HAZİRAN 2026 ──</div>
+            <button onclick="startFriendly('cze_gua')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#D7141A"/><rect width="12" height="20" fill="#11457E"/></svg> <span style="color:#ffcc88;">Çekya</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#4997D0"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#4997D0"/></svg> <span style="color:#ffcc88;">Guatemala</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 03:00</span>
+            </button>
+            <button onclick="startFriendly('mex_srb')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Meksika</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#C6363C"/><rect y="7" width="30" height="6" fill="#0C4076"/><rect y="13" width="30" height="7" fill="#fff"/></svg> <span style="color:#ffcc88;">Sırbistan</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 05:00</span>
+            </button>
+            <!-- 7 Haziran 2026 -->
+            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 7 HAZİRAN 2026 ──</div>
+            <button onclick="startFriendly('ven_tur')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
+                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CF142B"/><rect y="7" width="30" height="6" fill="#FFD100"/><rect y="13" width="30" height="7" fill="#003893"/></svg> <span style="color:#ffcc88;">Venezuela</span></span>
+                <span style="color:#888;font-size:11px;">vs</span>
+                <span><svg width="20" height="14" viewBox="0 0 900 600" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="900" height="600" fill="#e30a17"/><circle cx="425" cy="300" r="120" fill="#fff"/><circle cx="465" cy="300" r="96" fill="#e30a17"/><polygon points="583,300 600,253 608,302 655,317 612,325 615,374 583,338 552,374 555,325 511,317 558,302 567,253" fill="#fff"/></svg> <span style="color:#ffcc88;">Türkiye</span></span>
+                <span style="font-size:10px;color:#aaa;">🕐 01:00</span>
             </button>
         </div>
 
@@ -1642,6 +1737,7 @@ function playFutbolMusic() {
 }
 
 function playFutbolLoop() {
+    if (!soundEnabled) return;
     if (!futbolMusicPlaying || !futbolMusicCtx) return;
     futbolMusicNodes.forEach(n => { try { n.stop && n.stop(); n.disconnect && n.disconnect(); } catch(e){} });
     futbolMusicNodes = [];
@@ -1748,9 +1844,15 @@ let playTimeInterval = null;
 function startTrackingTime() {
     clearInterval(playTimeInterval);
     playTimeInterval = setInterval(() => {
-        if (!gameOver && document.getElementById('gameScreen').style.display === 'flex') {
+        // Herhangi bir oyun ekranı açıksa süreyi say
+        const activeScreens = ['gameScreen','wc26MatchScreen','confedMatchScreen','friendlyGameScreen','uclGameScreen'];
+        const anyActive = activeScreens.some(id => {
+            const el = document.getElementById(id);
+            return el && el.style.display === 'flex';
+        });
+        if (anyActive) {
             gameStats.totalTime++;
-            saveStats();
+            if (gameStats.totalTime % 10 === 0) saveStats(); // her 10sn kaydet
         }
     }, 1000);
 }
@@ -4939,7 +5041,7 @@ function setLang(lang) {
         confedDuration: { tr:'⏱️ Maç Süresi:', en:'⏱️ Match Duration:', it:'⏱️ Durata Partita:', es:'⏱️ Duración del Partido:', ka:'⏱️ მატჩის ხანგრძლივობა:', az:'⏱️ Oyun Müddəti:', ja:'⏱️ 試合時間:', zh:'⏱️ 比赛时长:', de:'⏱️ Spieldauer:', fr:'⏱️ Durée du Match:', el:'⏱️ Διάρκεια Αγώνα:', ru:'⏱️ Длительность матча:', ar:'⏱️ مدة المباراة:', pt:'⏱️ Duração da Partida:', uk:'⏱️ Тривалість матчу:', fa:'⏱️ مدت بازی:', ko:'⏱️ 경기 시간:', nl:'⏱️ Wedstrijdduur:', sv:'⏱️ Matchtid:', no:'⏱️ Kampens varighet:', cs:'⏱️ Délka zápasu:', bs:'⏱️ Trajanje utakmice:', hr:'⏱️ Trajanje utakmice:', uz:'⏱️ O\u2019yin davomiyligi:', ht:'⏱️ Dire Match:' },
         penaltyBadge: { tr:'RUSYA HAZIRLIK MAÇLARI', en:'RUSSIA FRIENDLY MATCHES', it:'AMICHEVOLI RUSSIA', es:'AMISTOSOS RUSIA', ka:'რუსეთის სამეგობრო თამაშები', az:'RUSİYA HAZIRLIQ OYUNLARI', ja:'ロシア親善試合', zh:'俄罗斯友谊赛', de:'RUSSLAND FREUNDSCHAFTSSPIELE', fr:'MATCHS AMICAUX RUSSIE', el:'ΦΙΛΙΚΟΙ ΡΩΣΙΑΣ', ru:'ТОВАРИЩЕСКИЕ МАТЧИ РОССИИ', ar:'مباريات ودية روسيا', pt:'AMISTOSOS RÚSSIA', uk:'ТОВАРИСЬКІ МАТЧІ РОСІЇ', fa:'بازی\u200cهای دوستانه روسیه', ko:'러시아 친선 경기', nl:'RUSLAND OEFENWEDSTRIJDEN', sv:'RYSSLAND VÄNSKAPSMATCHER', no:'RUSSLAND VENNSKAPSKAMPER', cs:'PŘÁTELSKÉ ZÁPASY RUSKA', bs:'PRIJATELJSKE UTAKMICE RUSIJE', hr:'PRIJATELJSKE UTAKMICE RUSIJE', uz:'ROSSIYA DO\u2019STLIK O\u2019YINLARI', ht:'MATCH AMIKAL RISI' },
         futbolName: { tr:'Rusya Hazırlık Maçları', en:'Russia Friendly Matches', it:'Amichevoli Russia', es:'Amistosos Rusia', ka:'რუსეთის სამეგობრო თამაშები', az:'Rusiya Hazırlıq Oyunları', ja:'ロシア親善試合', zh:'俄罗斯友谊赛', de:'Russland Freundschaftsspiele', fr:'Matchs Amicaux Russie', el:'Φιλικοί Ρωσίας', ru:'Товарищеские матчи России', ar:'مباريات ودية روسيا', pt:'Amistosos Rússia', uk:'Товариські матчі Росії', fa:'بازی\u200cهای دوستانه روسیه', ko:'러시아 친선 경기', nl:'Rusland Oefenwedstrijden', sv:'Ryssland Vänskapsmatcher', no:'Russland Vennskapskamper', cs:'Přátelské zápasy Ruska', bs:'Prijateljske utakmice Rusije', hr:'Prijateljske utakmice Rusije', uz:'Rossiya do\u2019stlik o\u2019yinlari', ht:'Match Amikal Risi' },
-        futbolDesc: { tr:'FIFA banı! Hazırlık maçları', en:'FIFA banned! Friendly matches only', it:'Bandita FIFA! Solo amichevoli', es:'Sancionada por FIFA! Solo amistosos', ka:'FIFA-მ აკრძალა! მხოლოდ სამეგობრო', az:'FIFA qadağası! Yalnız hazırlıq', ja:'FIFA禁止! 親善試合のみ', zh:'FIFA禁赛! 仅友谊赛', de:'FIFA-Verbot! Nur Freundschaftsspiele', fr:'Sanction FIFA! Amicaux seulement', el:'Αποκλεισμός FIFA! Μόνο φιλικοί', ru:'Бан ФИФА! Только товарищеские', ar:'حظر FIFA! ودية فقط', pt:'Banida pela FIFA! Só amistosos', uk:'Бан ФІФА! Тільки товариські', fa:'محرومیت فیفا! فقط دوستانه', ko:'FIFA 금지! 친선 경기만', nl:'FIFA-verbod! Alleen oefenwedstrijden', sv:'FIFA-bannad! Endast vänskapsmatcher', no:'FIFA-utestengt! Bare vennskapskamper', cs:'Zákaz FIFA! Jen přátelské', bs:'Zabrana FIFA! Samo prijateljske', hr:'FIFA zabrana! Samo prijateljske', uz:'FIFA taqiqi! Faqat do\u2019stlik', ht:'Entèdiksyon FIFA! Match amikal sèlman' },
+        futbolDesc: { tr:'⚽ Hazırlık Maçları', en:'⚽ Friendly Matches', it:'⚽ Amichevoli', es:'⚽ Amistosos', ka:'⚽ სამეგობრო თამაშები', az:'⚽ Hazırlıq oyunları', ja:'⚽ 親善試合', zh:'⚽ 友谊赛', de:'⚽ Freundschaftsspiele', fr:'⚽ Matchs amicaux', el:'⚽ Φιλικά', ru:'⚽ Товарищеские матчи', ar:'⚽ مباريات ودية', pt:'⚽ Amistosos', uk:'⚽ Товариські матчі', fa:'⚽ بازی‌های دوستانه', ko:'⚽ 친선 경기', nl:'⚽ Oefenwedstrijden', sv:'⚽ Vänskapsmatcher', no:'⚽ Vennskapskamper', cs:'⚽ Přátelské zápasy', bs:'⚽ Prijateljske utakmice', hr:'⚽ Prijateljske utakmice', uz:'⚽ Do\'stlik o\'yinlari', ht:'⚽ Match amikal' },
     };
 
     const getNM = (key) => (NEW_MODES_TR[key] && (NEW_MODES_TR[key][lang] || NEW_MODES_TR[key]['tr'])) || '';
@@ -8830,7 +8932,7 @@ function advanceToKnockout() {
         grpThird[g.label]  = sorted[2]?.team;
     });
 
-    // En iyi 8 üçüncü (FIFA 2026 Son 32 için)
+    // En iyi 8 üçüncü (2026 Son 32 için)
     const thirds = Object.entries(grpThird).map(([grp, team]) => {
         const s = wc26Standings[grp]?.find(x => x.team.code === team?.code);
         return { team, grp, pts: s?.Pts||0, diff: (s?.GF||0)-(s?.GA||0), gf: s?.GF||0 };
@@ -8838,12 +8940,12 @@ function advanceToKnockout() {
     const best8 = thirds.slice(0,8);
     const best8Grps = best8.map(x => x.grp); // hangi grupların 3.sü kalifikasyon yaptı
 
-    // Üçüncülerin hangi slota gireceğini belirle (FIFA 2026 resmi tablosu)
-    // Kaynak: FIFA 2026 bracket — 8 üçüncü için 8 slot:
+    // Üçüncülerin hangi slota gireceğini belirle (2026 resmi tablosu)
+    // Kaynak: 2026 bracket — 8 üçüncü için 8 slot:
     // Slot 3A: en iyi 3., Slot 3B: 2. en iyi... sırayla
     const thirdTeams = best8.map(x => x.team);
 
-    // FIFA 2026 Resmi Son 32 Bracket:
+    // 2026 Resmi Son 32 Bracket:
     // (Grup sırasına göre belirlenen 16 eşleşme)
     const W = grpWinner, S = grpSecond;
     const T = {}; // üçüncüler — slotlara atandı
@@ -8851,7 +8953,7 @@ function advanceToKnockout() {
     const tSlots = ['t1','t2','t3','t4','t5','t6','t7','t8'];
     best8.forEach((x,i) => T[tSlots[i]] = x.team);
 
-    // FIFA 2026 resmi Son 32 eşleşme çiftleri
+    // 2026 resmi Son 32 eşleşme çiftleri
     // Gerçek bracket: 1A-2B, 1C-2D, 1E-2F, 1G-2H, 1I-2J, 1K-2L (12 maç birinci-ikinci)
     // + 4 maç: birinci/ikinci vs en iyi üçüncüler
     const mk = (h,a) => ({home:h||{code:'?',flag:'',strength:70,names:{tr:'?'}},
@@ -9021,6 +9123,7 @@ let wc26CurMyScore = 0, wc26CurOppScore = 0;
 let wc26CurAnswer = 0;
 let wc26CurOppStrength = 70;
 let wc26CurTimerVar = null;
+let wc26QuestionTimer = null; // soru zamanlayıcısı
 
 // WC26 Duration sistemi
 let wc26Duration = 45;
@@ -9071,16 +9174,16 @@ function setWC26Duration(min) {
     }
 }
 
+// WC26 maç fazı: 'first'=45dk, 'second'=90dk, 'et1'=105dk, 'et2'=120dk, 'pen'=penaltı
+let wc26MatchPhase = 'first';
+let wc26PhaseScores = {}; // her faz sonundaki skorlar
+
 function startWC26Match(match, totalQuestions) {
     wc26CurMatch = match;
-    // Süreyi stage'e göre otomatik belirle
-    const isGroup = wc26Stage === 'group';
-    if (isGroup) {
-        wc26Duration = Math.random() < 0.5 ? 45 : 90;
-    } else {
-        wc26Duration = Math.random() < 0.5 ? 105 : 120;
-    }
-    wc26QuestionCount = WC26_DUR_MAP[wc26Duration] || 3;
+    wc26MatchPhase = 'first';
+    wc26PhaseScores = {};
+    wc26Duration = 45; // ilk yarı
+    wc26QuestionCount = WC26_DUR_MAP[45] || 3;
     wc26CurQNum = 0;
     wc26CurTotalQ = wc26QuestionCount;
     wc26CurMyScore = 0;
@@ -9088,6 +9191,7 @@ function startWC26Match(match, totalQuestions) {
 
     setDisplay('wc26TournamentScreen','none');
     setDisplay('wc26MatchScreen','flex');
+    if (soundEnabled) { stopMusic(); playFutbolMusic(); }
 
     const iAmHome = match.home.code === wc26MyCountry.code;
     const opp = iAmHome ? match.away : match.home;
@@ -9103,14 +9207,67 @@ function startWC26Match(match, totalQuestions) {
     const stageNames = {group:'GRUP', r32:'SON 32', r16:'SON 16', qf:'ÇEYREK FİNAL', sf:'YARI FİNAL', '3rd':'3.LÜK', final:'FİNAL'};
     setText('wc26MatchStage', stageNames[wc26Stage]||wc26Stage);
     setText('wc26MatchQNum', 'Soru 1/'+wc26QuestionCount);
-    setText('wc26MatchDuration', '⏱️ '+wc26Duration+'dk'+(wc26Duration>=105?' + VAR':''));
+    setText('wc26MatchDuration', '⚽ 1. YARI · 45dk');
     setText('wc26Message','');
     nextWC26Question();
 }
 
+function wc26PhaseLabel(phase) {
+    const labels = {first:'⚽ 1. YARI · 45dk', second:'⚽ 2. YARI · 90dk', et1:'⏱ UZATMA · 105dk', et2:'⏱ UZATMA · 120dk+', pen:'🎯 PENALTİLER'};
+    return labels[phase] || phase;
+}
+
+function advanceWC26Phase() {
+    const isGroup = wc26Stage === 'group';
+    const draw = wc26CurMyScore === wc26CurOppScore;
+    const phases = isGroup
+        ? ['first','second']           // Grup: sadece 2 yarı, berabere kalabilir
+        : ['first','second','et1','et2','pen']; // Eleme: 4 faz + penaltı
+    const idx = phases.indexOf(wc26MatchPhase);
+
+    // Faz bitti mi? (berabere değilse veya son faz ise)
+    if (!draw || idx >= phases.length - 1) {
+        endWC26Match();
+        return;
+    }
+
+    // Sonraki faz
+    const nextPhase = phases[idx + 1];
+    wc26MatchPhase = nextPhase;
+
+    // Faz başlangıç mesajı
+    const phaseIntros = {
+        second: '<span style="color:#ffcc88;font-size:13px;">⚽ 45dk Tamam - 2. Yarı (90dk)</span>',
+        et1:    '<span style="color:#ff9955;font-size:13px;">⏱ 90dk Tamam - Uzatma 1 (105dk)</span>',
+        et2:    '<span style="color:#ff7722;font-size:13px;">⏱ 105dk Tamam - Uzatma 2 (120dk+)</span>',
+        pen:    '<span style="color:#ff4444;font-size:13px;">🎯 120 DAKİKA TAMAM! PENALTİLERE GİDİYORUZ!</span>',
+    };
+    setHTML('wc26Message', phaseIntros[nextPhase] || '');
+
+    // Sorular ve süre
+    const durMap = {first:45, second:90, et1:105, et2:120, pen:120};
+    wc26Duration = durMap[nextPhase] || 90;
+    wc26QuestionCount = nextPhase === 'pen' ? 5 : (WC26_DUR_MAP[wc26Duration] || 3);
+    wc26CurQNum = 0;
+    wc26CurTotalQ = wc26QuestionCount;
+
+    // Penaltı fazında skor sıfırla (kim daha fazla gol atar)
+    if (nextPhase === 'pen') {
+        wc26PhaseScores.beforePen = {my: wc26CurMyScore, opp: wc26CurOppScore};
+        wc26CurMyScore = 0;
+        wc26CurOppScore = 0;
+        setText('wc26MatchMyScore','0');
+        setText('wc26MatchOppScore','0');
+    }
+
+    setText('wc26MatchDuration', wc26PhaseLabel(nextPhase));
+    setTimeout(() => nextWC26Question(), 1800);
+}
+
 function nextWC26Question() {
     if (wc26CurQNum >= wc26CurTotalQ) {
-        endWC26Match();
+        // Berabere ise sonraki faza geç, değilse bitir
+        advanceWC26Phase();
         return;
     }
     wc26CurQNum++;
@@ -9137,13 +9294,20 @@ function nextWC26Question() {
         setText('wc26GuessCountdown', t);
         if (t<=0) {
             clearInterval(wc26CurTimerVar);
-            // Süre doldu — rakip gol
+            clearTimeout(wc26BotTimer);
+            wc26WaitingForAnswer = false;
             handleWC26Result(false);
         }
     }, 1000);
+
+    // Bot rakip timer'ını başlat
+    wc26WaitingForAnswer = true;
+    startBotTimer(wc26CurOppStrength || 70);
 }
 
 function submitWC26Answer() {
+    clearTimeout(wc26BotTimer);
+    wc26WaitingForAnswer = false;
     const inp = document.getElementById('wc26Input');
     const val = parseFloat(inp?inp.value:'');
     if (isNaN(val)) return;
@@ -9188,11 +9352,15 @@ function endWC26Match() {
     }
     wc26CurMatch.played = true;
 
-    // Eleme maçında berabere ise penaltı
-    if (wc26Stage !== 'group' && wc26CurMatch.homeGoals === wc26CurMatch.awayGoals) {
-        // Basit penaltı: oyuncuya kazanma ihtimali ver (skor farkı eşit zaten)
-        const myProb = 0.5 + (Math.random()-0.5)*0.3;
-        wc26CurMatch.penWinner = Math.random() < myProb ? wc26MyCountry.code : (iAmHome?wc26CurMatch.away.code:wc26CurMatch.home.code);
+    // Eleme: penaltı fazından geliyorsa kazananı belirle
+    if (wc26MatchPhase === 'pen') {
+        const iAmHomeP = wc26CurMatch.home.code === wc26MyCountry.code;
+        const beforePen = wc26PhaseScores.beforePen || {my:0,opp:0};
+        // Skoru normale döndür
+        if (iAmHomeP) { wc26CurMatch.homeGoals = beforePen.my; wc26CurMatch.awayGoals = beforePen.opp; }
+        else          { wc26CurMatch.homeGoals = beforePen.opp; wc26CurMatch.awayGoals = beforePen.my; }
+        // Penaltı kazananı
+        wc26CurMatch.penWinner = wc26CurMyScore > wc26CurOppScore ? wc26MyCountry.code : (iAmHomeP?wc26CurMatch.away.code:wc26CurMatch.home.code);
     }
 
     if (wc26Stage === 'group') {
@@ -9227,6 +9395,7 @@ function endWC26Match() {
 function returnToWC26Tourney() {
     setDisplay('wc26MatchScreen','none');
     setDisplay('wc26TournamentScreen','flex');
+    if (soundEnabled) { stopFutbolMusic(); startMusic(); }
     updateWC26TourneyDisplay();
 }
 
@@ -9594,6 +9763,7 @@ function startConfedMatch(match) {
     confedCurQ = 0; confedCurMy = 0; confedCurOpp = 0;
     setDisplay('confedTournamentScreen','none');
     setDisplay('confedMatchScreen','flex');
+    if (soundEnabled) { stopMusic(); playFutbolMusic(); }
     const iAmHome = match.home.code === confedMyTeam.code;
     const opp = iAmHome ? match.away : match.home;
     setHTML('confedMatchMyFlag', confedMyTeam.flag);
@@ -10180,7 +10350,103 @@ function syncSoundBtns() {
 }
 
 // Kaydedilmiş tercihleri yükle (DOMContentLoaded'da çağrılır)
+
+// ══════ SU MOLASI ══════
+let wc26WaterBreaksLeft = [true, true, true]; // 3 hak
+let confedWaterBreaksLeft = [true, true, true];
+
+function useWaterBreak(mode, idx) {
+    const arr = mode === 'wc26' ? wc26WaterBreaksLeft : confedWaterBreaksLeft;
+    if (!arr[idx]) return; // kullanılmış
+    arr[idx] = false;
+    const btn = document.getElementById(mode + 'wb' + idx);
+    if (btn) { btn.style.opacity = '0.3'; btn.disabled = true; btn.textContent = '💦'; }
+
+    // 15 saniye (oyun içi: mevcut soruyu 15sn durdur)
+    const timerEl = mode === 'wc26'
+        ? document.getElementById('wc26MatchDuration')
+        : document.getElementById('confedMatchDuration');
+    const origText = timerEl ? timerEl.textContent : '';
+    let countdown = 15;
+    if (timerEl) timerEl.style.color = '#44aaff';
+
+    const wbInterval = setInterval(() => {
+        countdown--;
+        if (timerEl) timerEl.textContent = '💧 Su Molası: ' + countdown + 'sn';
+        if (countdown <= 0) {
+            clearInterval(wbInterval);
+            if (timerEl) { timerEl.textContent = origText; timerEl.style.color = ''; }
+        }
+    }, 1000);
+
+    // Soru zamanlayıcısını durdur (varsa)
+    if (mode === 'wc26' && typeof wc26QuestionTimer !== 'undefined') {
+        clearInterval(wc26QuestionTimer);
+        setTimeout(() => { if (typeof nextWC26Question === 'function') nextWC26Question(); }, 15000);
+    }
+}
+
+function resetWaterBreaks(mode) {
+    const arr = mode === 'wc26' ? wc26WaterBreaksLeft : confedWaterBreaksLeft;
+    for (let i = 0; i < 3; i++) {
+        arr[i] = true;
+        const btn = document.getElementById(mode + 'wb' + i);
+        if (btn) { btn.style.opacity = '1'; btn.disabled = false; btn.textContent = '💧'; }
+    }
+}
+
+// ══════ BOT RAKİP SİSTEMİ ══════
+let wc26BotTimer = null;
+
+function startBotTimer(oppStrength) {
+    clearTimeout(wc26BotTimer);
+    // Bot güce göre 2-6 saniye arası cevap verir
+    const delay = Math.max(2000, 7000 - oppStrength * 40) + Math.random() * 2000;
+    wc26BotTimer = setTimeout(() => {
+        // Bot soruyu cevapladı - eğer oyuncu henüz cevaplamadıysa
+        if (typeof wc26WaitingForAnswer !== 'undefined' && wc26WaitingForAnswer) {
+            wc26WaitingForAnswer = false;
+            clearTimeout(wc26BotTimer);
+            // Bot doğru cevapladı mı? (%60-85 ihtimal)
+            const botCorrect = Math.random() < (0.45 + oppStrength * 0.004);
+            const oppScoreEl = document.getElementById('wc26MatchOppScore');
+            if (botCorrect) {
+                wc26CurOppScore++;
+                if (oppScoreEl) oppScoreEl.textContent = wc26CurOppScore;
+                setHTML('wc26Message', '<span style="color:#ff4444;">⚡ Rakip önce cevapladı! +1 Gol</span>');
+            } else {
+                setHTML('wc26Message', '<span style="color:#888;">🤔 Rakip düşünüyor... Pas!</span>');
+            }
+            // Seçenekleri devre dışı bırak
+            document.querySelectorAll('.wc26-opt-btn').forEach(b => b.disabled = true);
+            setTimeout(() => {
+                wc26CurQNum++;
+                if (wc26CurQNum >= wc26CurTotalQ) { advanceWC26Phase(); return; }
+                nextWC26Question();
+            }, 1200);
+        }
+    }, delay);
+}
+
+let wc26WaitingForAnswer = false;
 function initPrefs() {
+    // Pull-to-refresh engelle
+    document.addEventListener('touchmove', function(e) {
+        if (e.touches.length === 1) {
+            const el = e.target.closest('[style*="overflow"]') || document.scrollingElement;
+            if (!el || el === document.body || el === document.documentElement) {
+                e.preventDefault();
+            }
+        }
+    }, { passive: false });
+    document.addEventListener('touchstart', function(e) {
+        if (window.scrollY === 0) window._startY = e.touches[0].pageY;
+    }, { passive: true });
+    document.addEventListener('touchmove', function(e) {
+        if (window._startY && e.touches[0].pageY > window._startY + 10 && window.scrollY === 0) {
+            e.preventDefault();
+        }
+    }, { passive: false });
     const snd = localStorage.getItem('sa_sound');
     if (snd === '0') {
         soundEnabled = false;
