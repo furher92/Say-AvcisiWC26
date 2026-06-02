@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Sayı Avcısı - Pre-Alpha 3</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700;800&display=swap');
@@ -22,7 +22,7 @@
             --shadow-glow: 0 0 28px rgba(255,30,60,0.25);
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             overscroll-behavior-y: contain;
@@ -65,7 +65,7 @@
             background:
                 radial-gradient(circle at 80% 20%, rgba(255,50,80,0.2) 0%, transparent 40%),
                 radial-gradient(circle at 10% 80%, rgba(180,0,30,0.15) 0%, transparent 40%);
-            animation: bgBreath 8s ease-in-out infinite;
+            
         }
         @keyframes bgBreath { 0%,100%{opacity:1} 50%{opacity:0.7} }
 
@@ -78,8 +78,8 @@
             font-weight: 800;
         }
         .crescent-bg { position:absolute; pointer-events:none; opacity:0; animation:floatCrescent linear infinite; font-size:0; }
-        @keyframes floatCrescent { 0%{transform:translateY(110vh) rotate(-10deg);opacity:0} 5%{opacity:1} 95%{opacity:1} 100%{transform:translateY(-10vh) rotate(10deg);opacity:0} }
-        @keyframes floatMath { 0%{transform:translateY(110vh) rotate(0deg);opacity:0} 5%{opacity:1} 95%{opacity:1} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0} }
+        @keyframes floatCrescent { 0%{transform:translateY(110vh);opacity:0} 10%{opacity:0.12} 90%{opacity:0.12} 100%{transform:translateY(-10vh);opacity:0} }
+        @keyframes floatMath { 0%{transform:translateY(110vh);opacity:0} 10%{opacity:0.08} 90%{opacity:0.08} 100%{transform:translateY(-10vh);opacity:0} }
 
         /* ── SPLASH ── */
         #splashScreen {
@@ -87,10 +87,12 @@
             background: radial-gradient(ellipse at 35% 25%, #c0001a 0%, #7a0011 45%, #3a0008 100%) !important;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            overflow-y: auto; -webkit-overflow-scrolling: touch;
+            overflow-y: auto; overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
             z-index: 999;
             animation: splashFadeOut 0.6s cubic-bezier(.4,0,.2,1) forwards;
-            animation-delay: 3s; animation-play-state: paused;
+            animation-delay: 0.5s; animation-play-state: paused;
             padding: 16px 12px; box-sizing: border-box;
         }
         #splashScreen.go { animation-play-state: running; }
@@ -136,20 +138,25 @@
                         inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.15);
             padding: 14px 18px;
             background: rgba(255,255,255,0.07);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             border-radius: 20px; margin-bottom: 14px;
-            will-change: backdrop-filter; transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         /* ── CONTAINER — Liquid Glass ── */
+        /* Android fallback */
+        .container { background: rgba(25,0,5,0.88); }
+        @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+            .container { background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(200,0,30,0.07) 40%, rgba(255,255,255,0.04) 100%) !important; }
+        }
         .container {
             background: linear-gradient(145deg,
                 rgba(255,255,255,0.1) 0%,
                 rgba(200,0,30,0.07) 40%,
                 rgba(255,255,255,0.04) 100%
             );
-            backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
-            -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+            backdrop-filter: blur(8px) saturate(140%);
+            -webkit-backdrop-filter: blur(8px) saturate(140%);
             padding: 20px 18px; border-radius: 24px;
             box-shadow: 0 16px 48px rgba(0,0,0,0.55),
                         0 0 0 0.5px rgba(255,255,255,0.1) inset,
@@ -160,15 +167,19 @@
             max-height: 95dvh; max-height: 95vh;
             overflow-y: auto; overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
             border: 1px solid rgba(255,255,255,0.2);
             border-bottom-color: rgba(255,255,255,0.07);
             border-right-color: rgba(255,255,255,0.07);
             display: flex; flex-direction: column;
             align-items: center; justify-content: flex-start;
             position: relative; z-index: 1;
-            will-change: backdrop-filter; transform: translateZ(0); -webkit-transform: translateZ(0);
-            animation: liquidPulse 4s ease-in-out infinite;
+            transform: translateZ(0); -webkit-transform: translateZ(0);
+            
         }
+        .container::-webkit-scrollbar { width: 3px; }
+        .container::-webkit-scrollbar-track { background: transparent; }
+        .container::-webkit-scrollbar-thumb { background: rgba(255,50,70,0.4); border-radius: 3px; }
         .container::-webkit-scrollbar { width: 3px; }
         .container::-webkit-scrollbar-track { background: transparent; }
         .container::-webkit-scrollbar-thumb { background: rgba(255,60,80,0.4); border-radius: 3px; }
@@ -204,7 +215,7 @@
             border-radius:var(--radius-sm); border:1.5px solid rgba(255,255,255,0.18);
             background:rgba(255,255,255,0.08); color:#fff; width:65%;
             text-align:center; outline:none; transition:all 0.2s;
-            backdrop-filter:blur(10px);
+            backdrop-filter:blur(8px);
         }
         input:focus { border-color:var(--accent); background:rgba(255,255,255,0.12); box-shadow:0 0 0 3px rgba(255,68,102,0.2); }
         input::placeholder { color:rgba(255,255,255,0.25); font-weight:400; }
@@ -215,8 +226,10 @@
             border:1px solid rgba(255,255,255,0.2); border-radius:var(--radius-sm);
             cursor:pointer; transition:all 0.18s cubic-bezier(.4,0,.2,1);
             -webkit-tap-highlight-color:transparent; touch-action:manipulation;
-            backdrop-filter:blur(10px);
+            backdrop-filter:blur(8px);
+            -webkit-backdrop-filter:blur(8px);
             box-shadow:0 2px 10px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.12);
+            touch-action: manipulation;
         }
         button:hover { background:rgba(255,255,255,0.13); border-color:rgba(255,255,255,0.32); transform:translateY(-1px); }
         button:active { transform:scale(0.97); }
@@ -232,7 +245,7 @@
             padding:12px 20px; font-size:13px; font-family:'Outfit',sans-serif; font-weight:700;
             border-radius:var(--radius-sm); border:1px solid transparent;
             cursor:pointer; transition:all 0.18s;
-            backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+            backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
             box-shadow:0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
             position:relative; overflow:hidden;
         }
@@ -247,6 +260,15 @@
         .diff-btn.ultrahard:hover { background:rgba(0,180,255,0.24); transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,180,255,0.22); }
 
         /* ── MODE CARD — Liquid Glass ── */
+        /* Android fallback (no backdrop-filter support) */
+        .mode-card {
+            background: rgba(30,0,5,0.75);
+        }
+        @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+            .mode-card {
+                background:linear-gradient(145deg, rgba(255,255,255,0.09) 0%, rgba(200,0,30,0.05) 50%, rgba(255,255,255,0.03) 100%) !important;
+            }
+        }
         .mode-card {
             background:linear-gradient(145deg, rgba(255,255,255,0.09) 0%, rgba(200,0,30,0.05) 50%, rgba(255,255,255,0.03) 100%);
             border:1px solid rgba(255,255,255,0.16);
@@ -254,19 +276,14 @@
             border-radius:var(--radius); padding:16px 10px;
             width:100%; box-sizing:border-box; text-align:center;
             cursor:pointer; transition:all 0.2s cubic-bezier(.4,0,.2,1);
-            backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+            backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
             -webkit-tap-highlight-color:transparent; touch-action:manipulation;
             box-shadow:0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.1);
             position:relative; overflow:hidden;
-            animation:lgCardIn 0.4s cubic-bezier(.4,0,.2,1) both;
-            will-change:transform; transform:translateZ(0); -webkit-transform:translateZ(0);
+            
+            transform:translateZ(0); -webkit-transform:translateZ(0);
         }
-        .mode-card::before {
-            content:''; position:absolute; top:0; left:-100%; width:60%; height:100%;
-            background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.07) 50%,transparent 70%);
-            transition:left 0.5s ease; pointer-events:none;
-        }
-        .mode-card:hover::before { left:160%; }
+
         .mode-card:hover, .mode-card:active {
             background:linear-gradient(145deg,rgba(255,255,255,0.14) 0%,rgba(255,60,80,0.08) 50%,rgba(255,255,255,0.06) 100%);
             border-color:rgba(255,100,120,0.45);
@@ -275,10 +292,10 @@
         }
         .mode-card.mode-locked { opacity:0.55; cursor:not-allowed; }
         .mode-card.mode-locked:hover { transform:none; box-shadow:0 4px 20px rgba(0,0,0,0.3); border-color:rgba(255,255,255,0.12); background:linear-gradient(145deg,rgba(255,255,255,0.09) 0%,rgba(255,255,255,0.03) 100%); }
-        .mode-card:nth-child(1){animation-delay:.05s} .mode-card:nth-child(2){animation-delay:.1s} .mode-card:nth-child(3){animation-delay:.15s}
-        .mode-card:nth-child(4){animation-delay:.2s}  .mode-card:nth-child(5){animation-delay:.25s} .mode-card:nth-child(6){animation-delay:.3s}
-        .mode-card:nth-child(7){animation-delay:.35s} .mode-card:nth-child(8){animation-delay:.4s}  .mode-card:nth-child(9){animation-delay:.45s}
-        .mode-card:nth-child(10){animation-delay:.5s} .mode-card:nth-child(11){animation-delay:.55s}.mode-card:nth-child(12){animation-delay:.6s}
+          
+           
+           
+         
 
         .mode-icon { font-size:32px; margin-bottom:7px; display:flex; justify-content:center; align-items:center; min-height:42px; }
         .mode-name { font-size:12px; font-weight:700; font-family:'Outfit',sans-serif; color:#fff; margin-bottom:4px; letter-spacing:.3px; }
@@ -307,7 +324,7 @@
 
         #statsModal {
             display:none; position:fixed; inset:0;
-            background:rgba(0,0,0,0.7); backdrop-filter:blur(10px);
+            background:rgba(0,0,0,0.7); backdrop-filter:blur(8px);
             z-index:1000; align-items:center; justify-content:center;
         }
         .stats-box {
@@ -316,14 +333,37 @@
             box-shadow:0 32px 80px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.22);
             padding:26px 22px; border-radius:22px; max-width:360px; width:88%;
             text-align:center; color:#fff;
-            backdrop-filter:blur(32px) saturate(200%); -webkit-backdrop-filter:blur(32px) saturate(200%);
+            backdrop-filter:blur(16px) saturate(180%); -webkit-backdrop-filter:blur(16px) saturate(180%);
         }
         .stats-box h2 { font-family:'Outfit',sans-serif; font-size:16px; font-weight:800; color:#fff; margin-top:0; margin-bottom:20px; letter-spacing:1px; }
         .stat-line { display:flex; justify-content:space-between; margin:10px 0; font-size:13px; font-family:'Outfit',sans-serif; border-bottom:1px solid rgba(255,60,80,0.15); padding-bottom:8px; }
         .stat-val { font-weight:700; color:#ffcc88; }
 
-        @media screen and (max-width:400px) { .container{padding:14px 12px;width:96%} .mode-card{padding:12px 6px} .splash-title{font-size:22px!important} }
-        @media screen and (max-height:700px) { .container{max-height:98dvh;max-height:98vh;padding:12px 14px} #splashScreen{justify-content:flex-start;padding-top:14px} }
+        @media screen and (max-width:400px) {
+            .container { padding:14px 12px; width:96%; }
+            .mode-card { padding:12px 6px; }
+            .splash-title { font-size:22px !important; }
+            #prealphaSubtitle { font-size:7px !important; }
+        }
+        @media screen and (max-height:700px) {
+            .container { max-height:98dvh; max-height:98vh; padding:12px 14px; }
+            #splashScreen { justify-content:flex-start; padding-top:14px; }
+        }
+        @media screen and (max-height:600px) {
+            .container { max-height:99dvh; padding:10px 12px; }
+            .mode-card { padding:10px 6px; }
+            .app-logo { margin-bottom:3px; }
+        }
+        /* Düşük güç modu / az animasyon tercihinde tüm blur kapat */
+        @media (prefers-reduced-motion: reduce) {
+            .container, .mode-card, .pixel-border, .diff-btn, .stats-box {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: rgba(25,0,5,0.92) !important;
+            }
+            .mode-card { animation: none !important; }
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
 
     </style>
     <!-- PWA: Ana Ekran İkonu -->
@@ -499,7 +539,7 @@
     </div>
     <!-- DİL SEÇİCİ — SPLASH -->
     <div id="splashLangSelector" style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:340px;margin-top:10px;">
-        <button onclick="setLang('tr');markSplashLang('tr')" id="splashLangTR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(10px);">🇹🇷</button>
+        <button onclick="setLang('tr');markSplashLang('tr')" id="splashLangTR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(8px);">🇹🇷</button>
         <button onclick="setLang('en');markSplashLang('en')" id="splashLangEN" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇬🇧</button>
         <button onclick="setLang('it');markSplashLang('it')" id="splashLangIT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇮🇹</button>
         <button onclick="setLang('es');markSplashLang('es')" id="splashLangES" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇪🇸</button>
@@ -602,7 +642,7 @@
     </div>
     <div id="modeScreen" style="display:flex;flex-direction:column;align-items:center;width:100%;">
         <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;justify-content:center;">
-            <button id="langTR" onclick="setLang('tr')" style="padding:5px 14px;font-size:11px;font-weight:700;font-family:'Outfit',sans-serif;border-radius:20px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">🇹🇷 TR</button>
+            <button id="langTR" onclick="setLang('tr')" style="padding:5px 14px;font-size:11px;font-weight:700;font-family:'Outfit',sans-serif;border-radius:20px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇹🇷 TR</button>
             <button id="langEN" onclick="setLang('en')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇬🇧 EN</button>
             <button id="langIT" onclick="setLang('it')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇮🇹 IT</button>
             <button id="langES" onclick="setLang('es')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇪🇸 ES</button>
@@ -629,7 +669,7 @@
             <button id="langHT" onclick="setLang('ht')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇭🇹 HT</button>
         </div>
         <p id="selectGameTxt" style="color:rgba(255,180,180,0.7);margin:4px 0 12px;font-size:13px;font-weight:500;font-family:'Outfit',sans-serif;letter-spacing:.5px;">Oyun seç:</p>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%;max-width:320px;">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr); min-height:0;gap:12px;width:100%;max-width:320px;">
             <div class="mode-card" onclick="selectMode('guess')">
                 <div class="mode-icon">🕵️</div>
                 <div class="mode-name">Sayı Avcısı</div>
@@ -2298,7 +2338,7 @@ function closeStats() { setDisplay('statsModal','none'); }
         '2+2=4', '3×7', '√9=3', '2⁵', 'n!',
         '∑n²', 'x/y', 'a·b', 'p+q'
     ];
-    const count = 45;
+    const count = 12;
     for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
         el.className = 'math-symbol';
@@ -2307,7 +2347,7 @@ function closeStats() { setDisplay('statsModal','none'); }
         el.style.fontSize = size + 'px';
         el.style.left = (Math.random() * 100) + '%';
         el.style.bottom = '-10%';
-        const duration = 12 + Math.random() * 22;
+        const duration = 20 + Math.random() * 25;
         const delay = -(Math.random() * duration);
         el.style.animationDuration = duration + 's';
         el.style.animationDelay = delay + 's';
@@ -2320,7 +2360,7 @@ function closeStats() { setDisplay('statsModal','none'); }
     }
 
     // Hilal SVG arka plan elementleri
-    const crescentCount = 10;
+    const crescentCount = 4;
     for (let i = 0; i < crescentCount; i++) {
         const size = 30 + Math.random() * 70;
         const alpha = 0.07 + Math.random() * 0.10;
@@ -2332,7 +2372,7 @@ function closeStats() { setDisplay('statsModal','none'); }
         el.style.left = (Math.random() * 100) + '%';
         el.style.bottom = '-15%';
         el.style.pointerEvents = 'none';
-        const duration = 18 + Math.random() * 25;
+        const duration = 30 + Math.random() * 30;
         const delay = -(Math.random() * duration);
         el.style.animation = `floatCrescent ${duration}s linear ${delay}s infinite`;
         // Hilal: büyük daire - küçük daire (clip ile)
@@ -5140,7 +5180,7 @@ function setLang(lang) {
         const active = lang === l.toLowerCase();
         btn.style.background = active ? 'rgba(255,60,80,0.28)' : 'rgba(255,255,255,0.05)';
         btn.style.borderColor = active ? 'rgba(255,100,120,0.8)' : 'rgba(255,255,255,0.12)';
-        btn.style.color = active ? '#fff' : 'rgba(255,255,255,0.6)'; btn.style.backdropFilter = 'blur(10px)'; btn.style.webkitBackdropFilter = 'blur(10px)';
+        btn.style.color = active ? '#fff' : 'rgba(255,255,255,0.6)'; btn.style.backdropFilter = 'blur(8px)'; btn.style.webkitBackdropFilter = 'blur(8px)';
     });
 
     // ── Ana ekran ──
