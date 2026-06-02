@@ -8409,46 +8409,69 @@ document.addEventListener('DOMContentLoaded', autoClosePastFriendlyMatches);
 
 // ══════ YAZI TURA SİSTEMİ ══════
 function showCoinFlip(homeFlag, homeName, awayFlag, awayName, onDone) {
-    const wc26inp = document.getElementById('wc26Input');
-    const wc26btn = document.getElementById('wc26Btn');
-    const confedInp = document.getElementById('confedInput');
-    const confedBtn = document.getElementById('confedBtn');
-    const friendlyInp = document.getElementById('friendlyInput');
-    const friendlyBtn = document.getElementById('friendlyAtBtn');
+    // Input kilitle
+    var ids = ['wc26Input','wc26Btn','confedInput','confedBtn','friendlyInput','friendlyAtBtn'];
+    ids.forEach(function(id){ var e=document.getElementById(id); if(e) e.disabled=true; });
 
-    // Tüm inputları kilitle
-    [wc26inp, wc26btn, confedInp, confedBtn, friendlyInp, friendlyBtn].forEach(e => { if(e) e.disabled = true; });
+    // Overlay ekle
+    var ov = document.createElement('div');
+    ov.id = 'cfOv';
+    ov.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;';
 
-    // Mesaj alanını bul (sırayla dene)
-    const msgEl = document.getElementById('wc26Message')
-                || document.getElementById('confedMessage')
-                || document.getElementById('friendlyMessage');
-    if (!msgEl) { onDone(); return; }
+    var box = document.createElement('div');
+    box.style.cssText = 'text-align:center;padding:32px 40px;background:#1a0a00;border:2px solid #ffcc44;border-radius:18px;min-width:220px;';
 
-    // Animasyon aşamaları
-    let step = 0;
-    const steps = ['🪙', homeFlag + ' ?', awayFlag + ' ?', '🪙', homeFlag + ' ?', awayFlag + ' ?', '🪙'];
-    const interval = setInterval(() => {
-        step++;
-        if (step < steps.length) {
-            msgEl.innerHTML = '<div style="text-align:center;font-size:28px;">' + steps[step] + '</div>';
-        } else {
-            clearInterval(interval);
-            // Sonuç
-            const homeStarts = Math.random() < 0.5;
-            const winner = homeStarts ? homeFlag + ' ' + homeName : awayFlag + ' ' + awayName;
-            const loser  = homeStarts ? awayFlag + ' ' + awayName  : homeFlag + ' ' + homeName;
-            msgEl.innerHTML =
-                '<div style="text-align:center;">'
-                + '<div style="font-size:22px;">🪙</div>'
-                + '<div style="font-size:13px;color:#ffd700;font-weight:bold;margin-top:4px;">' + winner + ' BAŞLIYOR!</div>'
-                + '<div style="font-size:10px;color:#aaa;margin-top:2px;">' + loser + ' ikinci yarıda başlar</div>'
-                + '</div>';
-            setTimeout(() => {
-                msgEl.innerHTML = '';
-                [wc26inp, wc26btn, confedInp, confedBtn, friendlyInp, friendlyBtn].forEach(e => { if(e) e.disabled = false; });
-                onDone();
-            }, 2000);
+    var coin = document.createElement('div');
+    coin.id = 'cfCoin';
+    coin.style.cssText = 'width:64px;height:64px;border-radius:50%;background:#FFD700;border:4px solid #B8860B;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#7A5000;box-shadow:0 0 16px rgba(255,215,0,0.7);transition:transform 0.15s;';
+    coin.textContent = 'T';
+
+    var msg = document.createElement('div');
+    msg.id = 'cfMsg';
+    msg.style.cssText = 'font-size:16px;color:#fff;font-weight:bold;min-height:24px;';
+    msg.textContent = 'Yazı Tura...';
+
+    var sub = document.createElement('div');
+    sub.id = 'cfSub';
+    sub.style.cssText = 'font-size:11px;color:#aaa;margin-top:6px;';
+
+    box.appendChild(coin);
+    box.appendChild(msg);
+    box.appendChild(sub);
+    ov.appendChild(box);
+    document.body.appendChild(ov);
+
+    // Animasyon: 6 adım, 300ms arayla
+    var phase = 0;
+    var timer = setInterval(function() {
+        phase++;
+        // Madeni para döner gibi scale efekti
+        if (coin) {
+            coin.style.transform = (phase % 2 === 0) ? 'scaleX(1)' : 'scaleX(0.15)';
+        }
+        if (phase >= 6) {
+            clearInterval(timer);
+            coin.style.transform = 'scaleX(1)';
+            // Sonucu göster
+            setTimeout(function() {
+                var homeWins = Math.random() < 0.5;
+                var winFlag = homeWins ? homeFlag : awayFlag;
+                var winName = homeWins ? homeName : awayName;
+                var loseFlag = homeWins ? awayFlag : homeFlag;
+                var loseName = homeWins ? awayName : homeName;
+                if (coin) {
+                    coin.style.background = '#FFD700';
+                    coin.style.boxShadow = '0 0 24px rgba(255,215,0,0.9)';
+                }
+                msg.innerHTML = winFlag + ' <span style="color:#FFD700;">' + winName + '</span>';
+                sub.innerHTML = '<span style="color:#FFD700;font-size:14px;font-weight:bold;">BAŞLIYOR!</span><br><span style="color:#888;font-size:10px;">' + loseFlag + ' ' + loseName + ' ikinci yarıda başlar</span>';
+                setTimeout(function() {
+                    var el = document.getElementById('cfOv');
+                    if (el) el.remove();
+                    ids.forEach(function(id){ var e=document.getElementById(id); if(e) e.disabled=false; });
+                    onDone();
+                }, 2500);
+            }, 200);
         }
     }, 300);
 }
