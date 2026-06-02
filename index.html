@@ -5,27 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sayı Avcısı - Pre-Alpha 3</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
-        * { box-sizing: border-box; image-rendering: pixelated; }
+        :root {
+            --r1: #e30a17;
+            --r2: #a30016;
+            --r3: #7a0011;
+            --r4: #3a0008;
+            --glass: rgba(255,255,255,0.08);
+            --glass-border: rgba(255,255,255,0.16);
+            --accent: #ff4466;
+            --accent2: #ff8888;
+            --radius: 18px;
+            --radius-sm: 12px;
+            --shadow: 0 8px 32px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 28px rgba(255,30,60,0.25);
+        }
 
-        /* ── MATEMATİK FORMÜL ARKA PLAN ── */
+        * { box-sizing: border-box; }
+
         body {
             overscroll-behavior-y: contain;
             -webkit-overflow-scrolling: touch;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #7a0011;
-            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            background: var(--r3);
+            color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
+            height: 100%;
+            margin: 0; padding: 0;
             user-select: none;
             -webkit-user-select: none;
-            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            overflow-x: hidden;
+            overflow-y: auto;
             position: relative;
+            -webkit-font-smoothing: antialiased;
         }
 
         #mathBg {
@@ -33,360 +52,278 @@
             inset: 0;
             z-index: 0;
             overflow: hidden;
-            background: radial-gradient(ellipse at center, #a30016 0%, #7a0011 50%, #500008 100%);
+            background:
+                radial-gradient(ellipse at 25% 15%, #c0001a 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 85%, #900010 0%, transparent 50%),
+                radial-gradient(ellipse at 65% 25%, #ff2040 0%, transparent 35%),
+                radial-gradient(ellipse at 20% 70%, #500008 0%, transparent 45%),
+                #3a0008;
         }
+        #mathBg::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(255,50,80,0.2) 0%, transparent 40%),
+                radial-gradient(circle at 10% 80%, rgba(180,0,30,0.15) 0%, transparent 40%);
+            animation: bgBreath 8s ease-in-out infinite;
+        }
+        @keyframes bgBreath { 0%,100%{opacity:1} 50%{opacity:0.7} }
 
         .math-symbol {
             position: absolute;
-            font-family: 'Press Start 2P', 'Courier New', monospace;
-            color: rgba(255, 255, 255, 0.12);
+            font-family: 'Outfit', sans-serif;
+            color: rgba(255,255,255,0.06);
             pointer-events: none;
             animation: floatMath linear infinite;
-            font-weight: bold;
+            font-weight: 800;
         }
+        .crescent-bg { position:absolute; pointer-events:none; opacity:0; animation:floatCrescent linear infinite; font-size:0; }
+        @keyframes floatCrescent { 0%{transform:translateY(110vh) rotate(-10deg);opacity:0} 5%{opacity:1} 95%{opacity:1} 100%{transform:translateY(-10vh) rotate(10deg);opacity:0} }
+        @keyframes floatMath { 0%{transform:translateY(110vh) rotate(0deg);opacity:0} 5%{opacity:1} 95%{opacity:1} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0} }
 
-        /* Hilal arka plan elementi */
-        .crescent-bg {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0;
-            animation: floatCrescent linear infinite;
-            font-size: 0;
-        }
-        @keyframes floatCrescent {
-            0%   { transform: translateY(110vh) rotate(-10deg); opacity: 0; }
-            5%   { opacity: 1; }
-            95%  { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(10deg); opacity: 0; }
-        }
-
-        @keyframes floatMath {
-            0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-            5%   { opacity: 1; }
-            95%  { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* ── SPLASH EKRANI ── */
+        /* ── SPLASH ── */
         #splashScreen {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(ellipse at center, #c0001a 0%, #7a0011 50%, #3a0008 100%) !important;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            position: fixed; inset: 0;
+            background: radial-gradient(ellipse at 35% 25%, #c0001a 0%, #7a0011 45%, #3a0008 100%) !important;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            overflow-y: auto; -webkit-overflow-scrolling: touch;
             z-index: 999;
-            animation: splashFadeOut 0.5s ease forwards;
-            animation-delay: 3s;
-            animation-play-state: paused;
-            transition: background 0.4s ease;
+            animation: splashFadeOut 0.6s cubic-bezier(.4,0,.2,1) forwards;
+            animation-delay: 3s; animation-play-state: paused;
+            padding: 16px 12px; box-sizing: border-box;
         }
         #splashScreen.go { animation-play-state: running; }
+        @keyframes splashFadeOut { to { opacity:0; pointer-events:none; } }
 
-        @keyframes splashFadeOut {
-            to { opacity: 0; pointer-events: none; }
-        }
-
-        .pixel-canvas { display: block; margin-bottom: 20px; }
+        .pixel-canvas { display:block; margin-bottom:8px; }
 
         .splash-title {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 20px;
-            color: #00e5aa;
-            text-shadow: 4px 4px 0px #004030, 8px 8px 0px #001a10;
-            letter-spacing: 1px;
-            text-align: center;
-            line-height: 1.6;
-            margin-bottom: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px; font-weight: 900;
+            color: #fff; letter-spacing: 3px;
+            text-align: center; line-height: 1.2; margin-bottom: 6px;
+            text-shadow: 0 0 30px rgba(255,60,80,0.7), 0 2px 4px rgba(0,0,0,0.5);
         }
         .splash-sub {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 9px;
-            color: #ffcc88;
-            text-align: center;
-            animation: blink 1s step-end infinite;
-            margin-bottom: 6px;
+            font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500;
+            color: #ffcc88; text-align: center;
+            animation: blink 1s step-end infinite; margin-bottom: 6px; letter-spacing: 1px;
         }
         .splash-version {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 7px;
-            color: #ff4444;
-            text-align: center;
-            margin-top: 4px;
-            font-weight: bold;
+            font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+            color: var(--accent); text-align: center; margin-top: 4px; letter-spacing: 2px;
         }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        .splash-credits {
-            font-family: "Press Start 2P", monospace;
-            font-size: 6px;
-            color: rgba(232,160,80,0.7);
-            text-align: center;
-            margin-top: 8px;
-        }
+        .splash-credits { font-family:'Outfit',sans-serif; font-size:10px; color:rgba(255,180,140,0.6); text-align:center; margin-top:6px; }
         .splash-bayram {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 5.5px;
-            color: #ffffff;
-            text-align: center;
-            margin-top: 8px;
-            line-height: 2.1;
-            padding: 6px 10px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 8px;
-            background: rgba(255,255,255,0.04);
+            font-family: 'Outfit', sans-serif; font-size: 9px; color: #fff;
+            text-align: center; margin-top: 8px; line-height: 1.8;
+            padding: 8px 14px; border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px; background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(8px);
         }
-        .bayram-line {
-            color: #e8e8e8;
-            font-size: 5px;
-        }
-        .splash-update2 {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 6px;
-            color: #ff4444;
-            text-align: center;
-            margin-top: 5px;
-            animation: blink 1.2s step-end infinite;
-        }
-        .splash-update {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 6px;
-            color: #ff8c00;
-            text-align: center;
-            margin-top: 6px;
-            animation: blink 1.2s step-end infinite;
-        }
-        .splash-lang {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 6px;
-            color: #ff4466;
-            text-align: center;
-            margin-top: 5px;
-            padding: 4px 10px;
-            border: 1px solid #ff446655;
-            border-radius: 6px;
-            background: rgba(0,200,150,0.08);
-        }
-        .splash-test {
-            font-family: "Press Start 2P", monospace;
-            font-size: 6px;
-            color: rgba(255,200,80,0.75);
-            text-align: center;
-            margin-top: 4px;
-            animation: blink 1.5s step-end infinite;
-        }
+        .bayram-line { color:#e8e8e8; font-size:8px; }
+        .splash-update2 { font-family:'Outfit',sans-serif; font-size:10px; font-weight:600; color:var(--accent); text-align:center; margin-top:5px; animation:blink 1.2s step-end infinite; letter-spacing:.5px; }
+        .splash-update  { font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; color:#ff8c00; text-align:center; margin-top:4px; animation:blink 1.2s step-end infinite; }
+        .splash-lang    { font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; color:rgba(255,150,160,0.9); text-align:center; margin-top:5px; padding:5px 12px; border:1px solid rgba(255,80,100,0.3); border-radius:20px; background:rgba(255,30,60,0.1); backdrop-filter:blur(6px); }
+        .splash-test    { font-family:'Outfit',sans-serif; font-size:10px; color:rgba(255,200,80,0.7); text-align:center; margin-top:4px; animation:blink 1.5s step-end infinite; }
 
+        /* pixel-border — liquid glass */
         .pixel-border {
-            border: 4px solid #ff4466;
-            box-shadow: 6px 6px 0 #500020, -2px -2px 0 #20000a;
-            padding: 18px 26px;
-            background: #001a12;
-            margin-bottom: 20px;
-        }
-
-        /* ── OYUN CONTAINER ── */
-        .container {
-            background: linear-gradient(180deg, rgba(122,0,17,0.95) 0%, rgba(50,0,8,0.97) 100%);
-            padding: 20px 28px;
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(255,255,255,0.2), 0 15px 35px rgba(0,0,0,0.6);
-            text-align: center;
-            max-width: 420px;
-            width: 88%;
-            max-height: 92vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            border: 3px solid #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            position: relative;
-            z-index: 1;
-        }
-        .app-logo { font-size: 48px; margin-bottom: 8px; animation: bounce 2s infinite; }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        h1 { color: #ffffff; margin-top: 0; margin-bottom: 5px; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 0 #7a0011, 0 0 10px rgba(255,255,255,0.4); }
-
-        .hearts {
-            font-size: 22px;
-            margin: 12px 0;
-            letter-spacing: 2px;
-            min-height: 30px;
-        }
-
-        /* Renk teması dinamik olacak */
-        .timer-box {
-            font-size: 16px;
-            margin: 12px 0;
-            font-weight: bold;
-            display: none;
-            padding: 10px 18px;
-            border-radius: 10px;
-            border: 2px solid currentColor;
-        }
-
-        /* Geri sayım (tahmin süresi) */
-        .guess-timer-box {
-            font-size: 15px;
-            margin: 8px 0;
-            font-weight: bold;
-            display: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-        }
-
-        .input-group { display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 12px; }
-        input {
-            padding: 12px; font-size: 18px; border-radius: 10px;
-            border: 2px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,100,120,0.35);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(255,30,60,0.12),
+                        inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.15);
+            padding: 14px 18px;
             background: rgba(255,255,255,0.07);
-            color: #fff;
-            width: 60%; text-align: center; outline: none; font-weight: bold;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px; margin-bottom: 14px;
+            will-change: backdrop-filter; transform: translateZ(0);
         }
-        input:focus { border-color: #fff; box-shadow: 0 0 8px rgba(255,255,255,0.3); }
-        input::placeholder { color: rgba(255,255,255,0.3); }
+
+        /* ── CONTAINER — Liquid Glass ── */
+        .container {
+            background: linear-gradient(145deg,
+                rgba(255,255,255,0.1) 0%,
+                rgba(200,0,30,0.07) 40%,
+                rgba(255,255,255,0.04) 100%
+            );
+            backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+            -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+            padding: 20px 18px; border-radius: 24px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.55),
+                        0 0 0 0.5px rgba(255,255,255,0.1) inset,
+                        inset 0 1px 0 rgba(255,255,255,0.22),
+                        inset 0 -1px 0 rgba(0,0,0,0.18),
+                        0 0 40px rgba(255,20,50,0.1);
+            text-align: center; max-width: 430px; width: 93%;
+            max-height: 95dvh; max-height: 95vh;
+            overflow-y: auto; overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-bottom-color: rgba(255,255,255,0.07);
+            border-right-color: rgba(255,255,255,0.07);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: flex-start;
+            position: relative; z-index: 1;
+            will-change: backdrop-filter; transform: translateZ(0); -webkit-transform: translateZ(0);
+            animation: liquidPulse 4s ease-in-out infinite;
+        }
+        .container::-webkit-scrollbar { width: 3px; }
+        .container::-webkit-scrollbar-track { background: transparent; }
+        .container::-webkit-scrollbar-thumb { background: rgba(255,60,80,0.4); border-radius: 3px; }
+
+        @keyframes liquidPulse {
+            0%,100% { box-shadow: 0 16px 48px rgba(0,0,0,0.55), 0 0 0 0.5px rgba(255,255,255,0.1) inset, inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.18), 0 0 40px rgba(255,20,50,0.1); }
+            50%      { box-shadow: 0 16px 48px rgba(0,0,0,0.55), 0 0 0 0.5px rgba(255,255,255,0.1) inset, inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.18), 0 0 40px rgba(255,20,50,0.22); }
+        }
+        @keyframes lgCardIn { from{opacity:0;transform:translateY(12px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+
+        .app-logo { font-size: 48px; margin-bottom: 6px; }
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+        h1 { font-family:'Outfit',sans-serif; font-weight:900; color:#fff; margin-top:0; margin-bottom:4px; font-size:22px; letter-spacing:2px; text-shadow:0 0 20px rgba(255,30,60,0.5); }
+
+        .hearts { font-size:22px; margin:10px 0; letter-spacing:2px; min-height:28px; }
+
+        .timer-box {
+            font-size:16px; margin:10px 0; font-weight:700; display:none;
+            padding:10px 20px; border-radius:var(--radius-sm); border:1px solid currentColor;
+            background:rgba(255,255,255,0.06); backdrop-filter:blur(8px);
+        }
+        .guess-timer-box {
+            font-size:14px; margin:7px 0; font-weight:600; display:none;
+            padding:8px 16px; border-radius:var(--radius-sm);
+            background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#fff;
+            backdrop-filter:blur(8px);
+        }
+
+        .input-group { display:flex; flex-direction:column; align-items:center; width:100%; margin-bottom:12px; }
+        input {
+            padding:13px 16px; font-size:20px; font-family:'Outfit',sans-serif; font-weight:700;
+            border-radius:var(--radius-sm); border:1.5px solid rgba(255,255,255,0.18);
+            background:rgba(255,255,255,0.08); color:#fff; width:65%;
+            text-align:center; outline:none; transition:all 0.2s;
+            backdrop-filter:blur(10px);
+        }
+        input:focus { border-color:var(--accent); background:rgba(255,255,255,0.12); box-shadow:0 0 0 3px rgba(255,68,102,0.2); }
+        input::placeholder { color:rgba(255,255,255,0.25); font-weight:400; }
 
         button {
-            padding: 12px 32px; font-size: 15px; background: #1a1a1a; color: #fff;
-            border: 2px solid rgba(255,255,255,0.4); border-radius: 10px; cursor: pointer; font-weight: bold;
-            transition: 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            padding:11px 28px; font-size:14px; font-family:'Outfit',sans-serif; font-weight:600;
+            background:rgba(255,255,255,0.08); color:#fff;
+            border:1px solid rgba(255,255,255,0.2); border-radius:var(--radius-sm);
+            cursor:pointer; transition:all 0.18s cubic-bezier(.4,0,.2,1);
+            -webkit-tap-highlight-color:transparent; touch-action:manipulation;
+            backdrop-filter:blur(10px);
+            box-shadow:0 2px 10px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.12);
         }
-        button:hover { background: #333; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,255,255,0.15); }
-        button:disabled { background: #111; color: #444; border-color: #333; cursor: not-allowed; transform: none; box-shadow: none; }
+        button:hover { background:rgba(255,255,255,0.13); border-color:rgba(255,255,255,0.32); transform:translateY(-1px); }
+        button:active { transform:scale(0.97); }
+        button:disabled { background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.25); border-color:rgba(255,255,255,0.08); cursor:not-allowed; transform:none; }
 
-        #message { font-size: 16px; margin-top: 16px; font-weight: bold; min-height: 48px; color: #ffffff; }
+        #message { font-size:15px; margin-top:14px; font-weight:600; min-height:46px; color:#fff; font-family:'Outfit',sans-serif; }
 
-        #difficultyScreen { display: flex; flex-direction: column; align-items: center; width: 100%; }
-        #gameScreen { display: none; width: 100%; flex-direction: column; align-items: center; }
+        #difficultyScreen { display:flex; flex-direction:column; align-items:center; width:100%; }
+        #gameScreen { display:none; width:100%; flex-direction:column; align-items:center; }
 
-        .diff-buttons { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+        .diff-buttons { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; justify-content:center; }
         .diff-btn {
-            padding: 11px 18px; font-size: 13px; border-radius: 10px; border: 2px solid transparent;
-            cursor: pointer; font-weight: bold; transition: 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            padding:12px 20px; font-size:13px; font-family:'Outfit',sans-serif; font-weight:700;
+            border-radius:var(--radius-sm); border:1px solid transparent;
+            cursor:pointer; transition:all 0.18s;
+            backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+            box-shadow:0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+            position:relative; overflow:hidden;
         }
-        .diff-btn.easy   { background: #1a4d2e; color: #4cff88; border-color: #00e5aa; }
-        .diff-btn.easy:hover   { background: #00b884; color: #fff; transform: translateY(-2px); }
-        .diff-btn.medium { background: #4d3a00; color: #ffd700; border-color: #f39c12; }
-        .diff-btn.medium:hover { background: #f39c12; color: #fff; transform: translateY(-2px); }
-        .diff-btn.hard   { background: #4d0a0a; color: #ff6b6b; border-color: #e74c3c; }
-        .diff-btn.hard:hover   { background: #e74c3c; color: #fff; transform: translateY(-2px); }
-        .diff-btn.ultrahard { background: #002a40; color: #00ccff; border-color: #00ccff; }
-        .diff-btn.ultrahard:hover { background: #0088bb; color: #fff; transform: translateY(-2px); }
+        .diff-btn::after { content:''; position:absolute; top:0; left:0; right:0; height:50%; background:linear-gradient(to bottom,rgba(255,255,255,0.08),transparent); border-radius:inherit; pointer-events:none; }
+        .diff-btn.easy      { background:rgba(0,200,120,0.15); color:#4cff88; border-color:rgba(0,229,170,0.45); }
+        .diff-btn.easy:hover   { background:rgba(0,200,120,0.28); transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,200,120,0.22); }
+        .diff-btn.medium    { background:rgba(255,180,0,0.12); color:#ffd700; border-color:rgba(243,156,18,0.45); }
+        .diff-btn.medium:hover { background:rgba(255,180,0,0.24); transform:translateY(-2px); box-shadow:0 4px 16px rgba(255,180,0,0.22); }
+        .diff-btn.hard      { background:rgba(231,76,60,0.15); color:#ff6b6b; border-color:rgba(231,76,60,0.45); }
+        .diff-btn.hard:hover   { background:rgba(231,76,60,0.28); transform:translateY(-2px); box-shadow:0 4px 16px rgba(231,76,60,0.22); }
+        .diff-btn.ultrahard { background:rgba(0,180,255,0.12); color:#00ccff; border-color:rgba(0,204,255,0.45); }
+        .diff-btn.ultrahard:hover { background:rgba(0,180,255,0.24); transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,180,255,0.22); }
 
+        /* ── MODE CARD — Liquid Glass ── */
         .mode-card {
-            background: #111;
-            border: 2px solid rgba(255,255,255,0.15);
-            border-radius: 16px;
-            padding: 18px 20px;
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            background:linear-gradient(145deg, rgba(255,255,255,0.09) 0%, rgba(200,0,30,0.05) 50%, rgba(255,255,255,0.03) 100%);
+            border:1px solid rgba(255,255,255,0.16);
+            border-bottom-color:rgba(255,255,255,0.06); border-right-color:rgba(255,255,255,0.06);
+            border-radius:var(--radius); padding:16px 10px;
+            width:100%; box-sizing:border-box; text-align:center;
+            cursor:pointer; transition:all 0.2s cubic-bezier(.4,0,.2,1);
+            backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+            -webkit-tap-highlight-color:transparent; touch-action:manipulation;
+            box-shadow:0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.1);
+            position:relative; overflow:hidden;
+            animation:lgCardIn 0.4s cubic-bezier(.4,0,.2,1) both;
+            will-change:transform; transform:translateZ(0); -webkit-transform:translateZ(0);
         }
-        .mode-card:hover {
-            border-color: rgba(255,255,255,0.5);
-            background: #1a1a1a;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(255,255,255,0.1);
+        .mode-card::before {
+            content:''; position:absolute; top:0; left:-100%; width:60%; height:100%;
+            background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.07) 50%,transparent 70%);
+            transition:left 0.5s ease; pointer-events:none;
         }
-        .mode-card.mode-locked {
-            opacity: 0.6;
-            cursor: not-allowed;
-            border-color: #33006666;
+        .mode-card:hover::before { left:160%; }
+        .mode-card:hover, .mode-card:active {
+            background:linear-gradient(145deg,rgba(255,255,255,0.14) 0%,rgba(255,60,80,0.08) 50%,rgba(255,255,255,0.06) 100%);
+            border-color:rgba(255,100,120,0.45);
+            transform:translateY(-3px) scale(1.01);
+            box-shadow:0 10px 28px rgba(0,0,0,0.35), 0 0 20px rgba(255,30,60,0.18), inset 0 1px 0 rgba(255,255,255,0.25);
         }
-        .mode-card.mode-locked:hover { transform: none; box-shadow: 0 4px 16px rgba(0,0,0,0.3); border-color: #333; background: #111; }
-        .mode-icon { font-size: 32px; margin-bottom: 8px; display:flex; justify-content:center; align-items:center; min-height:42px; }
-        .mode-name { font-size: 12px; font-weight: bold; color: #ffffff; margin-bottom: 5px; }
-        .mode-desc { font-size: 10px; color: #aaaaaa; line-height: 1.5; }
-        .coming-soon-tag { color: #00ccaa !important; }
+        .mode-card.mode-locked { opacity:0.55; cursor:not-allowed; }
+        .mode-card.mode-locked:hover { transform:none; box-shadow:0 4px 20px rgba(0,0,0,0.3); border-color:rgba(255,255,255,0.12); background:linear-gradient(145deg,rgba(255,255,255,0.09) 0%,rgba(255,255,255,0.03) 100%); }
+        .mode-card:nth-child(1){animation-delay:.05s} .mode-card:nth-child(2){animation-delay:.1s} .mode-card:nth-child(3){animation-delay:.15s}
+        .mode-card:nth-child(4){animation-delay:.2s}  .mode-card:nth-child(5){animation-delay:.25s} .mode-card:nth-child(6){animation-delay:.3s}
+        .mode-card:nth-child(7){animation-delay:.35s} .mode-card:nth-child(8){animation-delay:.4s}  .mode-card:nth-child(9){animation-delay:.45s}
+        .mode-card:nth-child(10){animation-delay:.5s} .mode-card:nth-child(11){animation-delay:.55s}.mode-card:nth-child(12){animation-delay:.6s}
 
-        .diff-info { font-size: 11px; color: #aaaaaa; margin-top: 8px; line-height: 1.6; }
+        .mode-icon { font-size:32px; margin-bottom:7px; display:flex; justify-content:center; align-items:center; min-height:42px; }
+        .mode-name { font-size:12px; font-weight:700; font-family:'Outfit',sans-serif; color:#fff; margin-bottom:4px; letter-spacing:.3px; }
+        .mode-desc { font-size:10px; font-family:'Outfit',sans-serif; color:rgba(255,255,255,0.55); line-height:1.5; }
+        .coming-soon-tag { color:#00ccaa !important; }
+        .diff-info { font-size:11px; font-family:'Outfit',sans-serif; color:rgba(255,255,255,0.5); margin-top:8px; line-height:1.7; }
+        #rangeInfo { color:rgba(255,255,255,0.85); margin-top:0; font-size:13px; font-weight:600; font-family:'Outfit',sans-serif; }
 
-        #rangeInfo { color: #dddddd; margin-top: 0; font-size: 13px; font-weight: 600; }
-
-        /* ── İSTATİSTİK PANELİ STİLLERİ ── */
         .home-btn {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            padding: 5px 10px;
-            font-size: 13px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
-            color: #aaa;
-            cursor: pointer;
-            transition: 0.2s;
-            z-index: 10;
-            line-height: 1;
+            position:absolute; top:10px; left:10px;
+            padding:6px 12px; font-size:13px; font-family:'Outfit',sans-serif; font-weight:500;
+            background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15);
+            border-radius:20px; color:rgba(255,255,255,0.7); cursor:pointer; transition:all 0.18s;
+            z-index:10; backdrop-filter:blur(8px);
         }
-        .home-btn:hover { background: rgba(255,255,255,0.15); color: #fff; transform: none; box-shadow: none; }
+        .home-btn:hover { background:rgba(255,255,255,0.13); color:#fff; transform:none; box-shadow:none; }
+
         .stats-btn {
-            margin-top: 15px;
-            padding: 8px 20px;
-            font-size: 12px;
-            background: #1a1a1a;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: #ffffff;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
+            margin-top:12px; padding:9px 22px; font-size:12px;
+            font-family:'Outfit',sans-serif; font-weight:600;
+            background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.18);
+            color:#fff; border-radius:20px; cursor:pointer; transition:all 0.18s;
+            backdrop-filter:blur(8px); letter-spacing:.5px;
         }
-        .stats-btn:hover {
-            background: #333;
-            color: #fff;
-        }
+        .stats-btn:hover { background:rgba(255,255,255,0.13); }
+
         #statsModal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
+            display:none; position:fixed; inset:0;
+            background:rgba(0,0,0,0.7); backdrop-filter:blur(10px);
+            z-index:1000; align-items:center; justify-content:center;
         }
         .stats-box {
-            background: #111;
-            border: 3px solid rgba(255,255,255,0.3);
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-            padding: 24px;
-            border-radius: 16px;
-            max-width: 360px;
-            width: 85%;
-            text-align: center;
-            color: #fff;
+            background:linear-gradient(145deg,rgba(255,255,255,0.1) 0%,rgba(180,0,20,0.07) 50%,rgba(0,0,0,0.3) 100%);
+            border:1px solid rgba(255,255,255,0.18);
+            box-shadow:0 32px 80px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.22);
+            padding:26px 22px; border-radius:22px; max-width:360px; width:88%;
+            text-align:center; color:#fff;
+            backdrop-filter:blur(32px) saturate(200%); -webkit-backdrop-filter:blur(32px) saturate(200%);
         }
-        .stats-box h2 {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 11px;
-            color: #ffffff;
-            margin-top: 0;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        .stat-line {
-            display: flex;
-            justify-content: space-between;
-            margin: 12px 0;
-            font-size: 13px;
-            border-bottom: 1px dashed rgba(255, 68, 102, 0.2);
-            padding-bottom: 6px;
-        }
-        .stat-val {
-            font-weight: bold;
-            color: #ffcc88;
-        }
+        .stats-box h2 { font-family:'Outfit',sans-serif; font-size:16px; font-weight:800; color:#fff; margin-top:0; margin-bottom:20px; letter-spacing:1px; }
+        .stat-line { display:flex; justify-content:space-between; margin:10px 0; font-size:13px; font-family:'Outfit',sans-serif; border-bottom:1px solid rgba(255,60,80,0.15); padding-bottom:8px; }
+        .stat-val { font-weight:700; color:#ffcc88; }
+
+        @media screen and (max-width:400px) { .container{padding:14px 12px;width:96%} .mode-card{padding:12px 6px} .splash-title{font-size:22px!important} }
+        @media screen and (max-height:700px) { .container{max-height:98dvh;max-height:98vh;padding:12px 14px} #splashScreen{justify-content:flex-start;padding-top:14px} }
 
     </style>
     <!-- PWA: Ana Ekran İkonu -->
@@ -463,7 +400,7 @@
   <line x1="16" y1="2" x2="16" y2="30" stroke="#555" stroke-width="0.6" clip-path="url(#cb)"/>
   <line x1="2" y1="16" x2="30" y2="16" stroke="#555" stroke-width="0.6" clip-path="url(#cb)"/>
 </svg></div>
-    <div class="splash-title" style="color:#fff;text-shadow:0 0 18px #fff,2px 2px 0 #7a0011;">SAYI<br>AVCISI</div>
+    <div class="splash-title" style="color:#fff;text-shadow:0 0 30px rgba(255,60,80,0.7);font-family:'Outfit',sans-serif;font-weight:900;letter-spacing:5px;">SAYI<br>AVCISI</div>
     <!-- Türk Bayrakları yan yana -->
     <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-top:6px;">
         <!-- Türk bayrağı SVG -->
@@ -562,31 +499,31 @@
     </div>
     <!-- DİL SEÇİCİ — SPLASH -->
     <div id="splashLangSelector" style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:340px;margin-top:10px;">
-        <button onclick="setLang('tr');markSplashLang('tr')" id="splashLangTR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:2px solid #fff;background:#7a0011;color:#fff;cursor:pointer;">🇹🇷</button>
-        <button onclick="setLang('en');markSplashLang('en')" id="splashLangEN" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇬🇧</button>
-        <button onclick="setLang('it');markSplashLang('it')" id="splashLangIT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇮🇹</button>
-        <button onclick="setLang('es');markSplashLang('es')" id="splashLangES" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇪🇸</button>
-        <button onclick="setLang('ka');markSplashLang('ka')" id="splashLangKA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇬🇪</button>
-        <button onclick="setLang('az');markSplashLang('az')" id="splashLangAZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇦🇿</button>
-        <button onclick="setLang('ja');markSplashLang('ja')" id="splashLangJA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇯🇵</button>
-        <button onclick="setLang('zh');markSplashLang('zh')" id="splashLangZH" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇨🇳</button>
-        <button onclick="setLang('de');markSplashLang('de')" id="splashLangDE" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇩🇪</button>
-        <button onclick="setLang('fr');markSplashLang('fr')" id="splashLangFR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇫🇷</button>
-        <button onclick="setLang('el');markSplashLang('el')" id="splashLangEL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇬🇷</button>
-        <button onclick="setLang('ru');markSplashLang('ru')" id="splashLangRU" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></button>
-        <button onclick="setLang('ar');markSplashLang('ar')" id="splashLangAR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇸🇦</button>
-        <button onclick="setLang('pt');markSplashLang('pt')" id="splashLangPT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇧🇷</button>
-        <button onclick="setLang('uk');markSplashLang('uk')" id="splashLangUK" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇺🇦</button>
-        <button onclick="setLang('nl');markSplashLang('nl')" id="splashLangNL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇳🇱</button>
-        <button onclick="setLang('ko');markSplashLang('ko')" id="splashLangKO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇰🇷</button>
-        <button onclick="setLang('fa');markSplashLang('fa')" id="splashLangFA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇮🇷</button>
-        <button onclick="setLang('hr');markSplashLang('hr')" id="splashLangHR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇭🇷</button>
-        <button onclick="setLang('sv');markSplashLang('sv')" id="splashLangSV" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇸🇪</button>
-        <button onclick="setLang('no');markSplashLang('no')" id="splashLangNO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇳🇴</button>
-        <button onclick="setLang('cs');markSplashLang('cs')" id="splashLangCS" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇨🇿</button>
-        <button onclick="setLang('bs');markSplashLang('bs')" id="splashLangBS" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇧🇦</button>
-        <button onclick="setLang('uz');markSplashLang('uz')" id="splashLangUZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇺🇿</button>
-        <button onclick="setLang('ht');markSplashLang('ht')" id="splashLangHT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);color:#fff;cursor:pointer;">🇭🇹</button>
+        <button onclick="setLang('tr');markSplashLang('tr')" id="splashLangTR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(10px);">🇹🇷</button>
+        <button onclick="setLang('en');markSplashLang('en')" id="splashLangEN" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇬🇧</button>
+        <button onclick="setLang('it');markSplashLang('it')" id="splashLangIT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇮🇹</button>
+        <button onclick="setLang('es');markSplashLang('es')" id="splashLangES" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇪🇸</button>
+        <button onclick="setLang('ka');markSplashLang('ka')" id="splashLangKA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇬🇪</button>
+        <button onclick="setLang('az');markSplashLang('az')" id="splashLangAZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇦🇿</button>
+        <button onclick="setLang('ja');markSplashLang('ja')" id="splashLangJA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇯🇵</button>
+        <button onclick="setLang('zh');markSplashLang('zh')" id="splashLangZH" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇨🇳</button>
+        <button onclick="setLang('de');markSplashLang('de')" id="splashLangDE" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇩🇪</button>
+        <button onclick="setLang('fr');markSplashLang('fr')" id="splashLangFR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇫🇷</button>
+        <button onclick="setLang('el');markSplashLang('el')" id="splashLangEL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇬🇷</button>
+        <button onclick="setLang('ru');markSplashLang('ru')" id="splashLangRU" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></button>
+        <button onclick="setLang('ar');markSplashLang('ar')" id="splashLangAR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇸🇦</button>
+        <button onclick="setLang('pt');markSplashLang('pt')" id="splashLangPT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇧🇷</button>
+        <button onclick="setLang('uk');markSplashLang('uk')" id="splashLangUK" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇺🇦</button>
+        <button onclick="setLang('nl');markSplashLang('nl')" id="splashLangNL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇳🇱</button>
+        <button onclick="setLang('ko');markSplashLang('ko')" id="splashLangKO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇰🇷</button>
+        <button onclick="setLang('fa');markSplashLang('fa')" id="splashLangFA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇮🇷</button>
+        <button onclick="setLang('hr');markSplashLang('hr')" id="splashLangHR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇭🇷</button>
+        <button onclick="setLang('sv');markSplashLang('sv')" id="splashLangSV" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇸🇪</button>
+        <button onclick="setLang('no');markSplashLang('no')" id="splashLangNO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇳🇴</button>
+        <button onclick="setLang('cs');markSplashLang('cs')" id="splashLangCS" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇨🇿</button>
+        <button onclick="setLang('bs');markSplashLang('bs')" id="splashLangBS" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇧🇦</button>
+        <button onclick="setLang('uz');markSplashLang('uz')" id="splashLangUZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇺🇿</button>
+        <button onclick="setLang('ht');markSplashLang('ht')" id="splashLangHT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇭🇹</button>
     </div>
     <!-- Ses & Tema butonları - Splash -->
     <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;margin-bottom:2px;">
@@ -594,7 +531,7 @@
             style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🔊 SES</button>
     </div>
 
-    <button id="splashStartBtn" onclick="splashStart()" style="margin-top:14px;padding:12px 36px;font-family:'Press Start 2P',monospace;font-size:11px;background:#fff;color:#e30a17;border:3px solid #fff;border-radius:10px;cursor:pointer;box-shadow:0 0 18px #ffffff88;animation:blink 1s step-end infinite;font-weight:bold;">▶ BAŞLA</button>
+    <button id="splashStartBtn" onclick="splashStart()" style="margin-top:16px;padding:14px 44px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;background:linear-gradient(135deg,#e30a17,#900010);color:#fff;border:1px solid rgba(255,100,120,0.5);border-radius:50px;cursor:pointer;box-shadow:0 4px 24px rgba(227,10,23,0.5),inset 0 1px 0 rgba(255,255,255,0.2);letter-spacing:2px;transition:all 0.2s;">▶ BAŞLA</button>
     
 
     <div class="splash-version" style="color:#fff;font-weight:bold;" id="splashVersionTxt"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> PRE-ALPHA 3 <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> ∞</div>
@@ -646,7 +583,7 @@
             <polygon points="560,230 576.5,277.3 626.6,278.4 586.6,308.7 601.1,356.6 560,328 518.9,356.6 533.4,308.7 493.4,278.4 543.5,277.3" fill="#e30a17"/>
         </svg>
     </div>
-    <h1 id="mainTitle" style="color:#fff;text-shadow:2px 2px 0 #7a0011;">Dünya Kupası &amp; CONİFA</h1>
+    <h1 id="mainTitle" style="font-family:'Outfit',sans-serif;font-weight:900;font-size:24px;letter-spacing:3px;color:#fff;text-shadow:0 0 20px rgba(255,30,60,0.5);">Dünya Kupası &amp; CONİFA</h1>
     <div id="prealphaSubtitle" style="font-size:9px;color:#fff;margin-top:-8px;margin-bottom:8px;font-weight:bold;letter-spacing:1px;"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> PRE-ALPHA 3 · 15 TEMMUZ ANMA <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> ∞</div>
 
     <!-- Ses & Tema - Ana Ekran -->
@@ -665,33 +602,33 @@
     </div>
     <div id="modeScreen" style="display:flex;flex-direction:column;align-items:center;width:100%;">
         <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;justify-content:center;">
-            <button id="langTR" onclick="setLang('tr')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid #fff;background:#333;color:#fff;cursor:pointer;">🇹🇷 TR</button>
-            <button id="langEN" onclick="setLang('en')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇬🇧 EN</button>
-            <button id="langIT" onclick="setLang('it')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇮🇹 IT</button>
-            <button id="langES" onclick="setLang('es')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇪🇸 ES</button>
-            <button id="langKA" onclick="setLang('ka')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇬🇪 KA</button>
-            <button id="langAZ" onclick="setLang('az')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇦🇿 AZ</button>
-            <button id="langJA" onclick="setLang('ja')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇯🇵 JA</button>
-            <button id="langZH" onclick="setLang('zh')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇨🇳 ZH</button>
-            <button id="langDE" onclick="setLang('de')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇩🇪 DE</button>
-            <button id="langFR" onclick="setLang('fr')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇫🇷 FR</button>
-            <button id="langEL" onclick="setLang('el')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇬🇷 EL</button>
-            <button id="langRU" onclick="setLang('ru')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> RU</button>
-            <button id="langAR" onclick="setLang('ar')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇸🇦 AR</button>
-            <button id="langPT" onclick="setLang('pt')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇧🇷 PT</button>
-            <button id="langUK" onclick="setLang('uk')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇺🇦 UK</button>
-            <button id="langFA" onclick="setLang('fa')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇮🇷 FA</button>
-            <button id="langKO" onclick="setLang('ko')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇰🇷 KO</button>
-            <button id="langNL" onclick="setLang('nl')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇳🇱 NL</button>
-            <button id="langSV" onclick="setLang('sv')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇸🇪 SV</button>
-            <button id="langNO" onclick="setLang('no')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇳🇴 NO</button>
-            <button id="langCS" onclick="setLang('cs')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇨🇿 CS</button>
-            <button id="langBS" onclick="setLang('bs')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇧🇦 BS</button>
-            <button id="langHR" onclick="setLang('hr')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇭🇷 HR</button>
-            <button id="langUZ" onclick="setLang('uz')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇺🇿 UZ</button>
-            <button id="langHT" onclick="setLang('ht')" style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:#111;color:#aaa;cursor:pointer;">🇭🇹 HT</button>
+            <button id="langTR" onclick="setLang('tr')" style="padding:5px 14px;font-size:11px;font-weight:700;font-family:'Outfit',sans-serif;border-radius:20px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">🇹🇷 TR</button>
+            <button id="langEN" onclick="setLang('en')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇬🇧 EN</button>
+            <button id="langIT" onclick="setLang('it')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇮🇹 IT</button>
+            <button id="langES" onclick="setLang('es')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇪🇸 ES</button>
+            <button id="langKA" onclick="setLang('ka')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇬🇪 KA</button>
+            <button id="langAZ" onclick="setLang('az')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇦🇿 AZ</button>
+            <button id="langJA" onclick="setLang('ja')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇯🇵 JA</button>
+            <button id="langZH" onclick="setLang('zh')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇨🇳 ZH</button>
+            <button id="langDE" onclick="setLang('de')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇩🇪 DE</button>
+            <button id="langFR" onclick="setLang('fr')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇫🇷 FR</button>
+            <button id="langEL" onclick="setLang('el')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇬🇷 EL</button>
+            <button id="langRU" onclick="setLang('ru')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> RU</button>
+            <button id="langAR" onclick="setLang('ar')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇸🇦 AR</button>
+            <button id="langPT" onclick="setLang('pt')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇧🇷 PT</button>
+            <button id="langUK" onclick="setLang('uk')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇺🇦 UK</button>
+            <button id="langFA" onclick="setLang('fa')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇮🇷 FA</button>
+            <button id="langKO" onclick="setLang('ko')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇰🇷 KO</button>
+            <button id="langNL" onclick="setLang('nl')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇳🇱 NL</button>
+            <button id="langSV" onclick="setLang('sv')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇸🇪 SV</button>
+            <button id="langNO" onclick="setLang('no')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇳🇴 NO</button>
+            <button id="langCS" onclick="setLang('cs')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇨🇿 CS</button>
+            <button id="langBS" onclick="setLang('bs')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇧🇦 BS</button>
+            <button id="langHR" onclick="setLang('hr')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇭🇷 HR</button>
+            <button id="langUZ" onclick="setLang('uz')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇺🇿 UZ</button>
+            <button id="langHT" onclick="setLang('ht')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇭🇹 HT</button>
         </div>
-        <p id="selectGameTxt" style="color:#6a8aaa;margin:4px 0 12px;font-size:13px;font-weight:500;">Oyun seç:</p>
+        <p id="selectGameTxt" style="color:rgba(255,180,180,0.7);margin:4px 0 12px;font-size:13px;font-weight:500;font-family:'Outfit',sans-serif;letter-spacing:.5px;">Oyun seç:</p>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%;max-width:320px;">
             <div class="mode-card" onclick="selectMode('guess')">
                 <div class="mode-icon">🕵️</div>
@@ -718,7 +655,7 @@
                 <div class="mode-name" style="color:#ffaa33;">Sayı Problemleri</div>
                 <div class="mode-desc" id="descSozel">TYT: Sözel problem çöz!<br><span style="font-size:9px;color:#ffaa33;background:rgba(255,160,50,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span></div>
             </div>
-            <div class="mode-card" onclick="selectMode('futbol')" style="border-color:rgba(255,80,80,0.4);background:linear-gradient(135deg,#1a0a0a,#2a0808);">
+            <div class="mode-card" onclick="selectMode('futbol')" style="border-color:rgba(255,80,80,0.4);background:rgba(255,255,255,0.06);">
                 <div class="mode-icon" style="display:flex;flex-direction:column;align-items:center;gap:3px;">
                   <!-- Lisansız Hazırlık Maçı Federasyonu Logosu -->
                   <svg viewBox="0 0 82 62" width="72" height="55" style="display:block;filter:drop-shadow(0 2px 8px rgba(0,100,255,0.5));">
@@ -762,13 +699,13 @@
                 <div class="mode-name" style="color:#bb66ff;" id="modeNamePerm">Permütasyon &amp; Kombinasyon</div>
                 <div class="mode-desc" id="descPerm">P(n,r) &amp; C(n,r) çöz!<br><span style="font-size:9px;color:#bb66ff;background:rgba(180,100,255,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span></div>
             </div>
-            <div class="mode-card" onclick="selectMode('axiom')" style="border-color:rgba(0,220,255,0.4);background:linear-gradient(135deg,#050a10,#0a1520);">
+            <div class="mode-card" onclick="selectMode('axiom')" style="border-color:rgba(0,220,255,0.4);background:rgba(0,40,80,0.15);">
                 <div class="mode-icon">🤖</div>
                 <div class="mode-name" style="color:#00dcff;" id="modeNameAxiom">AXIOM vs</div>
                 <div class="mode-desc" id="descAxiom">Bot ile yarış!<br><span style="font-size:9px;color:#00dcff;background:rgba(0,200,255,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span></div>
             </div>
             <!-- 🌍 DÜNYA KUPASI 2026 -->
-            <div class="mode-card" onclick="selectMode('wc2026')" style="border-color:#e30a17;background:linear-gradient(135deg,#1a0008,#3a0010);">
+            <div class="mode-card" onclick="selectMode('wc2026')" style="border-color:rgba(227,10,23,0.6);">
                 <div class="mode-icon"><svg viewBox="0 0 100 130" width="42" height="55" style="display:block;margin:0 auto;filter:drop-shadow(0 3px 8px rgba(200,150,0,0.5));">
   <defs>
     <linearGradient id="gcp" x1="0" y1="0" x2="0.3" y2="1">
@@ -805,7 +742,7 @@
                 <div class="mode-desc" id="descWC26"><div style="display:flex;gap:3px;justify-content:center;align-items:center;margin-top:3px;"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#B22234"/><rect y="2" width="30" height="2" fill="#fff"/><rect y="6" width="30" height="2" fill="#fff"/><rect y="10" width="30" height="2" fill="#fff"/><rect y="14" width="30" height="2" fill="#fff"/><rect y="18" width="30" height="2" fill="#fff"/><rect width="12" height="10" fill="#3C3B6E"/></svg><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#fff"/><rect width="8" height="20" fill="#FF0000"/><rect x="22" width="8" height="20" fill="#FF0000"/></svg><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></div><div style="font-size:9px;color:#aaa;margin:-1px 0 2px;">ABD · Kanada · Meksika</div><span style="color:#ff8888;">48 ülke · 11 Haz - 19 Tem 2026</span><br><span id="wc26CountdownBadge" style="font-size:9px;color:#ffcc88;background:rgba(255,200,100,0.2);padding:1px 5px;border-radius:4px;">⏰ ...</span></div>
             </div>
             <!-- 🏆 BAĞIMSIZ AVRUPA KUPASI 2026 (CONIFA muadili) -->
-            <div class="mode-card" onclick="selectMode('confed')" style="border-color:#ff8844;background:linear-gradient(135deg,#1a0a02,#2a1505);">
+            <div class="mode-card" onclick="selectMode('confed')" style="border-color:rgba(255,136,68,0.6);">
                 <div class="mode-icon"><svg viewBox="0 0 100 100" style="width:42px;height:42px;display:block;">
 <!-- 6 renkli petal (CONIFA muadili) -->
 <g transform="translate(50,50)">
@@ -822,10 +759,10 @@
 <text x="50" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">B</text>
 </svg></div>
                 <div class="mode-name" style="color:#ffaa66;" id="modeNameConfed">Bağımsız Avrupa Kupası</div>
-                <div class="mode-desc" id="descConfed"><div style="display:flex;gap:3px;justify-content:center;align-items:center;margin-top:3px;"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#009B48"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="7" width="30" height="6" fill="#fff"/><rect x="11" width="2" height="20" fill="#C8102E"/><rect y="8" width="30" height="4" fill="#C8102E"/></svg></div><div style="font-size:9px;color:#aaa;margin:-1px 0 2px;">Padania · İtalya</div><span style="color:#ffaa66;">6 takım · 2-6 Haziran 2026</span><br><span id="confedCountdownBadge" style="font-size:9px;color:#ffcc88;background:rgba(255,200,100,0.2);padding:1px 5px;border-radius:4px;">⏰ ...</span></div>
+                <div class="mode-desc" id="descConfed"><div style="display:flex;gap:3px;justify-content:center;align-items:center;margin-top:3px;"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#009B48"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="7" width="30" height="6" fill="#fff"/><rect x="11" width="2" height="20" fill="#C8102E"/><rect y="8" width="30" height="4" fill="#C8102E"/></svg></div><div style="font-size:9px;color:#aaa;margin:-1px 0 2px;">Padania · İtalya</div><span style="color:#ffaa66;">6 takım · 2-7 Haziran 2026</span><br><span id="confedCountdownBadge" style="font-size:9px;color:#ffcc88;background:rgba(255,200,100,0.2);padding:1px 5px;border-radius:4px;">⏰ ...</span></div>
             </div>
             <!-- 🏆 AVRUPA SÜPER KUPASI 2026 (Paris FC vs Birmingham United) -->
-            <div class="mode-card" id="modeCardSuperCup" onclick="checkSuperCup()" style="border-color:rgba(150,200,255,0.5);background:linear-gradient(135deg,#001020,#001830);opacity:0.7;">
+            <div class="mode-card" id="modeCardSuperCup" onclick="checkSuperCup()" style="border-color:rgba(150,200,255,0.5);opacity:0.7;">
                 <div class="mode-icon"><svg viewBox="0 0 100 100" style="width:42px;height:42px;display:block;">
 <defs>
   <linearGradient id="superGrad" x1="0" y1="0" x2="0" y2="1">
@@ -856,7 +793,7 @@
                 <div class="mode-desc" id="descSuperCup"><span style="color:#aaccff;display:inline-flex;align-items:center;gap:3px;flex-wrap:wrap;justify-content:center;"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:2px;flex-shrink:0;"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg> Paris FC vs <svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:2px;flex-shrink:0;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg> Birmingham U. · 12 Ağu 2026</span><br><span id="superCupCountdownBadge" style="font-size:9px;color:#aaccff;background:rgba(100,150,255,0.15);padding:1px 5px;border-radius:4px;">🔒 ...</span></div>
             </div>
             <!-- 🌏 ASYA KUPASI 2027 (locked, 7 Ocak 2027'de açılır) -->
-            <div class="mode-card" id="modeCardAsia27" onclick="checkAsiaCup27()" style="border-color:rgba(255,180,0,0.4);background:linear-gradient(135deg,#1a1000,#2a1a05);opacity:0.6;">
+            <div class="mode-card" id="modeCardAsia27" onclick="checkAsiaCup27()" style="border-color:rgba(255,180,0,0.4);opacity:0.6;">
                 <div class="mode-icon"><svg viewBox="0 0 100 100" style="width:42px;height:42px;display:block;">
 <defs>
   <linearGradient id="asiaGrad" x1="0" y1="0" x2="0" y2="1">
@@ -883,7 +820,7 @@
                 <div class="mode-desc" id="descAsia27"><div style="display:flex;gap:3px;justify-content:center;align-items:center;margin-top:3px;"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#006C35"/><rect x="5" y="13" width="16" height="1.5" fill="#fff"/><rect x="18" y="11" width="1.5" height="4" fill="#fff"/><rect x="5" y="7" width="12" height="1" fill="#fff" opacity="0.7"/><rect x="5" y="9" width="10" height="1" fill="#fff" opacity="0.5"/><rect x="5" y="5" width="14" height="1" fill="#fff" opacity="0.6"/></svg></div><span style="color:#ffcc66;">24 Asya ülkesi · 7-20 Ocak 2027</span><br><span style="font-size:9px;color:#ffcc66;background:rgba(255,180,0,0.15);padding:1px 5px;border-radius:4px;" id="asia27CountdownBadge">🔒 GERİ SAYIM</span></div>
             </div>
             <!-- 🏆 AVRUPA ŞAMPİYONASI 2028 (locked) -->
-            <div class="mode-card" id="modeCardEuro28" onclick="checkEuro28()" style="border-color:rgba(100,150,255,0.4);background:linear-gradient(135deg,#000820,#001040);opacity:0.7;">
+            <div class="mode-card" id="modeCardEuro28" onclick="checkEuro28()" style="border-color:rgba(100,150,255,0.4);opacity:0.7;">
                 <div class="mode-icon"><svg viewBox="0 0 100 100" style="width:42px;height:42px;display:block;">
 <defs>
   <linearGradient id="cupGrad" x1="0" y1="0" x2="0" y2="1">
@@ -907,7 +844,7 @@
                 <div class="mode-desc" id="descEuro28"><span style="color:#88aaff;"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg> <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#169B62"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#FF883E"/></svg> İngiltere & İrlanda · 9 Haz - 9 Tem 2028</span><br><span id="euro28CountdownBadge" style="font-size:9px;color:#88aaff;background:rgba(100,150,255,0.15);padding:1px 5px;border-radius:4px;">🔒 ...</span></div>
             </div>
             <!-- 🥇 AVRUPA ULUSLAR LİGİ (locked) -->
-            <div class="mode-card" id="modeCardNations" onclick="checkNationsLeague()" style="border-color:rgba(0,200,150,0.4);background:linear-gradient(135deg,#001a14,#002a20);opacity:0.7;">
+            <div class="mode-card" id="modeCardNations" onclick="checkNationsLeague()" style="border-color:rgba(0,200,150,0.4);opacity:0.7;">
                 <div class="mode-icon"><svg viewBox="0 0 100 100" style="width:42px;height:42px;display:block;">
 <!-- Bayrak şekli -->
 <path d="M 20 20 L 80 20 L 78 60 Q 50 55 22 60 Z" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="2"/>
@@ -1378,7 +1315,7 @@
 <circle cx="60" cy="42" r="10" fill="none" stroke="#aaa" stroke-width="0.8"/>
 <circle cx="50" cy="50" r="46" fill="none" stroke="#ccc" stroke-width="1.5"/>
 </svg> Takımını seç:</p>
-        <p style="color:#aaa;font-size:10px;margin:0 0 8px;" id="confedInfoTxt">6 takım · A &amp; B grubu · 2-6 Haziran 2026</p>
+        <p style="color:#aaa;font-size:10px;margin:0 0 8px;" id="confedInfoTxt">6 takım · A &amp; B grubu · 2-7 Haziran 2026</p>
         <div id="confedCountryList" style="display:flex;flex-direction:column;gap:4px;width:100%;max-height:55vh;overflow-y:auto;padding:6px;background:rgba(255,255,255,0.05);border-radius:8px;"></div>
         <div style="font-size:10px;color:#ffaa66;margin-top:10px;text-align:center;"><span style="background:rgba(255,150,80,0.2);padding:3px 8px;border-radius:6px;">⏱️ Grup: 45/90dk · Eleme: 105/120dk</span></div>
     </div>
@@ -5201,9 +5138,9 @@ function setLang(lang) {
         const btn = document.getElementById('lang'+l);
         if (!btn) return;
         const active = lang === l.toLowerCase();
-        btn.style.background = active ? '#333' : '#111';
-        btn.style.borderColor = active ? '#fff' : 'rgba(255,255,255,0.2)';
-        btn.style.color = active ? '#fff' : '#aaa';
+        btn.style.background = active ? 'rgba(255,60,80,0.28)' : 'rgba(255,255,255,0.05)';
+        btn.style.borderColor = active ? 'rgba(255,100,120,0.8)' : 'rgba(255,255,255,0.12)';
+        btn.style.color = active ? '#fff' : 'rgba(255,255,255,0.6)'; btn.style.backdropFilter = 'blur(10px)'; btn.style.webkitBackdropFilter = 'blur(10px)';
     });
 
     // ── Ana ekran ──
@@ -5505,10 +5442,10 @@ function setLang(lang) {
         lockedUntil: { tr:'Henüz kilitli! Açılış:', en:'Still locked! Opens:', it:'Ancora bloccato! Apertura:', es:'¡Aún bloqueado! Apertura:', ka:'ჯერ ჩაკეტილია! გახსნა:', az:'Hələ kilidlənmiş! Açılış:', ja:'まだロック中! オープン:', zh:'仍被锁定! 开放:', de:'Noch gesperrt! Öffnet:', fr:'Encore verrouillé! Ouverture:', el:'Ακόμα κλειδωμένο! Άνοιγμα:', ru:'Ещё заблокировано! Открытие:', ar:'لا يزال مغلقاً! يفتح:', pt:'Ainda bloqueado! Abre:', uk:'Ще заблоковано! Відкриття:', fa:'هنوز قفل است! باز می‌شود:', ko:'아직 잠겨있음! 오픈:', nl:'Nog vergrendeld! Opent:', sv:'Fortfarande låst! Öppnar:', no:'Fortsatt låst! Åpner:', cs:'Stále uzamčeno! Otevírá:', bs:'Još uvijek zaključano! Otvara se:', hr:'Još uvijek zaključano! Otvara se:', uz:'Hali qulflangan! Ochiladi:', ht:'Toujou bloke! Ouvè:' },
         continueBtn: { tr:'→ Devam', en:'→ Continue', it:'→ Continua', es:'→ Continuar', ka:'→ გაგრძელება', az:'→ Davam', ja:'→ 続行', zh:'→ 继续', de:'→ Weiter', fr:'→ Continuer', el:'→ Συνέχεια', ru:'→ Дальше', ar:'→ متابعة', pt:'→ Continuar', uk:'→ Далі', fa:'→ ادامه', ko:'→ 계속', nl:'→ Doorgaan', sv:'→ Fortsätt', no:'→ Fortsett', cs:'→ Pokračovat', bs:'→ Nastavi', hr:'→ Nastavi', uz:'→ Davom etish', ht:'→ Kontinye' },
         confedName: { tr:'Bağımsız Avrupa Kupası', en:'Independent European Cup', it:'Coppa Europea Indipendente', es:'Copa Europea Independiente', ka:'დამოუკიდებელი ევროპის თასი', az:'Müstəqil Avropa Kuboku', ja:'独立ヨーロッパ杯', zh:'独立欧洲杯', de:'Unabhängiger Europa-Cup', fr:'Coupe d\u2019Europe Indépendante', el:'Ανεξάρτητο Κύπελλο Ευρώπης', ru:'Независимый Кубок Европы', ar:'كأس أوروبا المستقل', pt:'Copa Europeia Independente', uk:'Незалежний Кубок Європи', fa:'جام مستقل اروپا', ko:'독립 유럽컵', nl:'Onafhankelijke Europabeker', sv:'Oberoende Europacupen', no:'Uavhengig Europacupen', cs:'Nezávislý Evropský Pohár', bs:'Nezavisni Evropski Kup', hr:'Neovisni Europski Kup', uz:'Mustaqil Yevropa Kubogi', ht:'Koup Endepandan Ewopeyen' },
-        confedDesc: { tr:'6 takım · 2-6 Haziran 2026', en:'6 teams · June 2-6, 2026', it:'6 squadre · 2-6 Giugno 2026', es:'6 equipos · 2-6 Junio 2026', ka:'6 გუნდი · 2-6 ივნისი 2026', az:'6 komanda · 2-6 İyun 2026', ja:'6チーム · 2026年6月2-6日', zh:'6支队伍 · 2026年6月2-6日', de:'6 Teams · 2.-6. Juni 2026', fr:'6 équipes · 2-6 Juin 2026', el:'6 ομάδες · 2-6 Ιουνίου 2026', ru:'6 команд · 2-6 Июня 2026', ar:'6 فرق · 2-6 يونيو 2026', pt:'6 equipes · 2-6 Junho 2026', uk:'6 команд · 2-6 Червня 2026', fa:'۶ تیم · ۲-۶ ژوئن ۲۰۲۶', ko:'6개 팀 · 2026년 6월 2-6일', nl:'6 teams · 2-6 Juni 2026', sv:'6 lag · 2-6 Juni 2026', no:'6 lag · 2-6 Juni 2026', cs:'6 týmů · 2-6 Června 2026', bs:'6 timova · 2-6 Juna 2026', hr:'6 momčadi · 2-6 Lipnja 2026', uz:'6 jamoa · 2026-yil 2-6 iyun', ht:'6 ekip · 2-6 Jen 2026' },
+        confedDesc: { tr:'6 takım · 2-7 Haziran 2026', en:'6 teams · June 2-7, 2026', it:'6 squadre · 2-7 Giugno 2026', es:'6 equipos · 2-7 Junio 2026', ka:'6 გუნდი · 2-7 ივნისი 2026', az:'6 komanda · 2-7 İyun 2026', ja:'6チーム · 2026年6月2-7日', zh:'6支队伍 · 2026年6月2-7日', de:'6 Teams · 2.-7. Juni 2026', fr:'6 équipes · 2-7 Juin 2026', el:'6 ομάδες · 2-7 Ιουνίου 2026', ru:'6 команд · 2-7 Июня 2026', ar:'6 فرق · 2-7 يونيو 2026', pt:'6 equipes · 2-7 Junho 2026', uk:'6 команд · 2-7 Червня 2026', fa:'۶ تیم · ۲-۷ ژوئن ۲۰۲۶', ko:'6개 팀 · 2026년 6월 2-7일', nl:'6 teams · 2-7 Juni 2026', sv:'6 lag · 2-7 Juni 2026', no:'6 lag · 2-7 Juni 2026', cs:'6 týmů · 2-7 Června 2026', bs:'6 timova · 2-7 Juna 2026', hr:'6 momčadi · 2-7 Lipnja 2026', uz:'6 jamoa · 2026-yil 2-7 iyun', ht:'6 ekip · 2-7 Jen 2026' },
         confedTitle: { tr:'BAĞIMSIZ AVRUPA KUPASI 2026', en:'INDEPENDENT EUROPEAN CUP 2026', it:'COPPA EUROPEA INDIPENDENTE 2026', es:'COPA EUROPEA INDEPENDIENTE 2026', ka:'დამოუკიდებელი ევროპის თასი 2026', az:'MÜSTƏQİL AVROPA KUBOKU 2026', ja:'独立ヨーロッパ杯 2026', zh:'独立欧洲杯 2026', de:'UNABHÄNGIGER EUROPA-CUP 2026', fr:'COUPE D\u2019EUROPE INDÉPENDANTE 2026', el:'ΑΝΕΞΑΡΤΗΤΟ ΚΥΠΕΛΛΟ ΕΥΡΩΠΗΣ 2026', ru:'НЕЗАВИСИМЫЙ КУБОК ЕВРОПЫ 2026', ar:'كأس أوروبا المستقل 2026', pt:'COPA EUROPEIA INDEPENDENTE 2026', uk:'НЕЗАЛЕЖНИЙ КУБОК ЄВРОПИ 2026', fa:'جام مستقل اروپا ۲۰۲۶', ko:'독립 유럽컵 2026', nl:'ONAFHANKELIJKE EUROPABEKER 2026', sv:'OBEROENDE EUROPACUPEN 2026', no:'UAVHENGIG EUROPACUPEN 2026', cs:'NEZÁVISLÝ EVROPSKÝ POHÁR 2026', bs:'NEZAVISNI EVROPSKI KUP 2026', hr:'NEOVISNI EUROPSKI KUP 2026', uz:'MUSTAQIL YEVROPA KUBOGI 2026', ht:'KOUP ENDEPANDAN EWOPEYEN 2026' },
         confedSelectCountry: { tr:'⚽ Takımını seç:', en:'⚽ Choose your team:', it:'⚽ Scegli la tua squadra:', es:'⚽ Elige tu equipo:', ka:'⚽ აირჩიე გუნდი:', az:'⚽ Komandanı seç:', ja:'⚽ チームを選択:', zh:'⚽ 选择你的球队:', de:'⚽ Wähle dein Team:', fr:'⚽ Choisis ton équipe:', el:'⚽ Επίλεξε ομάδα:', ru:'⚽ Выбери команду:', ar:'⚽ اختر فريقك:', pt:'⚽ Escolha sua equipe:', uk:'⚽ Обери команду:', fa:'⚽ تیم خود را انتخاب کنید:', ko:'⚽ 팀 선택:', nl:'⚽ Kies je team:', sv:'⚽ Välj ditt lag:', no:'⚽ Velg ditt lag:', cs:'⚽ Vyber svůj tým:', bs:'⚽ Odaberi svoj tim:', hr:'⚽ Odaberi svoju momčad:', uz:'⚽ Jamoangizni tanlang:', ht:'⚽ Chwazi ekip ou:' },
-        confedInfo: { tr:'6 takım · A & B grubu · 2-6 Haziran 2026', en:'6 teams · Group A & B · June 2-6, 2026', it:'6 squadre · Gruppo A & B · 2-6 Giugno 2026', es:'6 equipos · Grupo A & B · 2-6 Junio 2026', ka:'6 გუნდი · A & B ჯგუფი · 2-6 ივნისი 2026', az:'6 komanda · A & B qrupu · 2-6 İyun 2026', ja:'6チーム · グループA & B · 6月2-6日', zh:'6支队伍 · A & B组 · 6月2-6日', de:'6 Teams · Gruppe A & B · 2.-6. Juni', fr:'6 équipes · Groupe A & B · 2-6 Juin', el:'6 ομάδες · Όμιλος A & B · 2-6 Ιουνίου', ru:'6 команд · Группа A & B · 2-6 Июня', ar:'6 فرق · المجموعة A & B · 2-6 يونيو', pt:'6 equipes · Grupo A & B · 2-6 Junho', uk:'6 команд · Група A & B · 2-6 Червня', fa:'۶ تیم · گروه A & B · ۲-۶ ژوئن', ko:'6개 팀 · A & B 그룹 · 6월 2-6일', nl:'6 teams · Groep A & B · 2-6 Juni', sv:'6 lag · Grupp A & B · 2-6 Juni', no:'6 lag · Gruppe A & B · 2-6 Juni', cs:'6 týmů · Skupina A & B · 2-6 Června', bs:'6 timova · Grupa A & B · 2-6 Juna', hr:'6 momčadi · Skupina A & B · 2-6 Lipnja', uz:'6 jamoa · A & B guruhi · 2-6 iyun', ht:'6 ekip · Gwoup A & B · 2-6 Jen' },
+        confedInfo: { tr:'6 takım · A & B grubu · 2-7 Haziran 2026', en:'6 teams · Group A & B · June 2-7, 2026', it:'6 squadre · Gruppo A & B · 2-7 Giugno 2026', es:'6 equipos · Grupo A & B · 2-7 Junio 2026', ka:'6 გუნდი · A & B ჯგუფი · 2-7 ივნისი 2026', az:'6 komanda · A & B qrupu · 2-7 İyun 2026', ja:'6チーム · グループA & B · 6月2-7日', zh:'6支队伍 · A & B组 · 6月2-7日', de:'6 Teams · Gruppe A & B · 2.-7. Juni', fr:'6 équipes · Groupe A & B · 2-7 Juin', el:'6 ομάδες · Όμιλος A & B · 2-7 Ιουνίου', ru:'6 команд · Группа A & B · 2-7 Июня', ar:'6 فرق · المجموعة A & B · 2-7 يونيو', pt:'6 equipes · Grupo A & B · 2-7 Junho', uk:'6 команд · Група A & B · 2-7 Червня', fa:'۶ تیم · گروه A & B · ۲-۷ ژوئن', ko:'6개 팀 · A & B 그룹 · 6월 2-7일', nl:'6 teams · Groep A & B · 2-7 Juni', sv:'6 lag · Grupp A & B · 2-7 Juni', no:'6 lag · Gruppe A & B · 2-7 Juni', cs:'6 týmů · Skupina A & B · 2-6 Června', bs:'6 timova · Grupa A & B · 2-7 Juna', hr:'6 momčadi · Skupina A & B · 2-7 Lipnja', uz:'6 jamoa · A & B guruhi · 2-7 iyun', ht:'6 ekip · Gwoup A & B · 2-7 Jen' },
         confedDuration: { tr:'⏱️ Maç Süresi:', en:'⏱️ Match Duration:', it:'⏱️ Durata Partita:', es:'⏱️ Duración del Partido:', ka:'⏱️ მატჩის ხანგრძლივობა:', az:'⏱️ Oyun Müddəti:', ja:'⏱️ 試合時間:', zh:'⏱️ 比赛时长:', de:'⏱️ Spieldauer:', fr:'⏱️ Durée du Match:', el:'⏱️ Διάρκεια Αγώνα:', ru:'⏱️ Длительность матча:', ar:'⏱️ مدة المباراة:', pt:'⏱️ Duração da Partida:', uk:'⏱️ Тривалість матчу:', fa:'⏱️ مدت بازی:', ko:'⏱️ 경기 시간:', nl:'⏱️ Wedstrijdduur:', sv:'⏱️ Matchtid:', no:'⏱️ Kampens varighet:', cs:'⏱️ Délka zápasu:', bs:'⏱️ Trajanje utakmice:', hr:'⏱️ Trajanje utakmice:', uz:'⏱️ O\u2019yin davomiyligi:', ht:'⏱️ Dire Match:' },
         penaltyBadge: { tr:'RUSYA HAZIRLIK MAÇLARI', en:'RUSSIA FRIENDLY MATCHES', it:'AMICHEVOLI RUSSIA', es:'AMISTOSOS RUSIA', ka:'რუსეთის სამეგობრო თამაშები', az:'RUSİYA HAZIRLIQ OYUNLARI', ja:'ロシア親善試合', zh:'俄罗斯友谊赛', de:'RUSSLAND FREUNDSCHAFTSSPIELE', fr:'MATCHS AMICAUX RUSSIE', el:'ΦΙΛΙΚΟΙ ΡΩΣΙΑΣ', ru:'ТОВАРИЩЕСКИЕ МАТЧИ РОССИИ', ar:'مباريات ودية روسيا', pt:'AMISTOSOS RÚSSIA', uk:'ТОВАРИСЬКІ МАТЧІ РОСІЇ', fa:'بازی\u200cهای دوستانه روسیه', ko:'러시아 친선 경기', nl:'RUSLAND OEFENWEDSTRIJDEN', sv:'RYSSLAND VÄNSKAPSMATCHER', no:'RUSSLAND VENNSKAPSKAMPER', cs:'PŘÁTELSKÉ ZÁPASY RUSKA', bs:'PRIJATELJSKE UTAKMICE RUSIJE', hr:'PRIJATELJSKE UTAKMICE RUSIJE', uz:'ROSSIYA DO\u2019STLIK O\u2019YINLARI', ht:'MATCH AMIKAL RISI' },
         futbolName: { tr:'Rusya Hazırlık Maçları', en:'Russia Friendly Matches', it:'Amichevoli Russia', es:'Amistosos Rusia', ka:'რუსეთის სამეგობრო თამაშები', az:'Rusiya Hazırlıq Oyunları', ja:'ロシア親善試合', zh:'俄罗斯友谊赛', de:'Russland Freundschaftsspiele', fr:'Matchs Amicaux Russie', el:'Φιλικοί Ρωσίας', ru:'Товарищеские матчи России', ar:'مباريات ودية روسيا', pt:'Amistosos Rússia', uk:'Товариські матчі Росії', fa:'بازی\u200cهای دوستانه روسیه', ko:'러시아 친선 경기', nl:'Rusland Oefenwedstrijden', sv:'Ryssland Vänskapsmatcher', no:'Russland Vennskapskamper', cs:'Přátelské zápasy Ruska', bs:'Prijateljske utakmice Rusije', hr:'Prijateljske utakmice Rusije', uz:'Rossiya do\u2019stlik o\u2019yinlari', ht:'Match Amikal Risi' },
@@ -6221,11 +6158,14 @@ function startGame(diff) { stopSplashMusic(); stopMusic();
 
 function applyTheme(color) {
     const container = document.querySelector('.container');
-    container.style.borderColor = color + '66';
-    container.style.boxShadow = `0 0 40px ${color}33, 0 15px 35px rgba(0,0,0,0.6)`;
-    document.querySelector('h1').style.color = color;
-    document.querySelector('h1').style.textShadow = `0 0 10px ${color}88`;
-    const _td = document.getElementById('timerDisplay'); if (_td) { _td.style.color = color; _td.style.background = 'rgba(255,255,255,0.05)'; _td.style.borderColor = 'rgba(255,255,255,0.3)'; }
+    if (container) {
+        container.style.boxShadow = '0 16px 48px rgba(0,0,0,0.55), 0 0 0 0.5px rgba(255,255,255,0.1) inset, inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.18), 0 0 40px ' + color + '22';
+        container.style.borderColor = 'rgba(255,255,255,0.2)';
+    }
+    const h1 = document.querySelector('h1');
+    if (h1) { h1.style.color = color; h1.style.textShadow = '0 0 20px ' + color + '88, 0 2px 4px rgba(0,0,0,0.5)'; }
+    const _td = document.getElementById('timerDisplay');
+    if (_td) { _td.style.color = color; _td.style.background = 'rgba(255,255,255,0.05)'; _td.style.borderColor = 'rgba(255,255,255,0.3)'; }
 }
 
 // ══════════ TAHMİN SÜRESİ SAYACI ══════════
@@ -8621,7 +8561,7 @@ function centerLastModeCard() {
 document.addEventListener('DOMContentLoaded', centerLastModeCard);
 
 // ══════ CONİFA ŞAMPİYON SİSTEMİ ══════
-// Turnuva 2-6 Haziran 2026 - 6 Haziran'dan sonra şampiyon göster
+// Turnuva 2-7 Haziran 2026 - 6 Haziran'dan sonra şampiyon göster
 // Şampiyon belli olunca buraya yaz:
 const CONIFA_CHAMPION = {
     name: '',       // örn: 'Padania'
@@ -11220,7 +11160,7 @@ const WC26_SCHEDULE = [
     { date:'2026-06-22', time:'04:00', home:'NZL', away:'EGY', stage:'Grup G' },
 ];
 
-// CONIFA Avrupa Şampiyonası 2026 — 2-6 Haziran
+// CONIFA Avrupa Şampiyonası 2026 — 2-7 Haziran
 const CONFED_SCHEDULE = [
     // A Grubu (Padania, Raetia, Grönland)
     { date:'2026-06-02', time:'19:15', home:'RAE', away:'PAD', stage:'A Grubu', stadium:'Carate' },
