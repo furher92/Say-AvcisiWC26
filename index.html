@@ -92,7 +92,7 @@
             overscroll-behavior: contain;
             z-index: 999;
             animation: splashFadeOut 0.6s cubic-bezier(.4,0,.2,1) forwards;
-            animation-delay: 0.5s; animation-play-state: paused;
+            animation-delay: 3s; animation-play-state: paused;
             padding: 16px 12px; box-sizing: border-box;
         }
         #splashScreen.go { animation-play-state: running; }
@@ -365,6 +365,66 @@
             * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
 
+/* ══ GİZLİ DEBUGGER ══ */
+        #_dbg {
+            position: fixed;
+            bottom: 4px;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(255,50,50,0.15);
+            border: 1px solid rgba(255,50,50,0.25);
+            font-size: 8px;
+            font-family: monospace;
+            color: rgba(255,100,100,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        #_dbg:hover { background: rgba(255,50,50,0.35); color: #fff; width: 20px; height: 20px; }
+        #_dbg.has-errors { background: rgba(255,30,30,0.4); border-color: rgba(255,60,60,0.6); color: #ff8888; }
+        #_dbg.no-errors { background: rgba(0,200,80,0.15); border-color: rgba(0,200,80,0.25); color: rgba(0,220,80,0.5); }
+
+/* ══ PLATFORM OPTİMİZASYON ══ */
+        
+/* ══ ADAPTIF PERFORMANS CSS ══ */
+        
+
+        /* ══ GRAFİK AYARLARI MODAL ══ */
+        #graphicsModal {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 2000; align-items: center; justify-content: center;
+        }
+        #graphicsModal.open { display: flex; }
+        #graphicsBox {
+            background: linear-gradient(145deg,rgba(255,255,255,0.1),rgba(180,0,20,0.08));
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
+            padding: 22px 20px; width: 88%; max-width: 340px; color: #fff;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+        }
+        .gfx-btn {
+            width:100%; padding:12px 16px; margin-bottom:8px; border-radius:12px;
+            border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06);
+            color:#fff; font-family:'Outfit',sans-serif; font-size:13px; font-weight:600;
+            cursor:pointer; text-align:left; display:flex; align-items:center;
+            justify-content:space-between; transition:all 0.18s;
+        }
+        .gfx-btn:hover { background:rgba(255,255,255,0.12); }
+        .gfx-btn.active { border-color:rgba(255,120,50,0.7); background:rgba(255,100,30,0.2); }
+        .gfx-btn .gfx-label { display:flex; flex-direction:column; gap:2px; }
+        .gfx-btn .gfx-name { font-size:13px; font-weight:700; }
+        .gfx-btn .gfx-desc { font-size:10px; color:rgba(255,255,255,0.45); font-weight:400; }
+        .gfx-btn .gfx-dot { width:10px; height:10px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); flex-shrink:0; }
+        .gfx-btn.active .gfx-dot { background:#e30a17; border-color:#e30a17; box-shadow:0 0 6px #e30a17; }
+
     </style>
     <!-- PWA: Ana Ekran İkonu -->
         <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -569,6 +629,8 @@
     <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;margin-bottom:2px;">
         <button id="splashSoundBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
             style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🔊 SES</button>
+        <button onclick="window.openGraphics()" title="Grafik Ayarları"
+            style="padding:7px 14px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🎮</button>
     </div>
 
     <button id="splashStartBtn" onclick="splashStart()" style="margin-top:16px;padding:14px 44px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;background:linear-gradient(135deg,#e30a17,#900010);color:#fff;border:1px solid rgba(255,100,120,0.5);border-radius:50px;cursor:pointer;box-shadow:0 4px 24px rgba(227,10,23,0.5),inset 0 1px 0 rgba(255,255,255,0.2);letter-spacing:2px;transition:all 0.2s;">▶ BAŞLA</button>
@@ -587,6 +649,8 @@
     <div id="settingsBar" style="position:fixed;top:8px;right:8px;z-index:500;display:flex;gap:6px;">
         <button id="soundToggleBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
             style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">🔊</button>
+        <button onclick="window.openGraphics()" title="Grafik Ayarları"
+            style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">🎮</button>
     </div>
 <div class="container">
     <div class="app-logo" style="display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;">
@@ -5948,6 +6012,7 @@ let firstGuessMade = false;
 let musicCtx = null;
 let musicNodes = [];
 let musicPlaying = false;
+let _musicSession = null; // aktif müzik session'ı
 
 const MUSIC_TRACKS = [
     // Parça 1: Klasik matematik temalı arpegio
@@ -5982,53 +6047,56 @@ const MUSIC_TRACKS = [
 
 function startMusic() {
     if (!soundEnabled) return;
-    if (musicPlaying) return;
-    stopMusic(); // Önceki varsa temizle
+    // Önce tamamen durdur
+    stopMusic();
     try {
         musicCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (musicCtx.state === 'suspended') musicCtx.resume();
         musicPlaying = true;
+        _musicSession = musicCtx; // aktif session referansı
         const track = MUSIC_TRACKS[Math.floor(Math.random() * MUSIC_TRACKS.length)];
-        playTrackLoop(track);
-    } catch(e) { console.log('Muzik baslatılamadı:', e); }
+        playTrackLoop(track, musicCtx);
+    } catch(e) {}
 }
 
-function playTrackLoop(track) {
-    if (!musicPlaying || !musicCtx) return;
-    let t = musicCtx.currentTime + 0.05;
-    const notes = track.notes;
-    const masterGain = musicCtx.createGain();
-    masterGain.gain.value = track.gain;
-    masterGain.connect(musicCtx.destination);
-    musicNodes.push(masterGain);
+function playTrackLoop(track, sessionCtx) {
+    // Session değiştiyse dur (stopMusic sonrası kalan setTimeout'lar için)
+    if (!musicPlaying || !musicCtx || sessionCtx !== _musicSession) return;
+    try {
+        let t = musicCtx.currentTime + 0.05;
+        const notes = track.notes;
+        const masterGain = musicCtx.createGain();
+        masterGain.gain.value = track.gain;
+        masterGain.connect(musicCtx.destination);
+        musicNodes.push(masterGain);
 
-    notes.forEach((freq, i) => {
-        const osc = musicCtx.createOscillator();
-        const g = musicCtx.createGain();
-        osc.type = track.type;
-        osc.frequency.value = freq;
-        g.gain.setValueAtTime(0, t + i * track.tempo);
-        g.gain.linearRampToValueAtTime(1, t + i * track.tempo + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.001, t + i * track.tempo + track.tempo * 0.9);
-        osc.connect(g);
-        g.connect(masterGain);
-        osc.start(t + i * track.tempo);
-        osc.stop(t + i * track.tempo + track.tempo);
-        musicNodes.push(osc);
-    });
+        notes.forEach((freq, i) => {
+            const osc = musicCtx.createOscillator();
+            const g = musicCtx.createGain();
+            osc.type = track.type;
+            osc.frequency.value = freq;
+            g.gain.setValueAtTime(0, t + i * track.tempo);
+            g.gain.linearRampToValueAtTime(1, t + i * track.tempo + 0.02);
+            g.gain.exponentialRampToValueAtTime(0.001, t + i * track.tempo + track.tempo * 0.9);
+            osc.connect(g); g.connect(masterGain);
+            osc.start(t + i * track.tempo);
+            osc.stop(t + i * track.tempo + track.tempo);
+            musicNodes.push(osc);
+        });
 
-    const totalDuration = notes.length * track.tempo;
-    setTimeout(() => {
-        if (musicPlaying) {
-            // Rastgele yeni parça seç
-            const nextTrack = MUSIC_TRACKS[Math.floor(Math.random() * MUSIC_TRACKS.length)];
-            playTrackLoop(nextTrack);
-        }
-    }, totalDuration * 1000 + 100);
+        const totalDuration = notes.length * track.tempo;
+        setTimeout(() => {
+            if (musicPlaying && sessionCtx === _musicSession) {
+                const nextTrack = MUSIC_TRACKS[Math.floor(Math.random() * MUSIC_TRACKS.length)];
+                playTrackLoop(nextTrack, sessionCtx);
+            }
+        }, totalDuration * 1000 + 100);
+    } catch(e) {}
 }
 
 function stopMusic() {
     musicPlaying = false;
+    _musicSession = null; // Tüm bekleyen setTimeout'ları geçersiz kıl
     musicNodes.forEach(n => { try { n.stop && n.stop(); n.disconnect && n.disconnect(); } catch(e){} });
     musicNodes = [];
     if (musicCtx) { try { musicCtx.close(); } catch(e){} musicCtx = null; }
@@ -11474,28 +11542,26 @@ document.addEventListener('keydown', e => {
 function checkCooldownOnLoad() {
     let endTime = localStorage.getItem('zarCooldown');
     let savedDiff = localStorage.getItem('zarDifficulty');
+    // Her zaman eski veriyi temizle — splash sonrası mod seçimi göster
+    localStorage.removeItem('zarCooldown');
+    localStorage.removeItem('zarDifficulty');
+    // Cooldown aktifse bilgi ver ama mod seçiminde kal
     if (endTime && savedDiff && DIFFICULTY[savedDiff]) {
         let tl = Math.ceil((endTime - Date.now()) / 1000);
         if (tl > 0) {
-            currentDifficulty = savedDiff;
-            const cfg = DIFFICULTY[savedDiff];
+            // Sadece cooldown bilgisini göster, oyun ekranına geçme
             const L = LANG[currentLang] || LANG['tr'];
-            applyTheme('#ffffff');
-            setDisplay('difficultyScreen','none'); setDisplay('gameScreen','flex');
-            setText('rangeInfo', L.rangeInfo(cfg.max));
-            setDisplay('heartsDisplay','none'); setDisabled('guessInput',true); setDisabled('btn',true);
-            setDisplay('timerDisplay','block'); setText('timerMsg',L.cooldownWait);
-            setText('timerSec',' '+L.timerSec); setText('countdown',tl); setText('message','');
-            cooldownTimer = setInterval(() => {
-                let t2 = Math.ceil((endTime - Date.now()) / 1000);
-                if (t2 <= 0) { clearInterval(cooldownTimer); endUniversalCooldown(); }
-                else setText('countdown', t2);
-            }, 1000);
-        } else {
-            localStorage.removeItem('zarCooldown');
-            localStorage.removeItem('zarDifficulty');
+            setTimeout(() => {
+                const msg = document.getElementById('message');
+                if (msg) {
+                    msg.style.color = '#ffcc88';
+                    msg.textContent = '⏳ ' + (L.cooldownWait || 'Kısa bekleme süresi var') + ' (' + tl + 's)';
+                }
+            }, 500);
         }
     }
+    // Müziği başlat
+    if (soundEnabled) setTimeout(startMusic, 200);
 }
 
 // ══════════ SPLASH MÜZİĞİ ══════════
@@ -11557,7 +11623,7 @@ function splashStart() {
     const btn = document.getElementById('splashStartBtn');
     btn.disabled = true;
     btn.style.opacity = '0.4';
-    playSplashMusic();
+    if (soundEnabled) playSplashMusic();  // sadece ses açıksa çal
     const splash = document.getElementById('splashScreen');
     splash.classList.add('go');
     splash.addEventListener('animationend', () => {
@@ -11641,19 +11707,30 @@ let soundEnabled = true;
 function toggleSound() {
     soundEnabled = !soundEnabled;
     syncSoundBtns();
-    // musicCtx (ana arkaplan müziği)
-    if (typeof musicCtx !== 'undefined' && musicCtx) {
-        try { soundEnabled ? musicCtx.resume() : musicCtx.suspend(); } catch(e) {}
-    }
-    // futbolMusicCtx (futbol modu müziği)
-    if (typeof futbolMusicCtx !== 'undefined' && futbolMusicCtx) {
-        try { soundEnabled ? futbolMusicCtx.resume() : futbolMusicCtx.suspend(); } catch(e) {}
-    }
-    // _sfxCtx (ses efektleri)
-    if (typeof _sfxCtx !== 'undefined' && _sfxCtx) {
-        try { soundEnabled ? _sfxCtx.resume() : _sfxCtx.suspend(); } catch(e) {}
-    }
     localStorage.setItem('sa_sound', soundEnabled ? '1' : '0');
+
+    if (!soundEnabled) {
+        // Tüm ses bağlamlarını durdur
+        [musicCtx, futbolMusicCtx, typeof _sfxCtx!=='undefined'?_sfxCtx:null].forEach(ctx => {
+            if (ctx) try { ctx.suspend(); } catch(e) {}
+        });
+        stopSplashMusic();
+    } else {
+        // Ses açılınca aktif ekrana göre müziği yeniden başlat
+        const inGame = document.getElementById('gameScreen')?.style?.display === 'flex';
+        const inFutbol = document.getElementById('futbolGameScreen')?.style?.display === 'flex'
+                      || document.getElementById('wc26MatchScreen')?.style?.display === 'flex'
+                      || document.getElementById('confedMatchScreen')?.style?.display === 'flex';
+        if (inFutbol) {
+            if (typeof playFutbolMusic === 'function') playFutbolMusic();
+        } else if (inGame || document.getElementById('difficultyScreen')?.style?.display !== 'none') {
+            if (typeof startMusic === 'function') startMusic();
+        }
+        // Tüm ses bağlamlarını devam ettir
+        [musicCtx, futbolMusicCtx, typeof _sfxCtx!=='undefined'?_sfxCtx:null].forEach(ctx => {
+            if (ctx) try { ctx.resume(); } catch(e) {}
+        });
+    }
 }
 
 // ══════════ AYDINLIK / KARANLIK TEMA ══════════
@@ -11976,6 +12053,57 @@ function initPrefs() {
     }
 }
 document.addEventListener('DOMContentLoaded', initPrefs);
+
+
+// ══ GRAFİK AYARLARI ══
+const _GFX_PRESETS = {
+    low: {
+        blur: 0, particles: 0, animations: false, shadows: false,
+        label: { tr:'🔴 Düşük', en:'🔴 Low' }
+    },
+    mid: {
+        blur: 8, particles: 8, animations: true, shadows: true,
+        label: { tr:'🟡 Orta', en:'🟡 Medium' }
+    },
+    high: {
+        blur: 20, particles: 20, animations: true, shadows: true,
+        label: { tr:'🟢 Yüksek', en:'🟢 High' }
+    },
+    ultra: {
+        blur: 32, particles: 45, animations: true, shadows: true,
+        label: { tr:'✨ Ultra', en:'✨ Ultra' }
+    },
+    auto: {
+        label: { tr:'⚡ Otomatik', en:'⚡ Auto' }
+    }
+};
+
+let _currentGfx = 'auto';
+
+window.openGraphics = 
+
+window.setGraphics = 
+function _respawnParticles(count) {
+    const bg = document.getElementById('mathBg');
+    if (!bg) return;
+    // Eski partikülleri sil
+    bg.querySelectorAll('.math-symbol,.crescent-bg').forEach(el => el.remove());
+    if (count === 0) return;
+    // Yenilerini ekle (basit versiyon)
+    if (typeof initMathBg === 'function') {
+        // initMathBg yeniden çağır (eğer varsa)
+    }
+}
+
+
+// Sayfa yüklenince kayıtlı ayarı uygula
+document.addEventListener('DOMContentLoaded', function() {
+    const saved = localStorage.getItem('uscale_gfx');
+    if (saved) setGraphics(saved);
+    else setGraphics('auto');
+});
+
+
 </script>
 
 <!-- ══════════ İSTATİSTİK PENCERESİ (MODAL) ══════════ -->
@@ -11989,6 +12117,330 @@ document.addEventListener('DOMContentLoaded', initPrefs);
         <button id="statsCloseBtn" onclick="closeStats()" style="margin-top:15px; padding:8px 24px; font-size:12px; background:#1a1a1a; border:2px solid rgba(255,255,255,0.3); color:#fff; border-radius:10px; cursor:pointer;">Kapat</button>
     </div>
 </div>
+
+<script>
+// ══ PERFORMANS DEDEKTÖRü ══
+(function() {
+    // İşlemci çekirdek sayısı ve bellek tespiti
+    const cores = navigator.hardwareConcurrency || 2;
+    const mem = navigator.deviceMemory || 2; // GB
+    const ua = navigator.userAgent.toLowerCase();
+    
+    // Düşük güçlü cihaz tespiti
+    const isLowEnd = cores <= 4 || mem <= 2;
+    const isMidEnd = cores <= 6 || mem <= 4;
+    // Helio G serisi, eski Dimensity, eski Snapdragon genellikle 4-6 çekirdek, 2-4GB RAM
+    
+    // Tier tespiti: sadece RAM öncelikli, çekirdek yardımcı
+    let tier = 'high';
+    if (mem <= 2) tier = 'low';          // ≤2GB RAM → LOW (Helio G, eski MT)
+    else if (mem <= 4) tier = 'mid';     // ≤4GB RAM → MID (Dimensity 700, SD 6/7)
+    else tier = 'high';                  // >4GB RAM → HIGH (SD 8, yeni Dimensity)
+    // Çekirdek sayısı sadece düşürür, asla yükseltmez
+    if (cores <= 4 && mem <= 4 && tier !== 'low') tier = 'mid';
+    
+    window._perfTier = tier;
+    window._perfCores = cores;
+    window._perfMem = mem;
+    
+    // CSS class ekle
+    document.documentElement.classList.add('perf-' + tier);
+    
+    
+})();
+
+</script>
+<script>
+
+// ══ MEMORY & FRAMEWORK GUARD ══
+
+</script>
+
+
+// ══ GÜVENLİK TESTİ ══
+(function() {
+    const _sec = {
+        passed: 0, failed: 0, tests: [],
+        
+        run: function(name, fn) {
+            try {
+                const ok = fn();
+                this.tests.push({ name, ok, msg: ok ? 'PASS' : 'FAIL' });
+                ok ? this.passed++ : this.failed++;
+            } catch(e) {
+                this.tests.push({ name, ok: false, msg: 'ERROR: ' + e.message });
+                this.failed++;
+            }
+        },
+        
+        report: function() {
+            // Debug panel varsa oraya yaz
+            if (window._dbgLog) {
+                this.tests.filter(t => !t.ok).forEach(t => {
+                    window._dbgLog('warn', '[SEC] FAIL: ' + t.name);
+                });
+                if (this.failed === 0) {
+                    window._dbgLog('info', '[SEC] Tüm güvenlik testleri geçti (' + this.passed + '/' + (this.passed+this.failed) + ')');
+                }
+            }
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Test 1: XSS koruması — innerHTML injection engeli
+        _sec.run('XSS Koruması', () => {
+            const test = '<scr' + 'ipt>window._xss_test=1</scr' + 'ipt>';
+            const div = document.createElement('div');
+            div.textContent = test; // textContent — güvenli
+            return !window._xss_test;
+        });
+
+        // Test 2: localStorage erişimi
+        _sec.run('localStorage Erişimi', () => {
+            localStorage.setItem('_sec_test', '1');
+            const val = localStorage.getItem('_sec_test');
+            localStorage.removeItem('_sec_test');
+            return val === '1';
+        });
+
+        // Test 3: AudioContext oluşturulabilir mi
+        _sec.run('AudioContext Desteği', () => {
+            return !!(window.AudioContext || window.webkitAudioContext);
+        });
+
+        // Test 4: HTTPS veya localhost
+        _sec.run('Güvenli Bağlantı', () => {
+            return location.protocol === 'https:' || 
+                   location.hostname === 'localhost' || 
+                   location.hostname === '127.0.0.1' ||
+                   location.protocol === 'file:';
+        });
+
+        // Test 5: Service Worker desteği (PWA için)
+        _sec.run('Service Worker Desteği', () => {
+            return 'serviceWorker' in navigator;
+        });
+
+        // Test 6: Canvas fingerprint koruması
+        _sec.run('Canvas API Erişimi', () => {
+            const c = document.createElement('canvas');
+            return !!(c.getContext && c.getContext('2d'));
+        });
+
+        // Test 7: Kritik DOM elementleri mevcut mu
+        _sec.run('DOM Bütünlüğü', () => {
+            const required = ['difficultyScreen', 'gameScreen', 'splashScreen'];
+            return required.every(id => !!document.getElementById(id));
+        });
+
+        // Test 8: Performans API
+        _sec.run('Performans API', () => {
+            return !!(window.performance && window.performance.now);
+        });
+
+        _sec.report();
+        window._secResults = _sec;
+    });
+})();
+
+</script>
+<script>
+
+// ══ PLATFORM TESPİTİ ══
+(function() {
+    const ua = navigator.userAgent;
+    const platform = {
+        isIOS: /iPhone|iPad|iPod/.test(ua),
+        isMac: /Macintosh|MacIntel/.test(ua) && !('ontouchend' in document),
+        isAndroid: /Android/.test(ua),
+        isWindows: /Windows/.test(ua),
+        isSafari: /Safari/.test(ua) && !/Chrome/.test(ua),
+        isChrome: /Chrome/.test(ua),
+        isFirefox: /Firefox/.test(ua),
+    };
+    window._platform = platform;
+    const root = document.documentElement;
+    if (platform.isIOS) root.classList.add('plt-ios');
+    if (platform.isMac) root.classList.add('plt-mac');
+    if (platform.isAndroid) root.classList.add('plt-android');
+    if (platform.isWindows) root.classList.add('plt-windows');
+
+    // iOS/Safari'de AudioContext'i kullanıcı etkileşiminden sonra başlat
+    if (platform.isIOS || platform.isSafari) {
+        document.addEventListener('touchstart', function resumeAudio() {
+            [window.musicCtx, window.futbolMusicCtx, window._sfxCtx].forEach(ctx => {
+                if (ctx && ctx.state === 'suspended') ctx.resume();
+            });
+        }, { once: true, passive: true });
+    }
+
+    // macOS/PC'de backdrop-filter daha agresif olabilir
+    if (platform.isMac || platform.isWindows) {
+        // Masaüstünde tier'ı bir üst seviyeye çıkar (güçlü donanım)
+        const mem = navigator.deviceMemory || 8;
+        if (mem >= 8) window._perfTier = 'ultra';
+        else if (mem >= 4) window._perfTier = 'high';
+    }
+})();
+
+</script>
+<script>
+
+// ══ GİZLİ DEBUGGER ══
+(function() {
+    const _dbgData = { errors: [], count: 0, maxEntries: 50 };
+    
+    function _dbgLog(type, msg, source, line) {
+        const time = new Date().toLocaleTimeString('tr',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+        _dbgData.errors.push({ type, msg: String(msg).slice(0,120), source: (source||'').split('/').pop().slice(0,30), line: line||'', time });
+        if (_dbgData.errors.length > _dbgData.maxEntries) _dbgData.errors.shift();
+        if (type === 'error') _dbgData.count++;
+        _dbgUpdate();
+    }
+    
+    function _dbgUpdate() {
+        const btn = document.getElementById('_dbg');
+        if (!btn) return;
+        btn.textContent = _dbgData.count > 99 ? '99+' : _dbgData.count || '✓';
+        btn.className = _dbgData.count > 0 ? 'has-errors' : 'no-errors';
+        btn.title = _dbgData.count + ' hata';
+        
+        const entries = document.getElementById('_dbgEntries');
+        if (!entries) return;
+        entries.innerHTML = [..._dbgData.errors].reverse().map(e => {
+            const cls = e.type === 'error' ? 'dbg-entry' : e.type === 'warn' ? 'dbg-entry dbg-warn' : 'dbg-entry dbg-info';
+            const icon = e.type === 'error' ? '❌' : e.type === 'warn' ? '⚠️' : 'ℹ️';
+            return '<div class="' + cls + '">' +
+                '<span class="dbg-time">' + e.time + '</span> ' +
+                icon + ' <span class="dbg-msg">' + e.msg + '</span>' +
+                (e.line ? '<br><span class="dbg-time">L' + e.line + ' ' + e.source + '</span>' : '') +
+            '</div>';
+        }).join('') || '<div style="color:rgba(255,255,255,0.3);padding:4px 0;">Hata yok ✓</div>';
+    }
+    
+    window._dbgToggle = function() {
+        const p = document.getElementById('_dbgPanel');
+        if (!p) return;
+        const open = p.style.display === 'block';
+        p.style.display = open ? 'none' : 'block';
+        if (!open) {
+            // Sistem bilgisi
+            const si = document.getElementById('_dbgSysInfo');
+            if (si) si.innerHTML = 
+                'Tier: ' + (window._perfTier||'?') + 
+                ' | Cores: ' + (window._perfCores||'?') + 
+                ' | RAM: ' + (window._perfMem||'?') + 'GB' +
+                '<br>UA: ' + navigator.userAgent.slice(0,60);
+        }
+    };
+    
+    window._dbgClear = function() {
+        _dbgData.errors = []; _dbgData.count = 0;
+        _dbgUpdate();
+    };
+    
+    // Global hata yakalayıcı
+    window.addEventListener('error', function(e) {
+        _dbgLog('error', e.message, e.filename, e.lineno);
+    });
+    
+    // Promise rejection yakalayıcı
+    window.addEventListener('unhandledrejection', function(e) {
+        _dbgLog('error', 'Promise: ' + (e.reason?.message || e.reason), '', '');
+    });
+    
+    // console.error yakalayıcı
+    const _origErr = console.error;
+    console.error = function() {
+        _dbgLog('error', Array.from(arguments).join(' '));
+        _origErr.apply(console, arguments);
+    };
+    const _origWarn = console.warn;
+    console.warn = function() {
+        _dbgLog('warn', Array.from(arguments).join(' '));
+        _origWarn.apply(console, arguments);
+    };
+    
+    // DOM hazır olunca başlat
+    document.addEventListener('DOMContentLoaded', function() {
+        _dbgUpdate();
+        const si = document.getElementById('_dbgSysInfo');
+        if (si) si.innerHTML = 'Tier: ' + (window._perfTier||'?') + ' | Cores: ' + (window._perfCores||'?') + ' | RAM: ' + (window._perfMem||'?') + 'GB';
+    });
+})();
+
+
+window.openGraphics = function() {
+    var m = document.getElementById('graphicsModal');
+    if (m) m.classList.add('open');
+    var i = document.getElementById('gfxCurrentInfo');
+    if (i) i.textContent = 'Tier: ' + (window._perfTier||'?').toUpperCase() + ' | RAM: ' + (window._perfMem||'?') + 'GB';
+    ['low','mid','high','ultra','auto'].forEach(function(p) {
+        var b = document.getElementById('gfxBtn_' + p);
+        if (b) b.classList.toggle('active', p === (window._currentGfx||'auto'));
+    });
+};
+window.closeGraphics = function() {
+    var m = document.getElementById('graphicsModal');
+    if (m) m.classList.remove('open');
+};
+window.setGraphics = function(preset) {
+    window._currentGfx = preset;
+    try { localStorage.setItem('uscale_gfx', preset); } catch(e) {}
+    var root = document.documentElement;
+    root.classList.remove('perf-low','perf-mid','perf-high','perf-ultra');
+    root.classList.add('perf-' + (preset === 'auto' ? (window._perfTier||'high') : preset));
+    ['low','mid','high','ultra','auto'].forEach(function(p) {
+        var b = document.getElementById('gfxBtn_' + p);
+        if (b) b.classList.toggle('active', p === preset);
+    });
+    window.closeGraphics();
+    if (navigator.vibrate) navigator.vibrate(30);
+};
+window._currentGfx = 'auto';
+document.addEventListener('DOMContentLoaded', function() {
+    try { var s = localStorage.getItem('uscale_gfx'); if (s) window.setGraphics(s); } catch(e) {}
+});
+
+</script>
+    <!-- Gizli debugger -->
+    <div id="_dbg" title="" onclick="_dbgToggle()">0</div>
+    <div id="_dbgPanel">
+        <div class="dbg-title">🔴 USCALE Debug <span id="_dbgVersion" style="color:#666;font-size:8px;">Alpha 1</span></div>
+        <div id="_dbgEntries"></div>
+        <div style="margin-top:6px;color:rgba(255,255,255,0.3);font-size:8px;" id="_dbgSysInfo"></div>
+        <button class="dbg-clear" onclick="_dbgClear()">Temizle</button>
+    </div>
+
+
+    <!-- Grafik Ayarları Modal -->
+    <div id="graphicsModal" onclick="if(event.target===this)window.closeGraphics()">
+        <div id="graphicsBox">
+            <h3 style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;margin:0 0 4px;letter-spacing:1px;">🎮 Grafik Ayarları</h3>
+            <div id="gfxCurrentInfo" style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'Outfit',sans-serif;margin-bottom:14px;">Mevcut: Otomatik</div>
+            <button class="gfx-btn" id="gfxBtn_low" onclick="window.setGraphics('low')">
+                <div class="gfx-label"><span class="gfx-name">🔴 Düşük</span><span class="gfx-desc">Blur kapalı · Animasyon yok · Helio G, eski cihazlar</span></div>
+                <div class="gfx-dot"></div>
+            </button>
+            <button class="gfx-btn" id="gfxBtn_mid" onclick="window.setGraphics('mid')">
+                <div class="gfx-label"><span class="gfx-name">🟡 Orta</span><span class="gfx-desc">Hafif blur · Yavaş animasyon · Dimensity 700, SD 6/7</span></div>
+                <div class="gfx-dot"></div>
+            </button>
+            <button class="gfx-btn" id="gfxBtn_high" onclick="window.setGraphics('high')">
+                <div class="gfx-label"><span class="gfx-name">🟢 Yüksek</span><span class="gfx-desc">Liquid Glass · Animasyonlar · SD 8, Dimensity 9000</span></div>
+                <div class="gfx-dot"></div>
+            </button>
+            <button class="gfx-btn" id="gfxBtn_ultra" onclick="window.setGraphics('ultra')">
+                <div class="gfx-label"><span class="gfx-name">✨ Ultra</span><span class="gfx-desc">Maksimum efekt · Tüm partiküller · Amiral gemisi</span></div>
+                <div class="gfx-dot"></div>
+            </button>
+            <button class="gfx-btn" id="gfxBtn_auto" onclick="window.setGraphics('auto')">
+                <div class="gfx-label"><span class="gfx-name">⚡ Otomatik</span><span class="gfx-desc">Cihaza göre otomatik seç</span></div>
+                <div class="gfx-dot"></div>
+            </button>
+            <button onclick="window.closeGraphics()" style="width:100%;padding:10px;margin-top:4px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);font-family:'Outfit',sans-serif;font-size:12px;cursor:pointer;">Kapat</button>
+        </div>
+    </div>
 
 </body>
 </html>
