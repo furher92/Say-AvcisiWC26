@@ -1928,6 +1928,174 @@ const FUTBOL_ACCENT = [
     [1047,3.84],[1175,3.96],[1319,4.32],[1175,4.56],[1047,4.80],[1319,5.28],
 ];
 
+// ══════ DÜNYA KUPASI MÜZİĞİ (Afrika ritmi / Waka Waka tarzı) ══════
+let wc26MusicCtx = null;
+let wc26MusicPlaying = false;
+let wc26MusicNodes = [];
+let wc26MusicLoop = null;
+
+// Neşeli, enerjik Afrika ritmi — marimba melodi + perküsyon, 4.8sn döngü
+// Ana melodi (canlı, sıçrayan — "dai dai" hissi)
+const WC26_MELODY = [
+    [587,0.00],[587,0.20],[698,0.40],[587,0.60],[523,0.80],[440,1.00],
+    [523,1.20],[587,1.40],[587,1.60],[698,1.80],[784,2.00],[698,2.20],
+    [587,2.40],[587,2.60],[698,2.80],[587,3.00],[523,3.20],[440,3.40],
+    [523,3.60],[440,3.80],[392,4.00],[440,4.20],[523,4.40],[587,4.60],
+];
+// İkinci melodi katmanı (üst, neşeli vurgu)
+const WC26_PAD = [
+    [880,0.00],[988,0.40],[1047,0.80],[988,1.20],
+    [880,1.60],[1047,2.00],[1175,2.40],[1047,2.80],
+    [880,3.20],[988,3.60],[880,4.00],[784,4.40],
+];
+// Bas (groove, zıplayan)
+const WC26_BASS = [
+    [147,0.00],[147,0.30],[110,0.60],[147,0.90],
+    [131,1.20],[131,1.50],[98,1.80],[131,2.10],
+    [147,2.40],[147,2.70],[110,3.00],[147,3.30],
+    [98,3.60],[110,3.90],[131,4.20],[147,4.50],
+];
+// Vurgu (boru/flüt hissi — Afrika ezgisi)
+const WC26_FANFARE = [
+    [784,0.00],[880,0.20],[784,0.40],
+    [698,1.60],[784,1.80],[880,2.00],
+    [784,3.20],[698,3.40],[587,3.60],
+];
+
+function playWC26Music() {
+    if (wc26MusicPlaying) return;
+    stopMusic(); stopFutbolMusic();
+    if (typeof stopSplashMusic === 'function') stopSplashMusic();
+    try {
+        wc26MusicCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (wc26MusicCtx.state === 'suspended') wc26MusicCtx.resume();
+        wc26MusicPlaying = true;
+        playWC26Loop();
+    } catch(e) { console.log('WC26 müzik hata:', e); }
+}
+
+function playWC26Loop() {
+    if (!soundEnabled) return;
+    if (!wc26MusicPlaying || !wc26MusicCtx) return;
+    wc26MusicNodes.forEach(n => { try { n.stop && n.stop(); n.disconnect && n.disconnect(); } catch(e){} });
+    wc26MusicNodes = [];
+
+    const ctx = wc26MusicCtx;
+    const now = ctx.currentTime + 0.05;
+    const loopDuration = 4.8;
+
+    const master = ctx.createGain();
+    master.gain.value = 0.30;
+    master.connect(ctx.destination);
+    wc26MusicNodes.push(master);
+
+    // ── Ana melodi (marimba hissi — triangle, kısa ve perküsif) ──
+    WC26_MELODY.forEach(([freq, t]) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'triangle';
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0, now + t);
+        g.gain.linearRampToValueAtTime(0.16, now + t + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.001, now + t + 0.18);
+        o.connect(g); g.connect(master);
+        o.start(now + t); o.stop(now + t + 0.20);
+        wc26MusicNodes.push(o, g);
+    });
+
+    // ── Üst melodi katmanı (neşeli, square — parlak) ──
+    WC26_PAD.forEach(([freq, t]) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'square';
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0, now + t);
+        g.gain.linearRampToValueAtTime(0.07, now + t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.001, now + t + 0.25);
+        o.connect(g); g.connect(master);
+        o.start(now + t); o.stop(now + t + 0.28);
+        wc26MusicNodes.push(o, g);
+    });
+
+    // ── Bas (groove — sawtooth) ──
+    WC26_BASS.forEach(([freq, t]) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sawtooth';
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0, now + t);
+        g.gain.linearRampToValueAtTime(0.20, now + t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.001, now + t + 0.25);
+        o.connect(g); g.connect(master);
+        o.start(now + t); o.stop(now + t + 0.28);
+        wc26MusicNodes.push(o, g);
+    });
+
+    // ── Boru/flüt vurguları (triangle — Afrika ezgisi) ──
+    WC26_FANFARE.forEach(([freq, t]) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'triangle';
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0, now + t);
+        g.gain.linearRampToValueAtTime(0.10, now + t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.001, now + t + 0.30);
+        o.connect(g); g.connect(master);
+        o.start(now + t); o.stop(now + t + 0.32);
+        wc26MusicNodes.push(o, g);
+    });
+
+    // ── Afrika davulu (djembe hissi — sık ritim) ──
+    const drumTimes = [0, 0.30, 0.60, 0.90, 1.20, 1.50, 1.80, 2.10, 2.40, 2.70, 3.00, 3.30, 3.60, 3.90, 4.20, 4.50];
+    drumTimes.forEach((t, idx) => {
+        const isAccent = (idx % 4 === 0);
+        const buf = ctx.createBuffer(1, ctx.sampleRate * 0.12, ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * (isAccent ? 0.04 : 0.02)));
+        const src = ctx.createBufferSource();
+        const g = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass'; filter.frequency.value = isAccent ? 150 : 280; filter.Q.value = 1.5;
+        src.buffer = buf;
+        g.gain.setValueAtTime(isAccent ? 0.28 : 0.14, now + t);
+        g.gain.exponentialRampToValueAtTime(0.001, now + t + 0.12);
+        src.connect(filter); filter.connect(g); g.connect(master);
+        src.start(now + t); src.stop(now + t + 0.12);
+        wc26MusicNodes.push(src, g, filter);
+    });
+
+    // ── Shaker / tef (yüksek perküsyon) ──
+    const shakerTimes = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75, 4.05, 4.35, 4.65];
+    shakerTimes.forEach(t => {
+        const buf = ctx.createBuffer(1, ctx.sampleRate * 0.05, ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.012));
+        const src = ctx.createBufferSource();
+        const g = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'highpass'; filter.frequency.value = 6000;
+        src.buffer = buf;
+        g.gain.setValueAtTime(0.08, now + t);
+        g.gain.exponentialRampToValueAtTime(0.001, now + t + 0.05);
+        src.connect(filter); filter.connect(g); g.connect(master);
+        src.start(now + t); src.stop(now + t + 0.05);
+        wc26MusicNodes.push(src, g, filter);
+    });
+
+    wc26MusicLoop = setTimeout(() => {
+        if (wc26MusicPlaying) playWC26Loop();
+    }, (loopDuration * 1000) - 50);
+}
+
+function stopWC26Music() {
+    wc26MusicPlaying = false;
+    if (wc26MusicLoop) { clearTimeout(wc26MusicLoop); wc26MusicLoop = null; }
+    wc26MusicNodes.forEach(n => { try { n.stop && n.stop(); n.disconnect && n.disconnect(); } catch(e){} });
+    wc26MusicNodes = [];
+    if (wc26MusicCtx) { try { wc26MusicCtx.close(); } catch(e){} wc26MusicCtx = null; }
+}
+
+
 function playFutbolMusic() {
     if (futbolMusicPlaying) return;
     stopMusic(); // Arka plan müziğini durdur
@@ -2027,6 +2195,8 @@ function stopFutbolMusic() {
     futbolMusicNodes.forEach(n => { try { n.stop && n.stop(); n.disconnect && n.disconnect(); } catch(e){} });
     futbolMusicNodes = [];
     if (futbolMusicCtx) { try { futbolMusicCtx.close(); } catch(e){} futbolMusicCtx = null; }
+    // Dünya Kupası marşını da durdur
+    if (typeof stopWC26Music === 'function') stopWC26Music();
 }
 
 // ══════════ NULL-SAFE YARDIMCI ══════════
@@ -5632,6 +5802,7 @@ function returnToSplash() {
 function backToModeSelect() {
     setTimeout(centerLastModeCard, 50);
     stopFutbolMusic();
+    if (window._wc26ScheduleTimer) { clearInterval(window._wc26ScheduleTimer); window._wc26ScheduleTimer = null; }
     // Tüm oyun ekranlarını gizle
     ['difficultyScreen','ebobDiffScreen','ebobGameScreen',
      'islemDiffScreen','islemGameScreen','fonkDiffScreen','fonkGameScreen',
@@ -5726,8 +5897,9 @@ const MUSIC_TRACKS = [
 
 function startMusic() {
     if (!soundEnabled) return;
-    // Önce tamamen durdur
+    // Önce tamamen durdur (çakışmayı önle)
     stopMusic();
+    if (typeof stopWC26Music === 'function') stopWC26Music();
     try {
         musicCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (musicCtx.state === 'suspended') musicCtx.resume();
@@ -9664,6 +9836,7 @@ let wc26AllGroupMatchesPlayed = 0;
 // ÜLKE SEÇİM EKRANI
 function showWC26CountrySelect() {
     setDisplay('wc26CountryScreen','flex');
+    if (soundEnabled) { stopMusic(); stopFutbolMusic(); playWC26Music(); }
     const list = document.getElementById('wc26CountryList');
     list.innerHTML = renderMatchSchedule('wc26');
     // Oto-güncelleme: her 30 sn'de bir
@@ -10280,7 +10453,7 @@ function startWC26Match(match, totalQuestions) {
 
     setDisplay('wc26TournamentScreen','none');
     setDisplay('wc26MatchScreen','flex');
-    if (soundEnabled) { stopMusic(); playFutbolMusic(); }
+    if (soundEnabled) { stopMusic(); stopFutbolMusic(); playWC26Music(); }
 
     const iAmHome = match.home.code === wc26MyCountry.code;
     const opp = iAmHome ? match.away : match.home;
@@ -11756,10 +11929,14 @@ function toggleSound() {
     } else {
         // Ses açılınca aktif ekrana göre müziği yeniden başlat
         const inGame = document.getElementById('gameScreen')?.style?.display === 'flex';
+        const inWC26 = document.getElementById('wc26CountryScreen')?.style?.display === 'flex'
+                    || document.getElementById('wc26TournamentScreen')?.style?.display === 'flex'
+                    || document.getElementById('wc26MatchScreen')?.style?.display === 'flex';
         const inFutbol = document.getElementById('futbolGameScreen')?.style?.display === 'flex'
-                      || document.getElementById('wc26MatchScreen')?.style?.display === 'flex'
                       || document.getElementById('confedMatchScreen')?.style?.display === 'flex';
-        if (inFutbol) {
+        if (inWC26) {
+            if (typeof playWC26Music === 'function') playWC26Music();
+        } else if (inFutbol) {
             if (typeof playFutbolMusic === 'function') playFutbolMusic();
         } else if (inGame || document.getElementById('difficultyScreen')?.style?.display !== 'none') {
             if (typeof startMusic === 'function') startMusic();
