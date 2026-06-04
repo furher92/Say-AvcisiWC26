@@ -810,60 +810,88 @@
             </div>
             <!-- 🌍 DÜNYA KUPASI 2026 -->
             <div class="mode-card" onclick="selectMode('wc2026')" style="border-color:rgba(227,10,23,0.6);">
-                <div class="mode-icon"><svg viewBox="0 0 100 130" width="42" height="55" style="display:block;margin:0 auto;filter:drop-shadow(0 3px 8px rgba(200,150,0,0.5));">
+                <div class="mode-icon"><svg viewBox="0 0 100 130" width="44" height="58" style="display:block;margin:0 auto;filter:drop-shadow(0 4px 12px rgba(220,160,0,0.6));">
   <defs>
-    <linearGradient id="gcp" x1="0" y1="0" x2="0.3" y2="1">
-      <stop offset="0" stop-color="#FFF176"/>
-      <stop offset="0.2" stop-color="#FFD700"/>
-      <stop offset="0.5" stop-color="#C8960C"/>
-      <stop offset="0.8" stop-color="#A0720A"/>
-      <stop offset="1" stop-color="#7A5008"/>
+    <linearGradient id="tg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF8C0"/>
+      <stop offset="20%" stop-color="#FFD700"/>
+      <stop offset="45%" stop-color="#B8860B"/>
+      <stop offset="70%" stop-color="#DAA520"/>
+      <stop offset="85%" stop-color="#8B6914"/>
+      <stop offset="100%" stop-color="#CD950C"/>
     </linearGradient>
-    <linearGradient id="gcb" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#4CAF50"/>
-      <stop offset="1" stop-color="#2E7D32"/>
+    <linearGradient id="tg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFE566"/>
+      <stop offset="50%" stop-color="#C8960C"/>
+      <stop offset="100%" stop-color="#7A5200"/>
     </linearGradient>
+    <linearGradient id="tgb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2E7D32"/>
+      <stop offset="100%" stop-color="#1B5E20"/>
+    </linearGradient>
+    <linearGradient id="tgs" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="tgr" cx="35%" cy="25%">
+      <stop offset="0%" stop-color="#FFFDE7" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <!-- Kupa gövdesi -->
-  <path d="M32 8 L68 8 L64 52 Q62 65 50 70 Q38 65 36 52 Z" fill="url(#gcp)"/>
-  <!-- Sol kulp -->
-  <path d="M32 14 Q18 20 20 38 Q22 48 34 46 Q32 40 34 32" fill="none" stroke="url(#gcp)" stroke-width="7" stroke-linecap="round"/>
+  <!-- Kupa ana gövdesi - yuvarlak üst -->
+  <path d="M30 10 Q50 2 70 10 L66 22 Q62 42 58 55 Q54 68 50 72 Q46 68 42 55 Q38 42 34 22 Z" fill="url(#tg1)"/>
+  <!-- İç gölge dokusu -->
+  <path d="M37 12 Q50 6 63 12 L60 24 Q56 42 52 56 Q51 63 50 67 Q49 63 48 56 Q44 42 40 24 Z" fill="url(#tgr)" opacity="0.5"/>
+  <!-- Sol kulp - kalın ve zarif -->
+  <path d="M30 16 Q14 18 12 36 Q10 50 22 54 Q27 56 32 52 Q28 46 29 38 Q30 28 34 22" fill="none" stroke="url(#tg2)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M30 16 Q14 18 12 36 Q10 50 22 54 Q27 56 32 52 Q28 46 29 38 Q30 28 34 22" fill="none" stroke="#FFF8C0" stroke-width="2.5" stroke-linecap="round" opacity="0.35"/>
   <!-- Sağ kulp -->
-  <path d="M68 14 Q82 20 80 38 Q78 48 66 46 Q68 40 66 32" fill="none" stroke="url(#gcp)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M70 16 Q86 18 88 36 Q90 50 78 54 Q73 56 68 52 Q72 46 71 38 Q70 28 66 22" fill="none" stroke="url(#tg2)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M70 16 Q86 18 88 36 Q90 50 78 54 Q73 56 68 52 Q72 46 71 38 Q70 28 66 22" fill="none" stroke="#FFF8C0" stroke-width="2.5" stroke-linecap="round" opacity="0.35"/>
   <!-- Boyun -->
-  <path d="M44 70 L40 88 L60 88 L56 70 Z" fill="url(#gcp)"/>
-  <!-- Yeşil kaide şeridi -->
-  <rect x="28" y="88" width="44" height="8" rx="2" fill="url(#gcb)"/>
-  <!-- Alt kaide -->
-  <path d="M24 96 L76 96 L80 108 L20 108 Z" fill="url(#gcp)"/>
-  <rect x="18" y="108" width="64" height="8" rx="3" fill="url(#gcp)"/>
-  <!-- Parlama sol -->
-  <path d="M36 12 Q38 30 40 48" fill="none" stroke="#FFF9C4" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
-  <!-- Parlama üst -->
-  <ellipse cx="42" cy="18" rx="8" ry="5" fill="#FFF9C4" opacity="0.35" transform="rotate(-20,42,18)"/>
+  <path d="M43 72 L38 90 L62 90 L57 72 Z" fill="url(#tg1)"/>
+  <line x1="50" y1="72" x2="50" y2="90" stroke="#FFF8C0" stroke-width="1.5" opacity="0.25"/>
+  <!-- Yeşil bant -->
+  <rect x="30" y="90" width="40" height="7" rx="2" fill="url(#tgb)"/>
+  <rect x="30" y="90" width="40" height="3" rx="2" fill="#4CAF50" opacity="0.5"/>
+  <!-- Alt kaide üst katman -->
+  <path d="M22 97 L78 97 L82 110 L18 110 Z" fill="url(#tg1)"/>
+  <!-- Kaide çizgisi detayı -->
+  <path d="M26 103 L74 103" stroke="#FFF8C0" stroke-width="1" opacity="0.3"/>
+  <!-- Alt kaide base -->
+  <rect x="14" y="110" width="72" height="9" rx="4" fill="url(#tg1)"/>
+  <rect x="14" y="110" width="72" height="4" rx="4" fill="#FFE566" opacity="0.3"/>
+  <!-- Işıltı efektleri -->
+  <ellipse cx="40" cy="20" rx="9" ry="6" fill="white" opacity="0.28" transform="rotate(-25,40,20)"/>
+  <path d="M36 10 Q37 28 39 50" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" opacity="0.2"/>
+  <!-- Küçük yıldız/pırıltı -->
+  <circle cx="58" cy="14" r="2" fill="white" opacity="0.6"/>
+  <circle cx="62" cy="22" r="1.2" fill="white" opacity="0.4"/>
 </svg></div>
                 <div class="mode-name" style="color:#fff;" id="modeNameWC26">Uluslar Şampiyonası 2026</div>
                 <div class="mode-desc" id="descWC26"><div style="display:flex;gap:3px;justify-content:center;align-items:center;margin-top:3px;"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#B22234"/><rect y="2" width="30" height="2" fill="#fff"/><rect y="6" width="30" height="2" fill="#fff"/><rect y="10" width="30" height="2" fill="#fff"/><rect y="14" width="30" height="2" fill="#fff"/><rect y="18" width="30" height="2" fill="#fff"/><rect width="12" height="10" fill="#3C3B6E"/></svg><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#fff"/><rect width="8" height="20" fill="#FF0000"/><rect x="22" width="8" height="20" fill="#FF0000"/></svg><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></div><div style="font-size:9px;color:#aaa;margin:-1px 0 2px;">ABD · Kanada · Meksika</div><span style="color:#ff8888;">48 ülke · 11 Haz - 19 Tem 2026</span><br><span id="wc26CountdownBadge" style="font-size:9px;color:#ffcc88;background:rgba(255,200,100,0.2);padding:1px 5px;border-radius:4px;">⏰ ...</span></div>
             </div>
             <!-- 🏆 BAĞIMSIZ AVRUPA KUPASI 2026 (CONIFA muadili) -->
             <div class="mode-card" onclick="selectMode('confed')" style="border-color:rgba(255,136,68,0.6);">
-                <div class="mode-icon"><svg viewBox="0 0 100 100" style="width:42px;height:42px;display:block;">
-<!-- 6 renkli petal (CONIFA muadili) -->
-<g transform="translate(50,50)">
-  <ellipse cx="0" cy="-22" rx="11" ry="14" fill="#e63946" transform="rotate(0)"/>
-  <ellipse cx="0" cy="-22" rx="11" ry="14" fill="#f4a261" transform="rotate(60)"/>
-  <ellipse cx="0" cy="-22" rx="11" ry="14" fill="#2a9d8f" transform="rotate(120)"/>
-  <ellipse cx="0" cy="-22" rx="11" ry="14" fill="#1d4ed8" transform="rotate(180)"/>
-  <ellipse cx="0" cy="-22" rx="11" ry="14" fill="#a855f7" transform="rotate(240)"/>
-  <ellipse cx="0" cy="-22" rx="11" ry="14" fill="#fbbf24" transform="rotate(300)"/>
-</g>
-<!-- Ortada beyaz daire -->
-<circle cx="50" cy="50" r="10" fill="#fff" stroke="#333" stroke-width="0.5"/>
-<!-- "B" harfi (Bağımsız) -->
-<text x="50" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">B</text>
+                <div class="mode-icon"><svg viewBox="0 0 100 100" width="48" height="48" style="display:block;margin:0 auto;filter:drop-shadow(0 2px 8px rgba(200,150,0,0.4));">
+  <defs>
+    <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd700"/><stop offset="1" stop-color="#b8860b"/></linearGradient>
+    <linearGradient id="sg2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1a6e20"/><stop offset="1" stop-color="#2ecc40"/></linearGradient>
+    <linearGradient id="sg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0277bd"/><stop offset="1" stop-color="#4fc3f7"/></linearGradient>
+  </defs>
+  <ellipse cx="50" cy="92" rx="20" ry="5" fill="#7a5a00" opacity="0.5"/>
+  <path d="M32 84 Q38 90 50 91 Q62 90 68 84 Q62 79 50 80 Q38 79 32 84Z" fill="url(#sg1)" stroke="#a07800" stroke-width="0.8"/>
+  <path d="M38 57 Q34 67 33 77 Q41 82 50 82 Q59 82 67 77 Q66 67 62 57Z" fill="url(#sg1)" stroke="#a07800" stroke-width="0.6"/>
+  <path d="M44 60 Q38 52 40 42 Q42 32 50 26 Q56 22 60 27 Q64 33 60 40 Q56 46 50 44 Q45 42 45 36 Q45 30 50 28" fill="none" stroke="url(#sg3)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M50 28 Q55 23 59 17 Q63 11 61 7 Q59 3 54 3 Q49 3 47 7" fill="none" stroke="url(#sg2)" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="46" cy="7" rx="7" ry="6" fill="#2ecc40" stroke="#1a6e20" stroke-width="0.8" transform="rotate(-25 46 7)"/>
+  <circle cx="43" cy="6" r="1.8" fill="#fff"/>
+  <circle cx="43" cy="6" r="1" fill="#b00"/>
+  <path d="M41 10 L39 13 M41 10 L43 13" stroke="#c00" stroke-width="1.2" stroke-linecap="round"/>
+  <polygon points="46,2 48,-1 50,2 52,0 51,3 45,3 44,0" fill="url(#sg1)" stroke="#a07800" stroke-width="0.4"/>
 </svg></div>
                 <div class="mode-name" style="color:#ffaa66;" id="modeNameConfed">Bağımsız Avrupa Kupası</div>
-                <div class="mode-desc" id="descConfed"><div style="display:flex;gap:3px;justify-content:center;align-items:center;margin-top:3px;"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#009B48"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="7" width="30" height="6" fill="#fff"/><rect x="11" width="2" height="20" fill="#C8102E"/><rect y="8" width="30" height="4" fill="#C8102E"/></svg></div><div style="font-size:9px;color:#aaa;margin:-1px 0 2px;">Padania · İtalya</div><span style="color:#ffaa66;">6 takım · 2-7 Haziran 2026</span><br><span id="confedCountdownBadge" style="font-size:9px;color:#ffcc88;background:rgba(255,200,100,0.2);padding:1px 5px;border-radius:4px;">⏰ ...</span></div>
+                <div class="mode-desc" id="descConfed"><div style="display:flex;gap:3px;justify-content:center;align-items:center;margin-top:3px;"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#009B48"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="7" width="30" height="6" fill="#fff"/><rect x="11" width="2" height="20" fill="#C8102E"/><rect y="8" width="30" height="4" fill="#C8102E"/></svg></div><div style="font-size:9px;color:#aaa;margin:-1px 0 2px;">Padania · İtalya</div><span style="color:#ffaa66;">6 takım · 3-6 Haziran 2026</span><br><span id="confedCountdownBadge" style="font-size:9px;color:#ffcc88;background:rgba(255,200,100,0.2);padding:1px 5px;border-radius:4px;">⏰ ...</span></div>
             </div>
             <!-- 🏆 AVRUPA SÜPER KUPASI 2026 (Paris FC vs Birmingham United) -->
             <div class="mode-card" id="modeCardSuperCup" onclick="checkSuperCup()" style="border-color:rgba(150,200,255,0.5);opacity:0.7;">
@@ -1419,7 +1447,7 @@
 <circle cx="60" cy="42" r="10" fill="none" stroke="#aaa" stroke-width="0.8"/>
 <circle cx="50" cy="50" r="46" fill="none" stroke="#ccc" stroke-width="1.5"/>
 </svg> Takımını seç:</p>
-        <p style="color:#aaa;font-size:10px;margin:0 0 8px;" id="confedInfoTxt">6 takım · A &amp; B grubu · 2-7 Haziran 2026</p>
+        <p style="color:#aaa;font-size:10px;margin:0 0 8px;" id="confedInfoTxt">6 takım · A &amp; B grubu · 3-6 Haziran 2026</p>
         <div id="confedCountryList" style="display:flex;flex-direction:column;gap:4px;width:100%;max-height:55vh;overflow-y:auto;padding:6px;background:rgba(255,255,255,0.05);border-radius:8px;"></div>
         <div style="font-size:10px;color:#ffaa66;margin-top:10px;text-align:center;"><span style="background:rgba(255,150,80,0.2);padding:3px 8px;border-radius:6px;">⏱️ Grup: 45/90dk · Eleme: 105/120dk</span></div>
     </div>
@@ -1539,6 +1567,12 @@
         <div id="confedGuessTimerBox" class="guess-timer-box" style="display:none;border-color:#fff;color:#fff;">
             <span>⌛ </span><span id="confedGuessCountdown">20</span><span> sn</span>
         </div>
+        <!-- Su Molası -->
+        <div style="display:flex;gap:6px;justify-content:center;align-items:center;margin-top:6px;flex-wrap:wrap;">
+            <button id="confedwb0" onclick="useWaterBreak('confed',0)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="15dk Su Molası">💧 15dk</button>
+            <button id="confedwb1" onclick="useWaterBreak('confed',1)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="45dk Su Molası">💧 45dk</button>
+            <button id="confedwb2" onclick="useWaterBreak('confed',2)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="90dk Su Molası">💧 90dk</button>
+        </div>
     </div>
 
     <!-- ══════════ DÜNYA KUPASI 2026 — MAÇ EKRANI ══════════ -->
@@ -1622,368 +1656,19 @@
             <span style="font-size:10px;">⚠</span>
         </div>
         <!-- Hazırlık Maçları Bölümü -->
-        <div style="margin-top:10px;width:100%;">
-            <div style="font-size:10px;color:#888;text-align:center;margin-bottom:6px;letter-spacing:1px;">── <span id="friendlyHeaderTxt">HAZIRLIK MAÇLARI</span> ──</div>
-            <!-- Rusya vs Mısır KALDIRILDI -->
-            <!-- 5 Haziran 2026 -->
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 5 HAZİRAN 2026 · CUMA ──</div>
-            <!-- Rusya vs Burkina Faso -->
-            <button onclick="startFriendly('rus_bfa')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);" title="5 Haziran 2026 · Cuma · 20:00">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> <span id="friendlyRusName2" style="color:#ff6666;">Rusya</span> <span id="friendlyBannedLbl2" style="color:#555;font-size:10px;">⚠yasaklı</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#EF2B2D"/><rect y="10" width="30" height="10" fill="#009E49"/><polygon points="15,6 16,9 19,9 16.5,11 17.5,14 15,12 12.5,14 13.5,11 11,9 14,9" fill="#FCD116"/></svg> <span id="friendlyBfaName" style="color:#ffcc88;">Burkina Faso</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 20:00</span>
-            </button>
-            <!-- 9 Haziran 2026 -->
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 9 HAZİRAN 2026 · SALI ──</div>
-            <!-- Rusya vs Trinidad ve Tobago -->
-            <button onclick="startFriendly('rus_tnt')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> <span id="friendlyRusName3" style="color:#ff6666;">Rusya</span> <span id="friendlyBannedLbl3" style="color:#555;font-size:10px;">⚠yasaklı</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#DA1A35"/><polygon points="0,0 8,0 30,18 30,20 22,20 0,2" fill="#fff"/><polygon points="2,0 6,0 26,20 22,20" fill="#000"/></svg> <span id="friendlyTntName" style="color:#ffcc88;">Trinidad ve Tobago</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 20:00</span>
-            </button>
-            <!-- 1 Haziran 2026 - BİTTİ -->
-            <div style="font-size:9px;color:#66aa66;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── ✓ 1 HAZİRAN 2026 · SONUÇLAR ──</div>
-            <div style="width:100%;padding:7px 12px;margin-bottom:4px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#0a1a0a,#0a2a0a);border:1px solid #226622;border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:space-between;opacity:0.85;">
-                <span><svg width="20" height="14" viewBox="0 0 900 600" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="900" height="600" fill="#e30a17"/><circle cx="425" cy="300" r="120" fill="#fff"/><circle cx="465" cy="300" r="96" fill="#e30a17"/><polygon points="583,300 600,253 608,302 655,317 612,325 615,374 583,338 552,374 555,325 511,317 558,302 567,253" fill="#fff"/></svg> <span style="color:#aaffaa;">Türkiye</span></span>
-                <span style="font-size:14px;font-weight:900;color:#66ff66;letter-spacing:1px;">4–0</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#d4af37"/><rect x="12" width="6" height="20" fill="#ce2028"/><rect y="7" width="30" height="6" fill="#ce2028"/></svg> <span style="color:#aaa;">K. Makedonya</span></span>
-                <span style="font-size:9px;color:#66aa66;">✓</span>
+        <!-- ══ HAZIRLIK MAÇLARI — TheSportsDB API ══ -->
+        <div id="friendlyApiContainer" style="margin-top:10px;width:100%;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                <div style="font-size:10px;color:#888;letter-spacing:1px;">── <span id="friendlyHeaderTxt">HAZIRLIK MAÇLARI</span> ──</div>
+                <div id="friendlyApiStatus" style="font-size:9px;color:#555;display:flex;align-items:center;gap:4px;">
+                    <span id="friendlyApiDot" style="width:6px;height:6px;border-radius:50%;background:#555;display:inline-block;"></span>
+                    <span id="friendlyApiStatusTxt">Yükleniyor...</span>
+                </div>
             </div>
-            <div style="width:100%;padding:7px 12px;margin-bottom:4px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#0a1a0a,#0a2a0a);border:1px solid #226622;border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:space-between;opacity:0.85;">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#EF2B2D"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#003087"/><rect y="9" width="30" height="2" fill="#003087"/></svg> <span style="color:#aaffaa;">Norveç</span></span>
-                <span style="font-size:14px;font-weight:900;color:#66ff66;letter-spacing:1px;">3–1</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#006AA7"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#FECC02"/><rect y="9" width="30" height="2" fill="#FECC02"/></svg> <span style="color:#aaa;">İsveç</span></span>
-                <span style="font-size:9px;color:#66aa66;">✓</span>
+            <div id="friendlyApiList" style="display:flex;flex-direction:column;gap:4px;">
+                <div style="text-align:center;padding:20px;color:#555;font-size:12px;">⏳ Maçlar yükleniyor...</div>
             </div>
-            <div style="width:100%;padding:7px 12px;margin-bottom:4px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#0a1a0a,#0a2a0a);border:1px solid #226622;border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:space-between;opacity:0.85;">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#ED2939"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#ED2939"/></svg> <span style="color:#aaffaa;">Avusturya</span></span>
-                <span style="font-size:14px;font-weight:900;color:#66ff66;letter-spacing:1px;">1–0</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#E70013"/><circle cx="15" cy="10" r="6" fill="#fff"/><circle cx="15" cy="10" r="4" fill="#E70013"/></svg> <span style="color:#aaa;">Tunus</span></span>
-                <span style="font-size:9px;color:#66aa66;">✓</span>
-            </div>
-            <div style="font-size:9px;color:#66aa66;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── ✓ 2 HAZİRAN 2026 · SONUÇLAR ──</div>
-            <div style="width:100%;padding:7px 12px;margin-bottom:4px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#0a1a0a,#0a2a0a);border:1px solid #226622;border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:space-between;opacity:0.85;">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#FCD116"/><rect y="7" width="30" height="6" fill="#003087"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#aaffaa;">Kolombiya</span></span>
-                <span style="font-size:14px;font-weight:900;color:#66ff66;letter-spacing:1px;">3–1</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#002B7F"/><rect y="6" width="30" height="8" fill="#CE1126"/></svg> <span style="color:#aaa;">Kosta Rika</span></span>
-                <span style="font-size:9px;color:#66aa66;">✓</span>
-            </div>
-            <div style="width:100%;padding:7px 12px;margin-bottom:4px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#0a1a0a,#0a2a0a);border:1px solid #226622;border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:space-between;opacity:0.85;">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#FF0000"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#0000AA"/></svg> <span style="color:#aaffaa;">Hırvatistan</span></span>
-                <span style="font-size:14px;font-weight:900;color:#66ff66;letter-spacing:1px;">2–1</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#FFD700"/><rect x="20" width="10" height="20" fill="#FF0000"/></svg> <span style="color:#aaa;">Belçika</span></span>
-                <span style="font-size:9px;color:#66aa66;">✓</span>
-            </div>
-            <div style="width:100%;padding:7px 12px;margin-bottom:4px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#0a1a0a,#0a2a0a);border:1px solid #226622;border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:space-between;opacity:0.85;">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#00B140"/><rect x="8" width="14" height="20" fill="#CE1126"/></svg> <span style="color:#aaa;">Galler</span></span>
-                <span style="font-size:14px;font-weight:900;color:#66ff66;letter-spacing:1px;">1–2</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#006B3F"/><rect y="7" width="30" height="6" fill="#FCD116"/><rect y="13" width="30" height="7" fill="#CE1126"/><circle cx="15" cy="10" r="3" fill="#000"/></svg> <span style="color:#aaffaa;">Gana</span></span>
-                <span style="font-size:9px;color:#66aa66;">✓</span>
-            </div>
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 3 HAZİRAN 2026 ──</div>
-            <button data-date="2026-06-03" onclick="startFriendly('pol_nga')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#DC143C"/></svg> <span style="color:#ffcc88;">Polonya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#008751"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#008751"/></svg> <span style="color:#ffcc88;">Nijerya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
-            </button>
-            <button data-date="2026-06-03" onclick="startFriendly('ned_alg')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg> <span style="color:#ffcc88;">Hollanda</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#006233"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#D21034"/></svg> <span style="color:#ffcc88;">Cezayir</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
-            </button>
-            <button data-date="2026-06-03" onclick="startFriendly('lux_ita')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#EF3340"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#009F6B"/></svg> <span style="color:#ffcc88;">Lüksemburg</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE2B37"/></svg> <span style="color:#ffcc88;">İtalya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
-            </button>
-            <button data-date="2026-06-03" onclick="startFriendly('por_chi')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="11" height="20" fill="#006600"/><rect x="11" width="19" height="20" fill="#FF0000"/></svg> <span style="color:#ffcc88;">Portekiz</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#D52B1E"/><rect width="13" height="10" fill="#0032A0"/></svg> <span style="color:#ffcc88;">Şili</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 20:45</span>
-            </button>
-            <button data-date="2026-06-03" onclick="startFriendly('rom_wal')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Romanya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#00B140"/><rect x="8" width="14" height="20" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Galler</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 20:45</span>
-            </button>
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 4 HAZİRAN 2026 ──</div>
-            <button data-date="2026-06-04" onclick="startFriendly('svn_cyp')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#003DA5"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Slovenya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><ellipse cx="15" cy="9" rx="6" ry="4" fill="#D77A2A"/></svg> <span style="color:#ffcc88;">Kıbrıs</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 19:00</span>
-            </button>
-            <button data-date="2026-06-04" onclick="startFriendly('esp_irq')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AA151B"/><rect y="7" width="30" height="6" fill="#F1BF00"/><rect y="13" width="30" height="7" fill="#AA151B"/></svg> <span style="color:#ffcc88;">İspanya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CE1126"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/></svg> <span style="color:#ffcc88;">Irak</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:00</span>
-            </button>
-            <button data-date="2026-06-04" onclick="startFriendly('fra_civ')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> <span style="color:#ffcc88;">Fransa</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#F77F00"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#009A44"/></svg> <span style="color:#ffcc88;">Fildişi Sahili</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:10</span>
-            </button>
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 5 HAZİRAN 2026 ──</div>
-            <button data-date="2026-06-05" onclick="startFriendly('cze_gua')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#D7141A"/><rect width="12" height="20" fill="#11457E"/></svg> <span style="color:#ffcc88;">Çekya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#4997D0"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#4997D0"/></svg> <span style="color:#ffcc88;">Guatemala</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 03:00</span>
-            </button>
-            <button data-date="2026-06-05" onclick="startFriendly('mex_srb')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Meksika</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#C6363C"/><rect y="7" width="30" height="6" fill="#0C4076"/><rect y="13" width="30" height="7" fill="#fff"/></svg> <span style="color:#ffcc88;">Sırbistan</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 05:00</span>
-            </button>
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 6 HAZİRAN 2026 ──</div>
-            <button data-date="2026-06-06" onclick="startFriendly('bel_tun')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#FFD700"/><rect x="20" width="10" height="20" fill="#FF0000"/></svg> <span style="color:#ffcc88;">Belçika</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#E70013"/><circle cx="15" cy="10" r="6" fill="#fff"/><circle cx="15" cy="10" r="4" fill="#E70013"/></svg> <span style="color:#ffcc88;">Tunus</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 16:00</span>
-            </button>
-            <button data-date="2026-06-06" onclick="startFriendly('usa_ger')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#B22234"/><rect y="2" width="30" height="2" fill="#fff"/><rect y="6" width="30" height="2" fill="#fff"/><rect y="10" width="30" height="2" fill="#fff"/><rect y="14" width="30" height="2" fill="#fff"/><rect y="18" width="30" height="2" fill="#fff"/><rect width="12" height="10" fill="#3C3B6E"/></svg> <span style="color:#ffcc88;">ABD</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#000"/><rect y="7" width="30" height="6" fill="#DD0000"/><rect y="13" width="30" height="7" fill="#FFCE00"/></svg> <span style="color:#ffcc88;">Almanya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:30</span>
-            </button>
-            <button data-date="2026-06-06" onclick="startFriendly('aus_sui')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#00008B"/><rect width="12" height="8" fill="#CC0000"/><rect x="4" width="4" height="8" fill="#fff"/><rect y="2.5" width="12" height="3" fill="#fff"/></svg> <span style="color:#ffcc88;">Avustralya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#FF0000"/><rect x="12" y="5" width="6" height="10" fill="#fff"/><rect x="8" y="8" width="14" height="4" fill="#fff"/></svg> <span style="color:#ffcc88;">İsviçre</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:00</span>
-            </button>
-            <button data-date="2026-06-06" onclick="startFriendly('eng_alg')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CF0921"/><rect y="8" width="30" height="4" fill="#CF0921"/></svg> <span style="color:#ffcc88;">İngiltere</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#006233"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#D21034"/></svg> <span style="color:#ffcc88;">Cezayir</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 23:00</span>
-            </button>
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 7 HAZİRAN 2026 ──</div>
-            <button data-date="2026-06-07" onclick="startFriendly('ven_tur')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CF142B"/><rect y="7" width="30" height="6" fill="#FFD100"/><rect y="13" width="30" height="7" fill="#003893"/></svg> <span style="color:#ffcc88;">Venezuela</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 900 600" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="900" height="600" fill="#e30a17"/><circle cx="425" cy="300" r="120" fill="#fff"/><circle cx="465" cy="300" r="96" fill="#e30a17"/><polygon points="583,300 600,253 608,302 655,317 612,325 615,374 583,338 552,374 555,325 511,317 558,302 567,253" fill="#fff"/></svg> <span style="color:#ffcc88;">Türkiye</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 01:00</span>
-            </button>
-            <button data-date="2026-06-07" onclick="startFriendly('bra_egy')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#009C3B"/><polygon points="15,2 28,10 15,18 2,10" fill="#FEDF00"/><circle cx="15" cy="10" r="4" fill="#002776"/></svg> <span style="color:#ffcc88;">Brezilya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CE1126"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/></svg> <span style="color:#ffcc88;">Mısır</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 01:00</span>
-            </button>
-            <button data-date="2026-06-07" onclick="startFriendly('mor_nor')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#C1272D"/><rect y="10" width="30" height="10" fill="#006233"/></svg> <span style="color:#ffcc88;">Fas</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#EF2B2D"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#003087"/><rect y="9" width="30" height="2" fill="#003087"/></svg> <span style="color:#ffcc88;">Norveç</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:00</span>
-            </button>
-            <button data-date="2026-06-07" onclick="startFriendly('gre_ita')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#0D5EAF"/><rect y="3" width="30" height="2.5" fill="#fff"/><rect y="8" width="30" height="2.5" fill="#fff"/><rect y="13" width="30" height="2.5" fill="#fff"/><rect width="11" height="12" fill="#0D5EAF"/><rect x="4" width="3" height="12" fill="#fff"/><rect y="4" width="11" height="3" fill="#fff"/></svg> <span style="color:#ffcc88;">Yunanistan</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE2B37"/></svg> <span style="color:#ffcc88;">İtalya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:00</span>
-            </button>
-            <button data-date="2026-06-07" onclick="startFriendly('den_ukr')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#C60C30"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/></svg> <span style="color:#ffcc88;">Danimarka</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#005BBB"/><rect y="10" width="30" height="10" fill="#FFD500"/></svg> <span style="color:#ffcc88;">Ukrayna</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 19:30</span>
-            </button>
-            <button data-date="2026-06-07" onclick="startFriendly('kos_and')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#244AA5"/><polygon points="5,10 15,3 25,10 25,17 5,17" fill="none" stroke="#FFD700" stroke-width="1.2"/></svg> <span style="color:#ffcc88;">Kosova</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#003DA5"/><rect x="10" width="10" height="20" fill="#FFD700"/><rect x="20" width="10" height="20" fill="#C7363C"/></svg> <span style="color:#ffcc88;">Andorra</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 20:00</span>
-            </button>
-            <button data-date="2026-06-07" onclick="startFriendly('hrv_svn')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#FF0000"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#0000AA"/></svg> <span style="color:#ffcc88;">Hırvatistan</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#003DA5"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Slovenya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
-            </button>
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 9 HAZİRAN 2026 ──</div>
-            <button data-date="2026-06-09" onclick="startFriendly('arg_hnd')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#74ACDF"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#74ACDF"/></svg> <span style="color:#ffcc88;">Arjantin</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#0073CF"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#0073CF"/></svg> <span style="color:#ffcc88;">Honduras</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 03:00</span>
-            </button>
-            <button data-date="2026-06-09" onclick="startFriendly('col_jor')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#FCD116"/><rect y="7" width="30" height="6" fill="#003087"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Kolombiya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#007A3D"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/><polygon points="0,0 12,10 0,20" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Ürdün</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 02:00</span>
-            </button>
-            <button data-date="2026-06-09" onclick="startFriendly('sau_sen')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#006C35"/><rect x="5" y="13" width="16" height="1.5" fill="#fff"/><rect x="18" y="11" width="1.5" height="4" fill="#fff"/></svg> <span style="color:#ffcc88;">Suudi Arabistan</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#00853F"/><rect x="10" width="10" height="20" fill="#FDEF42"/><rect x="20" width="10" height="20" fill="#E31B23"/></svg> <span style="color:#ffcc88;">Senegal</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 02:00</span>
-            </button>
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 10 HAZİRAN 2026 ──</div>
-            <button data-date="2026-06-10" onclick="startFriendly('arg_isl')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#74ACDF"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#74ACDF"/></svg> <span style="color:#ffcc88;">Arjantin</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#003897"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#D72828"/><rect y="9" width="30" height="2" fill="#D72828"/></svg> <span style="color:#ffcc88;">İzlanda</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 04:00</span>
-            </button>
-            <button data-date="2026-06-10" onclick="startFriendly('por_nga')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="11" height="20" fill="#006600"/><rect x="11" width="19" height="20" fill="#FF0000"/></svg> <span style="color:#ffcc88;">Portekiz</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#008751"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#008751"/></svg> <span style="color:#ffcc88;">Nijerya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:45</span>
-            </button>
-            <button data-date="2026-06-10" onclick="startFriendly('per_esp')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#D91023"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#D91023"/></svg> <span style="color:#ffcc88;">Peru</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AA151B"/><rect y="7" width="30" height="6" fill="#F1BF00"/><rect y="13" width="30" height="7" fill="#AA151B"/></svg> <span style="color:#ffcc88;">İspanya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 05:00</span>
-            </button>
-            <button data-date="2026-06-10" onclick="startFriendly('fra_nir')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> <span style="color:#ffcc88;">Fransa</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><line x1="0" y1="0" x2="30" y2="20" stroke="#CF0921" stroke-width="2"/><line x1="30" y1="0" x2="0" y2="20" stroke="#CF0921" stroke-width="2"/><rect x="13" width="4" height="20" fill="#CF0921"/><rect y="8" width="30" height="4" fill="#CF0921"/></svg> <span style="color:#ffcc88;">Kuzey İrlanda</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:10</span>
-            </button>
-            <button data-date="2026-06-10" onclick="startFriendly('ned_ozb')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg> <span style="color:#ffcc88;">Hollanda</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#1EB53A"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Özbekistan</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
-            </button>
-            <button data-date="2026-06-10" onclick="startFriendly('eng_crc')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CF0921"/><rect y="8" width="30" height="4" fill="#CF0921"/></svg> <span style="color:#ffcc88;">İngiltere</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#002B7F"/><rect y="6" width="30" height="8" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Kosta Rika</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 23:00</span>
-            </button>
-
-            <!-- 11 Haziran 2026 A MİLLİ -->
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 11 HAZİRAN 2026 · A MİLLİ ──</div>
-            <button data-date="2026-06-11" onclick="startFriendly('tur_ger_u')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 900 600" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="900" height="600" fill="#e30a17"/><circle cx="425" cy="300" r="120" fill="#fff"/><circle cx="465" cy="300" r="96" fill="#e30a17"/><polygon points="583,300 600,253 608,302 655,317 612,325 615,374 583,338 552,374 555,325 511,317 558,302 567,253" fill="#fff"/></svg> <span style="color:#ffcc88;">Türkiye U21</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#000"/><rect y="7" width="30" height="6" fill="#DD0000"/><rect y="13" width="30" height="7" fill="#FFCE00"/></svg> <span style="color:#ffcc88;">Almanya U21</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 20:00</span>
-            </button>
-            <button data-date="2026-06-11" onclick="startFriendly('fra_alb11')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> <span style="color:#ffcc88;">Fransa</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#E41E20"/></svg> <span style="color:#ffcc88;">Arnavutluk</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:00</span>
-            </button>
-            <button data-date="2026-06-11" onclick="startFriendly('aut_gua11')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#ED2939"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#ED2939"/></svg> <span style="color:#ffcc88;">Avusturya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#4997D0"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#4997D0"/></svg> <span style="color:#ffcc88;">Guatemala</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 07:00</span>
-            </button>
-            <div style="font-size:9px;color:#aa8800;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 🎓 11 HAZİRAN 2026 · U MİLLİ ──</div>
-            <button data-date="2026-06-11" onclick="startFriendly('ita_alb_u21')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE2B37"/></svg> <span style="color:#ffcc88;">İtalya U21</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#E41E20"/></svg> <span style="color:#ffcc88;">Arnavutluk U21</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 19:15</span>
-            </button>
-            <button data-date="2026-06-11" onclick="startFriendly('nor_fin_u21')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#EF2B2D"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#003087"/><rect y="9" width="30" height="2" fill="#003087"/></svg> <span style="color:#ffcc88;">Norveç U21</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect x="10" width="4" height="20" fill="#003580"/><rect y="8" width="30" height="4" fill="#003580"/></svg> <span style="color:#ffcc88;">Finlandiya U21</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 19:00</span>
-            </button>
-            <button data-date="2026-06-11" onclick="startFriendly('hrv_svn_u21')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#FF0000"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#0000AA"/></svg> <span style="color:#ffcc88;">Hırvatistan</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#003DA5"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Slovenya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
-            </button>
-            <button data-date="2026-06-11" onclick="startFriendly('ned_ozb11')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg> <span style="color:#ffcc88;">Hollanda</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#1EB53A"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Özbekistan</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 21:45</span>
-            </button>
-            <button data-date="2026-06-11" onclick="startFriendly('fra_nir11')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> <span style="color:#ffcc88;">Fransa</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><line x1="0" y1="0" x2="30" y2="20" stroke="#CF0921" stroke-width="2"/><line x1="30" y1="0" x2="0" y2="20" stroke="#CF0921" stroke-width="2"/><rect x="13" width="4" height="20" fill="#CF0921"/><rect y="8" width="30" height="4" fill="#CF0921"/></svg> <span style="color:#ffcc88;">Kuzey İrlanda</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:10</span>
-            </button>
-            <!-- 12 Haziran 2026 A MİLLİ -->
-            <div style="font-size:9px;color:#888;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 12 HAZİRAN 2026 · A MİLLİ ──</div>
-            <button data-date="2026-06-12" onclick="startFriendly('per_esp12')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#D91023"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#D91023"/></svg> <span style="color:#ffcc88;">Peru</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AA151B"/><rect y="7" width="30" height="6" fill="#F1BF00"/><rect y="13" width="30" height="7" fill="#AA151B"/></svg> <span style="color:#ffcc88;">İspanya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 05:00</span>
-            </button>
-            <button data-date="2026-06-12" onclick="startFriendly('arg_isl12')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#74ACDF"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#74ACDF"/></svg> <span style="color:#ffcc88;">Arjantin</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#003897"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#D72828"/><rect y="9" width="30" height="2" fill="#D72828"/></svg> <span style="color:#ffcc88;">İzlanda</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 04:00</span>
-            </button>
-            <button data-date="2026-06-12" onclick="startFriendly('por_nga12')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="11" height="20" fill="#006600"/><rect x="11" width="19" height="20" fill="#FF0000"/></svg> <span style="color:#ffcc88;">Portekiz</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#008751"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#008751"/></svg> <span style="color:#ffcc88;">Nijerya</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 22:45</span>
-            </button>
-            <button data-date="2026-06-12" onclick="startFriendly('col_jor12')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#FCD116"/><rect y="7" width="30" height="6" fill="#003087"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Kolombiya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#007A3D"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/><polygon points="0,0 12,10 0,20" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Ürdün</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 02:00</span>
-            </button>
-            <button data-date="2026-06-12" onclick="startFriendly('sau_sen12')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#006C35"/><rect x="5" y="13" width="16" height="1.5" fill="#fff"/><rect x="18" y="11" width="1.5" height="4" fill="#fff"/></svg> <span style="color:#ffcc88;">Suudi Arabistan</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#00853F"/><rect x="10" width="10" height="20" fill="#FDEF42"/><rect x="20" width="10" height="20" fill="#E31B23"/></svg> <span style="color:#ffcc88;">Senegal</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 02:00</span>
-            </button>
-            <button data-date="2026-06-12" onclick="startFriendly('bra_egy12')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a0a0a,#2a0a0a);border:1px solid #cc3333;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,50,50,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#009C3B"/><polygon points="15,2 28,10 15,18 2,10" fill="#FEDF00"/><circle cx="15" cy="10" r="4" fill="#002776"/></svg> <span style="color:#ffcc88;">Brezilya</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CE1126"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/></svg> <span style="color:#ffcc88;">Mısır</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 01:00</span>
-            </button>
-            <div style="font-size:9px;color:#aa8800;text-align:center;margin:8px 0 4px;letter-spacing:1px;">── 🎓 12 HAZİRAN 2026 · U MİLLİ ──</div>
-            <button data-date="2026-06-12" onclick="startFriendly('pol_nga_u21')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#DC143C"/></svg> <span style="color:#ffcc88;">Polonya U21</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#008751"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#008751"/></svg> <span style="color:#ffcc88;">Nijerya U21</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 18:00</span>
-            </button>
-            <button data-date="2026-06-12" onclick="startFriendly('ger_ukr_u21')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#000"/><rect y="7" width="30" height="6" fill="#DD0000"/><rect y="13" width="30" height="7" fill="#FFCE00"/></svg> <span style="color:#ffcc88;">Almanya U21</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#005BBB"/><rect y="10" width="30" height="10" fill="#FFD500"/></svg> <span style="color:#ffcc88;">Ukrayna U21</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 18:00</span>
-            </button>
-            <button data-date="2026-06-12" onclick="startFriendly('esp_hun_u21')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AA151B"/><rect y="7" width="30" height="6" fill="#F1BF00"/><rect y="13" width="30" height="7" fill="#AA151B"/></svg> <span style="color:#ffcc88;">İspanya U21</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CE2939"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#436F4D"/></svg> <span style="color:#ffcc88;">Macaristan U21</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 19:00</span>
-            </button>
-            <button data-date="2026-06-12" onclick="startFriendly('eng_svk_u21')" style="width:100%;padding:9px 12px;margin-bottom:5px;font-size:12px;font-weight:bold;background:linear-gradient(135deg,#1a1400,#2a2000);border:1px solid #886600;border-radius:10px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 0 10px rgba(200,160,0,0.2);">
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CF0921"/><rect y="8" width="30" height="4" fill="#CF0921"/></svg> <span style="color:#ffcc88;">İngiltere U21</span></span>
-                <span style="color:#888;font-size:11px;">vs</span>
-                <span><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#003DA5"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg> <span style="color:#ffcc88;">Slovakya U21</span></span>
-                <span style="font-size:10px;color:#aaa;">🕐 19:00</span>
-            </button>
+            <div id="friendlyApiNextUpdate" style="font-size:9px;color:#444;text-align:center;margin-top:6px;"></div>
         </div>
 
         <div id="futbolDiffInfoTxt" class="diff-info" style="display:none;margin-top:8px;"></div>
@@ -2012,7 +1697,7 @@
 <circle cx="50" cy="50" r="46" fill="none" stroke="#ccc" stroke-width="1.5"/>
 </svg> HAZIRLIK MAÇI</div>
             <div style="font-size:13px;color:#fff;font-weight:bold;margin-top:3px;">
-                <span id="friendlyHomeFlagBanner"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></rect></svg></span> <span id="friendlyRusNameBanner" style="color:#ff6666;">Rusya</span>
+                <span id="friendlyHomeFlagBanner"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></span> <span id="friendlyRusNameBanner" style="color:#ff6666;">Rusya</span>
                 &nbsp;<span id="friendlyScoreLeft" style="color:#fff;font-size:16px;font-weight:900;">0</span>
                 &nbsp;<span style="color:#aaa;font-size:11px;">–</span>&nbsp;
                 <span id="friendlyScoreRight" style="color:#fff;font-size:16px;font-weight:900;">0</span>
@@ -2061,6 +1746,12 @@
         <div id="friendlyGuessTimerBox" class="guess-timer-box" style="display:none;border-color:#cc3333;color:#cc3333;">
             <span>⌛ </span><span id="friendlyGuessCountdown">15</span><span id="friendlyGuessTimerSec"> sn</span>
         </div>
+        <!-- Su Molası -->
+        <div style="display:flex;gap:6px;justify-content:center;align-items:center;margin-top:6px;flex-wrap:wrap;">
+            <button id="friendlywb0" onclick="useWaterBreak('friendly',0)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="15dk Su Molası">💧 15dk</button>
+            <button id="friendlywb1" onclick="useWaterBreak('friendly',1)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="45dk Su Molası">💧 45dk</button>
+            <button id="friendlywb2" onclick="useWaterBreak('friendly',2)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="90dk Su Molası">💧 90dk</button>
+        </div>
         <button class="stats-btn statsBtnTxt" onclick="openStats()">📊 İstatistikler</button>
     </div>
 
@@ -2090,9 +1781,9 @@
             <!-- Kale -->
             <div style="position:absolute;top:50%;right:0;transform:translateY(-50%);width:18px;height:70px;border:2px solid #fff;border-right:none;background:rgba(255,255,255,0.05);border-radius:4px 0 0 4px;"></div>
             <!-- Penaltı noktası -->
-            <div id="futbolTop" style="position:absolute;transition:all 0.5s cubic-bezier(0.25,0.46,0.45,0.94);"><svg viewBox="0 0 100 100" width="24" height="24" style="display:block;filter:drop-shadow(0 1px 3px rgba(0,180,255,0.7));"><defs><radialGradient id="bb" cx="38%" cy="32%" r="62%"><stop offset="0" stop-color="#22ccee"/><stop offset="0.45" stop-color="#0088cc"/><stop offset="1" stop-color="#1a2080"/></radialGradient><clipPath id="bc"><circle cx="50" cy="50" r="46"/></clipPath></defs><circle cx="50" cy="50" r="46" fill="url(#bb)" stroke="#1a2080" stroke-width="1.5"/><path d="M4 50 Q12 20 32 28 Q44 34 40 55 Q35 72 14 78 Q2 65 4 50Z" fill="#1a2080" opacity="0.85" clip-path="url(#bc)"/><path d="M96 50 Q88 20 68 28 Q56 34 60 55 Q65 72 86 78 Q98 65 96 50Z" fill="#1a2080" opacity="0.85" clip-path="url(#bc)"/><polyline points="14,22 18,18 22,22 26,18 30,22" stroke="#00ddff" stroke-width="2" fill="none" opacity="0.9" clip-path="url(#bc)"/><polyline points="70,22 74,18 78,22 82,18 86,22" stroke="#00ddff" stroke-width="2" fill="none" opacity="0.9" clip-path="url(#bc)"/><rect x="44" y="36" width="4" height="18" rx="2" fill="#1a2080" opacity="0.9" clip-path="url(#bc)"/><rect x="49" y="32" width="4" height="24" rx="2" fill="#1a2080" opacity="0.9" clip-path="url(#bc)"/><rect x="54" y="36" width="4" height="18" rx="2" fill="#1a2080" opacity="0.9" clip-path="url(#bc)"/><ellipse cx="34" cy="32" rx="9" ry="5" fill="#fff" opacity="0.25"/></svg></div>
+            <div id="futbolTop" style="position:absolute;left:30px;top:57px;transition:all 0.5s cubic-bezier(0.25,0.46,0.45,0.94);"><svg viewBox="0 0 100 100" width="24" height="24" style="display:block;filter:drop-shadow(0 1px 3px rgba(0,180,255,0.7));"><defs><radialGradient id="bb" cx="38%" cy="32%" r="62%"><stop offset="0" stop-color="#22ccee"/><stop offset="0.45" stop-color="#0088cc"/><stop offset="1" stop-color="#1a2080"/></radialGradient><clipPath id="bc"><circle cx="50" cy="50" r="46"/></clipPath></defs><circle cx="50" cy="50" r="46" fill="url(#bb)" stroke="#1a2080" stroke-width="1.5"/><path d="M4 50 Q12 20 32 28 Q44 34 40 55 Q35 72 14 78 Q2 65 4 50Z" fill="#1a2080" opacity="0.85" clip-path="url(#bc)"/><path d="M96 50 Q88 20 68 28 Q56 34 60 55 Q65 72 86 78 Q98 65 96 50Z" fill="#1a2080" opacity="0.85" clip-path="url(#bc)"/><polyline points="14,22 18,18 22,22 26,18 30,22" stroke="#00ddff" stroke-width="2" fill="none" opacity="0.9" clip-path="url(#bc)"/><polyline points="70,22 74,18 78,22 82,18 86,22" stroke="#00ddff" stroke-width="2" fill="none" opacity="0.9" clip-path="url(#bc)"/><rect x="44" y="36" width="4" height="18" rx="2" fill="#1a2080" opacity="0.9" clip-path="url(#bc)"/><rect x="49" y="32" width="4" height="24" rx="2" fill="#1a2080" opacity="0.9" clip-path="url(#bc)"/><rect x="54" y="36" width="4" height="18" rx="2" fill="#1a2080" opacity="0.9" clip-path="url(#bc)"/><ellipse cx="34" cy="32" rx="9" ry="5" fill="#fff" opacity="0.25"/></svg></div>
             <!-- Kaleci -->
-            <div id="futbolKaleci" style="position:absolute;right:18px;font-size:20px;transition:top 0.3s ease;">🧤</div>
+            <div id="futbolKaleci" style="position:absolute;right:18px;top:60px;font-size:20px;transition:top 0.3s ease;">🧤</div>
             <!-- Animasyon mesajı -->
             <div id="futbolAnimMsg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;opacity:0;transition:opacity 0.3s;pointer-events:none;"></div>
         </div>
@@ -5546,10 +5237,10 @@ function setLang(lang) {
         lockedUntil: { tr:'Henüz kilitli! Açılış:', en:'Still locked! Opens:', it:'Ancora bloccato! Apertura:', es:'¡Aún bloqueado! Apertura:', ka:'ჯერ ჩაკეტილია! გახსნა:', az:'Hələ kilidlənmiş! Açılış:', ja:'まだロック中! オープン:', zh:'仍被锁定! 开放:', de:'Noch gesperrt! Öffnet:', fr:'Encore verrouillé! Ouverture:', el:'Ακόμα κλειδωμένο! Άνοιγμα:', ru:'Ещё заблокировано! Открытие:', ar:'لا يزال مغلقاً! يفتح:', pt:'Ainda bloqueado! Abre:', uk:'Ще заблоковано! Відкриття:', fa:'هنوز قفل است! باز می‌شود:', ko:'아직 잠겨있음! 오픈:', nl:'Nog vergrendeld! Opent:', sv:'Fortfarande låst! Öppnar:', no:'Fortsatt låst! Åpner:', cs:'Stále uzamčeno! Otevírá:', bs:'Još uvijek zaključano! Otvara se:', hr:'Još uvijek zaključano! Otvara se:', uz:'Hali qulflangan! Ochiladi:', ht:'Toujou bloke! Ouvè:' },
         continueBtn: { tr:'→ Devam', en:'→ Continue', it:'→ Continua', es:'→ Continuar', ka:'→ გაგრძელება', az:'→ Davam', ja:'→ 続行', zh:'→ 继续', de:'→ Weiter', fr:'→ Continuer', el:'→ Συνέχεια', ru:'→ Дальше', ar:'→ متابعة', pt:'→ Continuar', uk:'→ Далі', fa:'→ ادامه', ko:'→ 계속', nl:'→ Doorgaan', sv:'→ Fortsätt', no:'→ Fortsett', cs:'→ Pokračovat', bs:'→ Nastavi', hr:'→ Nastavi', uz:'→ Davom etish', ht:'→ Kontinye' },
         confedName: { tr:'Bağımsız Avrupa Kupası', en:'Independent European Cup', it:'Coppa Europea Indipendente', es:'Copa Europea Independiente', ka:'დამოუკიდებელი ევროპის თასი', az:'Müstəqil Avropa Kuboku', ja:'独立ヨーロッパ杯', zh:'独立欧洲杯', de:'Unabhängiger Europa-Cup', fr:'Coupe d\u2019Europe Indépendante', el:'Ανεξάρτητο Κύπελλο Ευρώπης', ru:'Независимый Кубок Европы', ar:'كأس أوروبا المستقل', pt:'Copa Europeia Independente', uk:'Незалежний Кубок Європи', fa:'جام مستقل اروپا', ko:'독립 유럽컵', nl:'Onafhankelijke Europabeker', sv:'Oberoende Europacupen', no:'Uavhengig Europacupen', cs:'Nezávislý Evropský Pohár', bs:'Nezavisni Evropski Kup', hr:'Neovisni Europski Kup', uz:'Mustaqil Yevropa Kubogi', ht:'Koup Endepandan Ewopeyen' },
-        confedDesc: { tr:'6 takım · 2-7 Haziran 2026', en:'6 teams · June 2-7, 2026', it:'6 squadre · 2-7 Giugno 2026', es:'6 equipos · 2-7 Junio 2026', ka:'6 გუნდი · 2-7 ივნისი 2026', az:'6 komanda · 2-7 İyun 2026', ja:'6チーム · 2026年6月2-7日', zh:'6支队伍 · 2026年6月2-7日', de:'6 Teams · 2.-7. Juni 2026', fr:'6 équipes · 2-7 Juin 2026', el:'6 ομάδες · 2-7 Ιουνίου 2026', ru:'6 команд · 2-7 Июня 2026', ar:'6 فرق · 2-7 يونيو 2026', pt:'6 equipes · 2-7 Junho 2026', uk:'6 команд · 2-7 Червня 2026', fa:'۶ تیم · ۲-۷ ژوئن ۲۰۲۶', ko:'6개 팀 · 2026년 6월 2-7일', nl:'6 teams · 2-7 Juni 2026', sv:'6 lag · 2-7 Juni 2026', no:'6 lag · 2-7 Juni 2026', cs:'6 týmů · 2-7 Června 2026', bs:'6 timova · 2-7 Juna 2026', hr:'6 momčadi · 2-7 Lipnja 2026', uz:'6 jamoa · 2026-yil 2-7 iyun', ht:'6 ekip · 2-7 Jen 2026' },
+        confedDesc: { tr:'6 takım · 3-6 Haziran 2026', en:'6 teams · June 3-6, 2026', it:'6 squadre · 3-6 Giugno 2026', es:'6 equipos · 3-6 Junio 2026', ka:'6 გუნდი · 2-7 ივნისი 2026', az:'6 komanda · 2-7 İyun 2026', ja:'6チーム · 2026年6月3-6日', zh:'6支队伍 · 2026年6月3-6日', de:'6 Teams · 2.-7. Juni 2026', fr:'6 équipes · 3-6 Juin 2026', el:'6 ομάδες · 3-6 Ιουνίου 2026', ru:'6 команд · 3-6 Июня 2026', ar:'6 فرق · 2-7 يونيو 2026', pt:'6 equipes · 2-7 Junho 2026', uk:'6 команд · 3-6 Червня 2026', fa:'۶ تیم · ۲-۷ ژوئن ۲۰۲۶', ko:'6개 팀 · 2026년 6월 3-6일', nl:'6 teams · 3-6 Juni 2026', sv:'6 lag · 3-6 Juni 2026', no:'6 lag · 3-6 Juni 2026', cs:'6 týmů · 2-7 Června 2026', bs:'6 timova · 3-6 Juna 2026', hr:'6 momčadi · 3-6 Lipnja 2026', uz:'6 jamoa · 2026-yil 3-6 iyun', ht:'6 ekip · 3-6 Jen 2026' },
         confedTitle: { tr:'BAĞIMSIZ AVRUPA KUPASI 2026', en:'INDEPENDENT EUROPEAN CUP 2026', it:'COPPA EUROPEA INDIPENDENTE 2026', es:'COPA EUROPEA INDEPENDIENTE 2026', ka:'დამოუკიდებელი ევროპის თასი 2026', az:'MÜSTƏQİL AVROPA KUBOKU 2026', ja:'独立ヨーロッパ杯 2026', zh:'独立欧洲杯 2026', de:'UNABHÄNGIGER EUROPA-CUP 2026', fr:'COUPE D\u2019EUROPE INDÉPENDANTE 2026', el:'ΑΝΕΞΑΡΤΗΤΟ ΚΥΠΕΛΛΟ ΕΥΡΩΠΗΣ 2026', ru:'НЕЗАВИСИМЫЙ КУБОК ЕВРОПЫ 2026', ar:'كأس أوروبا المستقل 2026', pt:'COPA EUROPEIA INDEPENDENTE 2026', uk:'НЕЗАЛЕЖНИЙ КУБОК ЄВРОПИ 2026', fa:'جام مستقل اروپا ۲۰۲۶', ko:'독립 유럽컵 2026', nl:'ONAFHANKELIJKE EUROPABEKER 2026', sv:'OBEROENDE EUROPACUPEN 2026', no:'UAVHENGIG EUROPACUPEN 2026', cs:'NEZÁVISLÝ EVROPSKÝ POHÁR 2026', bs:'NEZAVISNI EVROPSKI KUP 2026', hr:'NEOVISNI EUROPSKI KUP 2026', uz:'MUSTAQIL YEVROPA KUBOGI 2026', ht:'KOUP ENDEPANDAN EWOPEYEN 2026' },
         confedSelectCountry: { tr:'⚽ Takımını seç:', en:'⚽ Choose your team:', it:'⚽ Scegli la tua squadra:', es:'⚽ Elige tu equipo:', ka:'⚽ აირჩიე გუნდი:', az:'⚽ Komandanı seç:', ja:'⚽ チームを選択:', zh:'⚽ 选择你的球队:', de:'⚽ Wähle dein Team:', fr:'⚽ Choisis ton équipe:', el:'⚽ Επίλεξε ομάδα:', ru:'⚽ Выбери команду:', ar:'⚽ اختر فريقك:', pt:'⚽ Escolha sua equipe:', uk:'⚽ Обери команду:', fa:'⚽ تیم خود را انتخاب کنید:', ko:'⚽ 팀 선택:', nl:'⚽ Kies je team:', sv:'⚽ Välj ditt lag:', no:'⚽ Velg ditt lag:', cs:'⚽ Vyber svůj tým:', bs:'⚽ Odaberi svoj tim:', hr:'⚽ Odaberi svoju momčad:', uz:'⚽ Jamoangizni tanlang:', ht:'⚽ Chwazi ekip ou:' },
-        confedInfo: { tr:'6 takım · A & B grubu · 2-7 Haziran 2026', en:'6 teams · Group A & B · June 2-7, 2026', it:'6 squadre · Gruppo A & B · 2-7 Giugno 2026', es:'6 equipos · Grupo A & B · 2-7 Junio 2026', ka:'6 გუნდი · A & B ჯგუფი · 2-7 ივნისი 2026', az:'6 komanda · A & B qrupu · 2-7 İyun 2026', ja:'6チーム · グループA & B · 6月2-7日', zh:'6支队伍 · A & B组 · 6月2-7日', de:'6 Teams · Gruppe A & B · 2.-7. Juni', fr:'6 équipes · Groupe A & B · 2-7 Juin', el:'6 ομάδες · Όμιλος A & B · 2-7 Ιουνίου', ru:'6 команд · Группа A & B · 2-7 Июня', ar:'6 فرق · المجموعة A & B · 2-7 يونيو', pt:'6 equipes · Grupo A & B · 2-7 Junho', uk:'6 команд · Група A & B · 2-7 Червня', fa:'۶ تیم · گروه A & B · ۲-۷ ژوئن', ko:'6개 팀 · A & B 그룹 · 6월 2-7일', nl:'6 teams · Groep A & B · 2-7 Juni', sv:'6 lag · Grupp A & B · 2-7 Juni', no:'6 lag · Gruppe A & B · 2-7 Juni', cs:'6 týmů · Skupina A & B · 2-6 Června', bs:'6 timova · Grupa A & B · 2-7 Juna', hr:'6 momčadi · Skupina A & B · 2-7 Lipnja', uz:'6 jamoa · A & B guruhi · 2-7 iyun', ht:'6 ekip · Gwoup A & B · 2-7 Jen' },
+        confedInfo: { tr:'6 takım · A & B grubu · 3-6 Haziran 2026', en:'6 teams · Group A & B · June 3-6, 2026', it:'6 squadre · Gruppo A & B · 3-6 Giugno 2026', es:'6 equipos · Grupo A & B · 3-6 Junio 2026', ka:'6 გუნდი · A & B ჯგუფი · 2-7 ივნისი 2026', az:'6 komanda · A & B qrupu · 2-7 İyun 2026', ja:'6チーム · グループA & B · 6月3-6日', zh:'6支队伍 · A & B组 · 6月3-6日', de:'6 Teams · Gruppe A & B · 2.-7. Juni', fr:'6 équipes · Groupe A & B · 3-6 Juin', el:'6 ομάδες · Όμιλος A & B · 3-6 Ιουνίου', ru:'6 команд · Группа A & B · 3-6 Июня', ar:'6 فرق · المجموعة A & B · 2-7 يونيو', pt:'6 equipes · Grupo A & B · 2-7 Junho', uk:'6 команд · Група A & B · 3-6 Червня', fa:'۶ تیم · گروه A & B · ۲-۷ ژوئن', ko:'6개 팀 · A & B 그룹 · 6월 3-6일', nl:'6 teams · Groep A & B · 3-6 Juni', sv:'6 lag · Grupp A & B · 3-6 Juni', no:'6 lag · Gruppe A & B · 3-6 Juni', cs:'6 týmů · Skupina A & B · 3-6 Června', bs:'6 timova · Grupa A & B · 3-6 Juna', hr:'6 momčadi · Skupina A & B · 3-6 Lipnja', uz:'6 jamoa · A & B guruhi · 3-6 iyun', ht:'6 ekip · Gwoup A & B · 3-6 Jen' },
         confedDuration: { tr:'⏱️ Maç Süresi:', en:'⏱️ Match Duration:', it:'⏱️ Durata Partita:', es:'⏱️ Duración del Partido:', ka:'⏱️ მატჩის ხანგრძლივობა:', az:'⏱️ Oyun Müddəti:', ja:'⏱️ 試合時間:', zh:'⏱️ 比赛时长:', de:'⏱️ Spieldauer:', fr:'⏱️ Durée du Match:', el:'⏱️ Διάρκεια Αγώνα:', ru:'⏱️ Длительность матча:', ar:'⏱️ مدة المباراة:', pt:'⏱️ Duração da Partida:', uk:'⏱️ Тривалість матчу:', fa:'⏱️ مدت بازی:', ko:'⏱️ 경기 시간:', nl:'⏱️ Wedstrijdduur:', sv:'⏱️ Matchtid:', no:'⏱️ Kampens varighet:', cs:'⏱️ Délka zápasu:', bs:'⏱️ Trajanje utakmice:', hr:'⏱️ Trajanje utakmice:', uz:'⏱️ O\u2019yin davomiyligi:', ht:'⏱️ Dire Match:' },
         penaltyBadge: { tr:'RUSYA HAZIRLIK MAÇLARI', en:'RUSSIA FRIENDLY MATCHES', it:'AMICHEVOLI RUSSIA', es:'AMISTOSOS RUSIA', ka:'რუსეთის სამეგობრო თამაშები', az:'RUSİYA HAZIRLIQ OYUNLARI', ja:'ロシア親善試合', zh:'俄罗斯友谊赛', de:'RUSSLAND FREUNDSCHAFTSSPIELE', fr:'MATCHS AMICAUX RUSSIE', el:'ΦΙΛΙΚΟΙ ΡΩΣΙΑΣ', ru:'ТОВАРИЩЕСКИЕ МАТЧИ РОССИИ', ar:'مباريات ودية روسيا', pt:'AMISTOSOS RÚSSIA', uk:'ТОВАРИСЬКІ МАТЧІ РОСІЇ', fa:'بازی\u200cهای دوستانه روسیه', ko:'러시아 친선 경기', nl:'RUSLAND OEFENWEDSTRIJDEN', sv:'RYSSLAND VÄNSKAPSMATCHER', no:'RUSSLAND VENNSKAPSKAMPER', cs:'PŘÁTELSKÉ ZÁPASY RUSKA', bs:'PRIJATELJSKE UTAKMICE RUSIJE', hr:'PRIJATELJSKE UTAKMICE RUSIJE', uz:'ROSSIYA DO\u2019STLIK O\u2019YINLARI', ht:'MATCH AMIKAL RISI' },
         futbolName: { tr:'Rusya Hazırlık Maçları', en:'Russia Friendly Matches', it:'Amichevoli Russia', es:'Amistosos Rusia', ka:'რუსეთის სამეგობრო თამაშები', az:'Rusiya Hazırlıq Oyunları', ja:'ロシア親善試合', zh:'俄罗斯友谊赛', de:'Russland Freundschaftsspiele', fr:'Matchs Amicaux Russie', el:'Φιλικοί Ρωσίας', ru:'Товарищеские матчи России', ar:'مباريات ودية روسيا', pt:'Amistosos Rússia', uk:'Товариські матчі Росії', fa:'بازی\u200cهای دوستانه روسیه', ko:'러시아 친선 경기', nl:'Rusland Oefenwedstrijden', sv:'Ryssland Vänskapsmatcher', no:'Russland Vennskapskamper', cs:'Přátelské zápasy Ruska', bs:'Prijateljske utakmice Rusije', hr:'Prijateljske utakmice Rusije', uz:'Rossiya do\u2019stlik o\u2019yinlari', ht:'Match Amikal Risi' },
@@ -5732,7 +5423,7 @@ function selectMode(mode) {
     } else if (mode === 'futbol') {
         setDisplay('modeScreen','none');
         setDisplay('futbolDiffScreen','flex');
-        setTimeout(autoClosePastFriendlyMatches, 50);
+        setTimeout(onFriendlyScreenOpen, 50);
     } else if (mode === 'hiz') {
         setDisplay('modeScreen','none');
         setDisplay('hizDiffScreen','flex');
@@ -5761,18 +5452,6 @@ function checkEuro28() {
         return;
     }
     alert('🏆 Avrupa Şampiyonası 2028 yakında!');
-}
-
-// 🏆 Avrupa Süper Kupası — 12 Ağustos 2026 22:00
-function checkSuperCup() {
-    const now = new Date();
-    const open = new Date('2026-08-12T22:00:00+03:00');
-    if (now < open) {
-        const locked = window._lockedUntilText || 'Henüz kilitli! Açılış:';
-        alert('🔒 ' + locked + ' 12.08.2026 22:00\n🇫🇷 Paris FC vs 🇬🇧 Birmingham United');
-        return;
-    }
-    alert('🏆 Avrupa Süper Kupası yakında!');
 }
 
 // 🌍 Dünya Kupası ve Bağımsız Avrupa Kupası canlı geri sayım
@@ -8178,16 +7857,16 @@ document.addEventListener('keydown',e=>{
 // ══════════ HAZIRLIK MAÇLARI SİSTEMİ ══════════
 const FRIENDLY_MATCHES = {
     rus_msr: {
-        opponent: { flag:'🇪🇬', name:'Mısır',            diff:'medium', guessTime:15 },
-        nameKey: 'friendlyMsr',
+        opponent: { flag:'🇪🇬', name:'Mısır', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CE1126"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'rus_msr', home: { flag:'🇷🇺', name:'Rusya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#003DA5"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg>' },
     },
     rus_bfa: {
-        opponent: { flag:'🇧🇫', name:'Burkina Faso',     diff:'medium', guessTime:15 },
-        nameKey: 'friendlyBfa',
+        opponent: { flag:'🇧🇫', name:'Burkina Faso', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#EF2B2D"/><rect y="10" width="30" height="10" fill="#009A00"/><circle cx="15" cy="10" r="4" fill="#FCD116"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'rus_bfa', home: { flag:'🇷🇺', name:'Rusya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#003DA5"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg>' },
     },
     rus_tnt: {
-        opponent: { flag:'🇹🇹', name:'Trinidad ve Tobago', diff:'easy', guessTime:20 },
-        nameKey: 'friendlyTnt',
+        opponent: { flag:'🇹🇹', name:'Trinidad ve Tobago', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#CE1126"/><line x1="0" y1="20" x2="30" y2="0" stroke="#000" stroke-width="4"/><line x1="0" y1="20" x2="30" y2="0" stroke="#fff" stroke-width="6"/><line x1="0" y1="20" x2="30" y2="0" stroke="#000" stroke-width="3"/></svg>', diff:'easy', guessTime:20 },
+        nameKey: 'rus_tnt', home: { flag:'🇷🇺', name:'Rusya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#003DA5"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg>' },
     },
     // --- Yeni maçlar ---
     tur_mkd: {
@@ -8215,39 +7894,39 @@ const FRIENDLY_MATCHES = {
         nameKey: 'wal_gha', home: { flag:'🏴󠁧󠁢󠁷󠁬󠁳󠁿', name:'Galler', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#00B140"/><rect y="5" width="30" height="4" fill="#fff"/><rect y="11" width="30" height="4" fill="#fff"/><rect x="8" width="14" height="20" fill="#CE1126"/></svg>' },
     },
     pol_nga: {
-        opponent: { flag:'🇳🇬', name:'Nijerya', diff:'medium', guessTime:15 },
+        opponent: { flag:'🇳🇬', name:'Nijerya', diff:'medium', guessTime:15 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#008751"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#008751"/><circle cx="15" cy="10" r="4" fill="#008751"/></svg>' },
         nameKey: 'pol_nga', home: { flag:'🇵🇱', name:'Polonya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#DC143C"/></svg>' },
     },
     ned_alg: {
-        opponent: { flag:'🇩🇿', name:'Cezayir', diff:'medium', guessTime:15 },
+        opponent: { flag:'🇩🇿', name:'Cezayir', diff:'medium', guessTime:15 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="15" height="20" fill="#006233"/><rect x="15" width="15" height="20" fill="#fff"/><circle cx="12" cy="10" r="5" fill="#D21034"/></svg>' },
         nameKey: 'ned_alg', home: { flag:'🇳🇱', name:'Hollanda', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg>' },
     },
     lux_ita: {
-        opponent: { flag:'🇮🇹', name:'İtalya', diff:'hard', guessTime:12 },
+        opponent: { flag:'🇮🇹', name:'İtalya', diff:'hard', guessTime:12 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#009246"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#CE2B37"/></svg>' },
         nameKey: 'lux_ita', home: { flag:'🇱🇺', name:'Lüksemburg', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#EF3340"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#009F6B"/></svg>' },
     },
     svn_cyp: {
-        opponent: { flag:'🇨🇾', name:'Kıbrıs', diff:'easy', guessTime:20 },
+        opponent: { flag:'🇨🇾', name:'Kıbrıs', diff:'easy', guessTime:20 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><ellipse cx="15" cy="8" rx="7" ry="5" fill="#D57800"/></svg>' },
         nameKey: 'svn_cyp', home: { flag:'🇸🇮', name:'Slovenya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#003DA5"/><rect y="7" width="30" height="6" fill="#fff"/><rect x="12" width="6" height="20" fill="#fff"/></svg>' },
     },
     esp_irq: {
-        opponent: { flag:'🇮🇶', name:'Irak', diff:'medium', guessTime:15 },
+        opponent: { flag:'🇮🇶', name:'Irak', diff:'medium', guessTime:15 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#000"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#CE1126"/></svg>' },
         nameKey: 'esp_irq', home: { flag:'🇪🇸', name:'İspanya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AA151B"/><rect y="7" width="30" height="6" fill="#F1BF00"/><rect y="13" width="30" height="7" fill="#AA151B"/></svg>' },
     },
     fra_civ: {
-        opponent: { flag:'🇨🇮', name:'Fildişi Sahili', diff:'medium', guessTime:15 },
+        opponent: { flag:'🇨🇮', name:'Fildişi Sahili', diff:'medium', guessTime:15 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#F77F00"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#009A44"/></svg>' },
         nameKey: 'fra_civ', home: { flag:'🇫🇷', name:'Fransa', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg>' },
     },
     cze_gua: {
-        opponent: { flag:'🇬🇹', name:'Guatemala', diff:'easy', guessTime:20 },
+        opponent: { flag:'🇬🇹', name:'Guatemala', diff:'easy', guessTime:20 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#4997D0"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#4997D0"/></svg>' },
         nameKey: 'cze_gua', home: { flag:'🇨🇿', name:'Çekya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#D7141A"/><rect width="12" height="20" fill="#11457E"/></svg>' },
     },
     mex_srb: {
-        opponent: { flag:'🇷🇸', name:'Sırbistan', diff:'medium', guessTime:15 },
+        opponent: { flag:'🇷🇸', name:'Sırbistan', diff:'medium', guessTime:15 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#C6363C"/><rect x="10" width="10" height="20" fill="#0C4076"/><rect x="20" width="10" height="20" fill="#C6363C"/></svg>' },
         nameKey: 'mex_srb', home: { flag:'🇲🇽', name:'Meksika', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg>' },
     },
     ven_tur: {
-        opponent: { flag:'🇹🇷', name:'Türkiye', diff:'medium', guessTime:15 },
+        opponent: { flag:'🇹🇷', name:'Türkiye', diff:'medium', guessTime:15 , flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#E30A17"/><circle cx="21" cy="10" r="5" fill="#fff"/><circle cx="23" cy="10" r="4" fill="#E30A17"/><polygon points="21,5.5 22,8 24.5,8 22.5,9.5 23.3,12 21,10.5 18.7,12 19.5,9.5 17.5,8 20,8" fill="#fff"/></svg>' },
         nameKey: 'ven_tur', home: { flag:'🇻🇪', name:'Venezuela', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CF142B"/><rect y="7" width="30" height="6" fill="#FFD100"/><rect y="13" width="30" height="7" fill="#003893"/></svg>' },
     },
     por_chi: {
@@ -8388,106 +8067,424 @@ const FRIENDLY_OPP_NAMES = {
     per_esp: { tr:'İspanya', en:'İspanya', de:'İspanya', fr:'İspanya', es:'İspanya', it:'İspanya', ru:'İspanya', ar:'İspanya', pt:'İspanya', uk:'İspanya' },
     fra_nir: { tr:'Kuzey İrlanda', en:'Kuzey İrlanda', de:'Kuzey İrlanda', fr:'Kuzey İrlanda', es:'Kuzey İrlanda', it:'Kuzey İrlanda', ru:'Kuzey İrlanda', ar:'Kuzey İrlanda', pt:'Kuzey İrlanda', uk:'Kuzey İrlanda' },
     ned_ozb: { tr:'Özbekistan', en:'Özbekistan', de:'Özbekistan', fr:'Özbekistan', es:'Özbekistan', it:'Özbekistan', ru:'Özbekistan', ar:'Özbekistan', pt:'Özbekistan', uk:'Özbekistan' },
-    tur_ger_u: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#000\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#DD0000\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#FFCE00\"/></svg>', name:'Almanya U21', diff:'hard', guessTime:12 }, nameKey: 'tur_ger_u', home: { flag:'🏳', name:'Türkiye U21', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 900 600\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"900\" height=\"600\" fill=\"#e30a17\"/><circle cx=\"425\" cy=\"300\" r=\"120\" fill=\"#fff\"/><circle cx=\"465\" cy=\"300\" r=\"96\" fill=\"#e30a17\"/><polygon points=\"583,300 600,253 608,302 655,317 612,325 615,374 583,338 552,374 555,325 511,317 558,302 567,253\" fill=\"#fff\"/></svg>' } },
-    fra_alb11: { opponent: { flag:'AL', name:'Arnavutluk', diff:'easy', guessTime:20 }, nameKey: 'fra_alb11', home: { flag:'🏳', name:'Fransa', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"10\" height=\"20\" fill=\"#002395\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#ED2939\"/></svg>' } },
     aut_gua11: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#4997D0\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#4997D0\"/></svg>', name:'Guatemala', diff:'easy', guessTime:20 }, nameKey: 'aut_gua11', home: { flag:'🏳', name:'Avusturya', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#ED2939\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#ED2939\"/></svg>' } },
-    ita_alb_u21: { opponent: { flag:'AL', name:'Arnavutluk U21', diff:'easy', guessTime:20 }, nameKey: 'ita_alb_u21', home: { flag:'🏳', name:'İtalya U21', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"10\" height=\"20\" fill=\"#009246\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#CE2B37\"/></svg>' } },
-    nor_fin_u21: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"20\" fill=\"#fff\"/><rect x=\"10\" width=\"4\" height=\"20\" fill=\"#003580\"/><rect y=\"8\" width=\"30\" height=\"4\" fill=\"#003580\"/></svg>', name:'Finlandiya U21', diff:'easy', guessTime:20 }, nameKey: 'nor_fin_u21', home: { flag:'🏳', name:'Norveç U21', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"20\" fill=\"#EF2B2D\"/><rect x=\"10\" width=\"4\" height=\"20\" fill=\"#fff\"/><rect y=\"8\" width=\"30\" height=\"4\" fill=\"#fff\"/><rect x=\"11\" width=\"2\" height=\"20\" fill=\"#003087\"/><rect y=\"9\" width=\"30\" height=\"2\" fill=\"#003087\"/></svg>' } },
-    hrv_svn_u21: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#fff\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#003DA5\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#CE1126\"/></svg>', name:'Slovenya', diff:'medium', guessTime:15 }, nameKey: 'hrv_svn_u21', home: { flag:'🏳', name:'Hırvatistan', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#FF0000\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#0000AA\"/></svg>' } },
-    ned_ozb11: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#1EB53A\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#CE1126\"/></svg>', name:'Özbekistan', diff:'medium', guessTime:15 }, nameKey: 'ned_ozb11', home: { flag:'🏳', name:'Hollanda', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#AE1C28\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#21468B\"/></svg>' } },
-    fra_nir11: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"20\" fill=\"#fff\"/><rect x=\"13\" width=\"4\" height=\"20\" fill=\"#CF0921\"/><rect y=\"8\" width=\"30\" height=\"4\" fill=\"#CF0921\"/></svg>', name:'Kuzey İrlanda', diff:'easy', guessTime:20 }, nameKey: 'fra_nir11', home: { flag:'🏳', name:'Fransa', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"10\" height=\"20\" fill=\"#002395\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#ED2939\"/></svg>' } },
-    per_esp12: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#AA151B\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#F1BF00\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#AA151B\"/></svg>', name:'İspanya', diff:'hard', guessTime:12 }, nameKey: 'per_esp12', home: { flag:'🏳', name:'Peru', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"10\" height=\"20\" fill=\"#D91023\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#D91023\"/></svg>' } },
-    arg_isl12: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"20\" fill=\"#003897\"/><rect x=\"10\" width=\"4\" height=\"20\" fill=\"#fff\"/><rect y=\"8\" width=\"30\" height=\"4\" fill=\"#fff\"/><rect x=\"11\" width=\"2\" height=\"20\" fill=\"#D72828\"/><rect y=\"9\" width=\"30\" height=\"2\" fill=\"#D72828\"/></svg>', name:'İzlanda', diff:'medium', guessTime:15 }, nameKey: 'arg_isl12', home: { flag:'🏳', name:'Arjantin', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#74ACDF\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#74ACDF\"/></svg>' } },
-    por_nga12: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#008751\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#008751\"/></svg>', name:'Nijerya', diff:'medium', guessTime:15 }, nameKey: 'por_nga12', home: { flag:'🏳', name:'Portekiz', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"11\" height=\"20\" fill=\"#006600\"/><rect x=\"11\" width=\"19\" height=\"20\" fill=\"#FF0000\"/></svg>' } },
-    col_jor12: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#007A3D\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#000\"/><polygon points=\"0,0 12,10 0,20\" fill=\"#CE1126\"/></svg>', name:'Ürdün', diff:'easy', guessTime:20 }, nameKey: 'col_jor12', home: { flag:'🏳', name:'Kolombiya', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#FCD116\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#003087\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#CE1126\"/></svg>' } },
-    sau_sen12: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"10\" height=\"20\" fill=\"#00853F\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#FDEF42\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#E31B23\"/></svg>', name:'Senegal', diff:'medium', guessTime:15 }, nameKey: 'sau_sen12', home: { flag:'🏳', name:'Suudi Arabistan', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"20\" fill=\"#006C35\"/></svg>' } },
-    bra_egy12: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#CE1126\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#000\"/></svg>', name:'Mısır', diff:'medium', guessTime:15 }, nameKey: 'bra_egy12', home: { flag:'🏳', name:'Brezilya', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"20\" fill=\"#009C3B\"/><polygon points=\"15,2 28,10 15,18 2,10\" fill=\"#FEDF00\"/><circle cx=\"15\" cy=\"10\" r=\"4\" fill=\"#002776\"/></svg>' } },
-    pol_nga_u21: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#008751\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#008751\"/></svg>', name:'Nijerya U21', diff:'medium', guessTime:15 }, nameKey: 'pol_nga_u21', home: { flag:'🏳', name:'Polonya U21', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"10\" fill=\"#fff\"/><rect y=\"10\" width=\"30\" height=\"10\" fill=\"#DC143C\"/></svg>' } },
-    ger_ukr_u21: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"10\" fill=\"#005BBB\"/><rect y=\"10\" width=\"30\" height=\"10\" fill=\"#FFD500\"/></svg>', name:'Ukrayna U21', diff:'medium', guessTime:15 }, nameKey: 'ger_ukr_u21', home: { flag:'🏳', name:'Almanya U21', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#000\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#DD0000\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#FFCE00\"/></svg>' } },
-    esp_hun_u21: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#CE2939\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#fff\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#436F4D\"/></svg>', name:'Macaristan U21', diff:'medium', guessTime:15 }, nameKey: 'esp_hun_u21', home: { flag:'🏳', name:'İspanya U21', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#AA151B\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#F1BF00\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#AA151B\"/></svg>' } },
-    eng_svk_u21: { opponent: { flag:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"7\" fill=\"#fff\"/><rect y=\"7\" width=\"30\" height=\"6\" fill=\"#003DA5\"/><rect y=\"13\" width=\"30\" height=\"7\" fill=\"#CE1126\"/></svg>', name:'Slovakya U21', diff:'medium', guessTime:15 }, nameKey: 'eng_svk_u21', home: { flag:'🏳', name:'İngiltere U21', flagSvg:'<svg width=\"20\" height=\"14\" viewBox=\"0 0 30 20\" style=\"vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;\"><rect width=\"30\" height=\"20\" fill=\"#fff\"/><rect x=\"13\" width=\"4\" height=\"20\" fill=\"#CF0921\"/><rect y=\"8\" width=\"30\" height=\"4\" fill=\"#CF0921\"/></svg>' } },
-    tur_ger_u: { tr:'Almanya U21', en:'Germany U21', de:'Deutschland U21', fr:'Allemagne U21', es:'Alemania U21', it:'Germania U21', ru:'Германия U21', ar:'ألمانيا U21', pt:'Alemanha U21', uk:'Німеччина U21' },
-    fra_alb11: { tr:'Arnavutluk', en:'Albania', de:'Albanien', fr:'Albanie', es:'Albania', it:'Albania', ru:'Албания', ar:'ألبانيا', pt:'Albânia', uk:'Албанія' },
     aut_gua11: { tr:'Guatemala', en:'Guatemala', de:'Guatemala', fr:'Guatemala', es:'Guatemala', it:'Guatemala', ru:'Гватемала', ar:'غواتيمالا', pt:'Guatemala', uk:'Гватемала' },
-    ita_alb_u21: { tr:'Arnavutluk U21', en:'Albania U21', de:'Albanien U21', fr:'Albanie U21', es:'Albania U21', it:'Albania U21', ru:'Албания U21', ar:'ألبانيا U21', pt:'Albânia U21', uk:'Албанія U21' },
-    nor_fin_u21: { tr:'Finlandiya U21', en:'Finland U21', de:'Finnland U21', fr:'Finlande U21', es:'Finlandia U21', it:'Finlandia U21', ru:'Финляндия U21', ar:'فنلندا U21', pt:'Finlândia U21', uk:'Фінляндія U21' },
-    hrv_svn_u21: { tr:'Slovenya', en:'Slovenia', de:'Slowenien', fr:'Slovénie', es:'Eslovenia', it:'Slovenia', ru:'Словения', ar:'سلوفينيا', pt:'Eslovênia', uk:'Словенія' },
-    ned_ozb11: { tr:'Özbekistan', en:'Uzbekistan', de:'Usbekistan', fr:'Ouzbékistan', es:'Uzbekistán', it:'Uzbekistan', ru:'Узбекистан', ar:'أوزبكستان', pt:'Uzbequistão', uk:'Узбекистан' },
-    fra_nir11: { tr:'Kuzey İrlanda', en:'N. Ireland', de:'Nordirland', fr:'Irlande du Nord', es:'Irlanda del Norte', it:'Irlanda del Nord', ru:'Северная Ирландия', ar:'أيرلندا الشمالية', pt:'Irlanda do Norte', uk:'Північна Ірландія' },
-    per_esp12: { tr:'İspanya', en:'Spain', de:'Spanien', fr:'Espagne', es:'España', it:'Spagna', ru:'Испания', ar:'إسبانيا', pt:'Espanha', uk:'Іспанія' },
-    arg_isl12: { tr:'İzlanda', en:'Iceland', de:'Island', fr:'Islande', es:'Islandia', it:'Islanda', ru:'Исландия', ar:'آيسلندا', pt:'Islândia', uk:'Ісландія' },
-    por_nga12: { tr:'Nijerya', en:'Nigeria', de:'Nigeria', fr:'Nigéria', es:'Nigeria', it:'Nigeria', ru:'Нигерия', ar:'نيجيريا', pt:'Nigéria', uk:'Нігерія' },
-    col_jor12: { tr:'Ürdün', en:'Jordan', de:'Jordanien', fr:'Jordanie', es:'Jordania', it:'Giordania', ru:'Иордания', ar:'الأردن', pt:'Jordânia', uk:'Йорданія' },
-    sau_sen12: { tr:'Senegal', en:'Senegal', de:'Senegal', fr:'Sénégal', es:'Senegal', it:'Senegal', ru:'Сенегал', ar:'السنغال', pt:'Senegal', uk:'Сенegal' },
-    bra_egy12: { tr:'Mısır', en:'Egypt', de:'Ägypten', fr:'Égypte', es:'Egipto', it:'Egitto', ru:'Египет', ar:'مصر', pt:'Egito', uk:'Єгипет' },
-    pol_nga_u21: { tr:'Nijerya U21', en:'Nigeria U21', de:'Nigeria U21', fr:'Nigéria U21', es:'Nigeria U21', it:'Nigeria U21', ru:'Нигерия U21', ar:'نيجيريا U21', pt:'Nigéria U21', uk:'Нігерія U21' },
-    ger_ukr_u21: { tr:'Ukrayna U21', en:'Ukraine U21', de:'Ukraine U21', fr:'Ukraine U21', es:'Ucrania U21', it:'Ucraina U21', ru:'Украина U21', ar:'أوكرانيا U21', pt:'Ucrânia U21', uk:'Україна U21' },
-    esp_hun_u21: { tr:'Macaristan U21', en:'Hungary U21', de:'Ungarn U21', fr:'Hongrie U21', es:'Hungría U21', it:'Ungheria U21', ru:'Венгрия U21', ar:'المجر U21', pt:'Hungria U21', uk:'Угорщина U21' },
-    eng_svk_u21: { tr:'Slovakya U21', en:'Slovakia U21', de:'Slowakei U21', fr:'Slovaquie U21', es:'Eslovaquia U21', it:'Slovacchia U21', ru:'Словакия U21', ar:'سلوفاكيا U21', pt:'Eslováquia U21', uk:'Словаччина U21' },
+    // ── Fikstür listesi için ek maçlar ──
+    gal_gana:   { opponent: { flag:'🇬🇭', name:'Gana', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#006B3F"/><rect y="7" width="30" height="6" fill="#FCD116"/><rect y="13" width="30" height="7" fill="#CE1126"/><polygon points="15,7.5 16.2,10.8 19.7,10.8 17,12.8 18.1,16.2 15,14.2 11.9,16.2 13,12.8 10.3,10.8 13.8,10.8" fill="#000"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'gal_gana', home: { flag:'🏴󠁧󠁢󠁷󠁬󠁳󠁿', name:'Galler', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#C8102E"/></svg>' } },
+    fra_alb11:  { opponent: { flag:'🇦🇱', name:'Arnavutluk', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#E41E20"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'fra_alb11', home: { flag:'🇫🇷', name:'Fransa', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg>' } },
+    ned_ozb11:  { opponent: { flag:'🇺🇿', name:'Özbekistan', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#1EB53A"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#0099B5"/></svg>', diff:'easy', guessTime:20 },
+        nameKey: 'ned_ozb11', home: { flag:'🇳🇱', name:'Hollanda', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg>' } },
+    fra_nir11:  { opponent: { flag:'🇬🇧', name:'Kuzey İrlanda', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#012169"/><polygon points="0,0 30,20 30,0 0,20" fill="#C8102E" stroke="#fff" stroke-width="2"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'fra_nir11', home: { flag:'🇫🇷', name:'Fransa', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg>' } },
+    per_esp12:  { opponent: { flag:'🇪🇸', name:'İspanya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#AA151B"/><rect y="7" width="30" height="6" fill="#F1BF00"/><rect y="13" width="30" height="7" fill="#AA151B"/></svg>', diff:'hard', guessTime:12 },
+        nameKey: 'per_esp12', home: { flag:'🇵🇪', name:'Peru', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#D91023"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#D91023"/></svg>' } },
+    arg_isl12:  { opponent: { flag:'🇮🇸', name:'İzlanda', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#003897"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="11" width="2" height="20" fill="#D72828"/><rect y="9" width="30" height="2" fill="#D72828"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'arg_isl12', home: { flag:'🇦🇷', name:'Arjantin', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#74ACDF"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#74ACDF"/></svg>' } },
+    por_nga12:  { opponent: { flag:'🇳🇬', name:'Nijerya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#008751"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#008751"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'por_nga12', home: { flag:'🇵🇹', name:'Portekiz', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="11" height="20" fill="#006600"/><rect x="11" width="19" height="20" fill="#FF0000"/></svg>' } },
+    col_jor12:  { opponent: { flag:'🇯🇴', name:'Ürdün', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#007A3D"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/><polygon points="0,0 12,10 0,20" fill="#CE1126"/></svg>', diff:'easy', guessTime:20 },
+        nameKey: 'col_jor12', home: { flag:'🇨🇴', name:'Kolombiya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="8" fill="#FCD116"/><rect y="8" width="30" height="6" fill="#003087"/><rect y="14" width="30" height="6" fill="#CE1126"/></svg>' } },
+    sau_sen12:  { opponent: { flag:'🇸🇳', name:'Senegal', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="10" height="20" fill="#00853F"/><rect x="10" width="10" height="20" fill="#FDEF42"/><rect x="20" width="10" height="20" fill="#E31B23"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'sau_sen12', home: { flag:'🇸🇦', name:'Suudi Arabistan', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#006C35"/></svg>' } },
+    bra_egy12:  { opponent: { flag:'🇪🇬', name:'Mısır', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="7" fill="#CE1126"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#000"/></svg>', diff:'medium', guessTime:15 },
+        nameKey: 'bra_egy12', home: { flag:'🇧🇷', name:'Brezilya', flagSvg:'<svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#009C3B"/><polygon points="15,2 28,10 15,18 2,10" fill="#FEDF00"/><circle cx="15" cy="10" r="4" fill="#002776"/></svg>' } },
 };
 
 
-// ══════ CANLI SKOR SİSTEMİ ══════
-// Maç saatlerini biliyoruz - saat geçince "bitti" göster, API'den skor çek
+
+// ══════ THESPORTSDB API - CANLI SKOR SİSTEMİ ══════
+// API: https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d=DATE&l=4562
+// Free tier: 30 istek/dk | Güncelleme: maç bittikten 10dk sonra, sonra her 2 saatte bir
+// ──────────────────────────────────────────────────────────────────────────────
+
+const TSDB_API    = 'https://www.thesportsdb.com/api/v1/json/123';
+const TSDB_LEAGUE = '4562'; // International Friendlies
+
+// Rate limit: dakikada max 25 istek (güvenli pay, 30'dan düşük)
+const TSDB_RATE = { count: 0, resetAt: 0, MAX: 25 };
+
+function tsdbCanRequest() {
+    var now = Date.now();
+    if (now > TSDB_RATE.resetAt) { TSDB_RATE.count = 0; TSDB_RATE.resetAt = now + 60000; }
+    return TSDB_RATE.count < TSDB_RATE.MAX;
+}
+function tsdbMarkRequest() { TSDB_RATE.count++; }
+
+// Cache: { 'YYYY-MM-DD': { data: [...], fetchedAt: timestamp } }
+var _tsdbCache = {};
+
+// Biten maç skorları: { matchId: 'X-Y' }
+var FRIENDLY_SCORES = {
+    // ✅ 28 Mayıs
+    'rus_msr':  '0-1',  // Mısır 1-0 Rusya (deplasman ev)
+    // ✅ 1 Haziran
+    'tur_mkd':  '4-0',  // Türkiye 4-0 K.Makedonya
+    'nor_swe':  '3-1',  // Norveç 3-1 İsveç
+    // ✅ 2 Haziran
+    // ✅ 3 Haziran
+    'ned_alg':  '0-1',  // Hollanda 0-1 Cezayir
+    'lux_ita':  '0-1',  // Lüksemburg 0-1 İtalya
+    'pol_nga':  '2-2',  // Polonya 2-2 Nijerya
+    // ✅ 4 Haziran
+};
+
+// Her maçın son güncelleme zamanı
+var _scoreLastFetch = {};
+
+// Maç bittikten 10dk sonra ilk çekimi yap, sonra 2 saatte bir
+function shouldFetchScore(matchId) {
+    var t = FRIENDLY_MATCH_TIMES[matchId];
+    if (!t) return false;
+    var now = Date.now();
+    var start = new Date(t.date + 'T' + String(t.hour).padStart(2,'0') + ':' + String(t.minute).padStart(2,'0') + ':00').getTime();
+    var end   = start + (t.duration + 10) * 60000; // bitiş + 10 dk
+    if (now < end) return false;                   // henüz bitmedi
+    if (FRIENDLY_SCORES[matchId]) return false;    // zaten var
+    var last = _scoreLastFetch[matchId] || 0;
+    return (now - last) > 2 * 3600000;             // 2 saat geçtiyse tekrar dene
+}
+
+// Bir tarih için tüm maçları API'den çek (tek istek)
+function tsdbFetchDay(dateStr, onDone) {
+    if (!tsdbCanRequest()) { if (onDone) onDone(null); return; }
+    var cached = _tsdbCache[dateStr];
+    if (cached && (Date.now() - cached.fetchedAt) < 2 * 3600000) {
+        if (onDone) onDone(cached.data); return;
+    }
+    tsdbMarkRequest();
+    var url = TSDB_API + '/eventsday.php?d=' + dateStr + '&l=' + TSDB_LEAGUE;
+    fetch(url)
+        .then(function(r) { return r.json(); })
+        .then(function(json) {
+            var events = (json && json.events) ? json.events : [];
+            _tsdbCache[dateStr] = { data: events, fetchedAt: Date.now() };
+            if (onDone) onDone(events);
+        })
+        .catch(function() { if (onDone) onDone(null); });
+}
+
+// matchId → takım adlarını normalleştir (API string matching)
+// FRIENDLY_MATCHES içindeki home/away isimlerine göre eşleştir
+function tsdbMatchScore(events, matchId) {
+    var m = FRIENDLY_MATCHES && FRIENDLY_MATCHES[matchId];
+    if (!m || !events || !events.length) return null;
+    var homeName = (m.home && m.home.name) ? m.home.name.toLowerCase() : '';
+    var awayName = (m.opponent && m.opponent.name) ? m.opponent.name.toLowerCase() : '';
+    // İsim → API adı map (bazıları farklı)
+    var nameMap = {
+        'polonya':'poland','hollanda':'netherlands','lüksemburg':'luxembourg',
+        'portekiz':'portugal','romanya':'romania','galler':'wales',
+        'slovenya':'slovenia','kıbrıs':'cyprus','ispanya':'spain',
+        'fransa':'france','fildişi sahili':'ivory coast','çekya':'czech republic',
+        'meksika':'mexico','sırbistan':'serbia','belçika':'belgium',
+        'abd':'usa','avustralya':'australia','i̇sviçre':'switzerland','i̇ngiltere':'england',
+        'venezuela':'venezuela','türkiye':'turkey','brezilya':'brazil',
+        'mısır':'egypt','fas':'morocco','norveç':'norway','yunanistan':'greece',
+        'i̇talya':'italy','danimarka':'denmark','ukrayna':'ukraine','kosova':'kosovo',
+        'andorra':'andorra','hırvatistan':'croatia','arjantin':'argentina',
+        'kolombiya':'colombia','suudi arabistan':'saudi arabia','senegal':'senegal',
+        'i̇zlanda':'iceland','nijerya':'nigeria','peru':'peru','kuzey i̇rlanda':'northern ireland',
+        'özbekistan':'uzbekistan','kosta rika':'costa rica','honduras':'honduras',
+        'ürdün':'jordan','cezayir':'algeria'
+    };
+    function normalize(n) { return (nameMap[n] || n).replace(/[^a-z]/g,''); }
+    var hN = normalize(homeName), aN = normalize(awayName);
+    for (var i=0; i<events.length; i++) {
+        var e = events[i];
+        var eH = normalize((e.strHomeTeam||'').toLowerCase());
+        var eA = normalize((e.strAwayTeam||'').toLowerCase());
+        if ((eH===hN||eH.includes(hN)||hN.includes(eH)) &&
+            (eA===aN||eA.includes(aN)||aN.includes(eA))) {
+            var hs = e.intHomeScore, as_ = e.intAwayScore;
+            if (hs !== null && hs !== '' && as_ !== null && as_ !== '') {
+                return hs + '-' + as_;
+            }
+        }
+    }
+    return null;
+}
+
+// Belirli bir matchId için skor çek ve FRIENDLY_SCORES'a yaz
+function fetchAndApplyScore(matchId) {
+    var t = FRIENDLY_MATCH_TIMES[matchId];
+    if (!t) return;
+    _scoreLastFetch[matchId] = Date.now();
+    tsdbFetchDay(t.date, function(events) {
+        if (!events) return;
+        var score = tsdbMatchScore(events, matchId);
+        if (score) {
+            FRIENDLY_SCORES[matchId] = score;
+            applyScoreToCard(matchId, score);
+        }
+    });
+}
+
+// DOM'daki karta skoru uygula
+function applyScoreToCard(matchId, score) {
+    var scoreEl = document.getElementById('score_' + matchId);
+    if (!scoreEl) return;
+    var parts = score.split('-');
+    var h = parseInt(parts[0]), a = parseInt(parts[1]);
+    var col = h > a ? '#66ff66' : (h < a ? '#ff6666' : '#ffcc88');
+    var parent = scoreEl.parentNode;
+    if (parent) {
+        parent.innerHTML = '<span style="font-size:14px;font-weight:900;color:' + col + ';letter-spacing:1px;">' + score + '</span>';
+    }
+}
+
+// Tüm bitmiş maçları toplu tara ve gerekenleri güncelle
+// Rate: günde max birkaç kez → dakikada 1 istek yeterli, 30 sınırına uymak kolay
+function scanAndFetchFinishedScores() {
+    var toFetch = [];
+    for (var mid in FRIENDLY_MATCH_TIMES) {
+        if (shouldFetchScore(mid)) toFetch.push(mid);
+    }
+    if (!toFetch.length) return;
+    // Aynı tarihli maçları grupla → tek istek/gün
+    var byDate = {};
+    toFetch.forEach(function(mid) {
+        var d = FRIENDLY_MATCH_TIMES[mid].date;
+        if (!byDate[d]) byDate[d] = [];
+        byDate[d].push(mid);
+    });
+    var dates = Object.keys(byDate);
+    var idx = 0;
+    function fetchNext() {
+        if (idx >= dates.length) return;
+        var date = dates[idx++];
+        var mids = byDate[date];
+        tsdbFetchDay(date, function(events) {
+            if (events) {
+                mids.forEach(function(mid) {
+                    _scoreLastFetch[mid] = Date.now();
+                    var score = tsdbMatchScore(events, mid);
+                    if (score) { FRIENDLY_SCORES[mid] = score; applyScoreToCard(mid, score); }
+                });
+            }
+            // Bir sonraki tarihe 2.5 sn bekle (rate limit)
+            setTimeout(fetchNext, 2500);
+        });
+    }
+    fetchNext();
+}
+
+// Hazırlık maçları ekranı açılınca çalıştır
+function onFriendlyScreenOpen() {
+    renderFriendlyApiList();
+    scanAndFetchFinishedScores();
+}
+
+// ══ HAZIRLIK MAÇLARI — CANLI API LİSTESİ ══
+// Bugün + yarın + dün maçlarını API'den çekip dinamik listeler
+// Rate: her çağrı max 2-3 istek (dün+bugün+yarın), 10dk önbellek
+
+var _friendlyApiData = {};      // { 'YYYY-MM-DD': { events, fetchedAt } }
+var _friendlyApiRendering = false;
+var _friendlyApiLastRender = 0;
+var _friendlyApiUpdateTimer = null;
+
+function renderFriendlyApiList() {
+    var container = document.getElementById('friendlyApiList');
+    var statusTxt = document.getElementById('friendlyApiStatusTxt');
+    var statusDot = document.getElementById('friendlyApiDot');
+    var nextUpdateEl = document.getElementById('friendlyApiNextUpdate');
+    if (!container) return;
+
+    var now = new Date();
+    // Yerel tarih (toISOString UTC verir, yerel tarih lazım)
+    function localDateStr(d) {
+        var y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+        return y + '-' + m + '-' + day;
+    }
+    var todayStr = localDateStr(now);
+
+    // Gösterilecek tarih aralığı: dün → 29 Haziran
+    var dates = [];
+    for (var d = -1; d <= 60; d++) {
+        var dt = new Date(now.getFullYear(), now.getMonth(), now.getDate() + d);
+        var ds = localDateStr(dt);
+        if (ds > '2026-06-29') break;
+        dates.push(ds);
+    }
+
+    // FRIENDLY_MATCH_TIMES'tan bu tarihlerdeki maçları topla
+    var byDate = {};
+    for (var mid in FRIENDLY_MATCH_TIMES) {
+        var t = FRIENDLY_MATCH_TIMES[mid];
+        if (dates.indexOf(t.date) === -1) continue;
+        if (!byDate[t.date]) byDate[t.date] = [];
+        byDate[t.date].push({ id: mid, t: t });
+    }
+
+    // Tarihler sıralı
+    var sortedDates = Object.keys(byDate).sort();
+    if (!sortedDates.length) {
+        container.innerHTML = '<div style="text-align:center;padding:16px;color:#555;font-size:12px;">📭 Yakın tarihte maç bulunamadı</div>';
+        if (statusTxt) statusTxt.textContent = 'Güncellendi';
+        if (statusDot) statusDot.style.background = '#44aa44';
+        return;
+    }
+
+    var dayNames = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
+    var monthNames = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+    var html = '';
+
+    sortedDates.forEach(function(dateStr) {
+        var dt2 = new Date(dateStr + 'T12:00:00');
+        var isToday = dateStr === todayStr;
+        var tomorrowStr = localDateStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1));
+        var yesterdayStr = localDateStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1));
+        var isTomorrow = dateStr === tomorrowStr;
+        var isYesterday = dateStr === yesterdayStr;
+
+        var dayLabel = '';
+        if (isYesterday) dayLabel = '← DÜN · ' + dt2.getDate() + ' ' + monthNames[dt2.getMonth()];
+        else if (isToday) dayLabel = '🔴 BUGÜN · ' + dt2.getDate() + ' ' + monthNames[dt2.getMonth()];
+        else if (isTomorrow) dayLabel = '→ YARIN · ' + dt2.getDate() + ' ' + monthNames[dt2.getMonth()];
+        else dayLabel = dayNames[dt2.getDay()].toUpperCase() + ' · ' + dt2.getDate() + ' ' + monthNames[dt2.getMonth()];
+
+        var headerColor = isToday ? '#ff4444' : isTomorrow ? '#ffaa33' : isYesterday ? '#666' : '#888';
+        html += '<div style="font-size:9px;color:' + headerColor + ';text-align:center;margin:10px 0 4px;letter-spacing:1px;font-weight:bold;">── ' + dayLabel + ' ──</div>';
+
+        // Maçları saat sırasına göre sırala
+        var matches = byDate[dateStr].sort(function(a,b){ return a.t.hour*60+a.t.minute - (b.t.hour*60+b.t.minute); });
+
+        matches.forEach(function(item) {
+            var mid2 = item.id, t2 = item.t;
+            var m = FRIENDLY_MATCHES && FRIENDLY_MATCHES[mid2];
+            if (!m) return;
+
+            // Yerel saat (TR = UTC+3)
+            var matchUTC = new Date(t2.date + 'T' + String(t2.hour).padStart(2,'0') + ':' + String(t2.minute).padStart(2,'0') + ':00Z');
+            var trHour = (t2.hour + 3) % 24;
+            var localTime = String(trHour).padStart(2,'0') + ':' + String(t2.minute).padStart(2,'0');
+
+            var elapsed = (now - matchUTC) / 60000;
+            var isLive = elapsed >= 0 && elapsed <= 130;
+            var isDone = elapsed > (t2.duration || 120);
+            var matchMin = Math.min(Math.floor(elapsed), 90);
+
+            var score = FRIENDLY_SCORES[mid2] || null;
+            if (score) isDone = true;
+
+            // İsimler
+            var homeName = m.home && m.home.name ? m.home.name : '?';
+            var awayName = m.opponent && m.opponent.name ? m.opponent.name : '?';
+            var homeSvg = m.home && m.home.flagSvg ? m.home.flagSvg : (m.home && m.home.flag ? '<span style="font-size:16px;vertical-align:middle;">' + m.home.flag + '</span>' : '');
+            var awayFlag = m.opponent && m.opponent.flag ? m.opponent.flag : '';
+            var awaySvg = m.opponent && m.opponent.flagSvg ? m.opponent.flagSvg
+                        : (awayFlag && awayFlag.startsWith('<svg') ? awayFlag
+                        : (awayFlag ? '<span style="font-size:16px;vertical-align:middle;">' + awayFlag + '</span>' : ''));
+
+            // Skor bölümü
+            var scorePart = '';
+            if (score) {
+                var parts = score.split('-');
+                var h = parseInt(parts[0]), a = parseInt(parts[1]);
+                var sc = h > a ? '#66ff66' : h < a ? '#ff6666' : '#ffcc88';
+                scorePart = '<span style="font-size:13px;font-weight:900;color:' + sc + ';padding:0 6px;">' + h + '–' + a + '</span>';
+            } else if (isLive) {
+                var minD = elapsed > 90 ? '90+' : String(Math.floor(elapsed));
+                scorePart = '<span style="color:#ff4444;font-size:10px;font-weight:bold;padding:0 4px;">🔴 ' + minD + "'</span>";
+            } else if (isDone) {
+                scorePart = '<span style="color:#445544;font-size:10px;padding:0 4px;">🔒 Bitti</span>';
+            } else {
+                scorePart = '<span style="color:#888;font-size:10px;padding:0 4px;">' + localTime + ' TR</span>';
+            }
+
+            var cardBg = isDone ? 'linear-gradient(135deg,#0a1a0a,#0a2a0a)' : isLive ? 'linear-gradient(135deg,#200808,#2a0a0a)' : 'linear-gradient(135deg,#1a0a0a,#2a0a0a)';
+            var cardBorder = isDone ? '#335533' : isLive ? '#ff4444' : '#cc3333';
+            var cardOpacity = isDone ? '0.8' : '1';
+            var clickable = !isDone && m;
+            var nameColor = isDone ? '#aaa' : '#fff';
+            var clickStyle = clickable ? 'cursor:pointer;' : '';
+
+            html += '<div onclick="' + (clickable ? 'startFriendly(\'' + mid2 + '\')' : '') + '" style="width:100%;padding:7px 8px;margin-bottom:4px;font-size:11px;font-weight:bold;background:' + cardBg + ';border:1px solid ' + cardBorder + ';border-radius:10px;color:#fff;display:grid;grid-template-columns:1fr 56px 1fr;align-items:center;gap:2px;opacity:' + cardOpacity + ';box-sizing:border-box;' + clickStyle + '">';
+            html += '<span style="display:flex;align-items:center;gap:4px;overflow:hidden;">' + homeSvg + '<span style="color:' + nameColor + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + homeName + '</span></span>';
+            html += '<span style="text-align:center;white-space:nowrap;">' + scorePart + '</span>';
+            html += '<span style="display:flex;align-items:center;gap:4px;justify-content:flex-end;overflow:hidden;"><span style="color:' + nameColor + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right;">' + awayName + '</span>' + awaySvg + '</span>';
+            html += '</div>';
+        });
+    });
+
+    container.innerHTML = html || '<div style="text-align:center;padding:16px;color:#555;font-size:12px;">📭 Yakın tarihte maç bulunamadı</div>';
+
+    var updateTime = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+    if (statusTxt) statusTxt.textContent = updateTime + ' güncellendi';
+    if (statusDot) statusDot.style.background = '#44aa44';
+    if (nextUpdateEl) nextUpdateEl.textContent = '🔄 10dk sonra güncellenir';
+
+    // 10dk sonra güncelle
+    clearTimeout(window._friendlyRenderTimer);
+    window._friendlyRenderTimer = setTimeout(function() {
+        var screen = document.getElementById('futbolDiffScreen');
+        if (screen && screen.style.display !== 'none') renderFriendlyApiList();
+    }, 10 * 60 * 1000);
+}
+
+// FRIENDLY_MATCHES_OPPONENTS: nameKey → dil bazlı rakip adları
+var FRIENDLY_MATCHES_OPPONENTS = {};
+// Bu objeyi FRIENDLY_MATCHES verilerinden dinamik olarak doldur
+(function() {
+    if (!window.FRIENDLY_MATCHES) return;
+    for (var mid in FRIENDLY_MATCHES) {
+        var m = FRIENDLY_MATCHES[mid];
+        if (m && m.nameKey && m.opponent) {
+            FRIENDLY_MATCHES_OPPONENTS[m.nameKey] = m.opponent.names || { tr: m.opponent.name };
+        }
+    }
+})();
+// ─── Zamanlayıcılar ───────────────────────────────────────────────
+// Her 10 dakikada bir tara (maç bitince 10dk sonra ilk çekim için)
+setInterval(function() {
+    scanAndFetchFinishedScores();
+    autoClosePastFriendlyMatches();
+}, 10 * 60 * 1000);
+
+// ──────────────────────────────────────────────────────────────────
+
 const FRIENDLY_MATCH_TIMES = {
-    // format: 'match_id': { date: 'YYYY-MM-DD', hour: H, minute: M, duration: 120 }
-    // 3 Haziran
-    'pol_nga':   { date:'2026-06-03', hour:21, minute:45, duration:120 },
-    'ned_alg':   { date:'2026-06-03', hour:21, minute:45, duration:120 },
-    'lux_ita':   { date:'2026-06-03', hour:21, minute:45, duration:120 },
-    'por_chi':   { date:'2026-06-03', hour:20, minute:45, duration:120 },
-    'rom_wal':   { date:'2026-06-03', hour:20, minute:45, duration:120 },
-    // 4 Haziran
-    'svn_cyp':   { date:'2026-06-04', hour:19, minute:0,  duration:120 },
-    'esp_irq':   { date:'2026-06-04', hour:22, minute:0,  duration:120 },
-    'fra_civ':   { date:'2026-06-04', hour:22, minute:10, duration:120 },
-    // 5 Haziran
-    'cze_gua':   { date:'2026-06-05', hour:3,  minute:0,  duration:120 },
-    'mex_srb':   { date:'2026-06-05', hour:5,  minute:0,  duration:120 },
-    // 6 Haziran
-    'bel_tun':   { date:'2026-06-06', hour:16, minute:0,  duration:120 },
-    'usa_ger':   { date:'2026-06-06', hour:21, minute:30, duration:120 },
-    'aus_sui':   { date:'2026-06-06', hour:22, minute:0,  duration:120 },
-    'eng_alg':   { date:'2026-06-06', hour:23, minute:0,  duration:120 },
-    // 7 Haziran
-    'ven_tur':   { date:'2026-06-07', hour:1,  minute:0,  duration:120 },
-    'bra_egy':   { date:'2026-06-07', hour:1,  minute:0,  duration:120 },
-    'den_ukr':   { date:'2026-06-07', hour:19, minute:30, duration:120 },
-    'kos_and':   { date:'2026-06-07', hour:20, minute:0,  duration:120 },
-    'hrv_svn':   { date:'2026-06-07', hour:21, minute:45, duration:120 },
-    'mor_nor':   { date:'2026-06-07', hour:22, minute:0,  duration:120 },
-    'gre_ita':   { date:'2026-06-07', hour:22, minute:0,  duration:120 },
-    // 9 Haziran
-    'arg_hnd':   { date:'2026-06-09', hour:3,  minute:0,  duration:120 },
-    'col_jor':   { date:'2026-06-09', hour:2,  minute:0,  duration:120 },
-    'sau_sen':   { date:'2026-06-09', hour:2,  minute:0,  duration:120 },
-    // 10 Haziran
-    'arg_isl':   { date:'2026-06-10', hour:4,  minute:0,  duration:120 },
-    'por_nga':   { date:'2026-06-10', hour:22, minute:45, duration:120 },
-    'per_esp':   { date:'2026-06-10', hour:5,  minute:0,  duration:120 },
-    'fra_nir':   { date:'2026-06-10', hour:22, minute:10, duration:120 },
-    'ned_ozb':   { date:'2026-06-10', hour:21, minute:45, duration:120 },
-    'eng_crc':   { date:'2026-06-10', hour:23, minute:0,  duration:120 },
-    // 11 Haziran
-    'tur_ger_u': { date:'2026-06-11', hour:20, minute:0,  duration:120 },
-    'fra_alb11': { date:'2026-06-11', hour:21, minute:0,  duration:120 },
-    'aut_gua11': { date:'2026-06-11', hour:7,  minute:0,  duration:120 },
-    'ita_alb_u21':{ date:'2026-06-11', hour:19, minute:15, duration:120 },
-    'nor_fin_u21':{ date:'2026-06-11', hour:19, minute:0,  duration:120 },
-    'hrv_svn_u21':{ date:'2026-06-11', hour:21, minute:45, duration:120 },
-    'ned_ozb11': { date:'2026-06-11', hour:21, minute:45, duration:120 },
-    'fra_nir11': { date:'2026-06-11', hour:22, minute:10, duration:120 },
-    // 12 Haziran
-    'per_esp12': { date:'2026-06-12', hour:5,  minute:0,  duration:120 },
-    'arg_isl12': { date:'2026-06-12', hour:4,  minute:0,  duration:120 },
-    'por_nga12': { date:'2026-06-12', hour:22, minute:45, duration:120 },
-    'col_jor12': { date:'2026-06-12', hour:2,  minute:0,  duration:120 },
-    'sau_sen12': { date:'2026-06-12', hour:2,  minute:0,  duration:120 },
-    'bra_egy12': { date:'2026-06-12', hour:1,  minute:0,  duration:120 },
-    'pol_nga_u21':{ date:'2026-06-12', hour:18, minute:0,  duration:120 },
-    'ger_ukr_u21':{ date:'2026-06-12', hour:18, minute:0,  duration:120 },
-    'esp_hun_u21':{ date:'2026-06-12', hour:19, minute:0,  duration:120 },
-    'eng_svk_u21':{ date:'2026-06-12', hour:19, minute:0,  duration:120 },
+    // format: { date:'YYYY-MM-DD', hour:H(UTC), minute:M, duration:120 }
+    // Saatler UTC (TR = UTC+3)
+    // ── 28 Mayıs (oynandı) ──
+    'rus_msr':   { date:'2026-05-28', hour:17, minute:0,  duration:120 },
+    // ── 1 Haziran (oynandı) ──
+    'tur_mkd':   { date:'2026-06-01', hour:18, minute:0,  duration:120 },
+    'nor_swe':   { date:'2026-06-01', hour:18, minute:0,  duration:120 },
+    // ── 3 Haziran (oynandı) ──
+    'ned_alg':   { date:'2026-06-03', hour:18, minute:45, duration:120 },
+    'lux_ita':   { date:'2026-06-03', hour:18, minute:45, duration:120 },
+    'pol_nga':   { date:'2026-06-03', hour:18, minute:45, duration:120 },
+    'por_chi':   { date:'2026-06-03', hour:17, minute:45, duration:120 },
+    'rom_wal':   { date:'2026-06-03', hour:17, minute:45, duration:120 },
+    // ── 4 Haziran (bugün) ──
+    'esp_irq':   { date:'2026-06-04', hour:18, minute:0,  duration:120 },  // 21:00 TR
+    'fra_civ':   { date:'2026-06-04', hour:19, minute:0,  duration:120 },  // 22:00 TR
+    // ── 5 Haziran ──
+    'rus_bfa':   { date:'2026-06-05', hour:16, minute:30, duration:120 },  // 19:30 TR
+    'mex_srb':   { date:'2026-06-05', hour:18, minute:45, duration:120 },  // 21:45 TR
+    // ── 6 Haziran ──
+    'por_chi':   { date:'2026-06-06', hour:15, minute:0,  duration:120 },  // 18:00 TR
+    'bra_egy':   { date:'2026-06-06', hour:17, minute:45, duration:120 },  // 20:45 TR
+    'usa_ger':   { date:'2026-06-06', hour:20, minute:0,  duration:120 },  // 23:00 TR
+    // ── 7 Haziran ──
+    'ven_tur':   { date:'2026-06-06', hour:22, minute:0,  duration:120 },  // 01:00 TR (gece)
+    'arg_hnd':   { date:'2026-06-07', hour:16, minute:0,  duration:120 },  // 19:00 TR
+    'mor_nor':   { date:'2026-06-07', hour:18, minute:15, duration:120 },  // 21:15 TR
+    // ── 8 Haziran ──
+    'fra_nir':   { date:'2026-06-08', hour:18, minute:45, duration:120 },  // 21:45 TR
+    'ned_ozb':   { date:'2026-06-08', hour:19, minute:0,  duration:120 },  // 22:00 TR
+    // ── 9 Haziran ──
+    'rus_tnt':   { date:'2026-06-09', hour:16, minute:0,  duration:120 },  // 19:00 TR
+    'arg_isl':   { date:'2026-06-09', hour:18, minute:0,  duration:120 },  // 21:00 TR
+    'sau_sen':   { date:'2026-06-09', hour:19, minute:30, duration:120 },  // 22:30 TR
+    // ── 10 Haziran ──
+    'eng_crc':   { date:'2026-06-10', hour:18, minute:45, duration:120 },  // 21:45 TR
+    'por_nga':   { date:'2026-06-10', hour:19, minute:0,  duration:120 },  // 22:00 TR
+    // ── 3-4 Haziran oynananlar ──
+    // ── 29 Haziran ──
 };
 
 function isMatchFinished(matchId) {
@@ -8669,7 +8666,7 @@ function centerLastModeCard() {
 document.addEventListener('DOMContentLoaded', centerLastModeCard);
 
 // ══════ CONİFA ŞAMPİYON SİSTEMİ ══════
-// Turnuva 2-7 Haziran 2026 - 6 Haziran'dan sonra şampiyon göster
+// Turnuva 3-6 Haziran 2026 - 6 Haziran'dan sonra şampiyon göster
 // Şampiyon belli olunca buraya yaz:
 const CONIFA_CHAMPION = {
     name: '',       // örn: 'Padania'
@@ -8757,6 +8754,7 @@ function getFriendlyLabel(key) {
 
 function startFriendly(matchId) {
     stopSplashMusic(); stopMusic(); stopFutbolMusic();
+    resetWaterBreaks('friendly');
     friendlyMatchId = matchId;
     friendlyShot = 0; friendlyMyGoals = 0; friendlyOppGoals = 0;
     friendlyGameOver = false; friendlyAnimating = false;
@@ -10586,13 +10584,13 @@ document.addEventListener('keydown',e=>{
 
 const CONFED_TEAMS = [
     // A Grubu
-    { code:'RAE', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="10" height="20" fill="#005aaa"/><rect x="10" y="0" width="10" height="20" fill="#fff"/><rect x="20" y="0" width="10" height="20" fill="#a0a0a0"/></svg>', strength:65, group:'A', names:{tr:'Raetia',en:'Raetia',it:'Rezia',es:'Raetia',ka:'რეტია',az:'Retia',ja:'ラエティア',zh:'雷蒂亚',de:'Rätien',fr:'Rhétie',el:'Ραιτία',ru:'Реция',ar:'ريتيا',pt:'Récia',uk:'Реція',fa:'رتیا',ko:'라에티아',nl:'Raetia',sv:'Raetia',no:'Raetia',cs:'Rétie',bs:'Reti',hr:'Reti',uz:'Retia',ht:'Raetia'} },
-    { code:'PAD', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect width="30" height="20" fill="#008c45"/><rect x="10" y="0" width="4" height="20" fill="#fff"/><rect x="0" y="8" width="30" height="4" fill="#fff"/><rect x="11" y="0" width="2" height="20" fill="#cf1432"/><rect x="0" y="9" width="30" height="2" fill="#cf1432"/></svg>', strength:68, group:'A', names:{tr:'Padania',en:'Padania',it:'Padania',es:'Padania',ka:'პადანია',az:'Padaniya',ja:'パダーニア',zh:'帕达尼亚',de:'Padanien',fr:'Padanie',el:'Παδανία',ru:'Падания',ar:'بادانيا',pt:'Padânia',uk:'Паданія',fa:'پادانیا',ko:'파다니아',nl:'Padanië',sv:'Padanien',no:'Padania',cs:'Padánie',bs:'Padanija',hr:'Padanija',uz:'Padaniya',ht:'Padani'} },
-    { code:'GRL', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="30" height="10" fill="#fff"/><rect x="0" y="10" width="30" height="10" fill="#d50028"/><path d="M 12 10 m -7 0 a 7 7 0 0 1 14 0 z" fill="#d50028"/><path d="M 12 10 m -7 0 a 7 7 0 0 0 14 0 z" fill="#fff"/></svg>', strength:60, group:'A', names:{tr:'Grönland FA (KAK)',en:'Greenland FA (KAK)',it:'Groenlandia',es:'Groenlandia',ka:'გრენლანდია',az:'Qrenlandiya',ja:'グリーンランド',zh:'格陵兰',de:'Grönland',fr:'Groenland',el:'Γροιλανδία',ru:'Гренландия',ar:'غرينلاند',pt:'Gronelândia',uk:'Гренландія',fa:'گرینلند',ko:'그린란드',nl:'Groenland',sv:'Grönland',no:'Grønland',cs:'Grónsko',bs:'Grenland',hr:'Grenland',uz:'Grenlandiya',ht:'Greenland'} },
+    { code:'RAE', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="10" height="20" fill="#005aaa"/><rect x="10" y="0" width="10" height="20" fill="#fff"/><rect x="20" y="0" width="10" height="20" fill="#a0a0a0"/></svg>', strength:52, group:'A', names:{tr:'Raetia',en:'Raetia',it:'Rezia',es:'Raetia',ka:'რეტია',az:'Retia',ja:'ラエティア',zh:'雷蒂亚',de:'Rätien',fr:'Rhétie',el:'Ραιτία',ru:'Реция',ar:'ريتيا',pt:'Récia',uk:'Реція',fa:'رتیا',ko:'라에티아',nl:'Raetia',sv:'Raetia',no:'Raetia',cs:'Rétie',bs:'Reti',hr:'Reti',uz:'Retia',ht:'Raetia'} },
+    { code:'PAD', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect width="30" height="20" fill="#008c45"/><rect x="10" y="0" width="4" height="20" fill="#fff"/><rect x="0" y="8" width="30" height="4" fill="#fff"/><rect x="11" y="0" width="2" height="20" fill="#cf1432"/><rect x="0" y="9" width="30" height="2" fill="#cf1432"/></svg>', strength:76, group:'A', names:{tr:'Padania',en:'Padania',it:'Padania',es:'Padania',ka:'პადანია',az:'Padaniya',ja:'パダーニア',zh:'帕达尼亚',de:'Padanien',fr:'Padanie',el:'Παδανία',ru:'Падания',ar:'بادانيا',pt:'Padânia',uk:'Паданія',fa:'پادانیا',ko:'파다니아',nl:'Padanië',sv:'Padanien',no:'Padania',cs:'Padánie',bs:'Padanija',hr:'Padanija',uz:'Padaniya',ht:'Padani'} },
+    { code:'GRL', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="30" height="10" fill="#fff"/><rect x="0" y="10" width="30" height="10" fill="#d50028"/><path d="M 12 10 m -7 0 a 7 7 0 0 1 14 0 z" fill="#d50028"/><path d="M 12 10 m -7 0 a 7 7 0 0 0 14 0 z" fill="#fff"/></svg>', strength:54, group:'A', names:{tr:'Grönland FA (KAK)',en:'Greenland FA (KAK)',it:'Groenlandia',es:'Groenlandia',ka:'გრენლანდია',az:'Qrenlandiya',ja:'グリーンランド',zh:'格陵兰',de:'Grönland',fr:'Groenland',el:'Γροιλανδία',ru:'Гренландия',ar:'غرينلاند',pt:'Gronelândia',uk:'Гренландія',fa:'گرینلند',ko:'그린란드',nl:'Groenland',sv:'Grönland',no:'Grønland',cs:'Grónsko',bs:'Grenland',hr:'Grenland',uz:'Grenlandiya',ht:'Greenland'} },
     // B Grubu
-    { code:'PRV', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect width="30" height="20" fill="#cf1432"/><rect x="0" y="7" width="30" height="6" fill="#ffd200" opacity="0.85"/><rect x="11" y="0" width="8" height="20" fill="#ffd200" opacity="0.85"/></svg>', strength:64, group:'B', names:{tr:'FF Rouet Provence',en:'FF Rouet Provence',it:'FF Rouet Provence',es:'FF Rouet Provence',ka:'FF Rouet Provence',az:'FF Rouet Provence',ja:'FF Rouet Provence',zh:'FF Rouet Provence',de:'FF Rouet Provence',fr:'FF Rouet Provence',el:'FF Rouet Provence',ru:'FF Rouet Provence',ar:'FF Rouet Provence',pt:'FF Rouet Provence',uk:'FF Rouet Provence',fa:'FF Rouet Provence',ko:'FF Rouet Provence',nl:'FF Rouet Provence',sv:'FF Rouet Provence',no:'FF Rouet Provence',cs:'FF Rouet Provence',bs:'FF Rouet Provence',hr:'FF Rouet Provence',uz:'FF Rouet Provence',ht:'FF Rouet Provence'} },
-    { code:'NCY', flag:'<svg width="24" height="15" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;border-radius:2px;background:#fff;"><rect width="900" height="600" fill="#fff"/><rect y="60" width="900" height="60" fill="#e30a17"/><rect y="480" width="900" height="60" fill="#e30a17"/><circle cx="380" cy="300" r="130" fill="#e30a17"/><circle cx="420" cy="300" r="110" fill="#fff"/><polygon points="560,230 576.5,277.3 626.6,278.4 586.6,308.7 601.1,356.6 560,328 518.9,356.6 533.4,308.7 493.4,278.4 543.5,277.3" fill="#e30a17"/></svg>', strength:70, group:'B', names:{tr:'Kuzey Kıbrıs',en:'Northern Cyprus',it:'Cipro del Nord',es:'Chipre del Norte',ka:'ჩრდილოეთ კვიპროსი',az:'Şimali Kipr',ja:'北キプロス',zh:'北塞浦路斯',de:'Nordzypern',fr:'Chypre du Nord',el:'Βόρεια Κύπρος',ru:'Северный Кипр',ar:'قبرص الشمالية',pt:'Chipre do Norte',uk:'Північний Кіпр',fa:'قبرس شمالی',ko:'북키프로스',nl:'Noord-Cyprus',sv:'Norra Cypern',no:'Nord-Kypros',cs:'Severní Kypr',bs:'Sjeverni Kipar',hr:'Sjeverni Cipar',uz:'Shimoliy Kipr',ht:'Nò Chip'} },
-    { code:'TIC', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="30" height="10" fill="#e43537"/><rect x="0" y="10" width="30" height="10" fill="#2387d2"/></svg>', strength:66, group:'B', names:{tr:'Canton Ticino',en:'Canton Ticino',it:'Canton Ticino',es:'Cantón Ticino',ka:'კანტონ ტიჩინო',az:'Kanton Tiçino',ja:'カントン・ティチーノ',zh:'提契诺州',de:'Kanton Tessin',fr:'Canton du Tessin',el:'Καντόνιο Τιτσίνο',ru:'Кантон Тичино',ar:'كانتون تيتشينو',pt:'Cantão Ticino',uk:'Кантон Тічіно',fa:'کانتون تیچینو',ko:'칸톤 티치노',nl:'Kanton Ticino',sv:'Kanton Ticino',no:'Kanton Ticino',cs:'Kanton Ticino',bs:'Kanton Ticino',hr:'Kanton Ticino',uz:'Kanton Tichino',ht:'Kanton Ticino'} },
+    { code:'PRV', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect width="30" height="20" fill="#cf1432"/><rect x="0" y="7" width="30" height="6" fill="#ffd200" opacity="0.85"/><rect x="11" y="0" width="8" height="20" fill="#ffd200" opacity="0.85"/></svg>', strength:52, group:'B', names:{tr:'FF Rouet Provence',en:'FF Rouet Provence',it:'FF Rouet Provence',es:'FF Rouet Provence',ka:'FF Rouet Provence',az:'FF Rouet Provence',ja:'FF Rouet Provence',zh:'FF Rouet Provence',de:'FF Rouet Provence',fr:'FF Rouet Provence',el:'FF Rouet Provence',ru:'FF Rouet Provence',ar:'FF Rouet Provence',pt:'FF Rouet Provence',uk:'FF Rouet Provence',fa:'FF Rouet Provence',ko:'FF Rouet Provence',nl:'FF Rouet Provence',sv:'FF Rouet Provence',no:'FF Rouet Provence',cs:'FF Rouet Provence',bs:'FF Rouet Provence',hr:'FF Rouet Provence',uz:'FF Rouet Provence',ht:'FF Rouet Provence'} },
+    { code:'NCY', flag:'<svg width="24" height="15" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;border-radius:2px;background:#fff;"><rect width="900" height="600" fill="#fff"/><rect y="60" width="900" height="60" fill="#e30a17"/><rect y="480" width="900" height="60" fill="#e30a17"/><circle cx="380" cy="300" r="130" fill="#e30a17"/><circle cx="420" cy="300" r="110" fill="#fff"/><polygon points="560,230 576.5,277.3 626.6,278.4 586.6,308.7 601.1,356.6 560,328 518.9,356.6 533.4,308.7 493.4,278.4 543.5,277.3" fill="#e30a17"/></svg>', strength:76, group:'B', names:{tr:'Kuzey Kıbrıs',en:'Northern Cyprus',it:'Cipro del Nord',es:'Chipre del Norte',ka:'ჩრდილოეთ კვიპროსი',az:'Şimali Kipr',ja:'北キプロス',zh:'北塞浦路斯',de:'Nordzypern',fr:'Chypre du Nord',el:'Βόρεια Κύπρος',ru:'Северный Кипр',ar:'قبرص الشمالية',pt:'Chipre do Norte',uk:'Північний Кіпр',fa:'قبرس شمالی',ko:'북키프로스',nl:'Noord-Cyprus',sv:'Norra Cypern',no:'Nord-Kypros',cs:'Severní Kypr',bs:'Sjeverni Kipar',hr:'Sjeverni Cipar',uz:'Shimoliy Kipr',ht:'Nò Chip'} },
+    { code:'TIC', flag:'<svg width="22" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid #555;border-radius:2px;"><rect x="0" y="0" width="30" height="10" fill="#e43537"/><rect x="0" y="10" width="30" height="10" fill="#2387d2"/></svg>', strength:58, group:'B', names:{tr:'Canton Ticino',en:'Canton Ticino',it:'Canton Ticino',es:'Cantón Ticino',ka:'კანტონ ტიჩინო',az:'Kanton Tiçino',ja:'カントン・ティチーノ',zh:'提契诺州',de:'Kanton Tessin',fr:'Canton du Tessin',el:'Καντόνιο Τιτσίνο',ru:'Кантон Тичино',ar:'كانتون تيتشينو',pt:'Cantão Ticino',uk:'Кантон Тічіно',fa:'کانتون تیچینو',ko:'칸톤 티치노',nl:'Kanton Ticino',sv:'Kanton Ticino',no:'Kanton Ticino',cs:'Kanton Ticino',bs:'Kanton Ticino',hr:'Kanton Ticino',uz:'Kanton Tichino',ht:'Kanton Ticino'} },
 ];
 
 function getConfedName(team) {
@@ -10725,19 +10723,33 @@ function initConfedTournament() {
     confedGroups.forEach(g => {
         confedStandings[g.label] = g.teams.map(t => ({ team:t, P:0, W:0, D:0, L:0, GF:0, GA:0, Pts:0 }));
     });
-    confedGroupMatches = [];
-    confedGroups.forEach(g => {
-        const teams = g.teams;
-        for (let i=0;i<teams.length;i++) {
-            for (let j=i+1;j<teams.length;j++) {
-                confedGroupMatches.push({
-                    group:g.label, home:teams[i], away:teams[j],
-                    played:false, homeGoals:0, awayGoals:0,
-                    isMyMatch: teams[i].code===confedMyTeam.code || teams[j].code===confedMyTeam.code
-                });
-            }
-        }
-    });
+
+    // ── Gerçek fikstür sırasına göre maçlar (takvimdeki sıra) ──
+    function findTeam(code) { return CONFED_TEAMS.find(t => t.code === code); }
+    function makeMatch(grp, hCode, aCode, played, hG, aG) {
+        const h = findTeam(hCode), a = findTeam(aCode);
+        return {
+            group: grp, home: h, away: a,
+            played: played, homeGoals: hG, awayGoals: aG,
+            isMyMatch: h.code === confedMyTeam.code || a.code === confedMyTeam.code
+        };
+    }
+
+    confedGroupMatches = [
+        // ─── 2 Haziran — Tur 1 (OYNANDI) ───
+        makeMatch('A', 'RAE', 'PAD', true,  1, 4),  // ✅ Raetia 1-4 Padania
+        makeMatch('B', 'PRV', 'TIC', true,  0, 1),  // ✅ FF Rouet Provence 0-1 Canton Ticino
+        // ─── 3 Haziran — Tur 2 (OYNANDI) ───
+        makeMatch('A', 'PAD', 'GRL', true,  3, 1),  // ✅ Padania 3-1 Grönland
+        makeMatch('B', 'TIC', 'NCY', true,  1, 5),  // ✅ Canton Ticino 1-5 Kuzey Kıbrıs
+        // ─── 4 Haziran — Tur 3 ───
+        makeMatch('A', 'RAE', 'GRL', false, 0, 0),  // ⏳ Raetia vs Grönland
+        makeMatch('B', 'PRV', 'NCY', false, 0, 0),  // ⏳ FF Rouet Provence vs K.Kıbrıs
+    ];
+
+    // Oynanan maçların puan tablolarına yansıt
+    confedGroupMatches.filter(m => m.played).forEach(m => updateConfedStandings(m));
+
     confedStage = 'group';
     confedKnockoutBracket = null;
     setDisplay('confedCountryScreen','none');
@@ -10977,6 +10989,7 @@ let confedCurAnswer = 0, confedCurTimerVar = null;
 
 function startConfedMatch(match) {
     confedCurMatch = match;
+    resetWaterBreaks('confed');
     // Süre sistemi: Her maç yarı yarıya oynanır
     // Grup: 1. Yarı (45dk) → 2. Yarı (90dk)
     // Eleme: 45 → 90 → (beraberse) 105 → (beraberse) 120 → (beraberse) penaltı
@@ -11268,29 +11281,30 @@ const WC26_SCHEDULE = [
     { date:'2026-06-22', time:'04:00', home:'NZL', away:'EGY', stage:'Grup G' },
 ];
 
-// CONIFA Avrupa Şampiyonası 2026 — 2-7 Haziran
+// CONIFA Avrupa Şampiyonası 2026 — 3-6 Haziran
 const CONFED_SCHEDULE = [
-    // A Grubu (Padania, Raetia, Grönland)
-    { date:'2026-06-02', time:'19:15', home:'RAE', away:'PAD', stage:'A Grubu', stadium:'Carate' },
-    { date:'2026-06-03', time:'15:30', home:'PAD', away:'GRL', stage:'A Grubu', stadium:'Verano' },
-    { date:'2026-06-04', time:'15:30', home:'RAE', away:'GRL', stage:'A Grubu', stadium:'Verano' },
-    // B Grubu (FF Rouet Provence, Canton Ticino, Kuzey Kıbrıs)
-    { date:'2026-06-02', time:'15:00', home:'PRV', away:'TIC', stage:'B Grubu', stadium:'Verano' },
-    { date:'2026-06-03', time:'18:30', home:'NCY', away:'TIC', stage:'B Grubu', stadium:'Verano' },
-    { date:'2026-06-04', time:'18:30', home:'PRV', away:'NCY', stage:'B Grubu', stadium:'Verano' },
-    // Final aşaması (6 Haziran)
-    { date:'2026-06-06', time:'11:30', home:'3A', away:'3B', stage:'5./6.lık', stadium:'Verano' },
-    { date:'2026-06-06', time:'15:00', home:'2A', away:'2B', stage:'3./4.lük', stadium:'Carate' },
-    { date:'2026-06-06', time:'19:30', home:'1A', away:'1B', stage:'FİNAL', stadium:'Carate' },
+    // 2 Haziran — Tur 1 (OYNANDI)
+    { date:'2026-06-02', time:'14:00', home:'RAE', away:'PAD', stage:'A Grubu', stadium:'Carate' },
+    { date:'2026-06-02', time:'18:15', home:'PRV', away:'TIC', stage:'B Grubu', stadium:'Verano' },
+    // 3 Haziran — Tur 2
+    { date:'2026-06-03', time:'14:30', home:'PAD', away:'GRL', stage:'A Grubu', stadium:'Verano' },
+    { date:'2026-06-03', time:'17:30', home:'TIC', away:'NCY', stage:'B Grubu', stadium:'Verano' },
+    // 4 Haziran — Tur 3
+    { date:'2026-06-04', time:'14:30', home:'RAE', away:'GRL', stage:'A Grubu', stadium:'Verano' },
+    { date:'2026-06-04', time:'17:30', home:'PRV', away:'NCY', stage:'B Grubu', stadium:'Verano' },
+    // 6 Haziran — Final günü (Carate)
+    { date:'2026-06-06', time:'10:30', home:'5A', away:'5B', stage:'5./6.lık', stadium:'Carate', waterBreak:true },
+    { date:'2026-06-06', time:'14:00', home:'2A', away:'2B', stage:'3./4.lük', stadium:'Carate', waterBreak:true },
+    { date:'2026-06-06', time:'18:30', home:'1A', away:'1B', stage:'FİNAL',    stadium:'Carate', waterBreak:true },
 ];
 
 // ══════ CONİFA GERÇEK TAKVİM KİLİT SİSTEMİ ══════
 // Hangi tarihte hangi grup maçları oynanabilir
 const CONFED_DATE_UNLOCK = {
-    'group_1': '2026-06-02',  // Tur 1 grup maçları (PAD-GRL, NCY-TIC)
-    'group_2': '2026-06-03',  // Tur 2 grup maçları (RAE-GRL, NCY-PRV)
-    'group_3': '2026-06-04',  // Tur 3 grup maçları (PAD-RAE, TIC-PRV)
-    'knockout': '2026-06-06', // Yarı final + final
+    'group_1': '2026-06-02',  // Tur 1: 2 Haziran (RAE-PAD, PRV-TIC) — OYNANDI
+    'group_2': '2026-06-03',  // Tur 2: 3 Haziran (PAD-GRL, TIC-NCY)
+    'group_3': '2026-06-04',  // Tur 3: 4 Haziran (RAE-GRL, PRV-NCY)
+    'knockout': '2026-06-06', // Final maçları
 };
 
 // Bugün hangi tur oynanabilir?
@@ -11298,20 +11312,20 @@ function getConfedUnlockedRound() {
     var now = new Date();
     var today = now.toISOString().slice(0,10);
     if (today >= '2026-06-06') return 'knockout';
-    if (today >= '2026-06-04') return 'group_3';
-    if (today >= '2026-06-03') return 'group_2';
-    if (today >= '2026-06-02') return 'group_1';
-    return null; // Henüz başlamadı
+    if (today >= '2026-06-04') return 'group_3'; // Tur 3: 4 Haziran
+    if (today >= '2026-06-03') return 'group_2'; // Tur 2: 3 Haziran
+    if (today >= '2026-06-02') return 'group_1'; // Tur 1: 2 Haziran
+    return null;
 }
 
 // Oyuncu grubu maçlarından bugün kaçıncı turu oynayabilir?
 function getConfedAllowedMatchIndex() {
     var round = getConfedUnlockedRound();
     if (round === null) return -1;
-    if (round === 'group_1') return 0;  // Sadece 1. grup maçı
-    if (round === 'group_2') return 1;  // 1. ve 2. grup maçı
-    if (round === 'group_3') return 2;  // Tüm grup maçları
-    if (round === 'knockout') return 99; // Knockout açık
+    if (round === 'group_1') return 0;  // Tur 1 (2 Haz)
+    if (round === 'group_2') return 1;  // Tur 2 (3 Haz)
+    if (round === 'group_3') return 2;  // Tur 3 (4 Haz)
+    if (round === 'knockout') return 99;
     return 0;
 }
 
@@ -11337,17 +11351,41 @@ function updateConfedPlayBtn() {
         var myMatches = confedGroupMatches.filter(function(m){ return m.isMyMatch; });
         var playedCount = myMatches.filter(function(m){ return m.played; }).length;
         var allowedIndex = getConfedAllowedMatchIndex();
+        var effectiveAllowed = Math.max(allowedIndex, playedCount - 1);
 
-        if (playedCount > allowedIndex) {
+        // Zaman geçmiş ama oynanmamış PARALLEL maçları (farklı grup, aynı tur) simüle et
+        // Örn: bugün TIC-NCY var ama oyuncu GRL seçti → PAD-GRL bitti, TIC-NCY de simüle edilmeli
+        var myGroup = confedGroups.find(function(g){ return g.teams.some(function(t){ return t.code === confedMyTeam.code; }); });
+        var myGroupLabel = myGroup ? myGroup.label : '';
+        confedGroupMatches.forEach(function(m) {
+            if (!m.played && !m.isMyMatch && m.group !== myGroupLabel) {
+                // Bu maç ne zaman oynanmalıydı?
+                var matchTurIdx = confedGroupMatches.filter(function(x){ return x.group !== myGroupLabel; }).indexOf(m);
+                if (matchTurIdx <= allowedIndex) {
+                    simulateConfedMatch(m);
+                    updateConfedStandings(m);
+                }
+            }
+        });
+
+        if (playedCount > effectiveAllowed) {
             // Bugünün maçı oynandı, yarına kadar bekle
             btn.disabled = true;
             btn.style.opacity = '0.4';
-            var nextDates = ['2026-06-03','2026-06-04','2026-06-06'];
-            var nextDate = nextDates[playedCount - 1] || '2026-06-06';
-            var nd = new Date(nextDate + 'T09:00:00');
-            var hoursLeft = Math.ceil((nd - new Date()) / 3600000);
-            document.getElementById('confedStageSubtitle').textContent = 
-                '⏳ Sonraki maç: ' + nextDate.slice(8,10) + '/' + nextDate.slice(5,7) + ' · ' + hoursLeft + ' saat kaldı';
+            // Sonraki oynayabileceğim maçı bul
+            var nextUnplayed = confedGroupMatches.find(function(m){ return m.isMyMatch && !m.played; });
+            var nextDateMsg = '6 Haziran';
+            if (nextUnplayed) {
+                // Hangi tur bu maç?
+                var myUnplayed = confedGroupMatches.filter(function(m){ return m.isMyMatch; });
+                var idx = myUnplayed.indexOf(nextUnplayed);
+                var dateLookup = ['2026-06-02','2026-06-03','2026-06-04'];
+                var nd2 = dateLookup[idx] || '2026-06-06';
+                var nd = new Date(nd2 + 'T09:00:00');
+                var hoursLeft = Math.ceil((nd - new Date()) / 3600000);
+                nextDateMsg = nd2.slice(8,10) + '/' + nd2.slice(5,7) + (hoursLeft > 0 ? ' · ' + hoursLeft + ' saat kaldı' : ' · Bugün!');
+            }
+            document.getElementById('confedStageSubtitle').textContent = '⏳ Sonraki maç: ' + nextDateMsg;
         } else {
             btn.disabled = false;
             btn.style.opacity = '1';
@@ -11749,18 +11787,22 @@ function syncSoundBtns() {
 // ══════ SU MOLASI ══════
 let wc26WaterBreaksLeft = [true, true, true]; // 3 hak
 let confedWaterBreaksLeft = [true, true, true];
+let friendlyWaterBreaksLeft = [true, true, true];
 
 function useWaterBreak(mode, idx) {
-    const arr = mode === 'wc26' ? wc26WaterBreaksLeft : confedWaterBreaksLeft;
-    if (!arr[idx]) return; // kullanılmış
+    const arr = mode === 'wc26' ? wc26WaterBreaksLeft
+              : mode === 'confed' ? confedWaterBreaksLeft
+              : friendlyWaterBreaksLeft;
+    if (!arr[idx]) return;
     arr[idx] = false;
     const btn = document.getElementById(mode + 'wb' + idx);
     if (btn) { btn.style.opacity = '0.3'; btn.disabled = true; btn.textContent = '💦'; }
 
-    // 15 saniye (oyun içi: mevcut soruyu 15sn durdur)
     const timerEl = mode === 'wc26'
         ? document.getElementById('wc26MatchDuration')
-        : document.getElementById('confedMatchDuration');
+        : mode === 'confed'
+        ? document.getElementById('confedMatchDuration')
+        : document.getElementById('friendlyMatchDuration');
     const origText = timerEl ? timerEl.textContent : '';
     let countdown = 15;
     if (timerEl) timerEl.style.color = '#44aaff';
@@ -11774,11 +11816,9 @@ function useWaterBreak(mode, idx) {
         }
     }, 1000);
 
-    // Soru zamanlayıcısını durdur (varsa)
     if (mode === 'wc26' && typeof wc26QuestionTimer !== 'undefined') {
         clearInterval(wc26QuestionTimer);
         clearTimeout(wc26BotTimer);
-        // Input/btn kilitle
         const inp = document.getElementById('wc26Input');
         const btn2 = document.getElementById('wc26Btn');
         if (inp) inp.disabled = true;
@@ -11788,11 +11828,57 @@ function useWaterBreak(mode, idx) {
             if (btn2) btn2.disabled = false;
             if (typeof nextWC26Question === 'function') nextWC26Question();
         }, 15000);
+    } else if (mode === 'confed' && typeof confedCurTimerVar !== 'undefined') {
+        clearInterval(confedCurTimerVar);
+        const inp = document.getElementById('confedInput');
+        const btn2 = document.getElementById('confedBtn');
+        if (inp) inp.disabled = true;
+        if (btn2) btn2.disabled = true;
+        setTimeout(() => {
+            if (inp) inp.disabled = false;
+            if (btn2) btn2.disabled = false;
+            if (typeof nextConfedQuestion === 'function') nextConfedQuestion();
+        }, 15000);
+    } else if (mode === 'friendly' && typeof friendlyTimerV !== 'undefined') {
+        clearInterval(friendlyTimerV);
+        const inp = document.getElementById('friendlyInput');
+        const btn2 = document.getElementById('friendlyAtBtn');
+        if (inp) inp.disabled = true;
+        if (btn2) btn2.disabled = true;
+        setTimeout(() => {
+            if (inp) inp.disabled = false;
+            if (btn2) btn2.disabled = false;
+            if (typeof nextFriendlyQuestion === 'function') nextFriendlyQuestion();
+        }, 15000);
     }
-    // Butonu güncelle
     if (typeof updateWC26WaterBreakBtns === 'function') updateWC26WaterBreakBtns();
+    updateConfedWaterBreakBtns();
+    updateFriendlyWaterBreakBtns();
 }
 
+function updateConfedWaterBreakBtns() {
+    [0,1,2].forEach(function(i) {
+        var btn = document.getElementById('confedwb' + i);
+        if (!btn) return;
+        if (!confedWaterBreaksLeft[i]) {
+            btn.style.opacity = '0.3'; btn.disabled = true;
+        } else {
+            btn.style.opacity = '1'; btn.disabled = false;
+        }
+    });
+}
+
+function updateFriendlyWaterBreakBtns() {
+    [0,1,2].forEach(function(i) {
+        var btn = document.getElementById('friendlywb' + i);
+        if (!btn) return;
+        if (!friendlyWaterBreaksLeft[i]) {
+            btn.style.opacity = '0.3'; btn.disabled = true;
+        } else {
+            btn.style.opacity = '1'; btn.disabled = false;
+        }
+    });
+}
 
 // ══════ VAR SİSTEMİ ══════
 let wc26VarUsed = 0;
@@ -11922,11 +12008,13 @@ function updateWC26WaterBreakBtns() {
 }
 
 function resetWaterBreaks(mode) {
-    const arr = mode === 'wc26' ? wc26WaterBreaksLeft : confedWaterBreaksLeft;
+    const arr = mode === 'wc26' ? wc26WaterBreaksLeft
+              : mode === 'confed' ? confedWaterBreaksLeft
+              : friendlyWaterBreaksLeft;
     for (let i = 0; i < 3; i++) {
         arr[i] = true;
         const btn = document.getElementById(mode + 'wb' + i);
-        if (btn) { btn.style.opacity = '1'; btn.disabled = false; btn.textContent = '💧'; }
+        if (btn) { btn.style.opacity = '1'; btn.disabled = false; btn.textContent = '💧 ' + [15,45,90][i] + 'dk'; }
     }
 }
 
@@ -12156,7 +12244,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
-
+<script>
 // ══ GÜVENLİK TESTİ ══
 (function() {
     const _sec = {
@@ -12402,10 +12490,24 @@ document.addEventListener('DOMContentLoaded', function() {
     try { var s = localStorage.getItem('uscale_gfx'); if (s) window.setGraphics(s); } catch(e) {}
 });
 
+
+function showConfedWaterBreak() {
+    var wb = document.getElementById('confedWaterBreak');
+    if (!wb) return;
+    wb.style.display = 'flex';
+    var secs = 900;
+    var cd = document.getElementById('waterBreakCountdown');
+    var t = setInterval(function() {
+        secs--;
+        var m = Math.floor(secs/60), s = secs%60;
+        if (cd) cd.textContent = m+':'+(s<10?'0':'')+s;
+        if (secs <= 0) { clearInterval(t); wb.style.display = 'none'; }
+    }, 1000);
+}
 </script>
     <!-- Gizli debugger -->
     <div id="_dbg" title="" onclick="_dbgToggle()">0</div>
-    <div id="_dbgPanel">
+    <div id="_dbgPanel" style="display:none;">
         <div class="dbg-title">🔴 USCALE Debug <span id="_dbgVersion" style="color:#666;font-size:8px;">Alpha 1</span></div>
         <div id="_dbgEntries"></div>
         <div style="margin-top:6px;color:rgba(255,255,255,0.3);font-size:8px;" id="_dbgSysInfo"></div>
@@ -12442,5 +12544,13 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 
+
+    <div id="confedWaterBreak" style="display:none;position:fixed;inset:0;background:rgba(0,0,120,0.88);z-index:3000;align-items:center;justify-content:center;flex-direction:column;backdrop-filter:blur(8px);">
+        <div style="font-size:48px;">💧</div>
+        <div style="font-family:'Outfit',sans-serif;font-weight:900;font-size:22px;color:#fff;margin-top:8px;">SU MOLASI</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:14px;color:rgba(255,255,255,0.7);margin-top:4px;">15 Dakika</div>
+        <div id="waterBreakCountdown" style="font-family:'Outfit',sans-serif;font-size:36px;font-weight:900;color:#4af;margin-top:12px;">15:00</div>
+        <button onclick="document.getElementById('confedWaterBreak').style.display='none'" style="margin-top:16px;padding:8px 20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:#fff;cursor:pointer;font-family:'Outfit',sans-serif;">Geç ⏭</button>
+    </div>
 </body>
 </html>
