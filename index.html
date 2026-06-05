@@ -68,6 +68,7 @@
             
         }
         @keyframes bgBreath { 0%,100%{opacity:1} 50%{opacity:0.7} }
+        @keyframes varDot { 0%,100%{opacity:0.2;transform:scale(0.8)} 50%{opacity:1;transform:scale(1.2)} }
 
         .math-symbol {
             position: absolute;
@@ -10410,6 +10411,8 @@ let wc26PhaseScores = {}; // her faz sonundaki skorlar
 function startWC26Match(match, totalQuestions) {
     wc26CurMatch = match;
     wc26MatchPhase = 'first';
+    wc26BreakActive = false;
+    window._wc26PhaseAdvancing = false;
     wc26PhaseScores = {};
     wc26Duration = 45; // ilk yarı
     wc26QuestionCount = WC26_DUR_MAP[45] || 3;
@@ -10459,91 +10462,72 @@ function wc26PhaseLabel(phase) {
 }
 
 function advanceWC26Phase() {
+    // Çift çağrıyı önle
+    if (window._wc26PhaseAdvancing) return;
+    window._wc26PhaseAdvancing = true;
+
+    // Tüm timer'ları temizle
+    clearInterval(wc26CurTimerVar);
+    clearTimeout(wc26BotTimer);
+    wc26WaitingForAnswer = false;
+
     const isGroup = wc26Stage === 'group';
     const draw = wc26CurMyScore === wc26CurOppScore;
     const phases = isGroup
-        ? ['first','second']           // Grup: sadece 2 yarı, berabere kalabilir
-        : ['first','second','et1','et2','pen']; // Eleme: 4 faz + penaltı
+        ? ['first','second']
+        : ['first','second','et1','et2','pen'];
     const idx = phases.indexOf(wc26MatchPhase);
 
     // Son faza geldik mi?
-    if (idx >= phases.length - 1) {
-        endWC26Match();
-        return;
-    }
-    // Grup maçında 2. yarı bitti → her zaman maç biter (berabere olsa da)
-    if (isGroup && wc26MatchPhase === 'second') {
-        endWC26Match();
-        return;
-    }
+    if (idx >= phases.length - 1) { window._wc26PhaseAdvancing = false; endWC26Match(); return; }
+    // Grup maçında 2. yarı bitti → her zaman maç biter
+    if (isGroup && wc26MatchPhase === 'second') { window._wc26PhaseAdvancing = false; endWC26Match(); return; }
+    // Eleme: 2. yarı bitti ve skor farklı → maç biter (uzatma YOK)
+    if (!isGroup && wc26MatchPhase === 'second' && !draw) { window._wc26PhaseAdvancing = false; endWC26Match(); return; }
     // Eleme: et1 veya et2 bitti ve skor farklı → maç biter
-    if (!isGroup && (wc26MatchPhase === 'et1' || wc26MatchPhase === 'et2') && !draw) {
-        endWC26Match();
-        return;
+    if (!isGroup && (wc26MatchPhase === 'et1' || wc26MatchPhase === 'et2') && !draw) { window._wc26PhaseAdvancing = false; endWC26Match(); return; }
+    // Eleme: et2 bitti ve hala berabere → penaltı
+    if (!isGroup && wc26MatchPhase === 'et2' && draw) {
+        wc26MatchPhase = 'pen';
+    } else {
+        wc26MatchPhase = phases[idx + 1];
     }
 
-    // Sonraki faz
-    const nextPhase = phases[idx + 1];
-    wc26MatchPhase = nextPhase;
-
-    // Sorular ve süre ayarla
+    const nextPhase = wc26MatchPhase;
     const durMap = {first:45, second:90, et1:105, et2:120, pen:120};
     wc26Duration = durMap[nextPhase] || 90;
     wc26QuestionCount = nextPhase === 'pen' ? 5 : (WC26_DUR_MAP[wc26Duration] || 1);
     wc26CurQNum = 0;
     wc26CurTotalQ = wc26QuestionCount;
 
-    // Penaltı fazında skor sıfırla
     if (nextPhase === 'pen') {
         wc26PhaseScores.beforePen = {my: wc26CurMyScore, opp: wc26CurOppScore};
-        wc26CurMyScore = 0;
-        wc26CurOppScore = 0;
-        setText('wc26MatchMyScore','0');
-        setText('wc26MatchOppScore','0');
+        wc26CurMyScore = 0; wc26CurOppScore = 0;
+        setText('wc26MatchMyScore','0'); setText('wc26MatchOppScore','0');
     }
-
-    // Uzatmada ekstra VAR ve su molası hakkı ver
     if (nextPhase === 'et1') {
         wc26VarMax++;
-        wc26OppVarUsed = Math.max(0, wc26OppVarUsed - 1); // rakibe de 1 hak daha
+        wc26OppVarUsed = Math.max(0, wc26OppVarUsed - 1);
         updateWC26VarBtn();
-        // Su molası: wb2 (90dk molası) yeniden aç
-        if (wc26WaterBreaksLeft && wc26WaterBreaksLeft[2] === false) {
-            wc26WaterBreaksLeft[2] = true;
-        }
+        if (wc26WaterBreaksLeft && wc26WaterBreaksLeft[2] === false) wc26WaterBreaksLeft[2] = true;
         updateWC26WaterBreakBtns();
     }
-
     setHTML('wc26MatchDuration', wc26PhaseLabel(nextPhase));
     updateWC26WaterBreakBtns();
 
-    // Mola süreleri: 2.yarı geçişinde 45sn, uzatma 1→2 geçişinde 5sn
-    const molaSure = {second: 45000, et1: 5000, et2: 2000, pen: 1800};
-    const molaMs = molaSure[nextPhase] || 1800;
-
-    // Mola mesajı göster + geri sayım
+    // Input'u kilitle + mola bayrağını set et
+    wc26BreakActive = true;
     const inp2 = document.getElementById('wc26Input');
     const btn2 = document.getElementById('wc26Btn');
     if (inp2) inp2.disabled = true;
     if (btn2) btn2.disabled = true;
+    setDisplay('wc26GuessTimerBox','none');
+    updateWC26WaterBreakBtns();
+    updateWC26VarBtn();
 
-    function showBreakCountdown(remaining, label, color) {
-        if (remaining <= 0) {
-            setHTML('wc26Message', '');
-            if (inp2) inp2.disabled = false;
-            if (btn2) btn2.disabled = false;
-            nextWC26Question();
-            return;
-        }
-        setHTML('wc26Message',
-            '<div style="text-align:center;">'
-            + '<div style="font-size:13px;color:' + color + ';font-weight:bold;">' + label + '</div>'
-            + '<div style="font-size:22px;font-weight:900;color:#fff;margin-top:4px;">' + remaining + '</div>'
-            + '<div style="font-size:10px;color:#aaa;">saniye</div>'
-            + '</div>'
-        );
-        setTimeout(() => showBreakCountdown(remaining - 1, label, color), 1000);
-    }
+    // Mola süreleri
+    const molaSure = {second:45, et1:8, et2:5, pen:3};
+    let breakSec = molaSure[nextPhase] || 3;
 
     const breakLabels = {
         second: '☕ DEVRE ARASI · ' + wc26CurMyScore + ' – ' + wc26CurOppScore,
@@ -10553,8 +10537,37 @@ function advanceWC26Phase() {
     };
     const breakColors = {second:'#ffcc88', et1:'#ff9955', et2:'#ff7722', pen:'#ff4444'};
 
-    const breakSec = Math.ceil(molaMs / 1000);
-    showBreakCountdown(breakSec, breakLabels[nextPhase] || '', breakColors[nextPhase] || '#fff');
+    // Tek bir interval ile geri sayım (önceki tüm timer'lar temizlendi)
+    let bcd = breakSec;
+    const breakTimer = setInterval(() => {
+        bcd--;
+        setHTML('wc26Message',
+            '<div style="text-align:center;">'
+            + '<div style="font-size:13px;color:'+(breakColors[nextPhase]||'#fff')+';font-weight:bold;">'+(breakLabels[nextPhase]||'')+'</div>'
+            + '<div style="font-size:22px;font-weight:900;color:#fff;margin-top:4px;">'+Math.max(0,bcd)+'</div>'
+            + '<div style="font-size:10px;color:#aaa;">saniye</div>'
+            + '</div>'
+        );
+        if (bcd <= 0) {
+            clearInterval(breakTimer);
+            window._wc26PhaseAdvancing = false;
+            wc26BreakActive = false;
+            setHTML('wc26Message','');
+            if (inp2) inp2.disabled = false;
+            if (btn2) btn2.disabled = false;
+            updateWC26WaterBreakBtns();
+            updateWC26VarBtn();
+            nextWC26Question();
+        }
+    }, 1000);
+    // İlk mesajı hemen göster
+    setHTML('wc26Message',
+        '<div style="text-align:center;">'
+        + '<div style="font-size:13px;color:'+(breakColors[nextPhase]||'#fff')+';font-weight:bold;">'+(breakLabels[nextPhase]||'')+'</div>'
+        + '<div style="font-size:22px;font-weight:900;color:#fff;margin-top:4px;">'+breakSec+'</div>'
+        + '<div style="font-size:10px;color:#aaa;">saniye</div>'
+        + '</div>'
+    );
 }
 
 function nextWC26Question() {
@@ -10615,6 +10628,9 @@ function submitWC26Answer() {
 }
 
 function handleWC26Result(playerCorrect) {
+    // Su molası veya devre arası sırasında sonuç işleme
+    if (!wc26WaitingForAnswer && !playerCorrect) return;
+    wc26WaitingForAnswer = false;
     const animMsg = document.getElementById('wc26AnimMsg');
     if (playerCorrect) {
         wc26CurMyScore++;
@@ -10642,7 +10658,7 @@ function handleWC26Result(playerCorrect) {
         }
     }
     setHTML('wc26Message','Cevap: '+wc26CurAnswer);
-    setTimeout(()=>{ if(animMsg) animMsg.style.opacity='0'; nextWC26Question(); }, 1300);
+    setTimeout(()=>{ if(animMsg) animMsg.style.opacity='0'; if(!wc26BreakActive) nextWC26Question(); }, 1300);
 }
 
 function endWC26Match() {
@@ -10882,9 +10898,9 @@ function initConfedTournament() {
         // ─── 3 Haziran — Tur 2 (OYNANDI) ───
         makeMatch('A', 'PAD', 'GRL', true,  3, 1),  // ✅ Padania 3-1 Grönland
         makeMatch('B', 'TIC', 'NCY', true,  1, 5),  // ✅ Canton Ticino 1-5 Kuzey Kıbrıs
-        // ─── 4 Haziran — Tur 3 ───
-        makeMatch('A', 'RAE', 'GRL', false, 0, 0),  // ⏳ Raetia vs Grönland
-        makeMatch('B', 'PRV', 'NCY', false, 0, 0),  // ⏳ FF Rouet Provence vs K.Kıbrıs
+        // ─── 4 Haziran — Tur 3 (OYNANDI) ───
+        makeMatch('A', 'RAE', 'GRL', true,  1, 4),  // ✅ Raetia 1-4 Grönland
+        makeMatch('B', 'PRV', 'NCY', true,  0, 4),  // ✅ FF Rouet 0-4 Kuzey Kıbrıs
     ];
 
     // Oynanan maçların puan tablolarına yansıt
@@ -11432,10 +11448,10 @@ const CONFED_SCHEDULE = [
     // 4 Haziran — Tur 3
     { date:'2026-06-04', time:'14:30', home:'RAE', away:'GRL', stage:'A Grubu', stadium:'Verano' },
     { date:'2026-06-04', time:'17:30', home:'PRV', away:'NCY', stage:'B Grubu', stadium:'Verano' },
-    // 6 Haziran — Final günü (Carate)
-    { date:'2026-06-06', time:'10:30', home:'5A', away:'5B', stage:'5./6.lık', stadium:'Carate', waterBreak:true },
-    { date:'2026-06-06', time:'14:00', home:'2A', away:'2B', stage:'3./4.lük', stadium:'Carate', waterBreak:true },
-    { date:'2026-06-06', time:'18:30', home:'1A', away:'1B', stage:'FİNAL',    stadium:'Carate', waterBreak:true },
+    // 6 Haziran — Final günü (Carate) — Gerçek fikstür
+    { date:'2026-06-06', time:'10:30', home:'RAE', away:'PRV', stage:'5-6. YER', stadium:'Carate', waterBreak:true },
+    { date:'2026-06-06', time:'14:00', home:'TIC', away:'GRL', stage:'3-4. YER', stadium:'Carate', waterBreak:true },
+    { date:'2026-06-06', time:'18:30', home:'NCY', away:'PAD', stage:'FİNAL',    stadium:'Carate', waterBreak:true },
 ];
 
 // ══════ CONİFA GERÇEK TAKVİM KİLİT SİSTEMİ ══════
@@ -11957,62 +11973,49 @@ function useWaterBreak(mode, idx) {
     const btn = document.getElementById(mode + 'wb' + idx);
     if (btn) { btn.style.opacity = '0.3'; btn.disabled = true; btn.textContent = '💦'; }
 
+    // Tüm timer'ları hemen durdur
+    if (mode === 'wc26') {
+        clearInterval(wc26CurTimerVar);
+        clearTimeout(wc26BotTimer);
+        wc26WaitingForAnswer = false;
+    } else if (mode === 'confed') {
+        clearInterval(confedCurTimerVar);
+    } else if (mode === 'friendly') {
+        clearInterval(friendlyTimerV);
+    }
+
+    // Input kilitle
+    const inp = document.getElementById(mode === 'wc26' ? 'wc26Input' : mode === 'confed' ? 'confedInput' : 'friendlyInput');
+    const btn2 = document.getElementById(mode === 'wc26' ? 'wc26Btn' : mode === 'confed' ? 'confedBtn' : 'friendlyAtBtn');
+    if (inp) inp.disabled = true;
+    if (btn2) btn2.disabled = true;
+    setDisplay('wc26GuessTimerBox','none');
+
+    // Timer göstergesi — sadece bir tane interval
     const timerEl = mode === 'wc26'
         ? document.getElementById('wc26MatchDuration')
         : mode === 'confed'
         ? document.getElementById('confedMatchDuration')
         : document.getElementById('friendlyMatchDuration');
-    const origText = timerEl ? timerEl.textContent : '';
+    const origHTML = timerEl ? timerEl.innerHTML : '';
     let countdown = 15;
-    if (timerEl) timerEl.style.color = '#44aaff';
 
     const wbInterval = setInterval(() => {
         countdown--;
         if (timerEl) timerEl.textContent = '💧 Su Molası: ' + countdown + 'sn';
         if (countdown <= 0) {
             clearInterval(wbInterval);
-            if (timerEl) { timerEl.textContent = origText; timerEl.style.color = ''; }
+            if (timerEl) { timerEl.innerHTML = origHTML; timerEl.style.color = ''; }
+            if (inp) inp.disabled = false;
+            if (btn2) btn2.disabled = false;
+            // Sonraki soruya geç
+            if (mode === 'wc26' && typeof nextWC26Question === 'function') nextWC26Question();
+            else if (mode === 'confed' && typeof nextConfedQuestion === 'function') nextConfedQuestion();
+            else if (mode === 'friendly' && typeof nextFriendlyQuestion === 'function') nextFriendlyQuestion();
         }
     }, 1000);
 
-    if (mode === 'wc26' && typeof wc26QuestionTimer !== 'undefined') {
-        clearInterval(wc26QuestionTimer);
-        clearTimeout(wc26BotTimer);
-        const inp = document.getElementById('wc26Input');
-        const btn2 = document.getElementById('wc26Btn');
-        if (inp) inp.disabled = true;
-        if (btn2) btn2.disabled = true;
-        setTimeout(() => {
-            if (inp) inp.disabled = false;
-            if (btn2) btn2.disabled = false;
-            if (typeof nextWC26Question === 'function') nextWC26Question();
-        }, 15000);
-    } else if (mode === 'confed' && typeof confedCurTimerVar !== 'undefined') {
-        clearInterval(confedCurTimerVar);
-        const inp = document.getElementById('confedInput');
-        const btn2 = document.getElementById('confedBtn');
-        if (inp) inp.disabled = true;
-        if (btn2) btn2.disabled = true;
-        setTimeout(() => {
-            if (inp) inp.disabled = false;
-            if (btn2) btn2.disabled = false;
-            if (typeof nextConfedQuestion === 'function') nextConfedQuestion();
-        }, 15000);
-    } else if (mode === 'friendly' && typeof friendlyTimerV !== 'undefined') {
-        clearInterval(friendlyTimerV);
-        const inp = document.getElementById('friendlyInput');
-        const btn2 = document.getElementById('friendlyAtBtn');
-        if (inp) inp.disabled = true;
-        if (btn2) btn2.disabled = true;
-        setTimeout(() => {
-            if (inp) inp.disabled = false;
-            if (btn2) btn2.disabled = false;
-            if (typeof nextFriendlyQuestion === 'function') nextFriendlyQuestion();
-        }, 15000);
-    }
-    if (typeof updateWC26WaterBreakBtns === 'function') updateWC26WaterBreakBtns();
-    updateConfedWaterBreakBtns();
-    updateFriendlyWaterBreakBtns();
+    if (timerEl) { timerEl.style.color = '#44aaff'; timerEl.textContent = '💧 Su Molası: 15sn'; }
 }
 
 function updateConfedWaterBreakBtns() {
@@ -12042,61 +12045,75 @@ function updateFriendlyWaterBreakBtns() {
 // ══════ VAR SİSTEMİ ══════
 let wc26VarUsed = 0;
 let wc26VarMax = 1;
-let wc26OppVarUsed = 0; // Rakip VAR hakkı
+let wc26OppVarUsed = 0;
+let wc26BreakActive = false; // Devre arası / uzatma geçiş molası aktif mi
 
 function updateWC26VarBtn() {
     const btn = document.getElementById('wc26VarBtn');
     if (!btn) return;
     const left = wc26VarMax - wc26VarUsed;
+    // Mola sırasında gizle
+    if (wc26BreakActive) { btn.style.display = 'none'; return; }
+    btn.style.display = '';
     if (left <= 0) {
-        btn.style.opacity = '0.3';
-        btn.disabled = true;
-        btn.innerHTML = '📺 VAR (0)';
+        btn.style.opacity = '0.3'; btn.disabled = true; btn.innerHTML = '📺 VAR (0)';
     } else {
-        btn.style.opacity = '1';
-        btn.disabled = false;
-        btn.innerHTML = '📺 VAR (' + left + ')';
+        btn.style.opacity = '1'; btn.disabled = false; btn.innerHTML = '📺 VAR (' + left + ')';
     }
 }
 
 function useWC26VAR() {
     if (wc26VarUsed >= wc26VarMax) return;
+    if (wc26BreakActive) return;
     wc26VarUsed++;
     updateWC26VarBtn();
-    clearInterval(wc26QuestionTimer);
+    clearInterval(wc26CurTimerVar);
     clearTimeout(wc26BotTimer);
+    wc26WaitingForAnswer = false;
     const inp = document.getElementById('wc26Input');
     const btn = document.getElementById('wc26Btn');
     if (inp) inp.disabled = true;
     if (btn) btn.disabled = true;
+    setDisplay('wc26GuessTimerBox','none');
+
+    // VAR monitör ekranı — "karar yükleniyor"
+    setHTML('wc26Message',
+        '<div style="background:rgba(0,20,80,0.95);border:2px solid #4488ff;border-radius:12px;padding:12px;text-align:center;max-width:260px;margin:0 auto;">'
+        + '<div style="font-size:13px;color:#4488ff;font-weight:bold;letter-spacing:1px;">📺 VAR MONİTÖRÜ</div>'
+        + '<div style="font-size:11px;color:#aac;margin:6px 0;">Karar yükleniyor...</div>'
+        + '<div style="display:flex;gap:4px;justify-content:center;margin-top:6px;">'
+        + '<div style="width:8px;height:8px;background:#4488ff;border-radius:50%;animation:varDot 1s infinite 0s"></div>'
+        + '<div style="width:8px;height:8px;background:#4488ff;border-radius:50%;animation:varDot 1s infinite 0.3s"></div>'
+        + '<div style="width:8px;height:8px;background:#4488ff;border-radius:50%;animation:varDot 1s infinite 0.6s"></div>'
+        + '</div></div>'
+    );
 
     const roll = Math.random();
-    var delay = 1800;
-
-    if (roll < 0.50) {
-        // GOL GEÇERLİ
-        wc26CurMyScore++;
-        setText('wc26MatchMyScore', wc26CurMyScore);
-        playSound('win');
-        setHTML('wc26Message', '<span style="color:#44aaff;font-size:14px;">📺 VAR → ✅ GOL GEÇERLİ! +1</span>');
-        delay = 1800;
-    } else if (roll < 0.75) {
-        // SARI KART — 5sn bekleme
-        playSound('wrong');
-        setHTML('wc26Message', '<span style="color:#FFD700;font-size:14px;">📺 VAR → 🟨 SARI KART! 5sn bekliyorsun...</span>');
-        delay = 5000;
-    } else {
-        // KIRMIZI KART — 10sn bekleme
-        playSound('wrong');
-        setHTML('wc26Message', '<span style="color:#ff2222;font-size:14px;">📺 VAR → 🟥 KIRMIZI KART! 10sn bekliyorsun...</span>');
-        delay = 10000;
-    }
+    const delay = roll < 0.50 ? 2000 : roll < 0.75 ? 4000 : 4000;
 
     setTimeout(() => {
-        if (inp) { inp.disabled = false; inp.value = ''; }
-        if (btn) btn.disabled = false;
-        setHTML('wc26Message', '');
-        nextWC26Question();
+        let resultHTML = '';
+        if (roll < 0.50) {
+            wc26CurMyScore++;
+            setText('wc26MatchMyScore', wc26CurMyScore);
+            playSound('win');
+            resultHTML = '<div style="background:rgba(0,80,0,0.9);border:2px solid #44ff88;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#44ff88;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#44ff88;margin-top:4px;">✅ GOL GEÇERLİ!</div><div style="font-size:11px;color:#aaffaa;margin-top:2px;">+1 gol</div></div>';
+        } else if (roll < 0.75) {
+            playSound('wrong');
+            resultHTML = '<div style="background:rgba(60,50,0,0.9);border:2px solid #FFD700;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#FFD700;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#FFD700;margin-top:4px;">🟨 SARI KART</div><div style="font-size:11px;color:#ffeeaa;margin-top:2px;">5sn bekliyorsun...</div></div>';
+        } else {
+            playSound('wrong');
+            resultHTML = '<div style="background:rgba(80,0,0,0.9);border:2px solid #ff2222;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#ff4444;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#ff4444;margin-top:4px;">🟥 KIRMIZI KART</div><div style="font-size:11px;color:#ffaaaa;margin-top:2px;">10sn bekliyorsun...</div></div>';
+        }
+        setHTML('wc26Message', resultHTML);
+
+        const waitTime = roll < 0.50 ? 1500 : roll < 0.75 ? 5000 : 10000;
+        setTimeout(() => {
+            if (inp) { inp.disabled = false; inp.value = ''; }
+            if (btn) btn.disabled = false;
+            setHTML('wc26Message', '');
+            nextWC26Question();
+        }, waitTime);
     }, delay);
 }
 
@@ -12148,19 +12165,19 @@ function updateWC26WaterBreakBtns() {
     for (let i = 0; i < 3; i++) {
         const btn = document.getElementById('wc26wb' + i);
         if (!btn) continue;
+        // Mola aktifken tüm butonları gizle
+        if (wc26BreakActive) { btn.style.display = 'none'; continue; }
+        btn.style.display = '';
         const allowedPhases = wbMap[i];
         const inPhase = allowedPhases.includes(phase);
         const used = !wc26WaterBreaksLeft[i];
         if (!inPhase) {
-            btn.style.opacity = '0.2';
-            btn.disabled = true;
+            btn.style.opacity = '0.2'; btn.disabled = true;
         } else if (used) {
-            btn.style.opacity = '0.3';
-            btn.disabled = true;
+            btn.style.opacity = '0.3'; btn.disabled = true;
             btn.textContent = '💦 ' + [15,45,90][i] + 'dk';
         } else {
-            btn.style.opacity = '1';
-            btn.disabled = false;
+            btn.style.opacity = '1'; btn.disabled = false;
             btn.textContent = '💧 ' + [15,45,90][i] + 'dk';
         }
     }
