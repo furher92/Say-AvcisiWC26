@@ -428,6 +428,59 @@
         .gfx-btn .gfx-dot { width:10px; height:10px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); flex-shrink:0; }
         .gfx-btn.active .gfx-dot { background:#e30a17; border-color:#e30a17; box-shadow:0 0 6px #e30a17; }
 
+        /* 📱 MOBİL SIĞDIRMA — 6.2-6.7 inç telefonlara göre splash sıkıştır */
+        @media (max-height: 900px), (max-width: 480px) {
+            #splashScreen { padding: 4px 6px !important; gap: 4px !important; }
+            #splashScreen > .pixel-border:first-child { padding: 6px 8px !important; }
+            #splashScreen h1 { font-size: 18px !important; margin: 2px 0 !important; }
+            #splashScreen #spaceMode { display: inline-block; }
+            /* Şampiyon kartları — daha kompakt */
+            #splashChampionsList > div {
+                padding: 1px 5px !important;
+                gap: 3px !important;
+                min-height: 22px !important;
+            }
+            #splashChampionsList > div > svg:first-child,
+            #splashChampionsList > div > svg:first-of-type {
+                width: 18px !important;
+                height: 18px !important;
+            }
+            #splashChampionsList > div > div[style*="flex:1"] > div:first-child {
+                font-size: 5px !important;
+            }
+            #splashChampionsList > div > div[style*="flex:1"] > div:last-child {
+                font-size: 7px !important;
+            }
+            #splashChampionsList > div > svg:last-child {
+                width: 13px !important;
+                height: 8px !important;
+            }
+            /* Dil butonları küçük + scroll */
+            #splashScreen [data-lang-btn] {
+                padding: 2px 4px !important;
+                font-size: 9px !important;
+            }
+            /* Başla butonu */
+            #splashStartBtn {
+                padding: 9px 32px !important;
+                font-size: 13px !important;
+                margin-top: 8px !important;
+            }
+        }
+        /* Daha küçük cihazlar (6.2 inç altı) */
+        @media (max-height: 720px) {
+            #splashChampionsList > div > svg:first-child,
+            #splashChampionsList > div > svg:first-of-type {
+                width: 14px !important;
+                height: 14px !important;
+            }
+            #splashChampionsList > div > div[style*="flex:1"] > div:first-child {
+                font-size: 4px !important;
+            }
+            #splashChampionsList > div > div[style*="flex:1"] > div:last-child {
+                font-size: 6px !important;
+            }
+        }
         /* 🏆 SPLASH ŞAMPİYON KARTLARI — KOMPAKT */
         #splashChampionsList > div {
             padding: 2px 6px !important;
@@ -461,6 +514,480 @@
     <link rel="apple-touch-icon" href="logo.png">
 </head>
 <body>
+
+<!-- ══════════ 🎬 PRE-ALPHA 3 BAŞLANGIÇ TRAILER'I ══════════ -->
+<div id="introTrailer" class="started" onclick="tryStartTrailerMusic()">
+    <div class="trl-bg-glow"></div>
+    <div class="trl-nums">
+        <span style="--i:0;--c:#ef4444">7</span>
+        <span style="--i:1;--c:#fbbf24">3</span>
+        <span style="--i:2;--c:#22c55e">1</span>
+        <span style="--i:3;--c:#f59e0b">9</span>
+        <span style="--i:4;--c:#ec4899">5</span>
+        <span style="--i:5;--c:#fb923c">2</span>
+        <span style="--i:6;--c:#dc2626">8</span>
+        <span style="--i:7;--c:#fcd34d">4</span>
+        <span style="--i:8;--c:#f97316">6</span>
+    </div>
+    
+    <svg class="trl-ball trl-ball-tridona" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <clipPath id="trlTridClip"><circle cx="50" cy="50" r="46"/></clipPath>
+        </defs>
+        <circle cx="50" cy="50" r="46" fill="#fff"/>
+        <g clip-path="url(#trlTridClip)">
+            <path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="14" stroke-linecap="round"/>
+            <path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="14" stroke-linecap="round"/>
+            <path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="14" stroke-linecap="round"/>
+            <path d="M30 24 Q50 18 70 28" fill="none" stroke="#fcd34d" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+            <path d="M40 8 Q42 30 35 50" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+        </g>
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#888" stroke-width="1.5"/>
+    </svg>
+    
+    <svg class="trl-ball trl-ball-sc" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <clipPath id="trlScClip"><circle cx="50" cy="50" r="46"/></clipPath>
+            <radialGradient id="trlScGrad" cx="35%" cy="30%" r="70%">
+                <stop offset="0" stop-color="#fff"/>
+                <stop offset="1" stop-color="#e8eef5"/>
+            </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="46" fill="url(#trlScGrad)"/>
+        <polygon points="10,38 30,18 38,40 18,58" fill="#1e40af" clip-path="url(#trlScClip)"/>
+        <polygon points="30,18 52,8 56,28 38,38" fill="#22c55e" clip-path="url(#trlScClip)"/>
+        <polygon points="56,12 78,18 82,42 60,32" fill="#1e40af" clip-path="url(#trlScClip)"/>
+        <polygon points="64,40 86,46 80,68 60,58" fill="#22c55e" clip-path="url(#trlScClip)"/>
+        <polygon points="20,68 44,66 50,88 26,92" fill="#1e40af" clip-path="url(#trlScClip)"/>
+        <polygon points="50,68 70,72 68,90 48,90" fill="#22c55e" clip-path="url(#trlScClip)"/>
+        <circle cx="58" cy="50" r="6" fill="#1e40af" clip-path="url(#trlScClip)"/>
+        <circle cx="58" cy="50" r="3.5" fill="#22c55e"/>
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#888" stroke-width="1.5"/>
+    </svg>
+    
+    <div class="trl-flash"></div>
+    
+    <div class="trl-logo">
+        <div class="trl-pre">⚡ BU OYUN BİR ⚡</div>
+        <div class="trl-title">SAYI<br>AVCISI</div>
+        <div class="trl-subtitle">DENEYİMİDİR</div>
+        <div class="trl-tagline">PRE-ALPHA <strong>3</strong> · 15 TEMMUZ ANMA</div>
+        <div class="trl-pills">
+            <span style="background:#dc2626;">DÜNYA KUPASI</span>
+            <span style="background:#0d47a1;">UEFA SÜPER KUPA</span>
+            <span style="background:#ffd060;color:#1a0d00;">TYT</span>
+            <span style="background:#7e22ce;">AYT</span>
+        </div>
+    </div>
+    
+    <button class="trl-skip" onclick="event.stopPropagation();skipIntroTrailer()">GEÇ ►</button>
+    
+</div>
+
+<style>
+#introTrailer {
+    position: fixed; inset: 0; z-index: 999999;
+    background: radial-gradient(ellipse at center, #1a0408 0%, #000 70%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; overflow: hidden;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    cursor: pointer;
+    animation: trlFadeOut 0.8s 6.4s forwards;
+}
+.trl-sound-hint {
+    position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+    padding: 6px 14px; font-size: 10px; font-weight: 700;
+    background: rgba(0,0,0,0.6); color: #fff;
+    border: 1px solid rgba(255,100,100,0.25); border-radius: 16px;
+    letter-spacing: 2px; backdrop-filter: blur(8px);
+    animation: trlHintPulse 1.5s ease-in-out infinite, trlHintFadeOut 0.5s 4s forwards;
+}
+@keyframes trlHintPulse { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
+@keyframes trlHintFadeOut { to { opacity:0; visibility:hidden; } }
+.trl-bg-glow {
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(220,38,38,0.4), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(245,158,11,0.3), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(34,197,94,0.2), transparent 50%);
+    animation: trlGlow 6s ease-in-out;
+    opacity: 0;
+}
+@keyframes trlGlow {
+    0% { opacity: 0; transform: scale(0.5); }
+    30% { opacity: 1; transform: scale(1); }
+    70% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+.trl-nums {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+}
+.trl-nums span {
+    position: absolute;
+    font-size: 64px; font-weight: 900;
+    color: var(--c);
+    text-shadow: 0 0 30px var(--c), 0 0 60px var(--c);
+    opacity: 0;
+    animation: trlNumExplode 1.6s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.1s);
+}
+@keyframes trlNumExplode {
+    0% { opacity: 0; transform: translate(0, 0) scale(0); }
+    15% { opacity: 1; transform: scale(1.4); }
+    100% {
+        opacity: 0;
+        transform: 
+            translate(
+                calc(cos(var(--i) * 40deg) * 280px),
+                calc(sin(var(--i) * 40deg) * 280px)
+            )
+            scale(0.3) rotate(720deg);
+    }
+}
+.trl-ball {
+    position: absolute;
+    width: 100px; height: 100px;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+.trl-ball-tridona { 
+    animation: trlBallTridonaFly 2.5s ease-out 1.4s forwards;
+    filter: drop-shadow(0 0 30px rgba(255,80,80,0.8));
+}
+@keyframes trlBallTridonaFly {
+    0% { left: -120px; top: 35%; transform: translate(0, -50%) scale(0.5) rotate(0); opacity: 0; }
+    20% { opacity: 1; }
+    50% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.5) rotate(720deg); opacity: 1; }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(3.2) rotate(1080deg); }
+    100% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0) rotate(1440deg); opacity: 0; }
+}
+.trl-ball-sc { 
+    animation: trlBallScFly 2.5s ease-out 1.7s forwards; 
+    filter: drop-shadow(0 0 30px rgba(80,150,255,0.8));
+}
+@keyframes trlBallScFly {
+    0% { left: 120%; top: 65%; transform: translate(0, -50%) scale(0.5) rotate(0); opacity: 0; }
+    20% { opacity: 1; }
+    50% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.5) rotate(-720deg); opacity: 1; }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(3.2) rotate(-1080deg); }
+    100% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0) rotate(-1440deg); opacity: 0; }
+}
+.trl-flash {
+    position: absolute; inset: 0; background: white; opacity: 0;
+    animation: trlFlash 0.5s 3.9s ease-out;
+    pointer-events: none;
+}
+@keyframes trlFlash {
+    0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; }
+}
+.trl-logo {
+    position: relative; z-index: 10; text-align: center;
+    opacity: 0; transform: translateY(20px);
+    animation: trlLogoIn 1s 4.2s forwards;
+}
+@keyframes trlLogoIn { to { opacity: 1; transform: translateY(0); } }
+.trl-pre {
+    font-size: 10px; color: #888; letter-spacing: 6px;
+    margin-bottom: 8px; font-weight: 700;
+}
+.trl-title {
+    font-size: clamp(48px, 11vw, 88px);
+    font-weight: 900; letter-spacing: 4px; line-height: 0.95;
+    text-shadow: 0 0 30px rgba(220,38,38,0.8);
+    background: linear-gradient(180deg, #fff 0%, #fca5a5 40%, #dc2626 75%, #7a0011 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+}
+.trl-subtitle {
+    font-size: 12px; color: #fca5a5; letter-spacing: 8px;
+    margin-bottom: 16px; font-weight: 500;
+}
+.trl-tagline {
+    font-size: 12px; color: #fbbf24; font-weight: 800;
+    letter-spacing: 4px; margin-bottom: 16px;
+}
+.trl-tagline strong {
+    color: #fff;
+    background: linear-gradient(135deg, #dc2626, #f59e0b);
+    padding: 2px 10px; border-radius: 6px; font-weight: 900;
+}
+.trl-pills { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.trl-pills span {
+    font-size: 10px; font-weight: 800; color: #fff;
+    padding: 4px 12px; border-radius: 20px;
+    letter-spacing: 2px; opacity: 0;
+    animation: trlPillIn 0.4s forwards;
+}
+.trl-pills span:nth-child(1) { animation-delay: 4.8s; }
+.trl-pills span:nth-child(2) { animation-delay: 5.0s; }
+.trl-pills span:nth-child(3) { animation-delay: 5.2s; }
+.trl-pills span:nth-child(4) { animation-delay: 5.4s; }
+@keyframes trlPillIn { 
+    from { opacity: 0; transform: scale(0); } 
+    to { opacity: 1; transform: scale(1); } 
+}
+.trl-skip {
+    position: absolute; bottom: 24px; right: 24px;
+    padding: 8px 16px; font-size: 11px; font-weight: 700;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,100,100,0.3);
+    border-radius: 20px; cursor: pointer;
+    letter-spacing: 2px;
+    backdrop-filter: blur(8px);
+    z-index: 100;
+}
+.trl-skip:hover { background: rgba(255,100,100,0.18); }
+@keyframes trlFadeOut {
+    to { opacity: 0; pointer-events: none; }
+}
+</style>
+
+<script>
+let _audioCtx = null;
+let _trailerMusicStarted = false;
+function playTrailerSting() {
+    if (_trailerMusicStarted) return;
+    try {
+        _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const ctx = _audioCtx;
+        const start = function() {
+            _trailerMusicStarted = true;
+            const hint = document.querySelector('.trl-sound-hint');
+            if (hint) hint.style.display = 'none';
+            const now = ctx.currentTime;
+            const master = ctx.createGain();
+            master.gain.value = 0.5;
+            master.connect(ctx.destination);
+            function note(freq, t, dur, type, vol) {
+                type = type || 'sine'; vol = vol || 0.15;
+                const o = ctx.createOscillator();
+                o.type = type; o.frequency.value = freq;
+                const g = ctx.createGain();
+                g.gain.setValueAtTime(0, now + t);
+                g.gain.linearRampToValueAtTime(vol, now + t + 0.02);
+                g.gain.exponentialRampToValueAtTime(0.001, now + t + dur);
+                o.connect(g).connect(master);
+                o.start(now + t); o.stop(now + t + dur + 0.05);
+            }
+            function kick(t, vol) {
+                vol = vol || 0.5;
+                const o = ctx.createOscillator();
+                o.frequency.setValueAtTime(160, now + t);
+                o.frequency.exponentialRampToValueAtTime(40, now + t + 0.15);
+                const g = ctx.createGain();
+                g.gain.setValueAtTime(vol, now + t);
+                g.gain.exponentialRampToValueAtTime(0.001, now + t + 0.2);
+                o.connect(g).connect(master);
+                o.start(now + t); o.stop(now + t + 0.25);
+            }
+            note(55, 0, 5.5, 'sawtooth', 0.10);
+            note(110, 0, 5.5, 'triangle', 0.06);
+            [220, 277, 330, 392, 523, 659, 784, 880].forEach((f,i)=>note(f, 0.15+i*0.4, 0.45, 'sine', 0.16));
+            [0.5,1.0,1.5,2.0,2.5,3.0,3.5].forEach(t => kick(t, 0.4));
+            kick(3.9, 0.85);
+            note(220, 3.9, 2.0, 'sawtooth', 0.22);
+            note(440, 3.9, 2.0, 'triangle', 0.13);
+            note(523, 4.2, 1.8, 'sine', 0.14);
+            note(659, 4.3, 1.7, 'sine', 0.11);
+            note(784, 4.4, 1.6, 'sine', 0.11);
+            note(1046, 4.5, 1.5, 'sine', 0.08);
+            note(1568, 5.4, 0.8, 'sine', 0.10);
+        };
+        if (ctx.state === 'suspended') {
+            ctx.resume().then(start).catch(()=>{ _audioCtx=null; });
+        } else {
+            start();
+        }
+    } catch(e) { console.log('Audio:', e); _audioCtx=null; }
+}
+function tryStartTrailerMusic() { if (!_trailerMusicStarted) playTrailerSting(); }
+// 🚀 Müziği hemen başlatmaya çalış
+playTrailerSting();
+// İlk dokunuş/tıklamada da dene (autoplay engellenirse)
+['click','touchstart','keydown','pointerdown'].forEach(ev =>
+    document.addEventListener(ev, tryStartTrailerMusic, { once:true, capture:true })
+);
+
+function skipIntroTrailer() {
+    const t = document.getElementById('introTrailer');
+    if (t) { 
+        t.style.animation = 'trlFadeOut 0.4s forwards';
+        setTimeout(() => { try{t.remove();}catch(e){} }, 450);
+        if (_audioCtx) { try{_audioCtx.close();}catch(e){} }
+    }
+}
+setTimeout(() => {
+    const t = document.getElementById('introTrailer');
+    if (t) { try{t.remove();}catch(e){} }
+    if (_audioCtx) { try{_audioCtx.close();}catch(e){} }
+}, 7400);
+</script>
+
+<!-- ══════════ MATEMATİK ARKA PLAN ══════════ -->
+<div id="mathBg"></div>
+
+
+<!-- ══════════ MATEMATİK ARKA PLAN ══════════ -->
+<div id="mathBg"></div>
+
+<style>
+#introTrailer {
+    position: fixed; inset: 0; z-index: 999999;
+    background: radial-gradient(ellipse at center, #1a0408 0%, #000 70%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; overflow: hidden; cursor: pointer;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    animation: trlFadeOut 0.8s 6.2s forwards;
+}
+.trl-bg-glow {
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(220,38,38,0.4), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(245,158,11,0.3), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(34,197,94,0.2), transparent 50%);
+    animation: trlGlow 6s ease-in-out;
+    opacity: 0;
+}
+@keyframes trlGlow {
+    0% { opacity: 0; transform: scale(0.5); }
+    30% { opacity: 1; transform: scale(1); }
+    70% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+.trl-nums {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+}
+.trl-nums span {
+    position: absolute;
+    font-size: 64px; font-weight: 900;
+    color: var(--c);
+    text-shadow: 0 0 30px var(--c), 0 0 60px var(--c);
+    opacity: 0;
+    animation: trlNumExplode 1.6s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.1s);
+}
+@keyframes trlNumExplode {
+    0% { opacity: 0; transform: translate(0, 0) scale(0); }
+    15% { opacity: 1; transform: scale(1.4); }
+    100% {
+        opacity: 0;
+        transform: 
+            translate(
+                calc(cos(var(--i) * 40deg) * 280px),
+                calc(sin(var(--i) * 40deg) * 280px)
+            )
+            scale(0.3) rotate(720deg);
+    }
+}
+/* Tridona — soldan, biraz yukarı */
+.trl-ball {
+    position: absolute;
+    width: 100px; height: 100px;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    filter: drop-shadow(0 0 30px rgba(255,80,80,0.8));
+}
+.trl-ball-tridona { animation: trlBallTridonaFly 2.5s ease-out 1.4s forwards; }
+@keyframes trlBallTridonaFly {
+    0% { left: -120px; top: 35%; transform: translate(0, -50%) scale(0.5) rotate(0); opacity: 0; }
+    20% { opacity: 1; }
+    50% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.5) rotate(720deg); opacity: 1; }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(3.2) rotate(1080deg); }
+    100% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0) rotate(1440deg); opacity: 0; }
+}
+/* UEFA Süper Kupa topu — sağdan, biraz aşağı */
+.trl-ball-sc { 
+    animation: trlBallScFly 2.5s ease-out 1.7s forwards; 
+    filter: drop-shadow(0 0 30px rgba(80,150,255,0.8));
+}
+@keyframes trlBallScFly {
+    0% { left: 120%; top: 65%; transform: translate(0, -50%) scale(0.5) rotate(0); opacity: 0; }
+    20% { opacity: 1; }
+    50% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.5) rotate(-720deg); opacity: 1; }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(3.2) rotate(-1080deg); }
+    100% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0) rotate(-1440deg); opacity: 0; }
+}
+.trl-flash {
+    position: absolute; inset: 0; background: white; opacity: 0;
+    animation: trlFlash 0.5s 3.9s ease-out;
+    pointer-events: none;
+}
+@keyframes trlFlash {
+    0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; }
+}
+.trl-logo {
+    position: relative; z-index: 10; text-align: center;
+    opacity: 0; transform: translateY(20px);
+    animation: trlLogoIn 1s 4.2s forwards;
+}
+@keyframes trlLogoIn { to { opacity: 1; transform: translateY(0); } }
+.trl-pre {
+    font-size: 10px; color: #888; letter-spacing: 6px;
+    margin-bottom: 8px; font-weight: 700;
+}
+.trl-title {
+    font-size: clamp(48px, 11vw, 88px);
+    font-weight: 900; letter-spacing: 4px; line-height: 0.95;
+    text-shadow: 0 0 30px rgba(220,38,38,0.8);
+    background: linear-gradient(180deg, #fff 0%, #fca5a5 40%, #dc2626 75%, #7a0011 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+}
+.trl-subtitle {
+    font-size: 12px; color: #fca5a5; letter-spacing: 8px;
+    margin-bottom: 16px; font-weight: 500;
+}
+.trl-tagline {
+    font-size: 12px; color: #fbbf24; font-weight: 800;
+    letter-spacing: 4px; margin-bottom: 16px;
+}
+.trl-tagline strong {
+    color: #fff;
+    background: linear-gradient(135deg, #dc2626, #f59e0b);
+    padding: 2px 10px; border-radius: 6px; font-weight: 900;
+}
+.trl-pills { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.trl-pills span {
+    font-size: 10px; font-weight: 800; color: #fff;
+    padding: 4px 12px; border-radius: 20px;
+    letter-spacing: 2px; opacity: 0;
+    animation: trlPillIn 0.4s forwards;
+}
+.trl-pills span:nth-child(1) { animation-delay: 4.8s; }
+.trl-pills span:nth-child(2) { animation-delay: 5.0s; }
+.trl-pills span:nth-child(3) { animation-delay: 5.2s; }
+@keyframes trlPillIn { 
+    from { opacity: 0; transform: scale(0); } 
+    to { opacity: 1; transform: scale(1); } 
+}
+.trl-skip {
+    position: absolute; bottom: 24px; right: 24px;
+    padding: 8px 16px; font-size: 11px; font-weight: 700;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,100,100,0.3);
+    border-radius: 20px; cursor: pointer;
+    letter-spacing: 2px;
+    backdrop-filter: blur(8px);
+    z-index: 100;
+}
+.trl-skip:hover { background: rgba(255,100,100,0.18); }
+@keyframes trlFadeOut {
+    to { opacity: 0; pointer-events: none; }
+}
+</style>
+
 
 <!-- ══════════ MATEMATİK ARKA PLAN ══════════ -->
 <div id="mathBg"></div>
@@ -1617,6 +2144,9 @@
             <button onclick="setAxiomMode('tytProb')" id="axiomModeTytProb" style="padding:6px 12px;font-size:11px;border-radius:8px;border:1px solid rgba(255,180,0,0.5);background:#111;color:#ffd060;cursor:pointer;">📐 TYT Prob</button>
             <button onclick="setAxiomMode('tytStat')" id="axiomModeTytStat" style="padding:6px 12px;font-size:11px;border-radius:8px;border:1px solid rgba(0,200,255,0.5);background:#111;color:#40d0ff;cursor:pointer;">📊 TYT İst</button>
             <button onclick="setAxiomMode('tytKume')" id="axiomModeTytKume" style="padding:6px 12px;font-size:11px;border-radius:8px;border:1px solid rgba(180,80,255,0.5);background:#111;color:#cc66ff;cursor:pointer;">🔵 TYT Küme</button>
+            <button onclick="setAxiomMode('turev')" id="axiomModeTurev" style="padding:6px 12px;font-size:11px;border-radius:8px;border:1px solid rgba(244,114,182,0.55);background:#111;color:#f472b6;cursor:pointer;">📈 AYT Türev</button>
+            <button onclick="setAxiomMode('integral')" id="axiomModeIntegral" style="padding:6px 12px;font-size:11px;border-radius:8px;border:1px solid rgba(192,132,252,0.55);background:#111;color:#c084fc;cursor:pointer;font-family:serif;">∫ AYT İntegral</button>
+            <button onclick="setAxiomMode('log')" id="axiomModeLog" style="padding:6px 12px;font-size:11px;border-radius:8px;border:1px solid rgba(94,234,212,0.55);background:#111;color:#5eead4;cursor:pointer;">㏒ AYT Logaritma</button>
         </div>
         <div id="axiomSelectedMode" style="font-size:10px;color:#00dcff;margin-top:6px;"></div>
     </div>
@@ -10775,9 +11305,9 @@ let axiomTimeLeft=0;
 
 function setAxiomMode(mode){
     axiomMode=mode;
-    const labels={islem:'➕➖✖️➗ 4 İşlem', ebob:'➗ EBOB/EKOK', fonk:'📐 f(x)', sozel:'💬 Sayı', hiz:'🚀 Hareket&Hız', perm:'🎲 P&C', tytProb:'📐 TYT Problemler', tytStat:'📊 TYT İstatistik', tytKume:'🔵 TYT Kümeler'};
+    const labels={islem:'➕➖✖️➗ 4 İşlem', ebob:'➗ EBOB/EKOK', fonk:'📐 f(x)', sozel:'💬 Sayı', hiz:'🚀 Hareket&Hız', perm:'🎲 P&C', tytProb:'📐 TYT Problemler', tytStat:'📊 TYT İstatistik', tytKume:'🔵 TYT Kümeler', turev:'📈 AYT Türev', integral:'∫ AYT İntegral', log:'㏒ AYT Logaritma'};
     setText('axiomSelectedMode','✅ Seçili: '+(labels[mode]||mode));
-    ['islem','ebob','fonk','sozel','hiz','perm','tytProb','tytStat','tytKume'].forEach(m=>{
+    ['islem','ebob','fonk','sozel','hiz','perm','tytProb','tytStat','tytKume','turev','integral','log'].forEach(m=>{
         const key='axiomMode'+m.charAt(0).toUpperCase()+m.slice(1);
         const btn=document.getElementById(key);
         if(btn) btn.style.background=m===mode?'rgba(0,200,255,0.2)':'#111';
@@ -10837,6 +11367,15 @@ function getAxiomQuestion(){
     } else if(axiomMode==='tytProb'||axiomMode==='tytStat'||axiomMode==='tytKume'){
         const tq=getTYTQuestion(axiomMode);
         q={soru:tq.q, soru2:'['+tq.sub+']', cevap:tq.a, _tol:tq.tol};
+    } else if(axiomMode==='turev'){
+        const gq = (typeof _aytGenTurev === 'function') ? _aytGenTurev() : {q:'f(x)=2x², f′(1)=?', ans:4};
+        q={soru:gq.q, soru2:'[AYT 2026 · Türev]', cevap:gq.ans};
+    } else if(axiomMode==='integral'){
+        const gq = (typeof _aytGenIntegral === 'function') ? _aytGenIntegral() : {q:'∫₀² 2x dx=?', ans:4};
+        q={soru:gq.q, soru2:'[AYT 2026 · İntegral]', cevap:gq.ans};
+    } else if(axiomMode==='log'){
+        const gq = (typeof _aytGenLog === 'function') ? _aytGenLog() : {q:'log₂(16)=?', ans:4};
+        q={soru:gq.q, soru2:'[AYT 2026 · Logaritma]', cevap:gq.ans};
     }
     return q;
 }
@@ -11912,6 +12451,8 @@ function startWC26Match(match, totalQuestions) {
     // Su molası ve VAR sıfırla
     resetWaterBreaks('wc26');
     resetMatchTimeouts('wc26');
+    // 🌦️ Hava durumu — maç tarihine göre (WC26 Haz-Tem 2026 → yaz)
+    setTimeout(()=>{ try{ applyMatchWeather('wc26Ball', new Date('2026-07-01')); }catch(e){} }, 80);
     wc26VarUsed = 0;
     wc26OppVarUsed = 0;
     wc26VarMax = (wc26Stage === 'group') ? 1 : 2;
@@ -11934,16 +12475,20 @@ function wc26PhaseLabel(phase) {
 // 🎯 Stage'e göre top SVG'si seç (Tridona varsayılan, Süper Kupa için özel)
 function getMatchBallSVG_small() {
     var isSuperCup = (typeof wc26Stage !== 'undefined' && wc26Stage === 'super_cup_final');
+    var isFinal = (typeof wc26Stage !== 'undefined' && wc26Stage === 'final');
     var isUCL  = (typeof wc26Stage !== 'undefined' && wc26Stage === 'ucl');
     var isUEL  = (typeof wc26Stage !== 'undefined' && wc26Stage === 'uel');
     var isUECL = (typeof wc26Stage !== 'undefined' && wc26Stage === 'uecl');
+    if (isFinal) {
+        // 🏆 Trionda Final topu — lisansız: siyah+altın+kırmızı dilim deseni, beyaz fon
+        return '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 3px rgba(200,160,0,0.5));"><defs><clipPath id="trfClip"><circle cx="50" cy="50" r="46"/></clipPath><linearGradient id="trfGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde047"/><stop offset="0.5" stop-color="#d4af37"/><stop offset="1" stop-color="#8b6914"/></linearGradient></defs><circle cx="50" cy="50" r="46" fill="#ffffff"/><g clip-path="url(#trfClip)"><path d="M25 8 Q35 38 22 70 Q15 88 30 96" fill="none" stroke="#0a0a0a" stroke-width="14" stroke-linecap="round"/><path d="M68 4 Q56 32 65 60 Q72 82 60 96" fill="none" stroke="#0a0a0a" stroke-width="14" stroke-linecap="round"/><path d="M14 22 Q24 30 18 50" fill="none" stroke="url(#trfGold)" stroke-width="5" stroke-linecap="round"/><path d="M58 16 Q66 30 58 48" fill="none" stroke="url(#trfGold)" stroke-width="5" stroke-linecap="round"/><path d="M30 76 Q42 84 56 82" fill="none" stroke="url(#trfGold)" stroke-width="4" stroke-linecap="round"/><path d="M40 38 Q48 48 36 58" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" opacity="0.9"/><path d="M70 50 Q80 56 76 70" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" opacity="0.85"/><text x="50" y="56" font-family="Impact,Arial Black,sans-serif" font-size="13" font-weight="900" fill="#dc2626" text-anchor="middle" stroke="#fff" stroke-width="0.5">FINAL</text></g><circle cx="50" cy="50" r="46" fill="none" stroke="#888" stroke-width="1.5"/></svg>';
+    }
     if (isSuperCup) {
         return '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="scbs"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="scbsg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8eef5"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#scbsg)"/><polygon points="10,38 30,18 38,40 18,58" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="30,18 52,8 56,28 38,38" fill="#22c55e" clip-path="url(#scbs)"/><polygon points="56,12 78,18 82,42 60,32" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="64,40 86,46 80,68 60,58" fill="#22c55e" clip-path="url(#scbs)"/><polygon points="20,68 44,66 50,88 26,92" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="50,68 70,72 68,90 48,90" fill="#22c55e" clip-path="url(#scbs)"/><circle cx="58" cy="50" r="6" fill="#1e40af" clip-path="url(#scbs)"/><circle cx="58" cy="50" r="3.5" fill="#22c55e"/><circle cx="40" cy="45" r="4" fill="#22c55e" clip-path="url(#scbs)"/><circle cx="40" cy="45" r="2" fill="#1e40af"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>';
     }
     if (isUCL) return UCL_BALL_SVG_SMALL;
     if (isUEL) return UEL_BALL_SVG_SMALL;
     if (isUECL) return UECL_BALL_SVG_SMALL;
-    // Default Tridona — daha dolu/zengin fırça vuruşları (içi boş görünmesin)
     return '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="tiR2"><circle cx="50" cy="50" r="46"/></clipPath></defs><circle cx="50" cy="50" r="46" fill="#ffffff"/><g clip-path="url(#tiR2)"><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="14" stroke-linecap="round"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="14" stroke-linecap="round"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="14" stroke-linecap="round"/><path d="M30 24 Q50 18 70 28" fill="none" stroke="#fcd34d" stroke-width="5" stroke-linecap="round" opacity="0.85"/><path d="M28 60 Q50 70 72 60" fill="none" stroke="#fcd34d" stroke-width="4" stroke-linecap="round" opacity="0.7"/><path d="M40 8 Q42 30 35 50" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/><path d="M62 50 Q66 70 60 90" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/></g><circle cx="50" cy="50" r="46" fill="none" stroke="#888" stroke-width="1.5"/></svg>';
 }
 
@@ -13496,6 +14041,187 @@ function selectCategory(cat) {
 }
 window.selectCategory = selectCategory;
 
+// 🌐 KATEGORİ EKRANI ÇEVİRİLERİ (PA3)
+const CATEGORY_I18N = {
+    tr: { sel:'Bir Kategori Seç', math:'MATEMATİK', football:'FUTBOL', games:'OYUNLARI', mathDesc:'Sayı Tahmin · EBOB-EKOK<br>4 İşlem · Hız · TYT · AYT', ftDesc:'Uluslar Şampiyonası<br>Avrupa Süper Kupası', home:'🏠 ANA EKRAN', lang:'🌐 Dil / Language', back:'← Kategoriler' },
+    en: { sel:'Select Category', math:'MATH', football:'FOOTBALL', games:'GAMES', mathDesc:'Number Guess · GCD-LCM<br>4 Ops · Speed · TYT · AYT', ftDesc:'Nations Championship<br>European Super Cup', home:'🏠 MAIN MENU', lang:'🌐 Language', back:'← Categories' },
+    de: { sel:'Kategorie wählen', math:'MATHEMATIK', football:'FUSSBALL', games:'SPIELE', mathDesc:'Zahlenraten · ggT-kgV<br>4 Rechenarten · Speed · TYT · AYT', ftDesc:'Nationen-Meisterschaft<br>Europäischer Superpokal', home:'🏠 HAUPTMENÜ', lang:'🌐 Sprache', back:'← Kategorien' },
+    fr: { sel:'Choisir une catégorie', math:'MATHS', football:'FOOTBALL', games:'JEUX', mathDesc:'Devine Nombre · PGCD-PPCM<br>4 Opérations · Vitesse · TYT · AYT', ftDesc:'Championnat des Nations<br>Supercoupe Européenne', home:'🏠 MENU', lang:'🌐 Langue', back:'← Catégories' },
+    es: { sel:'Elegir categoría', math:'MATEMÁTICAS', football:'FÚTBOL', games:'JUEGOS', mathDesc:'Adivina · MCD-MCM<br>4 Operaciones · Velocidad · TYT · AYT', ftDesc:'Campeonato de Naciones<br>Supercopa Europea', home:'🏠 INICIO', lang:'🌐 Idioma', back:'← Categorías' },
+    it: { sel:'Scegli categoria', math:'MATEMATICA', football:'CALCIO', games:'GIOCHI', mathDesc:'Indovina · MCD-mcm<br>4 Operazioni · Velocità · TYT · AYT', ftDesc:'Campionato delle Nazioni<br>Supercoppa Europea', home:'🏠 MENU', lang:'🌐 Lingua', back:'← Categorie' },
+    ru: { sel:'Выберите категорию', math:'МАТЕМАТИКА', football:'ФУТБОЛ', games:'ИГРЫ', mathDesc:'Угадай число · НОД-НОК<br>4 действия · Скорость · TYT · AYT', ftDesc:'Чемпионат Наций<br>Европейский Суперкубок', home:'🏠 ГЛАВНОЕ МЕНЮ', lang:'🌐 Язык', back:'← Категории' },
+    ar: { sel:'اختر الفئة', math:'الرياضيات', football:'كرة القدم', games:'ألعاب', mathDesc:'تخمين الأرقام · ق.م.أ-م.م.أ<br>العمليات الأربع · السرعة · TYT · AYT', ftDesc:'بطولة الأمم<br>كأس السوبر الأوروبي', home:'🏠 القائمة', lang:'🌐 اللغة', back:'← الفئات' },
+    ja: { sel:'カテゴリーを選択', math:'数学', football:'サッカー', games:'ゲーム', mathDesc:'数当て · 最大公約数<br>四則演算 · スピード · TYT · AYT', ftDesc:'ネーションズ選手権<br>欧州スーパーカップ', home:'🏠 メインメニュー', lang:'🌐 言語', back:'← カテゴリー' },
+    ko: { sel:'카테고리 선택', math:'수학', football:'축구', games:'게임', mathDesc:'숫자 추측 · 최대공약수<br>사칙연산 · 속도 · TYT · AYT', ftDesc:'네이션스 챔피언십<br>유럽 슈퍼컵', home:'🏠 메인 메뉴', lang:'🌐 언어', back:'← 카테고리' },
+    zh: { sel:'选择类别', math:'数学', football:'足球', games:'游戏', mathDesc:'猜数字 · 最大公约数<br>四则运算 · 速度 · TYT · AYT', ftDesc:'国家锦标赛<br>欧洲超级杯', home:'🏠 主菜单', lang:'🌐 语言', back:'← 类别' },
+    pt: { sel:'Escolher Categoria', math:'MATEMÁTICA', football:'FUTEBOL', games:'JOGOS', mathDesc:'Adivinhe · MDC-MMC<br>4 Operações · Velocidade · TYT · AYT', ftDesc:'Campeonato das Nações<br>Supercopa Europeia', home:'🏠 MENU', lang:'🌐 Idioma', back:'← Categorias' },
+    uk: { sel:'Виберіть категорію', math:'МАТЕМАТИКА', football:'ФУТБОЛ', games:'ІГРИ', mathDesc:'Вгадай число · НСД-НСК<br>4 дії · Швидкість · TYT · AYT', ftDesc:'Чемпіонат Націй<br>Європейський Суперкубок', home:'🏠 МЕНЮ', lang:'🌐 Мова', back:'← Категорії' },
+    fa: { sel:'یک دسته‌بندی انتخاب کنید', math:'ریاضی', football:'فوتبال', games:'بازی‌ها', mathDesc:'حدس عدد · ب.م.م-ک.م.م<br>چهار عمل · سرعت · TYT · AYT', ftDesc:'قهرمانی ملت‌ها<br>سوپر کاپ اروپا', home:'🏠 منوی اصلی', lang:'🌐 زبان', back:'← دسته‌ها' },
+    nl: { sel:'Kies categorie', math:'WISKUNDE', football:'VOETBAL', games:'SPELLEN', mathDesc:'Raad · GGD-KGV<br>4 Bewerkingen · Snelheid · TYT · AYT', ftDesc:'Wereldkampioenschap Naties<br>Europese Super Cup', home:'🏠 MENU', lang:'🌐 Taal', back:'← Categorieën' },
+    sv: { sel:'Välj kategori', math:'MATEMATIK', football:'FOTBOLL', games:'SPEL', mathDesc:'Gissa · SGD-MGM<br>4 Räknesätt · Hastighet · TYT · AYT', ftDesc:'Nationsmästerskap<br>Europeiska Supercupen', home:'🏠 MENY', lang:'🌐 Språk', back:'← Kategorier' },
+    no: { sel:'Velg kategori', math:'MATEMATIKK', football:'FOTBALL', games:'SPILL', mathDesc:'Gjett · SFF-MFM<br>4 Regneoperasjoner · Fart · TYT · AYT', ftDesc:'Nasjonsmesterskap<br>Europeisk Supercup', home:'🏠 MENY', lang:'🌐 Språk', back:'← Kategorier' },
+    cs: { sel:'Vyberte kategorii', math:'MATEMATIKA', football:'FOTBAL', games:'HRY', mathDesc:'Hádej · NSD-NSN<br>4 Operace · Rychlost · TYT · AYT', ftDesc:'Mistrovství Národů<br>Evropský Superpohár', home:'🏠 MENU', lang:'🌐 Jazyk', back:'← Kategorie' },
+    bs: { sel:'Odaberi kategoriju', math:'MATEMATIKA', football:'FUDBAL', games:'IGRE', mathDesc:'Pogodi · NZS-NZD<br>4 Operacije · Brzina · TYT · AYT', ftDesc:'Prvenstvo Nacija<br>Evropski Superkup', home:'🏠 MENI', lang:'🌐 Jezik', back:'← Kategorije' },
+    hr: { sel:'Odaberi kategoriju', math:'MATEMATIKA', football:'NOGOMET', games:'IGRE', mathDesc:'Pogodi · NZD-NZM<br>4 Operacije · Brzina · TYT · AYT', ftDesc:'Prvenstvo Nacija<br>Europski Superkup', home:'🏠 IZBORNIK', lang:'🌐 Jezik', back:'← Kategorije' },
+    uz: { sel:'Toifani tanlang', math:'MATEMATIKA', football:'FUTBOL', games:'O\'YINLAR', mathDesc:'Sonni top · EKUB-EKUK<br>4 Amal · Tezlik · TYT · AYT', ftDesc:'Millatlar Chempionati<br>Yevropa Super Kubogi', home:'🏠 ASOSIY MENYU', lang:'🌐 Til', back:'← Toifalar' },
+    ht: { sel:'Chwazi kategori', math:'MATEMATIK', football:'FOUTBÒL', games:'JWÈT', mathDesc:'Devine · PGCD-PPCM<br>4 Operasyon · Vitès · TYT · AYT', ftDesc:'Chanpyona Nasyon yo<br>Sipèkoup Ewopeyen', home:'🏠 MENI', lang:'🌐 Lang', back:'← Kategori' },
+    el: { sel:'Επιλέξτε κατηγορία', math:'ΜΑΘΗΜΑΤΙΚΑ', football:'ΠΟΔΟΣΦΑΙΡΟ', games:'ΠΑΙΧΝΙΔΙΑ', mathDesc:'Μάντεψε · ΜΚΔ-ΕΚΠ<br>4 Πράξεις · Ταχύτητα · TYT · AYT', ftDesc:'Πρωτάθλημα Εθνών<br>Ευρωπαϊκό Σούπερ Καπ', home:'🏠 ΜΕΝΟΥ', lang:'🌐 Γλώσσα', back:'← Κατηγορίες' },
+    ka: { sel:'აირჩიე კატეგორია', math:'მათემატიკა', football:'ფეხბურთი', games:'თამაშები', mathDesc:'გამოიცანი · უდიდესი საერთო<br>4 მოქმედება · სიჩქარე · TYT · AYT', ftDesc:'ერების ჩემპიონატი<br>ევროპის სუპერ თასი', home:'🏠 მთავარი', lang:'🌐 ენა', back:'← კატეგორიები' },
+    az: { sel:'Kateqoriya seç', math:'RİYAZİYYAT', football:'FUTBOL', games:'OYUNLAR', mathDesc:'Tap · EBOB-EKOK<br>4 əməl · Sürət · TYT · AYT', ftDesc:'Millətlərin Çempionatı<br>Avropa Super Kuboku', home:'🏠 ƏSAS MENYU', lang:'🌐 Dil', back:'← Kateqoriyalar' }
+};
+function applyCategoryI18n() {
+    const code = (typeof currentLang !== 'undefined') ? currentLang : (localStorage.getItem('sa_lang') || 'tr');
+    const L = CATEGORY_I18N[code] || CATEGORY_I18N.tr;
+    const cs = document.getElementById('categoryScreen');
+    if (!cs) return;
+    const titleEl = cs.querySelector('div[style*="font-size:11px"]');
+    if (titleEl) titleEl.textContent = L.sel;
+    const cards = cs.querySelectorAll('div[onclick^="selectCategory"]');
+    cards.forEach((c, i) => {
+        const labels = c.querySelectorAll('div');
+        if (i === 0) {
+            if (labels[2]) labels[2].textContent = L.math;
+            if (labels[3]) labels[3].textContent = L.games;
+            if (labels[4]) labels[4].innerHTML = L.mathDesc;
+        } else {
+            if (labels[2]) labels[2].textContent = L.football;
+            if (labels[3]) labels[3].textContent = L.games;
+            if (labels[4]) labels[4].innerHTML = L.ftDesc;
+        }
+    });
+    const homeBtn = cs.querySelector('button[onclick*="goToMainScreen"]');
+    if (homeBtn) homeBtn.textContent = L.home;
+    const langBtn = cs.querySelector('button[onclick*="openLanguagePicker"]');
+    if (langBtn) langBtn.textContent = L.lang;
+    const backBtn = document.getElementById('backToCategoryBtn');
+    if (backBtn) backBtn.textContent = L.back;
+}
+window.applyCategoryI18n = applyCategoryI18n;
+(function hookSetLang(){
+    if (typeof window.setLang === 'function') {
+        const orig = window.setLang;
+        window.setLang = function(){
+            const r = orig.apply(this, arguments);
+            try { applyCategoryI18n(); } catch(e){}
+            return r;
+        };
+    } else {
+        document.addEventListener('DOMContentLoaded', hookSetLang);
+    }
+})();
+setTimeout(applyCategoryI18n, 100);
+
+// 🌦️ HAVA DURUMU SİSTEMİ
+function getSeasonFromDate(date) {
+    const m = (date || new Date()).getMonth();
+    if (m===11||m===0||m===1) return 'winter';
+    if (m>=2&&m<=4) return 'spring';
+    if (m>=5&&m<=7) return 'summer';
+    return 'autumn';
+}
+function getWeatherForSeason(season) {
+    const wet = Math.random() < 0.35;
+    if (!wet) return {type:'clear', season};
+    if (season==='winter') return {type:'snow', season};
+    if (season==='autumn') return Math.random()<0.7 ? {type:'rain', season} : {type:'leaves', season};
+    if (season==='spring') return Math.random()<0.6 ? {type:'rain', season} : {type:'petals', season};
+    return {type:'sun', season};
+}
+function applyMatchWeather(fieldElementId, dateOverride) {
+    let field = document.getElementById(fieldElementId);
+    if (!field && fieldElementId.endsWith('Ball')) {
+        const ball = document.getElementById(fieldElementId);
+        if (ball) field = ball.parentElement;
+    }
+    if (!field) return null;
+    const old = field.querySelector('.match-weather-overlay');
+    if (old) old.remove();
+    const w = getWeatherForSeason(getSeasonFromDate(dateOverride));
+    const overlay = document.createElement('div');
+    overlay.className = 'match-weather-overlay';
+    overlay.style.cssText = 'position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:inherit;';
+    let particles = '', bgTint = '', label = '';
+    if (w.type==='snow') {
+        bgTint = 'background:linear-gradient(180deg,rgba(255,255,255,0.08),rgba(180,200,230,0.04));';
+        label = '❄️ KIŞ · KAR';
+        for (let i=0;i<25;i++) {
+            const left = Math.random()*100, dur = 3+Math.random()*4, delay = Math.random()*4, sz = 2+Math.random()*3;
+            particles += `<div style="position:absolute;left:${left}%;top:-10px;width:${sz}px;height:${sz}px;background:#fff;border-radius:50%;opacity:0.85;box-shadow:0 0 4px #fff;animation:wxSnow ${dur}s linear ${delay}s infinite;"></div>`;
+        }
+    } else if (w.type==='rain') {
+        bgTint = 'background:linear-gradient(180deg,rgba(40,60,90,0.18),rgba(20,30,50,0.10));';
+        label = '🌧️ YAĞMUR';
+        for (let i=0;i<35;i++) {
+            const left = Math.random()*100, dur = 0.5+Math.random()*0.5, delay = Math.random()*1.5;
+            particles += `<div style="position:absolute;left:${left}%;top:-20px;width:1px;height:14px;background:linear-gradient(180deg,transparent,#aaccff);opacity:0.6;animation:wxRain ${dur}s linear ${delay}s infinite;"></div>`;
+        }
+    } else if (w.type==='leaves' || w.type==='petals') {
+        bgTint = w.type==='leaves' ? 'background:linear-gradient(180deg,rgba(180,80,20,0.10),rgba(120,60,10,0.05));' : 'background:linear-gradient(180deg,rgba(255,180,200,0.10),transparent);';
+        label = w.type==='leaves' ? '🍂 SONBAHAR' : '🌸 İLKBAHAR';
+        const colors = w.type==='leaves' ? ['#d97706','#f59e0b','#dc2626','#92400e'] : ['#fbcfe8','#f9a8d4','#fda4af','#fff'];
+        for (let i=0;i<15;i++) {
+            const left = Math.random()*100, dur = 4+Math.random()*3, delay = Math.random()*4;
+            const col = colors[Math.floor(Math.random()*colors.length)];
+            particles += `<div style="position:absolute;left:${left}%;top:-10px;width:6px;height:6px;background:${col};border-radius:${w.type==='leaves'?'50% 0':'50%'};animation:wxLeaf ${dur}s linear ${delay}s infinite;"></div>`;
+        }
+    } else if (w.type==='sun') {
+        bgTint = 'background:radial-gradient(circle at 20% 10%, rgba(255,200,80,0.10), transparent 70%);';
+        label = '☀️ YAZ · GÜNEŞLİ';
+    } else {
+        label = '⛅ AÇIK';
+    }
+    overlay.innerHTML = `<div style="position:absolute;inset:0;${bgTint}"></div>${particles}<div style="position:absolute;top:4px;right:6px;font-size:8px;font-weight:bold;color:#fff;background:rgba(0,0,0,0.5);padding:2px 6px;border-radius:4px;letter-spacing:1px;">${label}</div>`;
+    if (field.style.position !== 'absolute' && field.style.position !== 'relative') field.style.position = 'relative';
+    field.appendChild(overlay);
+    return w;
+}
+(function injectWeatherCSS(){
+    if (document.getElementById('wxAnims')) return;
+    const s = document.createElement('style');
+    s.id = 'wxAnims';
+    s.textContent = `@keyframes wxSnow { from{transform:translateY(0);} to{transform:translateY(120%) translateX(10px);} } @keyframes wxRain { from{transform:translateY(0);} to{transform:translateY(140%);} } @keyframes wxLeaf { from{transform:translateY(0) rotate(0);} to{transform:translateY(120%) rotate(360deg) translateX(40px);} }`;
+    document.head.appendChild(s);
+})();
+window.applyMatchWeather = applyMatchWeather;
+
+// 📺 REKLAM SİSTEMİ — molalarda sahte eğlenceli reklam
+const FAKE_ADS = [
+    {brand:'⚽ ANADOLU PUL', slogan:'Maçtan önce damağında!', color:'#dc2626', emoji:'🍫'},
+    {brand:'🥤 SAYI-COLA', slogan:'Türev kadar tatlı!', color:'#0d47a1', emoji:'🥤'},
+    {brand:'👕 AVCI SPOR', slogan:'1907\'den beri sahalarda', color:'#16a34a', emoji:'👟'},
+    {brand:'🍔 GOL BURGER', slogan:'Maç başı 90 saniyede!', color:'#ea580c', emoji:'🍔'},
+    {brand:'🎮 OYUNCU XL', slogan:'AYT\'ye hazırlık burada', color:'#7e22ce', emoji:'🎮'},
+    {brand:'🛍️ TOP MARKET', slogan:'Tridona\'yı kaçırma!', color:'#fbbf24', emoji:'🛒'},
+    {brand:'🏦 GOL BANK', slogan:'Penaltıdan emin para', color:'#10b981', emoji:'💰'},
+    {brand:'📱 SAYI PHONE', slogan:'12dk şarjla 90dk maç', color:'#3b82f6', emoji:'📱'}
+];
+function showAdOverlay(durationMs) {
+    const ad = FAKE_ADS[Math.floor(Math.random()*FAKE_ADS.length)];
+    let m = document.getElementById('matchAdOverlay');
+    if (m) m.remove();
+    m = document.createElement('div');
+    m.id = 'matchAdOverlay';
+    m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99998;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);animation:adFadeIn 0.3s;';
+    m.innerHTML = '<div style="background:linear-gradient(135deg,'+ad.color+',#000);padding:24px 32px;border-radius:14px;border:2px solid '+ad.color+';text-align:center;max-width:280px;box-shadow:0 0 40px '+ad.color+'88;animation:adPop 0.5s ease-out;">'
+        +'<div style="font-size:10px;color:#fff8;letter-spacing:2px;margin-bottom:6px;">— REKLAM —</div>'
+        +'<div style="font-size:48px;margin:8px 0;">'+ad.emoji+'</div>'
+        +'<div style="font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;margin-bottom:4px;">'+ad.brand+'</div>'
+        +'<div style="font-size:11px;color:#fffd;font-style:italic;margin-top:4px;">'+ad.slogan+'</div>'
+        +'<div style="font-size:8px;color:#fff8;margin-top:14px;letter-spacing:1px;">Sponsorlu içerik · Sayı Avcısı</div>'
+        +'</div>';
+    document.body.appendChild(m);
+    if (!document.getElementById('adAnims')) {
+        const s = document.createElement('style');
+        s.id='adAnims';
+        s.textContent = '@keyframes adFadeIn{from{opacity:0}to{opacity:1}}@keyframes adPop{0%{transform:scale(0.5) rotate(-5deg);opacity:0}60%{transform:scale(1.05) rotate(2deg)}100%{transform:scale(1) rotate(0);opacity:1}}@keyframes adFadeOut{to{opacity:0}}';
+        document.head.appendChild(s);
+    }
+    setTimeout(()=>{
+        if (m) { m.style.animation = 'adFadeOut 0.3s forwards'; setTimeout(()=>{try{m.remove();}catch(e){}}, 350); }
+    }, durationMs || 3000);
+}
+window.showAdOverlay = showAdOverlay;
+
 // 🏠 Ana Ekran — splash'a geri dön
 function goToMainScreen() {
     location.reload();
@@ -13531,32 +14257,32 @@ const LANG_FLAGS = {
     az: '<rect width="30" height="7" fill="#0092BC"/><rect y="7" width="30" height="6" fill="#E8192C"/><rect y="13" width="30" height="7" fill="#00AF66"/>'
 };
 function openLanguagePicker() {
-    let m = document.getElementById('langPickerModal');
-    if (!m) {
-        m = document.createElement('div');
-        m.id = 'langPickerModal';
-        m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
-        const langs = [
-            ['tr','TR','#e30a17'], ['en','EN','#012169'], ['de','DE','#000'], ['fr','FR','#0055A4'],
-            ['es','ES','#c60b1e'], ['it','IT','#009246'], ['ru','RU','#0039A6'], ['ar','AR','#006C35'],
-            ['ja','JA','#BC002D'], ['ko','KO','#003478'], ['zh','ZH','#DE2910'], ['pt','PT','#046A38'],
-            ['uk','UK','#005BBB'], ['fa','FA','#239F40'], ['nl','NL','#AE1C28'], ['sv','SV','#006AA7'],
-            ['no','NO','#BA0C2F'], ['cs','CS','#11457E'], ['bs','BS','#002F6C'], ['hr','HR','#171796'],
-            ['uz','UZ','#1EB53A'], ['ht','HT','#00209F'], ['el','EL','#0D5EAF'], ['ka','KA','#FF0000'],
-            ['az','AZ','#00AF66']
-        ];
-        let btns = langs.map(([c,lbl,col]) => {
-            const flag = '<svg width="24" height="16" viewBox="0 0 30 20" style="border-radius:2px;border:1px solid rgba(0,0,0,0.2);display:block;">'+(LANG_FLAGS[c]||'<rect width="30" height="20" fill="#444"/>')+'</svg>';
-            return `<button onclick="setLang('${c}');document.getElementById('langPickerModal').style.display='none';" style="padding:8px 6px;font-size:11px;font-weight:bold;border-radius:10px;border:2px solid ${col};background:rgba(255,255,255,0.04);color:#fff;cursor:pointer;min-width:62px;display:flex;flex-direction:column;align-items:center;gap:3px;">${flag}<span style="font-size:11px;font-weight:900;letter-spacing:1px;">${lbl}</span></button>`;
-        }).join('');
-        m.innerHTML = '<div style="background:linear-gradient(135deg,#2a0810,#1a0408);border:2px solid #ff6666;border-radius:16px;padding:18px;max-width:380px;width:96%;text-align:center;">'
-            +'<div style="font-size:14px;color:#fca5a5;font-weight:bold;margin-bottom:10px;letter-spacing:1px;">🌐 Dil / Language</div>'
-            +'<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">'+btns+'</div>'
-            +'<button onclick="document.getElementById(\'langPickerModal\').style.display=\'none\';" style="margin-top:14px;padding:6px 18px;font-size:11px;background:#333;border:1px solid #888;border-radius:8px;color:#fff;cursor:pointer;">✕ Kapat</button>'
-            +'</div>';
-        document.body.appendChild(m);
-    }
-    m.style.display = 'flex';
+    // Eski modal varsa kaldır (her açılışta yeniden oluştur)
+    const old = document.getElementById('langPickerModal');
+    if (old) old.remove();
+    const m = document.createElement('div');
+    m.id = 'langPickerModal';
+    m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+    const langs = [
+        ['tr','TR','#e30a17'], ['en','EN','#012169'], ['de','DE','#000'], ['fr','FR','#0055A4'],
+        ['es','ES','#c60b1e'], ['it','IT','#009246'], ['ru','RU','#0039A6'], ['ar','AR','#006C35'],
+        ['ja','JA','#BC002D'], ['ko','KO','#003478'], ['zh','ZH','#DE2910'], ['pt','PT','#046A38'],
+        ['uk','UK','#005BBB'], ['fa','FA','#239F40'], ['nl','NL','#AE1C28'], ['sv','SV','#006AA7'],
+        ['no','NO','#BA0C2F'], ['cs','CS','#11457E'], ['bs','BS','#002F6C'], ['hr','HR','#171796'],
+        ['uz','UZ','#1EB53A'], ['ht','HT','#00209F'], ['el','EL','#0D5EAF'], ['ka','KA','#FF0000'],
+        ['az','AZ','#00AF66']
+    ];
+    let btns = langs.map(([c,lbl,col]) => {
+        const flagInner = (typeof LANG_FLAGS !== 'undefined' && LANG_FLAGS[c]) ? LANG_FLAGS[c] : '<rect width="30" height="20" fill="#444"/>';
+        const flag = '<svg width="28" height="18" viewBox="0 0 30 20" style="border-radius:2px;border:1px solid rgba(255,255,255,0.3);display:block;flex-shrink:0;">'+flagInner+'</svg>';
+        return '<button onclick="setLang(\''+c+'\');document.getElementById(\'langPickerModal\').remove();" style="padding:7px 4px;font-size:10px;font-weight:bold;border-radius:10px;border:2px solid '+col+';background:rgba(255,255,255,0.04);color:#fff;cursor:pointer;min-width:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">'+flag+'<span style="font-size:11px;font-weight:900;letter-spacing:1px;line-height:1;">'+lbl+'</span></button>';
+    }).join('');
+    m.innerHTML = '<div style="background:linear-gradient(135deg,#2a0810,#1a0408);border:2px solid #ff6666;border-radius:16px;padding:18px;max-width:400px;width:96%;text-align:center;">'
+        +'<div style="font-size:14px;color:#fca5a5;font-weight:bold;margin-bottom:10px;letter-spacing:1px;">🌐 Dil / Language</div>'
+        +'<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">'+btns+'</div>'
+        +'<button onclick="document.getElementById(\'langPickerModal\').remove();" style="margin-top:14px;padding:6px 18px;font-size:11px;background:#333;border:1px solid #888;border-radius:8px;color:#fff;cursor:pointer;">✕ Kapat</button>'
+        +'</div>';
+    document.body.appendChild(m);
 }
 window.openLanguagePicker = openLanguagePicker;
 
@@ -13578,25 +14304,88 @@ function _aytLang() {
     const l = (typeof currentLang !== 'undefined') ? currentLang : (localStorage.getItem('lang') || 'tr');
     return AYT_LABELS[l] || AYT_LABELS.tr;
 }
-function _aytGenTurev() {
-    const a = [2,3,4,5,6][Math.floor(Math.random()*5)];
-    const n = [2,3,4][Math.floor(Math.random()*3)];
-    const x0 = [1,2,3][Math.floor(Math.random()*3)];
-    return { q: 'f(x) = ' + a + 'x' + (n===2?'²':n===3?'³':'⁴') + ', f′(' + x0 + ') = ?', ans: a * n * Math.pow(x0, n-1) };
+function _aytGenTurev(diff) {
+    const D = {
+        easy:   { a: [1,2,3], n: [2,3], x0: [1,2] },
+        medium: { a: [2,3,4,5,6], n: [2,3,4], x0: [1,2,3] },
+        hard:   { a: [3,5,7,9,11], n: [3,4,5], x0: [2,3,4] },
+        ultra:  { a: [5,7,9,12,15], n: [4,5,6], x0: [2,3,4,5] }
+    }[diff || 'medium'];
+    const a = D.a[Math.floor(Math.random()*D.a.length)];
+    const n = D.n[Math.floor(Math.random()*D.n.length)];
+    const x0 = D.x0[Math.floor(Math.random()*D.x0.length)];
+    const supers = ['⁰','¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹'];
+    return { q: 'f(x) = ' + a + 'x' + supers[n] + ', f′(' + x0 + ') = ?', ans: a * n * Math.pow(x0, n-1) };
 }
-function _aytGenIntegral() {
-    const a = [2,4,6,8][Math.floor(Math.random()*4)];
-    const b = [1,2,3,5][Math.floor(Math.random()*4)];
-    const k = [2,3,4][Math.floor(Math.random()*3)];
+function _aytGenIntegral(diff) {
+    const D = {
+        easy:   { a: [2,4], b: [1,2,3], k: [2,3] },
+        medium: { a: [2,4,6,8], b: [1,2,3,5], k: [2,3,4] },
+        hard:   { a: [4,6,8,10,12], b: [3,5,7,9], k: [3,4,5] },
+        ultra:  { a: [6,8,10,12,15], b: [5,7,9,11,13], k: [4,5,6] }
+    }[diff || 'medium'];
+    const a = D.a[Math.floor(Math.random()*D.a.length)];
+    const b = D.b[Math.floor(Math.random()*D.b.length)];
+    const k = D.k[Math.floor(Math.random()*D.k.length)];
     return { q: '∫₀^' + k + ' (' + a + 'x + ' + b + ') dx = ?', ans: a*k*k/2 + b*k };
 }
-function _aytGenLog() {
-    const a = [2,3,5,10][Math.floor(Math.random()*4)];
-    const n = [2,3,4,5][Math.floor(Math.random()*4)];
-    const sub = String(a).split('').map(d=>['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'][+d]).join('');
+function _aytGenLog(diff) {
+    const D = {
+        easy:   { a: [2,3], n: [2,3] },
+        medium: { a: [2,3,5,10], n: [2,3,4,5] },
+        hard:   { a: [2,3,5,7,10], n: [4,5,6,7] },
+        ultra:  { a: [2,3,5,7,11], n: [5,6,7,8,9] }
+    }[diff || 'medium'];
+    const a = D.a[Math.floor(Math.random()*D.a.length)];
+    const n = D.n[Math.floor(Math.random()*D.n.length)];
+    const subs = ['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'];
+    const sub = String(a).split('').map(d=>subs[+d]).join('');
     return { q: 'log' + sub + '(' + Math.pow(a, n) + ') = ?', ans: n };
 }
 function playAYTTopic(topic) {
+    showAYTDiffPicker(topic);
+}
+function showAYTDiffPicker(topic) {
+    const old = document.getElementById('aytDiffModal');
+    if (old) old.remove();
+    const L = _aytLang();
+    const topicNames = {turev:'📈 AYT '+L.turev, integral:'∫ AYT '+L.integral, log:'㏒ AYT '+L.log};
+    const topicColors = {turev:'#f472b6', integral:'#c084fc', log:'#5eead4'};
+    const m = document.createElement('div');
+    m.id = 'aytDiffModal';
+    m.style.cssText = 'position:fixed;inset:0;background:rgba(5,0,15,0.92);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+    const diffs = [
+        ['easy','🟢 Kolay','#22c55e','rgba(34,197,94,0.18)','5 tur · Bot %50'],
+        ['medium','🟡 Orta','#facc15','rgba(250,204,21,0.18)','5 tur · Bot %65'],
+        ['hard','🔴 Zor','#ef4444','rgba(239,68,68,0.18)','7 tur · Bot %80'],
+        ['ultra','🟣 Ultra Zor','#a855f7','rgba(168,85,247,0.22)','10 tur · Bot %95']
+    ];
+    const labels = { tr:'Zorluk Seç:', en:'Select Difficulty:', de:'Schwierigkeit:', fr:'Difficulté:', es:'Dificultad:', it:'Difficoltà:', ru:'Сложность:', ar:'الصعوبة:', ja:'難易度:', ko:'난이도:', zh:'难度:' };
+    const lcode = (typeof currentLang !== 'undefined') ? currentLang : (localStorage.getItem('lang')||'tr');
+    const diffTitle = labels[lcode] || labels.tr;
+    let btnsHTML = diffs.map(([dc,lbl,col,bg,info]) =>
+        '<button onclick="_startAYTGame(\''+topic+'\',\''+dc+'\')" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:12px 14px;border-radius:14px;border:2px solid '+col+';background:'+bg+';color:#fff;cursor:pointer;font-weight:bold;min-width:130px;"><span style="font-size:14px;">'+lbl+'</span><span style="font-size:9px;color:#ccc;font-weight:normal;">'+info+'</span></button>'
+    ).join('');
+    m.innerHTML = '<div style="background:linear-gradient(135deg,#180830,#0a0418);border:2px solid '+topicColors[topic]+';border-radius:16px;padding:18px;max-width:340px;width:96%;text-align:center;">'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">'
+        +'<button onclick="document.getElementById(\'aytDiffModal\').remove();" style="padding:5px 10px;font-size:10px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;cursor:pointer;">← Geri</button>'
+        +'<div style="font-size:14px;color:'+topicColors[topic]+';font-weight:bold;">'+topicNames[topic]+'</div>'
+        +'<div style="width:50px;"></div>'
+        +'</div>'
+        +'<div style="font-size:11px;color:#aaa;margin-bottom:14px;">'+diffTitle+'</div>'
+        +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">'+btnsHTML+'</div>'
+        +'</div>';
+    document.body.appendChild(m);
+}
+function _startAYTGame(topic, diff) {
+    const dm = document.getElementById('aytDiffModal');
+    if (dm) dm.remove();
+    const cfg = {
+        easy:   { rounds:5,  botRate:0.50 },
+        medium: { rounds:5,  botRate:0.65 },
+        hard:   { rounds:7,  botRate:0.80 },
+        ultra:  { rounds:10, botRate:0.95 }
+    }[diff] || { rounds:5, botRate:0.65 };
     let m = document.getElementById('aytGameModal');
     if (!m) {
         m = document.createElement('div');
@@ -13626,22 +14415,26 @@ function playAYTTopic(topic) {
         document.getElementById('aytInput').onkeydown = function(e){ if(e.key==='Enter') aytSubmit(); };
     }
     const L = _aytLang();
-    window._aytState = { topic, you:0, bot:0, round:1, total:5 };
-    document.getElementById('aytTitle').textContent = '⭐ AYT ' + L[topic];
+    const diffEmoji = {easy:'🟢',medium:'🟡',hard:'🔴',ultra:'🟣'}[diff]||'';
+    window._aytState = { topic, diff, you:0, bot:0, round:1, total:cfg.rounds, botRate:cfg.botRate };
+    document.getElementById('aytTitle').textContent = '⭐ AYT ' + L[topic] + ' ' + diffEmoji;
     document.getElementById('aytYouLabel').textContent = L.you;
     document.getElementById('aytBotLabel').textContent = L.bot;
     document.getElementById('aytYouScore').textContent = '0';
     document.getElementById('aytBotScore').textContent = '0';
-    document.getElementById('aytRound').textContent = '1/5';
+    document.getElementById('aytRound').textContent = '1/'+cfg.rounds;
     document.getElementById('aytFeedback').textContent = '';
     document.getElementById('aytBackBtn').textContent = L.back;
     m.style.display = 'flex';
     aytLoadQuestion();
 }
+window.playAYTTopic = playAYTTopic;
+window._startAYTGame = _startAYTGame;
+window.showAYTDiffPicker = showAYTDiffPicker;
 function aytLoadQuestion() {
     const s = window._aytState; if (!s) return;
     const gen = s.topic==='turev' ? _aytGenTurev : s.topic==='integral' ? _aytGenIntegral : _aytGenLog;
-    const q = gen();
+    const q = gen(s.diff || 'medium');
     s.curAnswer = q.ans;
     document.getElementById('aytQuestion').textContent = q.q;
     const inp = document.getElementById('aytInput');
@@ -13667,7 +14460,7 @@ function aytSubmit() {
         if (fb) { fb.style.color = '#f87171'; fb.textContent = L.wrong + ' ' + s.curAnswer; }
     }
     setTimeout(()=>{
-        if (Math.random() < 0.65) {
+        if (Math.random() < (s.botRate || 0.65)) {
             s.bot++;
             document.getElementById('aytBotScore').textContent = s.bot;
         }
@@ -13824,6 +14617,8 @@ function useMatchTimeout(mode) {
     // Aktif break / oyun durmuşsa engelle
     if (typeof wc26BreakActive !== 'undefined' && mode==='wc26' && wc26BreakActive) return;
     matchTimeoutsLeft[mode] = left - 1;
+    // 📺 REKLAM overlay (WC26 modu için eğlenceli sahte reklam)
+    if (mode === 'wc26' && typeof showAdOverlay === 'function') showAdOverlay(3000);
     const c = document.getElementById(mode+'timeoutCount');
     if (c) c.textContent = matchTimeoutsLeft[mode];
     const btn = document.getElementById(mode+'timeoutBtn');
@@ -14638,6 +15433,8 @@ function openTYTDiff(mode){
     const t=document.getElementById('tytDiffTitle');
     if(t){t.textContent=names[mode];t.style.color=colors[mode]||'#ffd060';}
     backToModeSelect();
+    // modeScreen'i gizle (backToModeSelect onu açıyor — TYT seçimi için kapatmalıyız)
+    setDisplay('modeScreen','none');
     setDisplay('tytDiffScreen','flex');
 }
 
