@@ -87,25 +87,26 @@
             position: fixed; inset: 0;
             background: radial-gradient(ellipse at 35% 25%, #c0001a 0%, #7a0011 45%, #3a0008 100%) !important;
             display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
+            align-items: center; justify-content: flex-start;
             overflow-y: auto; overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: contain;
             z-index: 999;
             animation: splashFadeOut 0.6s cubic-bezier(.4,0,.2,1) forwards;
             animation-delay: 3s; animation-play-state: paused;
-            padding: 16px 12px; box-sizing: border-box;
+            padding: 10px 10px; box-sizing: border-box;
         }
         #splashScreen.go { animation-play-state: running; }
         @keyframes splashFadeOut { to { opacity:0; pointer-events:none; } }
 
-        .pixel-canvas { display:block; margin-bottom:8px; }
+        .pixel-canvas { display:block; margin-bottom:4px; width:100px !important; height:100px !important; }
+        #splashScreen .pixel-border { padding:4px !important; }
 
         .splash-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 28px; font-weight: 900;
+            font-size: 22px; font-weight: 900;
             color: #fff; letter-spacing: 3px;
-            text-align: center; line-height: 1.2; margin-bottom: 6px;
+            text-align: center; line-height: 1.15; margin-bottom: 4px;
             text-shadow: 0 0 30px rgba(255,60,80,0.7), 0 2px 4px rgba(0,0,0,0.5);
         }
         .splash-sub {
@@ -343,8 +344,9 @@
         @media screen and (max-width:400px) {
             .container { padding:14px 12px; width:96%; }
             .mode-card { padding:12px 6px; }
-            .splash-title { font-size:22px !important; }
+            .splash-title { font-size:18px !important; letter-spacing:2px !important; }
             #prealphaSubtitle { font-size:7px !important; }
+            .pixel-canvas { width:80px !important; height:80px !important; }
         }
         @media screen and (max-height:700px) {
             .container { max-height:98dvh; max-height:98vh; padding:12px 14px; }
@@ -426,6 +428,27 @@
         .gfx-btn .gfx-dot { width:10px; height:10px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); flex-shrink:0; }
         .gfx-btn.active .gfx-dot { background:#e30a17; border-color:#e30a17; box-shadow:0 0 6px #e30a17; }
 
+        /* 🏆 SPLASH ŞAMPİYON KARTLARI — KOMPAKT */
+        #splashChampionsList > div {
+            padding: 2px 6px !important;
+            gap: 4px !important;
+            border-radius: 5px !important;
+        }
+        #splashChampionsList > div > svg:first-child,
+        #splashChampionsList > div > svg:first-of-type {
+            width: 22px !important;
+            height: 22px !important;
+        }
+        #splashChampionsList > div > div[style*="flex:1"] > div:first-child {
+            font-size: 6px !important;
+        }
+        #splashChampionsList > div > div[style*="flex:1"] > div:last-child {
+            font-size: 8px !important;
+        }
+        #splashChampionsList > div > svg:last-child {
+            width: 16px !important;
+            height: 10px !important;
+        }
     </style>
     <!-- PWA: Ana Ekran İkonu -->
         <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -443,7 +466,7 @@
 <div id="mathBg"></div>
 
 <!-- ══════════ SPLASH EKRANI ══════════ -->
-<div id="splashScreen" style="background:linear-gradient(180deg,#7a0011 0%,#a30016 50%,#7a0011 100%);">
+<div id="splashScreen" style="background:linear-gradient(180deg,#7a0011 0%,#a30016 50%,#7a0011 100%);overflow-y:auto;max-height:100vh;-webkit-overflow-scrolling:touch;">
     <div class="pixel-border" style="border-color:#fff;background:#fff;">
         <svg class="pixel-canvas" width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
             <!-- Türk Bayrağı arka plan -->
@@ -487,20 +510,7 @@
   <rect x="9" y="29" width="14" height="1.5" fill="#2d7a2d"/>
   <!-- Parlama -->
   <ellipse cx="13" cy="10" rx="2.5" ry="6" fill="#FFE066" opacity="0.4"/>
-</svg> ULUSLAR KUPASI &amp; BAĞIMSIZ AVRUPA <svg viewBox="0 0 32 32" width="18" height="18" style="display:inline-block;vertical-align:middle;margin:0 3px;">
-  <defs><clipPath id="cb"><circle cx="16" cy="16" r="14"/></clipPath></defs>
-  <circle cx="16" cy="16" r="14" fill="#eee"/>
-  <!-- Renkli parçalar CONİFA tarzı -->
-  <path d="M16 2 L24 8 L22 16 L16 16 Z" fill="#e63030" clip-path="url(#cb)"/>
-  <path d="M16 16 L22 16 L24 24 L16 26 Z" fill="#1a7fe8" clip-path="url(#cb)"/>
-  <path d="M16 16 L16 26 L8 24 L10 16 Z" fill="#f59e0b" clip-path="url(#cb)"/>
-  <path d="M16 2 L16 16 L10 16 L8 8 Z" fill="#22c55e" clip-path="url(#cb)"/>
-  <path d="M24 8 L30 14 L26 20 L22 16 L24 8 Z" fill="#a855f7" clip-path="url(#cb)"/>
-  <circle cx="16" cy="16" r="14" fill="none" stroke="#555" stroke-width="1.2"/>
-  <!-- Merkez çizgiler -->
-  <line x1="16" y1="2" x2="16" y2="30" stroke="#555" stroke-width="0.6" clip-path="url(#cb)"/>
-  <line x1="2" y1="16" x2="30" y2="16" stroke="#555" stroke-width="0.6" clip-path="url(#cb)"/>
-</svg></div>
+</svg> ULUSLAR KUPASI</div>
     <div class="splash-title" style="color:#fff;text-shadow:0 0 30px rgba(255,60,80,0.7);font-family:'Outfit',sans-serif;font-weight:900;letter-spacing:5px;">SAYI<br>AVCISI</div>
     <!-- Türk Bayrakları yan yana -->
     <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-top:6px;">
@@ -538,9 +548,9 @@
         </svg>
     </div>
     <!-- UEFA ŞAMPİYONLARI BANNER -->
-    <div style="margin-top:8px;text-align:center;max-width:320px;">
-        <div style="font-size:7px;color:#aaa;letter-spacing:1px;margin-bottom:5px;font-family:'Press Start 2P',monospace;" data-i18n="splashSubtitleP3">2025-26 Avrupa Şampiyonları</div>
-        <div style="display:flex;flex-direction:column;gap:4px;">
+    <div style="margin-top:6px;text-align:center;max-width:300px;">
+        <div style="font-size:6px;color:#aaa;letter-spacing:1px;margin-bottom:3px;font-family:'Press Start 2P',monospace;" data-i18n="splashSubtitleP3">2025-26 Avrupa Şampiyonları</div>
+        <div id="splashChampionsList" style="display:flex;flex-direction:column;gap:2px;">
             <div style="display:flex;align-items:center;gap:6px;background:rgba(0,0,100,0.3);border:1px solid rgba(100,150,255,0.4);border-radius:7px;padding:4px 8px;">
                 <svg viewBox="0 0 40 40" width="32" height="32" style="flex-shrink:0;">
   <circle cx="20" cy="20" r="16" fill="#1a1464" opacity="0.12"/>
@@ -628,7 +638,7 @@
 <ellipse cx="20.5" cy="4.5" rx="1.8" ry="0.8" fill="#7fdc7f" opacity="0.7" transform="rotate(-15 22 6)"/>
 </svg><svg width="22" height="26" viewBox="0 0 30 30" style="flex-shrink:0;"><path d="M 11 1 L 19 1 L 17 12 L 13 12 Z" fill="#7a5500" stroke="rgba(0,0,0,0.3)" stroke-width="0.3"/><circle cx="15" cy="20" r="7.5" fill="#ffd700" stroke="#a07000" stroke-width="1"/><text x="15" y="20" text-anchor="middle" dominant-baseline="central" font-size="8" font-weight="900" fill="rgba(0,0,0,0.5)" font-family="sans-serif">1</text></svg></div>
                 <div style="flex:1;min-width:0;">
-                    <div style="font-size:7px;color:#ffe066;font-weight:bold;">CONIFA Euro - En Büyüğü</div>
+                    <div style="font-size:7px;color:#ffe066;font-weight:bold;">Bağ. Avrupa - En Büyüğü</div>
                     <div style="font-size:9px;color:#fff;font-weight:bold;">Kuzey Kıbrıs</div>
                 </div>
                 <svg width="20" height="13" viewBox="0 0 30 20" style="border:1px solid rgba(0,0,0,0.3);border-radius:2px;flex-shrink:0;"><rect width="30" height="20" fill="#fff"/><rect y="3" width="30" height="2" fill="#CF0921"/><rect y="15" width="30" height="2" fill="#CF0921"/><circle cx="14" cy="10" r="2.8" fill="#CF0921"/><circle cx="15" cy="10" r="2.2" fill="#fff"/><polygon points="17,8 17.5,10 19.5,10 17.9,11.2 18.4,13.2 17,12 15.6,13.2 16.1,11.2 14.5,10 16.5,10" fill="#CF0921"/></svg>
@@ -673,7 +683,7 @@
                 </div>
                 <svg width="20" height="13" viewBox="0 0 30 20" style="border:1px solid rgba(0,0,0,0.3);border-radius:2px;flex-shrink:0;"><rect x="0" y="0" width="10" height="20" fill="#005aaa"/><rect x="10" y="0" width="10" height="20" fill="#fff"/><rect x="20" y="0" width="10" height="20" fill="#a0a0a0"/></svg>
             </div>
-            <div style="font-size:9px;color:#ffd0d0;font-weight:bold;text-align:center;margin-top:8px;letter-spacing:1px;opacity:0.85;">— TÜRKİYE LİGİ 2025-26 —</div>
+            <div style="font-size:7px;color:#ffd0d0;font-weight:bold;text-align:center;margin-top:4px;letter-spacing:1px;opacity:0.85;">— TÜRKİYE LİGİ 2025-26 —</div>
             <div style="display:flex;align-items:center;gap:5px;background:rgba(255,180,0,0.15);border:1px solid rgba(255,180,0,0.45);border-radius:7px;padding:4px 8px;">
                 <div style="display:flex;align-items:center;gap:2px;flex-shrink:0;"><svg width="22" height="30" viewBox="0 0 30 40" style="flex-shrink:0;">
 <defs><linearGradient id="silvL" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f0f0f0"/><stop offset="0.5" stop-color="#b0b0b0"/><stop offset="1" stop-color="#707070"/></linearGradient></defs>
@@ -891,7 +901,7 @@
             <polygon points="560,230 576.5,277.3 626.6,278.4 586.6,308.7 601.1,356.6 560,328 518.9,356.6 533.4,308.7 493.4,278.4 543.5,277.3" fill="#e30a17"/>
         </svg>
     </div>
-    <h1 id="mainTitle" style="font-family:'Outfit',sans-serif;font-weight:900;font-size:24px;letter-spacing:3px;color:#fff;text-shadow:0 0 20px rgba(255,30,60,0.5);">Dünya Kupası &amp; CONİFA</h1>
+    <h1 id="mainTitle" style="font-family:'Outfit',sans-serif;font-weight:900;font-size:24px;letter-spacing:3px;color:#fff;text-shadow:0 0 20px rgba(255,30,60,0.5);">Dünya Kupası</h1>
     <div id="prealphaSubtitle" style="font-size:9px;color:#fff;margin-top:-8px;margin-bottom:8px;font-weight:bold;letter-spacing:1px;"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> PRE-ALPHA 3 · 15 TEMMUZ ANMA <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> ∞</div>
 
     <!-- Ses & Tema - Ana Ekran -->
@@ -908,7 +918,67 @@
             <span id="mainChampionName" style="font-size:13px;font-weight:bold;color:#ffd700;"></span>
         </div>
     </div>
-    <div id="modeScreen" style="display:flex;flex-direction:column;align-items:center;width:100%;">
+    <!-- 🎯 KATEGORİ SEÇİM EKRANI (BAŞLA'dan sonra) -->
+    <div id="categoryScreen" style="display:flex;flex-direction:column;align-items:center;width:100%;padding-top:30px;">
+        <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:3px;text-align:center;margin:0 0 6px;text-shadow:0 0 20px rgba(255,30,60,0.5);">SAYI AVCISI</h2>
+        <div style="font-size:11px;color:#fca5a5;margin-bottom:24px;letter-spacing:1px;">Bir Kategori Seç</div>
+        <div style="display:flex;gap:14px;width:100%;justify-content:center;flex-wrap:wrap;max-width:520px;">
+            <div onclick="selectCategory('math')" style="flex:1;min-width:180px;max-width:230px;padding:24px 16px;background:linear-gradient(135deg,#0a0820,#181030);border:2px solid #6488ff;border-radius:16px;cursor:pointer;text-align:center;box-shadow:0 6px 22px rgba(80,120,255,0.35);transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                <div style="margin-bottom:8px;display:flex;justify-content:center;">
+                  <svg viewBox="0 0 64 64" width="56" height="56" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 3px 8px rgba(255,30,60,0.5));">
+                    <defs>
+                      <linearGradient id="abFr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c0001a"/><stop offset="0.5" stop-color="#7a0011"/><stop offset="1" stop-color="#3a0008"/></linearGradient>
+                      <radialGradient id="abBd" cx="35%" cy="30%" r="65%"><stop offset="0" stop-color="#ff5a4a"/><stop offset="1" stop-color="#8a0008"/></radialGradient>
+                    </defs>
+                    <rect x="6" y="6" width="52" height="52" rx="5" fill="url(#abFr)" stroke="#5a0008" stroke-width="1.5"/>
+                    <rect x="9" y="9" width="46" height="46" rx="3" fill="#1a0205"/>
+                    <line x1="11" y1="18" x2="53" y2="18" stroke="#c8a040" stroke-width="1.2"/>
+                    <line x1="11" y1="28" x2="53" y2="28" stroke="#c8a040" stroke-width="1.2"/>
+                    <line x1="11" y1="38" x2="53" y2="38" stroke="#c8a040" stroke-width="1.2"/>
+                    <line x1="11" y1="48" x2="53" y2="48" stroke="#c8a040" stroke-width="1.2"/>
+                    <circle cx="18" cy="18" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="26" cy="18" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="34" cy="18" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                    <circle cx="42" cy="18" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                    <circle cx="50" cy="18" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                    <circle cx="14" cy="28" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="22" cy="28" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="30" cy="28" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="38" cy="28" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                    <circle cx="46" cy="28" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                    <circle cx="18" cy="38" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="26" cy="38" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="34" cy="38" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="42" cy="38" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="50" cy="38" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                    <circle cx="14" cy="48" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="22" cy="48" r="3.5" fill="url(#abBd)" stroke="#3a0004" stroke-width="0.5"/>
+                    <circle cx="30" cy="48" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                    <circle cx="38" cy="48" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                    <circle cx="46" cy="48" r="3.5" fill="#ffd060" stroke="#7a5500" stroke-width="0.5"/>
+                  </svg>
+                </div>
+                <div style="font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:#fff;letter-spacing:1px;">MATEMATİK</div>
+                <div style="font-size:10px;color:#aaccff;margin-top:4px;">OYUNLARI</div>
+                <div style="font-size:9px;color:#88aadd;margin-top:8px;line-height:1.4;">Sayı Tahmin · EBOB-EKOK<br>4 İşlem · Hız · TYT · AYT</div>
+            </div>
+            <div onclick="selectCategory('football')" style="flex:1;min-width:180px;max-width:230px;padding:24px 16px;background:linear-gradient(135deg,#0a1a0e,#10301a);border:2px solid #44dd66;border-radius:16px;cursor:pointer;text-align:center;box-shadow:0 6px 22px rgba(60,200,100,0.35);transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                <div style="margin-bottom:8px;display:flex;justify-content:center;align-items:center;gap:8px;">
+                    <!-- Tridona topu (Dünya Kupası) -->
+                    <svg viewBox="0 0 100 100" width="50" height="50" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 3px 8px rgba(0,0,0,0.5));"><defs><clipPath id="catTriC"><circle cx="50" cy="50" r="46"/></clipPath></defs><circle cx="50" cy="50" r="46" fill="#ffffff"/><g clip-path="url(#catTriC)"><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="14" stroke-linecap="round"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="14" stroke-linecap="round"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="14" stroke-linecap="round"/><path d="M30 24 Q50 18 70 28" fill="none" stroke="#fcd34d" stroke-width="5" stroke-linecap="round" opacity="0.85"/><path d="M28 60 Q50 70 72 60" fill="none" stroke="#fcd34d" stroke-width="4" stroke-linecap="round" opacity="0.7"/><path d="M40 8 Q42 30 35 50" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/><path d="M62 50 Q66 70 60 90" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/></g><circle cx="50" cy="50" r="46" fill="none" stroke="#888" stroke-width="1.5"/></svg>
+                    <!-- UEFA Süper Kupa topu (mavi/yeşil poligon) -->
+                    <svg viewBox="0 0 100 100" width="50" height="50" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 3px 8px rgba(0,0,0,0.5));"><defs><clipPath id="catScBc"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="catScBg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8eef5"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#catScBg)"/><polygon points="10,38 30,18 38,40 18,58" fill="#1e40af" clip-path="url(#catScBc)"/><polygon points="30,18 52,8 56,28 38,38" fill="#22c55e" clip-path="url(#catScBc)"/><polygon points="56,12 78,18 82,42 60,32" fill="#1e40af" clip-path="url(#catScBc)"/><polygon points="64,40 86,46 80,68 60,58" fill="#22c55e" clip-path="url(#catScBc)"/><polygon points="20,68 44,66 50,88 26,92" fill="#1e40af" clip-path="url(#catScBc)"/><polygon points="50,68 70,72 68,90 48,90" fill="#22c55e" clip-path="url(#catScBc)"/><circle cx="58" cy="50" r="6" fill="#1e40af" clip-path="url(#catScBc)"/><circle cx="58" cy="50" r="3.5" fill="#22c55e"/><circle cx="40" cy="45" r="4" fill="#22c55e" clip-path="url(#catScBc)"/><circle cx="40" cy="45" r="2" fill="#1e40af"/><circle cx="50" cy="50" r="46" fill="none" stroke="#888" stroke-width="1.5"/></svg>
+                </div>
+                <div style="font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:#fff;letter-spacing:1px;">FUTBOL</div>
+                <div style="font-size:10px;color:#aaffcc;margin-top:4px;">OYUNLARI</div>
+                <div style="font-size:9px;color:#88dd99;margin-top:8px;line-height:1.4;">Uluslar Şampiyonası<br>Avrupa Süper Kupası</div>
+            </div>
+        </div>
+        <button onclick="openLanguagePicker()" style="margin-top:18px;padding:6px 16px;font-size:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:20px;color:#aaa;cursor:pointer;">🌐 Dil / Language</button>
+        <button onclick="goToMainScreen()" style="margin-top:8px;padding:8px 22px;font-size:11px;background:linear-gradient(135deg,#dc2626,#7a0011);border:1px solid #ff6666;border-radius:20px;color:#fff;cursor:pointer;font-weight:bold;letter-spacing:1px;box-shadow:0 3px 14px rgba(220,38,38,0.5);">🏠 ANA EKRAN</button>
+    </div>
+
+    <div id="modeScreen" style="display:none;flex-direction:column;align-items:center;width:100%;">
         <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;justify-content:center;">
             <button id="langTR" onclick="setLang('tr')" style="padding:5px 14px;font-size:11px;font-weight:700;font-family:'Outfit',sans-serif;border-radius:20px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇹🇷 TR</button>
             <button id="langEN" onclick="setLang('en')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇬🇧 EN</button>
@@ -981,6 +1051,24 @@
                 <div class="mode-icon">🤖</div>
                 <div class="mode-name" style="color:#00dcff;" id="modeNameAxiom">AXIOM vs</div>
                 <div class="mode-desc" id="descAxiom">Bot ile yarış!<br><span style="font-size:9px;color:#00dcff;background:rgba(0,200,255,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span></div>
+            </div>
+            <!-- 📈 AYT TÜREV -->
+            <div class="mode-card" onclick="playAYTTopic('turev')" style="border-color:rgba(244,114,182,0.55);background:linear-gradient(135deg,#1a0815,#2a0d25);">
+                <div class="mode-icon" style="font-size:34px;">📈</div>
+                <div class="mode-name" style="color:#f472b6;" id="modeNameTurev">AYT Türev</div>
+                <div class="mode-desc" id="descTurev"><span style="color:#fbcfe8;">f′(x) hesapla</span><br><span style="font-size:9px;color:#ec4899;background:rgba(236,72,153,0.18);padding:1px 5px;border-radius:4px;">⭐ AYT 2026</span></div>
+            </div>
+            <!-- ∫ AYT İNTEGRAL -->
+            <div class="mode-card" onclick="playAYTTopic('integral')" style="border-color:rgba(192,132,252,0.55);background:linear-gradient(135deg,#120025,#1d0040);">
+                <div class="mode-icon" style="font-size:36px;font-family:serif;color:#c084fc;">∫</div>
+                <div class="mode-name" style="color:#c084fc;" id="modeNameIntegral">AYT İntegral</div>
+                <div class="mode-desc" id="descIntegral"><span style="color:#ddd0ff;">Belirli integral</span><br><span style="font-size:9px;color:#a855f7;background:rgba(168,85,247,0.18);padding:1px 5px;border-radius:4px;">⭐ AYT 2026</span></div>
+            </div>
+            <!-- 📊 AYT LOGARİTMA -->
+            <div class="mode-card" onclick="playAYTTopic('log')" style="border-color:rgba(94,234,212,0.55);background:linear-gradient(135deg,#001a18,#003a30);">
+                <div class="mode-icon" style="font-size:30px;font-weight:bold;color:#5eead4;">log</div>
+                <div class="mode-name" style="color:#5eead4;" id="modeNameLog">AYT Logaritma</div>
+                <div class="mode-desc" id="descLog"><span style="color:#a7f3d0;">log<sub>a</sub>(b) = ?</span><br><span style="font-size:9px;color:#14b8a6;background:rgba(20,184,166,0.18);padding:1px 5px;border-radius:4px;">⭐ AYT 2026</span></div>
             </div>
             <!-- TYT PROBLEMLER -->
             <div class="mode-card" onclick="openTYTDiff('tytProb')" style="border-color:rgba(255,180,0,0.7);background:linear-gradient(135deg,#1a1000,#2a1800);">
@@ -1623,7 +1711,7 @@
     <div style="font-size:10px;font-weight:bold;color:#ffcc88;letter-spacing:2px;">DÜNYA KUPASI</div>
   </div>
 </div>
-        <p id="wc26SelectCountryTxt" style="color:#fff;margin:4px 0;font-size:12px;font-weight:bold;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Ülkeni seç:</p>
+        <p id="wc26SelectCountryTxt" style="color:#fff;margin:4px 0;font-size:12px;font-weight:bold;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Ülkeni seç:</p>
         <p style="color:#aaa;font-size:10px;margin:0 0 8px;" id="wc26InfoTxt">48 ülke · Grup + Eleme · Şampiyon ol!</p>
         <div id="wc26CountryList" style="display:flex;flex-direction:column;gap:4px;width:100%;max-height:55vh;overflow-y:auto;padding:6px;background:rgba(255,255,255,0.05);border-radius:8px;">
             <!-- Ülkeler JS ile doldurulacak -->
@@ -1649,7 +1737,7 @@
         </div>
         <div id="wc26GroupDisplay" style="width:100%;margin-bottom:6px;"></div>
         <div id="wc26BracketDisplay" style="width:100%;margin-bottom:6px;"></div>
-        <button id="wc26NextMatchBtn" onclick="playNextWC26Match()" style="padding:10px 28px;font-size:14px;background:#e30a17;color:#fff;border:2px solid #fff;border-radius:10px;cursor:pointer;font-weight:bold;margin-top:4px;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> <span id="wc26PlayBtnTxt">Sonraki Maçı Oyna</span></button>
+        <button id="wc26NextMatchBtn" onclick="playNextWC26Match()" style="padding:10px 28px;font-size:14px;background:#e30a17;color:#fff;border:2px solid #fff;border-radius:10px;cursor:pointer;font-weight:bold;margin-top:4px;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> <span id="wc26PlayBtnTxt">Sonraki Maçı Oyna</span></button>
         <div id="wc26TourneyMsg" style="font-size:13px;margin-top:8px;font-weight:bold;min-height:30px;color:#fff;text-align:center;"></div>
     </div>
 
@@ -1838,7 +1926,7 @@
         <div style="position:relative;width:280px;height:160px;background:linear-gradient(180deg,#1a3a1a,#2a5a2a);border:2px solid #fff;border-radius:8px;margin:4px 0;overflow:hidden;">
             <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,0.25);"></div>
             <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;"></div>
-            <div id="wc26Ball" style="position:absolute;left:130px;top:58px;transition:all 0.5s ease;"><svg viewBox="0 0 100 100" width="24" height="24" style="display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><defs><clipPath id="tif"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgif" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgif)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg></div>
+            <div id="wc26Ball" style="position:absolute;left:130px;top:58px;transition:all 0.5s ease;"><svg viewBox="0 0 100 100" width="24" height="24" style="display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><defs><clipPath id="tif"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgif" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg></div>
             <div id="wc26AnimMsg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;opacity:0;transition:opacity 0.3s;pointer-events:none;text-shadow:2px 2px 0 #000;"></div>
         </div>
         <!-- Soru -->
@@ -1849,18 +1937,19 @@
         <!-- Giriş -->
         <div style="display:flex;gap:8px;align-items:center;margin-top:6px;width:100%;justify-content:center;">
             <input type="number" id="wc26Input" placeholder="= ?" style="padding:10px;font-size:17px;border-radius:10px;border:2px solid #fff;background:rgba(255,255,255,0.1);color:#fff;width:45%;text-align:center;outline:none;font-weight:bold;">
-            <button onclick="playSound('click');submitWC26Answer()" id="wc26Btn" style="padding:10px 20px;font-size:14px;background:#7a0011;color:#fff;border:2px solid #fff;border-radius:10px;cursor:pointer;font-weight:bold;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4));"><defs><clipPath id="wc26bi"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="wc26bgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#wc26bgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#wc26bi)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#wc26bi)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#wc26bi)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> At!</button>
+            <button onclick="playSound('click');submitWC26Answer()" id="wc26Btn" style="padding:10px 20px;font-size:14px;background:#7a0011;color:#fff;border:2px solid #fff;border-radius:10px;cursor:pointer;font-weight:bold;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4));"><defs><clipPath id="wc26bi"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="wc26bgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#wc26bi)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#wc26bi)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#wc26bi)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> At!</button>
         </div>
         <div id="wc26Message" style="font-size:13px;margin-top:8px;font-weight:bold;min-height:30px;color:#fff;text-align:center;"></div>
         <div id="wc26GuessTimerBox" class="guess-timer-box" style="display:none;border-color:#fff;color:#fff;">
             <span>⌛ </span><span id="wc26GuessCountdown">20</span><span> sn</span>
         </div>
-        <!-- VAR + Su Molası -->
+        <!-- VAR + Su Molası + 3dk Mola -->
         <div style="display:flex;gap:6px;justify-content:center;align-items:center;margin-top:6px;flex-wrap:wrap;">
             <button id="wc26VarBtn" onclick="useWC26VAR()" style="padding:5px 12px;font-size:11px;font-weight:bold;background:#003087;color:#fff;border:2px solid #4488ff;border-radius:8px;cursor:pointer;">📺 VAR</button>
             <button id="wc26wb0" onclick="useWaterBreak('wc26',0)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="15dk Su Molası">💧 15dk</button>
             <button id="wc26wb1" onclick="useWaterBreak('wc26',1)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="45dk Su Molası">💧 45dk</button>
             <button id="wc26wb2" onclick="useWaterBreak('wc26',2)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="90dk Su Molası">💧 90dk</button>
+            <button id="wc26timeoutBtn" onclick="useMatchTimeout('wc26')" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#3a1a0a;color:#ffaa66;border:1px solid #ff8844;border-radius:8px;cursor:pointer;" title="3 Dakika Teknik Mola">🕐 3dk (<span id="wc26timeoutCount">3</span>)</button>
         </div>
     </div>
     <div id="futbolDiffScreen" style="display:none;flex-direction:column;align-items:center;width:100%;">
@@ -2821,7 +2910,7 @@ const LANG = {
         hintVeryClose: ' (Very close! 🔥)', hintClose: ' (Close! 😮)', hintFar: ' (A bit far 🤔)', hintVeryFar: ' (Far 🤔)', hintWayFar: ' (Way too far! 😅)',
         loseEasy: 'You\'ll get it next time!', loseMedium: 'You can do it!', loseHard: 'That was really hard!', loseUltra: 'That was nearly impossible!',
         cooldownWait: 'Please wait',
-        mathGames: '⚽ World Cup & CONIFA',
+        mathGames: '⚽ World Cup',
         descGuess: 'Guess the numbers<br>and find them!',
         descEbob: 'GCD &amp; LCM bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Solve 4 operations!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -2933,7 +3022,7 @@ const LANG = {
         hintVeryClose: ' (Vicinissimo! 🔥)', hintClose: ' (Vicino! 😮)', hintFar: ' (Un po\' lontano 🤔)', hintVeryFar: ' (Lontano 🤔)', hintWayFar: ' (Troppo lontano! 😅)',
         loseEasy: 'Riprova!', loseMedium: 'Ce la farai!', loseHard: 'Era davvero difficile!', loseUltra: 'Era quasi impossibile!',
         cooldownWait: 'Aspetta un po\'',
-        mathGames: '⚽ Coppa del Mondo & CONIFA',
+        mathGames: '⚽ Coppa del Mondo',
         descGuess: 'Indovina i numeri<br>e trovali!',
         descEbob: 'MCD &amp; mcm bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Risolvi 4 operazioni!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3045,7 +3134,7 @@ const LANG = {
         hintVeryClose: ' (¡Muy cerca! 🔥)', hintClose: ' (¡Cerca! 😮)', hintFar: ' (Un poco lejos 🤔)', hintVeryFar: ' (Lejos 🤔)', hintWayFar: ' (¡Muy lejos! 😅)',
         loseEasy: '¡Inténtalo de nuevo!', loseMedium: '¡Tú puedes!', loseHard: '¡Era muy difícil!', loseUltra: '¡Era casi imposible!',
         cooldownWait: 'Espera un poco',
-        mathGames: '⚽ Copa del Mundo & CONIFA',
+        mathGames: '⚽ Copa del Mundo',
         descGuess: 'Adivina los números<br>y encuéntralos!',
         descEbob: 'MCD &amp; mcm bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '¡Resuelve 4 operaciones!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3157,7 +3246,7 @@ const LANG = {
         hintVeryClose: ' (ძალიან ახლოს! 🔥)', hintClose: ' (ახლოს! 😮)', hintFar: ' (ცოტა შორს 🤔)', hintVeryFar: ' (შორს 🤔)', hintWayFar: ' (ძალიან შორს! 😅)',
         loseEasy: 'სცადეთ ისევ!', loseMedium: 'შეგიძლიათ!', loseHard: 'ძალიან რთული!', loseUltra: 'თითქმის შეუძლებელი!',
         cooldownWait: 'დაელოდეთ',
-        mathGames: '⚽ მსოფლიო თასი & CONIFA',
+        mathGames: '⚽ მსოფლიო თასი',
         descGuess: 'გამოიცანი რიცხვები<br>და იპოვე!',
         descEbob: 'სდგ &amp; სჯო bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '4 მოქმედება ამოხსენი!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3269,7 +3358,7 @@ const LANG = {
         hintVeryClose: ' (Çox yaxın! 🔥)', hintClose: ' (Yaxın! 😮)', hintFar: ' (Bir az uzaq 🤔)', hintVeryFar: ' (Uzaq 🤔)', hintWayFar: ' (Çox uzaq! 😅)',
         loseEasy: 'Yenidən cəhd et!', loseMedium: 'Bacararsınız!', loseHard: 'Çox çətin idi!', loseUltra: 'Demək olar ki, imkansız!',
         cooldownWait: 'Gözləyin',
-        mathGames: '⚽ Dünya Kuboku & CONIFA',
+        mathGames: '⚽ Dünya Kuboku',
         descGuess: 'Rəqəmləri tap<br>və tamaşa et!',
         descEbob: 'ƏBOB &amp; ƏKOB bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '4 əməliyyat həll et!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3381,7 +3470,7 @@ const LANG = {
         hintVeryClose: ' (とても近い！🔥)', hintClose: ' (近い！😮)', hintFar: ' (少し遠い 🤔)', hintVeryFar: ' (遠い 🤔)', hintWayFar: ' (とても遠い！😅)',
         loseEasy: 'また挑戦しよう！', loseMedium: 'できるよ！', loseHard: 'とても難しかった！', loseUltra: 'ほぼ不可能だった！',
         cooldownWait: 'お待ちください',
-        mathGames: '⚽ ワールドカップ & CONIFA',
+        mathGames: '⚽ ワールドカップ',
         descGuess: '数字を推測して<br>見つけよう！',
         descEbob: '最大公約数 &amp; 最小公倍数 bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '4則演算を解こう！<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3493,7 +3582,7 @@ const LANG = {
         hintVeryClose: ' (非常接近！🔥)', hintClose: ' (接近！😮)', hintFar: ' (有点远 🤔)', hintVeryFar: ' (远 🤔)', hintWayFar: ' (太远了！😅)',
         loseEasy: '再试一次！', loseMedium: '你可以的！', loseHard: '真的很难！', loseUltra: '几乎不可能！',
         cooldownWait: '请稍候',
-        mathGames: '⚽ 世界杯 & CONIFA',
+        mathGames: '⚽ 世界杯',
         descGuess: '猜数字<br>并找到它！',
         descEbob: '最大公因数 &amp; 最小公倍数 bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: '解四则运算！<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3605,7 +3694,7 @@ const LANG = {
         hintVeryClose: ' (Sehr nah! 🔥)', hintClose: ' (Nah! 😮)', hintFar: ' (Etwas weit 🤔)', hintVeryFar: ' (Weit 🤔)', hintWayFar: ' (Sehr weit! 😅)',
         loseEasy: 'Versuch es nochmal!', loseMedium: 'Du schaffst das!', loseHard: 'Das war sehr schwer!', loseUltra: 'Fast unmöglich!',
         cooldownWait: 'Bitte warten',
-        mathGames: '⚽ Weltmeisterschaft & CONIFA',
+        mathGames: '⚽ Weltmeisterschaft',
         descGuess: 'Zahlen erraten<br>und finden!',
         descEbob: 'ggT &amp; kgV bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Löse 4 Rechenarten!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3717,7 +3806,7 @@ const LANG = {
         hintVeryClose: ' (Très proche! 🔥)', hintClose: ' (Proche! 😮)', hintFar: ' (Un peu loin 🤔)', hintVeryFar: ' (Loin 🤔)', hintWayFar: ' (Très loin! 😅)',
         loseEasy: 'Réessayez!', loseMedium: 'Vous pouvez!', loseHard: 'C\'était très difficile!', loseUltra: 'Presque impossible!',
         cooldownWait: 'Patientez',
-        mathGames: '⚽ Coupe du Monde & CONIFA',
+        mathGames: '⚽ Coupe du Monde',
         descGuess: 'Devinez les nombres<br>et trouvez-les!',
         descEbob: 'PGCD &amp; PPCM bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Résous 4 opérations!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3829,7 +3918,7 @@ const LANG = {
         hintVeryClose: ' (Πολύ κοντά! 🔥)', hintClose: ' (Κοντά! 😮)', hintFar: ' (Λίγο μακριά 🤔)', hintVeryFar: ' (Μακριά 🤔)', hintWayFar: ' (Πολύ μακριά! 😅)',
         loseEasy: 'Προσπαθήστε ξανά!', loseMedium: 'Μπορείτε!', loseHard: 'Ήταν πολύ δύσκολο!', loseUltra: 'Σχεδόν αδύνατο!',
         cooldownWait: 'Παρακαλώ περιμένετε',
-        mathGames: '⚽ Παγκόσμιο Κύπελλο & CONIFA',
+        mathGames: '⚽ Παγκόσμιο Κύπελλο',
         descGuess: 'Μαντέψτε αριθμούς<br>και βρείτε τους!',
         descEbob: 'ΜΚΔ &amp; ΕΚΠ bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Λύσε 4 πράξεις!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -3941,7 +4030,7 @@ const LANG = {
         hintVeryClose: ' (Очень близко! 🔥)', hintClose: ' (Близко! 😮)', hintFar: ' (Немного далеко 🤔)', hintVeryFar: ' (Далеко 🤔)', hintWayFar: ' (Очень далеко! 😅)',
         loseEasy: 'Попробуйте ещё раз!', loseMedium: 'Вы сможете!', loseHard: 'Было очень сложно!', loseUltra: 'Почти невозможно!',
         cooldownWait: 'Пожалуйста, подождите',
-        mathGames: '⚽ Чемпионат мира & CONIFA',
+        mathGames: '⚽ Чемпионат мира',
         descGuess: 'Угадай числа<br>и найди их!',
         descEbob: 'НОД &amp; НОК bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Реши 4 действия!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -4052,7 +4141,7 @@ const LANG = {
         hintVeryClose: ' (قريب جداً! 🔥)', hintClose: ' (قريب! 😮)', hintFar: ' (بعيد قليلاً 🤔)', hintVeryFar: ' (بعيد 🤔)', hintWayFar: ' (بعيد جداً! 😅)',
         loseEasy: 'حاول مرة أخرى!', loseMedium: 'أنت تستطيع!', loseHard: 'كان صعباً جداً!', loseUltra: 'كان شبه مستحيل!',
         cooldownWait: 'انتظر من فضلك',
-        mathGames: '⚽ كأس العالم & CONIFA',
+        mathGames: '⚽ كأس العالم',
         descGuess: 'خمّن الأرقام<br>وابحث عنها!',
         descEbob: 'ق.م.أ &amp; م.م.أ bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'حل 4 عمليات!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -4164,7 +4253,7 @@ const LANG = {
         hintVeryClose: ' (Muito perto! 🔥)', hintClose: ' (Perto! 😮)', hintFar: ' (Um pouco longe 🤔)', hintVeryFar: ' (Longe 🤔)', hintWayFar: ' (Muito longe! 😅)',
         loseEasy: 'Tente novamente!', loseMedium: 'Você consegue!', loseHard: 'Foi muito difícil!', loseUltra: 'Quase impossível!',
         cooldownWait: 'Por favor, aguarde',
-        mathGames: '⚽ Copa do Mundo & CONIFA',
+        mathGames: '⚽ Copa do Mundo',
         descGuess: 'Adivinhe os números<br>e encontre-os!',
         descEbob: 'MDC &amp; MMC bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Resolva 4 operações!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -4276,7 +4365,7 @@ const LANG = {
         hintVeryClose: ' (Дуже близько! 🔥)', hintClose: ' (Близько! 😮)', hintFar: ' (Трохи далеко 🤔)', hintVeryFar: ' (Далеко 🤔)', hintWayFar: ' (Дуже далеко! 😅)',
         loseEasy: 'Спробуйте ще раз!', loseMedium: 'Ви зможете!', loseHard: 'Було дуже важко!', loseUltra: 'Майже неможливо!',
         cooldownWait: 'Будь ласка, зачекайте',
-        mathGames: '⚽ Чемпіонат світу & CONIFA',
+        mathGames: '⚽ Чемпіонат світу',
         descGuess: 'Вгадай числа<br>і знайди їх!',
         descEbob: 'НСД &amp; НСК bul!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
         descIslem: 'Вирішуй 4 дії!<br><span style="font-size:9px;color:#ff8888;background:rgba(255,100,100,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -4375,7 +4464,7 @@ const LANG = {
         statsBtn: 'آمار',
         statsTitle: '📊 آمار بازی',
         statsClose: 'بستن',
-        mathGames: '⚽ جام جهانی & CONIFA',
+        mathGames: '⚽ جام جهانی',
         placeholder: 'حدس...',
         ebobTitle: 'ب.م.م و ك.م.م',
         islemTitle: '۴ عملیات',
@@ -4506,7 +4595,7 @@ const LANG = {
         statsBtn: '통계',
         statsTitle: '📊 게임 통계',
         statsClose: '닫기',
-        mathGames: '⚽ 월드컵 & CONIFA',
+        mathGames: '⚽ 월드컵',
         placeholder: '추측...',
         ebobTitle: '최대공약수 & 최소공배수',
         islemTitle: '사칙연산',
@@ -4642,7 +4731,7 @@ const LANG = {
         statsBtn: 'Statistieken',
         statsTitle: '📊 SPELSTATISTIEKEN',
         statsClose: 'Sluiten',
-        mathGames: '⚽ Wereldkampioenschap & CONIFA',
+        mathGames: '⚽ Wereldkampioenschap',
         placeholder: 'Gok...',
         ebobTitle: 'GGD & KGV',
         islemTitle: '4 Bewerkingen',
@@ -4778,7 +4867,7 @@ const LANG = {
         statsBtn: 'Statistik',
         statsTitle: '📊 SPELSTATISTIK',
         statsClose: 'Stäng',
-        mathGames: '⚽ VM & CONIFA',
+        mathGames: '⚽ VM',
         placeholder: 'Gissning...',
         ebobTitle: 'SGD & MGM',
         islemTitle: '4 Räknesätt',
@@ -4914,7 +5003,7 @@ const LANG = {
         statsBtn: 'Statistikk',
         statsTitle: '📊 SPILLSTATISTIKK',
         statsClose: 'Lukk',
-        mathGames: '⚽ VM & CONIFA',
+        mathGames: '⚽ VM',
         placeholder: 'Gjetning...',
         ebobTitle: 'SFF & MFM',
         islemTitle: '4 Regnearter',
@@ -5050,7 +5139,7 @@ const LANG = {
         statsBtn: 'Statistiky',
         statsTitle: '📊 HERNÍ STATISTIKY',
         statsClose: 'Zavřít',
-        mathGames: '⚽ Mistrovství světa & CONIFA',
+        mathGames: '⚽ Mistrovství světa',
         placeholder: 'Odhad...',
         ebobTitle: 'NSD & NSN',
         islemTitle: '4 Operace',
@@ -5186,7 +5275,7 @@ const LANG = {
         statsBtn: 'Statistike',
         statsTitle: '📊 STATISTIKE IGRE',
         statsClose: 'Zatvori',
-        mathGames: '⚽ Svjetsko Prvens. & CONIFA',
+        mathGames: '⚽ Svjetsko Prvens.',
         placeholder: 'Procjena...',
         ebobTitle: 'NZD & NZS',
         islemTitle: '4 Operacije',
@@ -5322,7 +5411,7 @@ const LANG = {
         statsBtn: 'Statistike',
         statsTitle: '📊 STATISTIKE IGRE',
         statsClose: 'Zatvori',
-        mathGames: '⚽ Svjetsko Prvens. & CONIFA',
+        mathGames: '⚽ Svjetsko Prvens.',
         placeholder: 'Procjena...',
         ebobTitle: 'NZM & NZV',
         islemTitle: '4 Operacije',
@@ -5594,7 +5683,7 @@ const LANG = {
         statsBtn: 'Estatistik',
         statsTitle: '📊 ESTATISTIK JWÈT',
         statsClose: 'Fèmen',
-        mathGames: '⚽ Koup Monn & CONIFA',
+        mathGames: '⚽ Koup Monn',
         placeholder: 'Devinèt...',
         descGuess: 'Devine nimewo yo!',
         descEbob: 'Jwenn PGCD & PPCM!<br><span style="font-size:9px;color:#ffaa00;background:rgba(255,170,0,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>',
@@ -6246,6 +6335,13 @@ function setLang(lang) {
         permDesc: { tr:'P(n,r) & C(n,r) çöz!', en:'Solve P(n,r) & C(n,r)!', it:'Risolvi P(n,r) & C(n,r)!', es:'¡Resuelve P(n,r) & C(n,r)!', ka:'P(n,r) და C(n,r) ამოხსენი!', az:'P(n,r) və C(n,r) həll et!', ja:'P(n,r) と C(n,r) を解く!', zh:'解决 P(n,r) 和 C(n,r)!', de:'Löse P(n,r) & C(n,r)!', fr:'Résous P(n,r) & C(n,r)!', el:'Λύσε P(n,r) & C(n,r)!', ru:'Реши P(n,r) и C(n,r)!', ar:'حل P(n,r) و C(n,r)!', pt:'Resolva P(n,r) & C(n,r)!', uk:'Розв\'яжи P(n,r) і C(n,r)!', fa:'P(n,r) و C(n,r) را حل کنید!', ko:'P(n,r) & C(n,r) 풀이!', nl:'Los P(n,r) & C(n,r) op!', sv:'Lös P(n,r) & C(n,r)!', no:'Løs P(n,r) & C(n,r)!', cs:'Vyřeš P(n,r) & C(n,r)!', bs:'Riješi P(n,r) & C(n,r)!', hr:'Riješi P(n,r) & C(n,r)!', uz:'P(n,r) va C(n,r) yeching!', ht:'Rezoud P(n,r) & C(n,r)!' },
         axiomName: { tr:'AXIOM vs', en:'AXIOM vs', it:'AXIOM vs', es:'AXIOM vs', ka:'AXIOM vs', az:'AXIOM vs', ja:'AXIOM 対戦', zh:'AXIOM 对战', de:'AXIOM vs', fr:'AXIOM vs', el:'AXIOM vs', ru:'AXIOM против', ar:'ضد AXIOM', pt:'AXIOM vs', uk:'AXIOM проти', fa:'AXIOM در برابر', ko:'AXIOM 대전', nl:'AXIOM vs', sv:'AXIOM mot', no:'AXIOM mot', cs:'AXIOM proti', bs:'AXIOM protiv', hr:'AXIOM protiv', uz:'AXIOM bilan', ht:'AXIOM kont' },
         axiomDesc: { tr:'Bot ile yarış!', en:'Race against bot!', it:'Sfida il bot!', es:'¡Compite contra el bot!', ka:'ბოტთან გაიქცე!', az:'Botla yarış!', ja:'ボットと対戦!', zh:'与机器人比赛!', de:'Wettkampf gegen Bot!', fr:'Affronte le bot!', el:'Διαγωνίσου με το bot!', ru:'Гонка с ботом!', ar:'تسابق مع البوت!', pt:'Corra contra o bot!', uk:'Гонка з ботом!', fa:'مسابقه با ربات!', ko:'봇과 대결!', nl:'Race tegen bot!', sv:'Tävla mot bot!', no:'Konkurrer mot bot!', cs:'Závod proti botovi!', bs:'Trka protiv bota!', hr:'Utrka protiv bota!', uz:'Bot bilan musobaqa!', ht:'Konkou kont bòt!' },
+        // ⭐ AYT 2026
+        turevName: { tr:'AYT Türev', en:'AYT Derivative', it:'AYT Derivata', es:'AYT Derivada', de:'AYT Ableitung', fr:'AYT Dérivée', ru:'AYT Производная', ar:'AYT المشتقة', ja:'AYT 微分', ko:'AYT 미분', zh:'AYT 导数', pt:'AYT Derivada', uk:'AYT Похідна', fa:'AYT مشتق', nl:'AYT Afgeleide', sv:'AYT Derivata', no:'AYT Derivert', cs:'AYT Derivace', bs:'AYT Izvod', hr:'AYT Derivacija', uz:'AYT Hosila', ht:'AYT Derive', el:'AYT Παράγωγος', ka:'AYT წარმოებული', az:'AYT Törəmə' },
+        turevDesc: { tr:"f′(x) hesapla", en:"Calculate f′(x)", it:"Calcola f′(x)", es:"Calcular f′(x)", de:"f′(x) berechnen", fr:"Calculer f′(x)", ru:"Найди f′(x)", ar:"احسب f′(x)", ja:"f′(x) を計算", ko:"f′(x) 계산", zh:"计算 f′(x)", pt:"Calcule f′(x)", uk:"Знайти f′(x)", fa:"f′(x) محاسبه کن", nl:"Bereken f′(x)", sv:"Beräkna f′(x)", no:"Beregn f′(x)", cs:"Vypočítej f′(x)", bs:"Izračunaj f′(x)", hr:"Izračunaj f′(x)", uz:"f′(x) hisobla", ht:"Kalkile f′(x)", el:"Υπολογίστε f′(x)", ka:"გამოთვალე f′(x)", az:"f′(x) hesabla" },
+        integralName: { tr:'AYT İntegral', en:'AYT Integral', it:'AYT Integrale', es:'AYT Integral', de:'AYT Integral', fr:'AYT Intégrale', ru:'AYT Интеграл', ar:'AYT التكامل', ja:'AYT 積分', ko:'AYT 적분', zh:'AYT 积分', pt:'AYT Integral', uk:'AYT Інтеграл', fa:'AYT انتگرال', nl:'AYT Integraal', sv:'AYT Integral', no:'AYT Integral', cs:'AYT Integrál', bs:'AYT Integral', hr:'AYT Integral', uz:'AYT Integral', ht:'AYT Entegral', el:'AYT Ολοκλήρωμα', ka:'AYT ინტეგრალი', az:'AYT İnteqral' },
+        integralDesc: { tr:'Belirli integral', en:'Definite integral', it:'Integrale definito', es:'Integral definida', de:'Bestimmtes Integral', fr:'Intégrale définie', ru:'Определённый интеграл', ar:'تكامل محدد', ja:'定積分', ko:'정적분', zh:'定积分', pt:'Integral definida', uk:'Визначений інтеграл', fa:'انتگرال معین', nl:'Bepaalde integraal', sv:'Bestämd integral', no:'Bestemt integral', cs:'Určitý integrál', bs:'Određeni integral', hr:'Određeni integral', uz:'Aniq integral', ht:'Entegral defini', el:'Ορισμένο ολοκλήρωμα', ka:'განსაზღვრული ინტეგრალი', az:'Müəyyən inteqral' },
+        logName: { tr:'AYT Logaritma', en:'AYT Logarithm', it:'AYT Logaritmo', es:'AYT Logaritmo', de:'AYT Logarithmus', fr:'AYT Logarithme', ru:'AYT Логарифм', ar:'AYT اللوغاريتم', ja:'AYT 対数', ko:'AYT 로그', zh:'AYT 对数', pt:'AYT Logaritmo', uk:'AYT Логарифм', fa:'AYT لگاریتم', nl:'AYT Logaritme', sv:'AYT Logaritm', no:'AYT Logaritme', cs:'AYT Logaritmus', bs:'AYT Logaritam', hr:'AYT Logaritam', uz:'AYT Logarifm', ht:'AYT Logaritm', el:'AYT Λογάριθμος', ka:'AYT ლოგარითმი', az:'AYT Loqarifm' },
+        logDesc: { tr:'log<sub>a</sub>(b) = ?', en:'log<sub>a</sub>(b) = ?', it:'log<sub>a</sub>(b) = ?', es:'log<sub>a</sub>(b) = ?', de:'log<sub>a</sub>(b) = ?', fr:'log<sub>a</sub>(b) = ?', ru:'log<sub>a</sub>(b) = ?', ar:'log<sub>a</sub>(b) = ?', ja:'log<sub>a</sub>(b) = ?', ko:'log<sub>a</sub>(b) = ?', zh:'log<sub>a</sub>(b) = ?', pt:'log<sub>a</sub>(b) = ?', uk:'log<sub>a</sub>(b) = ?', fa:'log<sub>a</sub>(b) = ?', nl:'log<sub>a</sub>(b) = ?', sv:'log<sub>a</sub>(b) = ?', no:'log<sub>a</sub>(b) = ?', cs:'log<sub>a</sub>(b) = ?', bs:'log<sub>a</sub>(b) = ?', hr:'log<sub>a</sub>(b) = ?', uz:'log<sub>a</sub>(b) = ?', ht:'log<sub>a</sub>(b) = ?', el:'log<sub>a</sub>(b) = ?', ka:'log<sub>a</sub>(b) = ?', az:'log<sub>a</sub>(b) = ?' },
         wc26Name: { tr:'Uluslar Şampiyonası 2026', en:'Nations Championship 2026', it:'Campionato delle Nazioni 2026', es:'Campeonato de Naciones 2026', ka:'ერების ჩემპიონატი 2026', az:'Millətlər Çempionatı 2026', ja:'国家選手権2026', zh:'国家锦标赛2026', de:'Nationen-Meisterschaft 2026', fr:'Championnat des Nations 2026', el:'Πρωτάθλημα Εθνών 2026', ru:'Чемпионат Наций 2026', ar:'بطولة الأمم 2026', pt:'Campeonato das Nações 2026', uk:'Чемпіонат Націй 2026', fa:'قهرمانی ملت\u200cها ۲۰۲۶', ko:'네이션스 챔피언십 2026', nl:'Naties Kampioenschap 2026', sv:'Nationsmästerskapet 2026', no:'Nasjonsmesterskapet 2026', cs:'Mistrovství Národů 2026', bs:'Prvenstvo Nacija 2026', hr:'Prvenstvo Nacija 2026', uz:'Millatlar Chempionati 2026', ht:'Chanpyona Nasyon 2026' },
         wc26Desc: { tr:'48 ülke · 11 Haz - 19 Tem 2026', en:'48 countries · Jun 11 - Jul 19, 2026', it:'48 paesi · 11 Giu - 19 Lug 2026', es:'48 países · 11 Jun - 19 Jul 2026', ka:'48 ქვეყანა · 11 ივნ - 19 ივლ 2026', az:'48 ölkə · 11 İyn - 19 İyl 2026', ja:'48ヶ国 · 2026年6月11日-7月19日', zh:'48个国家 · 2026年6月11日-7月19日', de:'48 Länder · 11. Jun - 19. Jul 2026', fr:'48 pays · 11 Juin - 19 Juil 2026', el:'48 χώρες · 11 Ιουν - 19 Ιουλ 2026', ru:'48 стран · 11 Июн - 19 Июл 2026', ar:'48 دولة · 11 يونيو - 19 يوليو 2026', pt:'48 países · 11 Jun - 19 Jul 2026', uk:'48 країн · 11 Чер - 19 Лип 2026', fa:'۴۸ کشور · ۱۱ ژوئن - ۱۹ ژوئیه ۲۰۲۶', ko:'48개국 · 2026.06.11 - 07.19', nl:'48 landen · 11 Jun - 19 Jul 2026', sv:'48 länder · 11 Jun - 19 Jul 2026', no:'48 land · 11 Jun - 19 Jul 2026', cs:'48 zemí · 11. Čvn - 19. Čvc 2026', bs:'48 zemalja · 11. Jun - 19. Jul 2026', hr:'48 zemalja · 11. Lip - 19. Srp 2026', uz:'48 davlat · 11-iyun - 19-iyul 2026', ht:'48 peyi · 11 Jen - 19 Jiyè 2026' },
         euro28Name: { tr:'Avrupa Şampiyonası 2028', en:'Euro 2028', it:'Europei 2028', es:'Eurocopa 2028', ka:'ევრო 2028', az:'Avropa 2028', ja:'欧州選手権2028', zh:'欧洲杯2028', de:'Europameisterschaft 2028', fr:'Euro 2028', el:'Ευρωπαϊκό 2028', ru:'Чемпионат Европы 2028', ar:'بطولة أوروبا 2028', pt:'Eurocopa 2028', uk:'Чемпіонат Європи 2028', fa:'یورو ۲۰۲۸', ko:'유로 2028', nl:'EK 2028', sv:'EM 2028', no:'EM 2028', cs:'Euro 2028', bs:'Euro 2028', hr:'Euro 2028', uz:'Yevropa Chempionati 2028', ht:'Euro 2028' },
@@ -6269,7 +6365,7 @@ function setLang(lang) {
         axiomSubText: { tr:'Yapay Zeka Rakip', en:'AI Opponent', it:'Avversario AI', es:'Oponente IA', ka:'AI მოწინააღმდეგე', az:'Süni Zəka Rəqib', ja:'AI 対戦相手', zh:'AI 对手', de:'KI-Gegner', fr:'Adversaire IA', el:'Αντίπαλος AI', ru:'ИИ Противник', ar:'خصم الذكاء الاصطناعي', pt:'Adversário IA', uk:'ШІ Суперник', fa:'حریف هوش مصنوعی', ko:'AI 상대', nl:'AI-tegenstander', sv:'AI-motståndare', no:'AI-motstander', cs:'AI Soupeř', bs:'AI Protivnik', hr:'AI Protivnik', uz:'SI Raqib', ht:'Advèsè IA' },
         axiomModeTitle: { tr:'Hangi oyun modu?', en:'Which game mode?', it:'Quale modalità?', es:'¿Qué modo de juego?', ka:'რომელი თამაშის რეჟიმი?', az:'Hansı oyun modu?', ja:'どのゲームモード?', zh:'哪个游戏模式?', de:'Welcher Spielmodus?', fr:'Quel mode de jeu?', el:'Ποια λειτουργία;', ru:'Какой режим?', ar:'أي وضع لعبة?', pt:'Qual modo de jogo?', uk:'Який режим?', fa:'کدام حالت بازی؟', ko:'어떤 게임 모드?', nl:'Welke spelmodus?', sv:'Vilket spelläge?', no:'Hvilken spillmodus?', cs:'Který herní režim?', bs:'Koji režim igre?', hr:'Koji način igre?', uz:'Qaysi o’yin rejimi?', ht:'Ki mòd jwèt?' },
         wc26Title: { tr:'ULUSLAR ŞAMPİYONASI 2026', en:'NATIONS CHAMPIONSHIP 2026', it:'CAMPIONATO DELLE NAZIONI 2026', es:'CAMPEONATO DE NACIONES 2026', ka:'ერების ჩემპიონატი 2026', az:'MİLLƏTLƏR ÇEMPİONATI 2026', ja:'国家選手権 2026', zh:'国家锦标赛 2026', de:'NATIONEN-MEISTERSCHAFT 2026', fr:'CHAMPIONNAT DES NATIONS 2026', el:'ΠΡΩΤΑΘΛΗΜΑ ΕΘΝΩΝ 2026', ru:'ЧЕМПИОНАТ НАЦИЙ 2026', ar:'بطولة الأمم 2026', pt:'CAMPEONATO DAS NAÇÕES 2026', uk:'ЧЕМПІОНАТ НАЦІЙ 2026', fa:'قهرمانی ملت\u200cها ۲۰۲۶', ko:'네이션스 챔피언십 2026', nl:'NATIES KAMPIOENSCHAP 2026', sv:'NATIONSMÄSTERSKAPET 2026', no:'NASJONSMESTERSKAPET 2026', cs:'MISTROVSTVÍ NÁRODŮ 2026', bs:'PRVENSTVO NACIJA 2026', hr:'PRVENSTVO NACIJA 2026', uz:'MILLATLAR CHEMPIONATI 2026', ht:'CHANPYONA NASYON 2026' },
-        wc26SelectCountry: { tr:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Ülkeni seç:', en:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Choose your country:', it:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Scegli il tuo paese:', es:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Elige tu país:', ka:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> აირჩიე ქვეყანა:', az:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Ölkəni seç:', ja:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 国を選択:', zh:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 选择你的国家:', de:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Wähle dein Land:', fr:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Choisis ton pays:', el:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Επίλεξε χώρα:', ru:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Выбери страну:', ar:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> اختر بلدك:', pt:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Escolha seu país:', uk:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Обери країну:', fa:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> کشور خود را انتخاب کنید:', ko:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 국가 선택:', nl:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Kies je land:', sv:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Välj ditt land:', no:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Velg ditt land:', cs:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Vyber svou zemi:', bs:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Odaberi svoju zemlju:', hr:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Odaberi svoju zemlju:', uz:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Davlatingizni tanlang:', ht:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Chwazi peyi ou:' },
+        wc26SelectCountry: { tr:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Ülkeni seç:', en:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Choose your country:', it:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Scegli il tuo paese:', es:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Elige tu país:', ka:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> აირჩიე ქვეყანა:', az:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Ölkəni seç:', ja:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 国を選択:', zh:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 选择你的国家:', de:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Wähle dein Land:', fr:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Choisis ton pays:', el:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Επίλεξε χώρα:', ru:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Выбери страну:', ar:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> اختر بلدك:', pt:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Escolha seu país:', uk:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Обери країну:', fa:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> کشور خود را انتخاب کنید:', ko:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 국가 선택:', nl:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Kies je land:', sv:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Välj ditt land:', no:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Velg ditt land:', cs:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Vyber svou zemi:', bs:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Odaberi svoju zemlju:', hr:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Odaberi svoju zemlju:', uz:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Davlatingizni tanlang:', ht:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> Chwazi peyi ou:' },
         wc26Info: { tr:'48 ülke · Grup + Eleme · Şampiyon ol!', en:'48 countries · Group + Knockout · Be champion!', it:'48 paesi · Gironi + Eliminazione · Diventa campione!', es:'48 países · Grupos + Eliminación · ¡Sé campeón!', ka:'48 ქვეყანა · ჯგუფი + გამოვარდნა · გახდი ჩემპიონი!', az:'48 ölkə · Qrup + Eliminasiya · Çempion ol!', ja:'48ヶ国 · グループ + ノックアウト · チャンピオンになれ!', zh:'48个国家 · 小组赛 + 淘汰赛 · 成为冠军!', de:'48 Länder · Gruppe + K.O. · Werde Champion!', fr:'48 pays · Groupes + Élimination · Sois champion!', el:'48 χώρες · Όμιλοι + Νοκ άουτ · Γίνε πρωταθλητής!', ru:'48 стран · Группа + Плей-офф · Стань чемпионом!', ar:'48 دولة · مجموعة + إقصاء · كن البطل!', pt:'48 países · Grupos + Eliminatórias · Seja campeão!', uk:'48 країн · Група + Плей-оф · Стань чемпіоном!', fa:'۴۸ کشور · گروه + حذفی · قهرمان شوید!', ko:'48개국 · 그룹 + 토너먼트 · 챔피언이 되세요!', nl:'48 landen · Groep + Knock-out · Word kampioen!', sv:'48 länder · Grupp + Slutspel · Bli mästare!', no:'48 land · Gruppe + Sluttspill · Bli mester!', cs:'48 zemí · Skupina + Vyřazovací · Buď šampionem!', bs:'48 zemalja · Grupa + Eliminacija · Postani prvak!', hr:'48 zemalja · Skupina + Eliminacija · Postani prvak!', uz:'48 davlat · Guruh + Pley-off · Chempion bo’l!', ht:'48 peyi · Gwoup + Elimine · Vin chanpyon!' },
         wc26PlayBtn: { tr:'Sonraki Maçı Oyna', en:'Play Next Match', it:'Gioca Prossima Partita', es:'Jugar Siguiente Partido', ka:'შემდეგი მატჩი', az:'Növbəti Oyunu Oyna', ja:'次の試合', zh:'下一场比赛', de:'Nächstes Spiel', fr:'Jouer le Prochain Match', el:'Επόμενος Αγώνας', ru:'Следующий матч', ar:'العب المباراة التالية', pt:'Jogar Próxima Partida', uk:'Наступний матч', fa:'بازی بعدی', ko:'다음 경기', nl:'Volgende Wedstrijd', sv:'Spela Nästa Match', no:'Spill Neste Kamp', cs:'Hrát Další Zápas', bs:'Igraj Sljedeću', hr:'Igraj Sljedeću', uz:'Keyingi O’yin', ht:'Jwe Pwochen Match' },
         lockedUntil: { tr:'Henüz kilitli! Açılış:', en:'Still locked! Opens:', it:'Ancora bloccato! Apertura:', es:'¡Aún bloqueado! Apertura:', ka:'ჯერ ჩაკეტილია! გახსნა:', az:'Hələ kilidlənmiş! Açılış:', ja:'まだロック中! オープン:', zh:'仍被锁定! 开放:', de:'Noch gesperrt! Öffnet:', fr:'Encore verrouillé! Ouverture:', el:'Ακόμα κλειδωμένο! Άνοιγμα:', ru:'Ещё заблокировано! Открытие:', ar:'لا يزال مغلقاً! يفتح:', pt:'Ainda bloqueado! Abre:', uk:'Ще заблоковано! Відкриття:', fa:'هنوز قفل است! باز می‌شود:', ko:'아직 잠겨있음! 오픈:', nl:'Nog vergrendeld! Opent:', sv:'Fortfarande låst! Öppnar:', no:'Fortsatt låst! Åpner:', cs:'Stále uzamčeno! Otevírá:', bs:'Još uvijek zaključano! Otvara se:', hr:'Još uvijek zaključano! Otvara se:', uz:'Hali qulflangan! Ochiladi:', ht:'Toujou bloke! Ouvè:' },
@@ -6296,6 +6392,13 @@ function setLang(lang) {
     _setHTML('descPerm', getNM('permDesc')+'<br><span style="font-size:9px;color:#bb66ff;background:rgba(180,100,255,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>');
     _set('modeNameAxiom', getNM('axiomName'));
     _setHTML('descAxiom', getNM('axiomDesc')+'<br><span style="font-size:9px;color:#00dcff;background:rgba(0,200,255,0.15);padding:1px 5px;border-radius:4px;">⚠ BETA</span>');
+    // ⭐ AYT 2026 modları
+    _set('modeNameTurev', getNM('turevName'));
+    _setHTML('descTurev', '<span style="color:#fbcfe8;">'+getNM('turevDesc')+'</span><br><span style="font-size:9px;color:#ec4899;background:rgba(236,72,153,0.18);padding:1px 5px;border-radius:4px;">⭐ AYT 2026</span>');
+    _set('modeNameIntegral', getNM('integralName'));
+    _setHTML('descIntegral', '<span style="color:#ddd0ff;">'+getNM('integralDesc')+'</span><br><span style="font-size:9px;color:#a855f7;background:rgba(168,85,247,0.18);padding:1px 5px;border-radius:4px;">⭐ AYT 2026</span>');
+    _set('modeNameLog', getNM('logName'));
+    _setHTML('descLog', '<span style="color:#a7f3d0;">'+getNM('logDesc')+'</span><br><span style="font-size:9px;color:#14b8a6;background:rgba(20,184,166,0.18);padding:1px 5px;border-radius:4px;">⭐ AYT 2026</span>');
     _set('modeNameWC26', getNM('wc26Name'));
     _setHTML('descWC26', '<div style=\"display:flex;gap:3px;justify-content:center;align-items:center;margin-bottom:2px;\"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#B22234"/><rect y="2" width="30" height="2" fill="#fff"/><rect y="6" width="30" height="2" fill="#fff"/><rect y="10" width="30" height="2" fill="#fff"/><rect y="14" width="30" height="2" fill="#fff"/><rect y="18" width="30" height="2" fill="#fff"/><rect width="12" height="10" fill="#3C3B6E"/></svg><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#fff"/><rect width="8" height="20" fill="#FF0000"/><rect x="22" width="8" height="20" fill="#FF0000"/></svg><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></div><div style=\"font-size:9px;color:#aaa;margin:-1px 0 2px;\">ABD · Kanada · Meksika</div><span style=\"color:#ff8888;\">'+getNM('wc26Desc')+'</span><br><span id=\"wc26CountdownBadge\" style=\"font-size:9px;color:#ffcc88;background:rgba(255,200,100,0.2);padding:1px 5px;border-radius:4px;\">⏰ ...</span>');
     if(typeof updateTournamentCountdowns==='function')updateTournamentCountdowns();
@@ -6696,17 +6799,60 @@ function closeSuperCupPicker() {
 
 // ════════ Süper Kupa state cleanup ════════
 function cleanupSuperCupState() {
+    // Şu an Süper Kupa state'inde miyiz? (cleanup öncesi kontrol)
+    const wasInSuperCup = (typeof wc26Stage !== 'undefined' && wc26Stage === 'super_cup_final');
+    
     // Interval'ı durdur
     if (window._superCupBallEnsure) {
         clearInterval(window._superCupBallEnsure);
         window._superCupBallEnsure = null;
     }
-    // wc26Stage'i sıfırla (super_cup_final ise)
-    if (typeof wc26Stage !== 'undefined' && wc26Stage === 'super_cup_final') {
-        wc26Stage = null;
-    }
+    
     // Müziği durdur
     if (typeof stopSuperCupMusic === 'function') stopSuperCupMusic();
+    
+    // EĞER Süper Kupa state'inden çıkıyorsak: TÜM WC26 state'ini sıfırla
+    // (yoksa splash 'devam eden turnuva' sanır ve Sonraki Maçı Oyna butonu gösterir)
+    if (wasInSuperCup) {
+        try { if (typeof wc26Stage !== 'undefined') wc26Stage = null; } catch(e) {}
+        try { if (typeof wc26CurMatch !== 'undefined') wc26CurMatch = null; } catch(e) {}
+        try { if (typeof wc26Groups !== 'undefined') wc26Groups = []; } catch(e) {}
+        try { if (typeof wc26Standings !== 'undefined') wc26Standings = {}; } catch(e) {}
+        try { if (typeof wc26KnockoutBracket !== 'undefined') wc26KnockoutBracket = {}; } catch(e) {}
+        try { if (typeof wc26MatchPhase !== 'undefined') wc26MatchPhase = null; } catch(e) {}
+        try { if (typeof wc26CurMyScore !== 'undefined') wc26CurMyScore = 0; } catch(e) {}
+        try { if (typeof wc26CurOppScore !== 'undefined') wc26CurOppScore = 0; } catch(e) {}
+        try { if (typeof wc26CurQNum !== 'undefined') wc26CurQNum = 0; } catch(e) {}
+        try { if (typeof wc26MyCountry !== 'undefined') wc26MyCountry = null; } catch(e) {}
+        try { if (typeof wc26BreakActive !== 'undefined') wc26BreakActive = false; } catch(e) {}
+        try { if (typeof wc26PhaseScores !== 'undefined') wc26PhaseScores = {}; } catch(e) {}
+        try { if (window._wc26PhaseAdvancing !== undefined) window._wc26PhaseAdvancing = false; } catch(e) {}
+        if (typeof wc26CurTimerVar !== 'undefined' && wc26CurTimerVar) { try { clearInterval(wc26CurTimerVar); } catch(e) {} }
+        // wc26 timer/bot timer
+        if (window._wc26BotTimer) { try { clearTimeout(window._wc26BotTimer); window._wc26BotTimer = null; } catch(e) {} }
+        if (window._confedBotTimer) { try { clearTimeout(window._confedBotTimer); window._confedBotTimer = null; } catch(e) {} }
+        
+        // TÜM WC26/Confed ekranları kapat
+        ['wc26MatchScreen','wc26TournamentScreen','wc26CountryScreen',
+         'confedMatchScreen','confedTournamentScreen','confedCountryScreen']
+            .forEach(id => { 
+                const el = document.getElementById(id); 
+                if (el) el.style.display = 'none';
+            });
+        
+        // DOM skor/isim elementlerini sıfırla (eski skorlar leak etmesin)
+        ['wc26MatchMyScore','wc26MatchOppScore','confedMyScore','confedOppScore']
+            .forEach(id => { 
+                const el = document.getElementById(id); 
+                if (el) el.textContent = '0';
+            });
+        ['wc26MatchMyName','wc26MatchOppName','wc26MatchMyFlag','wc26MatchOppFlag',
+         'confedMyName','confedOppName','confedMyFlag','confedOppFlag']
+            .forEach(id => { 
+                const el = document.getElementById(id); 
+                if (el) el.innerHTML = '';
+            });
+    }
     // Topları default Tridona'ya geri çevir
     const ballEl = document.getElementById('wc26Ball');
     if (ballEl && ballEl.getAttribute('data-supercup') === '1') {
@@ -6718,13 +6864,13 @@ function cleanupSuperCupState() {
     if (durEl && durEl.innerHTML.includes('clip-path="url(#scbs)"')) {
         const txtMatch = durEl.innerHTML.match(/<\/svg>(.*)$/);
         const txt = txtMatch ? txtMatch[1] : ' 1. YARI · 45dk';
-        durEl.innerHTML = `<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="tiR"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgiR" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgiR)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>` + txt;
+        durEl.innerHTML = `<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="tiR"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgiR" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>` + txt;
     }
     const btnEl = document.getElementById('wc26Btn');
     if (btnEl && btnEl.innerHTML.includes('clip-path="url(#scbs)"')) {
         const txtMatch = btnEl.innerHTML.match(/<\/svg>(.*)$/);
         const txt = txtMatch ? txtMatch[1] : ' At!';
-        btnEl.innerHTML = `<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="tiR"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgiR" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgiR)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>` + txt;
+        btnEl.innerHTML = `<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="tiR"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgiR" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tiR)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>` + txt;
     }
 }
 
@@ -6806,6 +6952,13 @@ function startSuperCupMatch(myCode) {
                     const txtMatch = btnEl.innerHTML.match(/<\/svg>(.*)$/);
                     const txt = txtMatch ? txtMatch[1] : ' At!';
                     btnEl.innerHTML = _superCupBallSVG_small + txt;
+                }
+                // Soru altındaki sub-info topu (her soruda yenileniyor, bu yüzden interval'da da değişmeli)
+                const subInfoEl = document.getElementById('wc26SubInfo');
+                if (subInfoEl && subInfoEl.innerHTML && subInfoEl.innerHTML.includes('<svg')) {
+                    const txtMatch = subInfoEl.innerHTML.match(/<\/svg>(.*)$/);
+                    const txt = txtMatch ? txtMatch[1] : '';
+                    subInfoEl.innerHTML = _superCupBallSVG_small + txt;
                 }
             };
             // 4 farklı zaman noktasında dene
@@ -6931,9 +7084,9 @@ function returnToSplash() {
 }
 
 function backToModeSelect() {
-    // BUG FIX: Süper Kupa kalıntısını temizle
+    // Süper Kupa state'ini temizle (reload YOK - mod ekranına git)
     if (typeof cleanupSuperCupState === 'function') cleanupSuperCupState();
-
+    
     setTimeout(centerLastModeCard, 50);
     stopFutbolMusic();
     if (window._wc26ScheduleTimer) { clearInterval(window._wc26ScheduleTimer); window._wc26ScheduleTimer = null; }
@@ -10198,7 +10351,7 @@ function friendlyBlock() {
     const animMsg = document.getElementById('friendlyAnimMsg');
     const L = LANG[currentLang]||LANG['tr'];
     if(top){top.style.left='220px';top.style.top='65px';top.style.fontSize='14px';}
-    if(animMsg){animMsg.innerHTML =L.uclGoal||'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
+    if(animMsg){animMsg.innerHTML =L.uclGoal||'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
     setTimeout(()=>{
         if(animMsg) animMsg.style.opacity='0';
         if(top){top.style.left='30px';top.style.top='69px';top.style.fontSize='22px';}
@@ -10254,9 +10407,10 @@ function endFriendlyMatch() {
     setHTML('friendlyMessage',
         `<div style="font-size:15px;color:${resultColor};font-weight:bold;">${resultTxt}</div>`
         +`<div style="font-size:13px;color:#fff;margin-top:4px;">${match.home ? (match.home.flagSvg||match.home.flag) : '<svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg>'} ${rusName} ${my} – ${opp} ${match.opponent.flag} ${oppName}</div>`
+        +(my>opp?`<div style="font-size:14px;color:#ffd700;font-weight:bold;margin-top:8px;text-shadow:0 0 10px #ff9500;">🏆 ŞAMPİYONSUN! 🏆</div>`:'')
         +'<div style="display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap;">'
         +`<button onclick="startFriendly('${friendlyMatchId}')" style="padding:7px 14px;font-size:12px;border-color:#cc3333;">🔄 ${L.playAgain||'Tekrar'}</button>`
-        +`<button onclick="startFriendly('${friendlyMatchId}')" style="padding:7px 14px;font-size:12px;background:#2a0808;border-color:#cc3333;color:#ff6666;">➡ ${L.continueBtn||'Devam'}</button>`
+        +`<button onclick="backToModeSelect()" style="padding:7px 14px;font-size:12px;background:#2a0808;border-color:#cc3333;color:#ff6666;">➡ ${L.continueBtn||'Devam'}</button>`
         +`<button onclick="backToModeSelect()" style="padding:7px 14px;font-size:12px;background:#111;border-color:#555;color:#555;">🏠</button>`
         +'</div>'
     );
@@ -10812,7 +10966,7 @@ document.addEventListener('keydown',e=>{
 
 
 // ══════════════════════════════════════════════════
-// <svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> SVG BAYRAK KÜTÜPHANESİ — Web uyumlu
+// <svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> SVG BAYRAK KÜTÜPHANESİ — Web uyumlu
 // ══════════════════════════════════════════════════
 const SVG_FLAGS = {
     TR: '<svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;vertical-align:middle;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg>',
@@ -11485,7 +11639,7 @@ function advanceToKnockout() {
 
     // Turnuva bracket'ını göster
     const html = '<div style="font-size:11px;color:#00e5aa;margin-bottom:4px;">✅ GRUP AŞAMASI TAMAMLANDI</div>' +
-        '<div style="font-size:10px;color:#ffcc88;margin-bottom:2px;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> SON 32 BAŞLIYOR · 28 Haziran 2026</div>' +
+        '<div style="font-size:10px;color:#ffcc88;margin-bottom:2px;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> SON 32 BAŞLIYOR · 28 Haziran 2026</div>' +
         '<div style="font-size:9px;color:#aaa;">32 takım · Tek eleme · Final: 19 Temmuz 2026</div>';
     setHTML('wc26TourneyMsg', html);
 }
@@ -11753,10 +11907,11 @@ function startWC26Match(match, totalQuestions) {
     const stageNames = {group:'GRUP', r32:'SON 32', r16:'SON 16', qf:'ÇEYREK FİNAL', sf:'YARI FİNAL', '3rd':'3.LÜK', final:'FİNAL'};
     setHTML('wc26MatchStage', stageNames[wc26Stage]||wc26Stage);
     setText('wc26MatchQNum', 'Soru 1/'+wc26QuestionCount);
-    setHTML('wc26MatchDuration', '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 1. YARI · 45dk');
+    setHTML('wc26MatchDuration', getMatchBallSVG_small() + ' 1. YARI · 45dk');
     setText('wc26Message','');
     // Su molası ve VAR sıfırla
     resetWaterBreaks('wc26');
+    resetMatchTimeouts('wc26');
     wc26VarUsed = 0;
     wc26OppVarUsed = 0;
     wc26VarMax = (wc26Stage === 'group') ? 1 : 2;
@@ -11771,9 +11926,38 @@ function startWC26Match(match, totalQuestions) {
 }
 
 function wc26PhaseLabel(phase) {
-    const labels = {first:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 1. YARI · 45dk', second:'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 2. YARI · 90dk', et1:'⏱ UZATMA · 105dk', et2:'⏱ UZATMA · 120dk+', pen:'🎯 PENALTİLER'};
+    const ball = getMatchBallSVG_small();
+    const labels = {first: ball + ' 1. YARI · 45dk', second: ball + ' 2. YARI · 90dk', et1:'⏱ UZATMA · 105dk', et2:'⏱ UZATMA · 120dk+', pen:'🎯 PENALTİLER'};
     return labels[phase] || phase;
 }
+
+// 🎯 Stage'e göre top SVG'si seç (Tridona varsayılan, Süper Kupa için özel)
+function getMatchBallSVG_small() {
+    var isSuperCup = (typeof wc26Stage !== 'undefined' && wc26Stage === 'super_cup_final');
+    var isUCL  = (typeof wc26Stage !== 'undefined' && wc26Stage === 'ucl');
+    var isUEL  = (typeof wc26Stage !== 'undefined' && wc26Stage === 'uel');
+    var isUECL = (typeof wc26Stage !== 'undefined' && wc26Stage === 'uecl');
+    if (isSuperCup) {
+        return '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="scbs"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="scbsg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8eef5"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#scbsg)"/><polygon points="10,38 30,18 38,40 18,58" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="30,18 52,8 56,28 38,38" fill="#22c55e" clip-path="url(#scbs)"/><polygon points="56,12 78,18 82,42 60,32" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="64,40 86,46 80,68 60,58" fill="#22c55e" clip-path="url(#scbs)"/><polygon points="20,68 44,66 50,88 26,92" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="50,68 70,72 68,90 48,90" fill="#22c55e" clip-path="url(#scbs)"/><circle cx="58" cy="50" r="6" fill="#1e40af" clip-path="url(#scbs)"/><circle cx="58" cy="50" r="3.5" fill="#22c55e"/><circle cx="40" cy="45" r="4" fill="#22c55e" clip-path="url(#scbs)"/><circle cx="40" cy="45" r="2" fill="#1e40af"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>';
+    }
+    if (isUCL) return UCL_BALL_SVG_SMALL;
+    if (isUEL) return UEL_BALL_SVG_SMALL;
+    if (isUECL) return UECL_BALL_SVG_SMALL;
+    // Default Tridona — daha dolu/zengin fırça vuruşları (içi boş görünmesin)
+    return '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="tiR2"><circle cx="50" cy="50" r="46"/></clipPath></defs><circle cx="50" cy="50" r="46" fill="#ffffff"/><g clip-path="url(#tiR2)"><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="14" stroke-linecap="round"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="14" stroke-linecap="round"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="14" stroke-linecap="round"/><path d="M30 24 Q50 18 70 28" fill="none" stroke="#fcd34d" stroke-width="5" stroke-linecap="round" opacity="0.85"/><path d="M28 60 Q50 70 72 60" fill="none" stroke="#fcd34d" stroke-width="4" stroke-linecap="round" opacity="0.7"/><path d="M40 8 Q42 30 35 50" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/><path d="M62 50 Q66 70 60 90" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/></g><circle cx="50" cy="50" r="46" fill="none" stroke="#888" stroke-width="1.5"/></svg>';
+}
+
+// 🏆 LİSANSSIZ TOP TASARIMLARI — UCL / UEL / UECL (ligler açıldığında kullanılacak)
+// Av. Kulüpler Şampiyonası topu — beyaz + çok renkli yıldız desenli (orijinal tasarım)
+const UCL_BALL_SVG_SMALL = '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="uclbs"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="uclbsg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#dde6f0"/></radialGradient><linearGradient id="uclStarG1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0891b2"/></linearGradient><linearGradient id="uclStarG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ec4899"/><stop offset="1" stop-color="#be185d"/></linearGradient><linearGradient id="uclStarG3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#84cc16"/><stop offset="1" stop-color="#65a30d"/></linearGradient><linearGradient id="uclStarG4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><circle cx="50" cy="50" r="46" fill="url(#uclbsg)"/><g clip-path="url(#uclbs)"><polygon points="50,12 56,28 73,28 60,38 64,55 50,46 36,55 40,38 27,28 44,28" fill="url(#uclStarG1)" stroke="#1a1a2e" stroke-width="1"/><polygon points="22,42 27,52 38,52 30,58 33,69 22,62 11,69 14,58 6,52 17,52" fill="url(#uclStarG2)" stroke="#1a1a2e" stroke-width="0.8"/><polygon points="78,42 83,52 94,52 86,58 89,69 78,62 67,69 70,58 62,52 73,52" fill="url(#uclStarG3)" stroke="#1a1a2e" stroke-width="0.8"/><polygon points="50,70 55,80 66,80 58,86 61,96 50,90 39,96 42,86 34,80 45,80" fill="url(#uclStarG4)" stroke="#1a1a2e" stroke-width="0.8"/></g><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>';
+// Av. Kulüpler Ligi topu — beyaz + turuncu/kırmızı fırça vuruşları (orijinal tasarım)
+const UEL_BALL_SVG_SMALL = '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="uelbs"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="uelbsg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#f0e8e0"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#uelbsg)"/><g clip-path="url(#uelbs)"><path d="M10 30 Q35 18 60 26 Q80 32 92 22" fill="none" stroke="#ea580c" stroke-width="7" stroke-linecap="round" opacity="0.9"/><path d="M8 50 Q30 60 55 52 Q78 46 95 56" fill="none" stroke="#ea580c" stroke-width="6" stroke-linecap="round" opacity="0.85"/><path d="M12 72 Q35 78 60 70 Q82 64 92 76" fill="none" stroke="#ea580c" stroke-width="5" stroke-linecap="round" opacity="0.9"/><path d="M14 32 Q32 24 50 28" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/><path d="M52 54 Q70 50 88 60" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/><path d="M18 74 Q38 70 56 72" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/></g><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>';
+// Av. Konferans Kupası topu — beyaz + yeşil swirl + siyah fırça (orijinal tasarım)
+const UECL_BALL_SVG_SMALL = '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ueclbs"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="ueclbsg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e0f0e8"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#ueclbsg)"/><g clip-path="url(#ueclbs)"><path d="M14 22 Q40 14 62 28 Q80 38 88 30" fill="none" stroke="#22c55e" stroke-width="7" stroke-linecap="round" opacity="0.9"/><path d="M10 48 Q32 56 56 48 Q78 40 94 50" fill="none" stroke="#22c55e" stroke-width="6" stroke-linecap="round" opacity="0.85"/><path d="M14 72 Q36 80 60 72 Q82 64 92 74" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" opacity="0.9"/><path d="M22 14 Q40 22 30 38" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/><path d="M62 28 Q72 38 64 50" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/><path d="M48 64 Q56 72 50 84" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/></g><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>';
+// Büyük versiyonlar (saha topu için, 24x24)
+const UCL_BALL_SVG_BIG = UCL_BALL_SVG_SMALL.replace('width="16" height="16"', 'width="24" height="24"');
+const UEL_BALL_SVG_BIG = UEL_BALL_SVG_SMALL.replace('width="16" height="16"', 'width="24" height="24"');
+const UECL_BALL_SVG_BIG = UECL_BALL_SVG_SMALL.replace('width="16" height="16"', 'width="24" height="24"');
 
 function advanceWC26Phase() {
     // Çift çağrıyı önle
@@ -11825,6 +12009,10 @@ function advanceWC26Phase() {
         updateWC26VarBtn();
         if (wc26WaterBreaksLeft && wc26WaterBreaksLeft[2] === false) wc26WaterBreaksLeft[2] = true;
         updateWC26WaterBreakBtns();
+    }
+    // 🕐 3dk mola sayacını her yarı/uzatma başında 3'e sıfırla
+    if (nextPhase === 'second' || nextPhase === 'et1' || nextPhase === 'et2') {
+        resetMatchTimeouts('wc26');
     }
     setHTML('wc26MatchDuration', wc26PhaseLabel(nextPhase));
     updateWC26WaterBreakBtns();
@@ -11928,7 +12116,7 @@ function nextWC26Question() {
     const q = generateUniqueFutbolQuestion(diff);
     wc26CurAnswer = q.ans;
     setText('wc26Question', q.q);
-    setHTML('wc26SubInfo', '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> ' + (q.sub||''));
+    setHTML('wc26SubInfo', getMatchBallSVG_small() + ' ' + (q.sub||''));
     setProp('wc26Input','value','');
     const inp = document.getElementById('wc26Input');
     if (inp) inp.focus();
@@ -11972,8 +12160,8 @@ function submitWC26Answer() {
 }
 
 function handleWC26Result(playerCorrect) {
-    // Su molası veya devre arası sırasında sonuç işleme
-    if (!wc26WaitingForAnswer && !playerCorrect) return;
+    // Su molası veya devre arası sırasında sonuç işleme — sadece break aktifken atla
+    if (wc26BreakActive) return;
     wc26WaitingForAnswer = false;
     const animMsg = document.getElementById('wc26AnimMsg');
     if (playerCorrect) {
@@ -11981,7 +12169,16 @@ function handleWC26Result(playerCorrect) {
         setText('wc26MatchMyScore', wc26CurMyScore);
         playSound && playSound('win');
         playSound('win');
-        if (animMsg){animMsg.innerHTML ='<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
+        if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
+        // 🚩 Oto-SAOT: %30 ofsayt → gol iptal
+        if (Math.random() < 0.30) {
+            setTimeout(()=>{
+                wc26CurMyScore--;
+                setText('wc26MatchMyScore', wc26CurMyScore);
+                if (animMsg){animMsg.innerHTML = '<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span><br><span style="color:#f87171;font-weight:900;">OFSAYT! Gol iptal</span>';animMsg.style.color='#f87171';animMsg.style.opacity='1';}
+                setTimeout(()=>{ if(animMsg)animMsg.style.opacity='0'; }, 1500);
+            }, 1400);
+        }
     } else {
         // Rakip golü — güce göre şans
         const oppGoals = Math.random() < (wc26CurOppStrength/110) ? 1 : 0;
@@ -11990,6 +12187,15 @@ function handleWC26Result(playerCorrect) {
             setText('wc26MatchOppScore', wc26CurOppScore);
             playSound('wrong');
             if (animMsg){animMsg.innerHTML ='❌ Rakip GOL';animMsg.style.color='#ff6666';animMsg.style.opacity='1';}
+            // 🚩 Oto-SAOT (rakip golü için de) — %30
+            if (Math.random() < 0.30) {
+                setTimeout(()=>{
+                    wc26CurOppScore--;
+                    setText('wc26MatchOppScore', wc26CurOppScore);
+                    if (animMsg){animMsg.innerHTML = '<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span><br><span style="color:#88ddaa;font-weight:900;">OFSAYT! Rakip golü iptal</span>';animMsg.style.color='#88ddaa';animMsg.style.opacity='1';}
+                    setTimeout(()=>{ if(animMsg)animMsg.style.opacity='0'; }, 1500);
+                }, 1400);
+            }
         } else {
             // Gol olmadı — rakip VAR denesin mi?
             const usedOppVAR = tryOppVAR();
@@ -12072,15 +12278,14 @@ function endWC26Match() {
 
 // ════════ Maç ekranı 'Geri' butonu - Süper Kupa kontrollü ════════
 function wc26MatchGoBack() {
-    // Süper Kupa modunda - cleanup + splash'a dön
+    // Süper Kupa modunda - cleanup + mod ekranına dön
     if (typeof wc26Stage !== 'undefined' && wc26Stage === 'super_cup_final') {
-        if (typeof cleanupSuperCupState === 'function') cleanupSuperCupState();
-        // Tüm WC26 ekranlarını kapat
-        ['wc26MatchScreen','wc26TournamentScreen','wc26CountryScreen']
-            .forEach(id => setDisplay(id, 'none'));
-        // Splash'a dön
-        setDisplay('splashScreen','flex');
-        if (soundEnabled) { stopFutbolMusic(); startMusic(); }
+        // backToModeSelect cleanup'ı da çağırıyor, tüm ekranları kapatıp modeScreen'i açıyor
+        if (typeof backToModeSelect === 'function') {
+            backToModeSelect();
+        } else {
+            if (typeof cleanupSuperCupState === 'function') cleanupSuperCupState();
+        }
         return;
     }
     // Normal WC26 - turnuva ekranına dön
@@ -12089,16 +12294,13 @@ function wc26MatchGoBack() {
 }
 
 function returnToWC26Tourney() {
-    // BUG FIX: Süper Kupa modunda turnuva yok - ana ekrana dön
+    // Süper Kupa modunda turnuva yok - mod ekranına dön
     if (typeof wc26Stage !== 'undefined' && wc26Stage === 'super_cup_final') {
-        if (typeof cleanupSuperCupState === 'function') cleanupSuperCupState();
-        // Tüm WC26/Confed ekranlarını kapat
-        ['wc26MatchScreen','wc26TournamentScreen','wc26CountryScreen',
-         'confedMatchScreen','confedTournamentScreen','confedCountryScreen']
-            .forEach(id => setDisplay(id, 'none'));
-        // Splash ekranına dön
-        setDisplay('splashScreen','flex');
-        if (soundEnabled) { stopFutbolMusic(); startMusic(); }
+        if (typeof backToModeSelect === 'function') {
+            backToModeSelect();
+        } else {
+            if (typeof cleanupSuperCupState === 'function') cleanupSuperCupState();
+        }
         return;
     }
 
@@ -12106,7 +12308,16 @@ function returnToWC26Tourney() {
     setDisplay('wc26MatchScreen','none');
     setDisplay('wc26TournamentScreen','flex');
     if (soundEnabled) { stopFutbolMusic(); startMusic(); }
-    updateWC26TourneyDisplay();
+    try {
+        updateWC26TourneyDisplay();
+    } catch (e) {
+        // Hata olursa boş ekran kalmasın - splash'a güvenli dönüş
+        console.warn('updateWC26TourneyDisplay hata:', e);
+        ['wc26MatchScreen','wc26TournamentScreen','wc26CountryScreen']
+            .forEach(id => setDisplay(id, 'none'));
+        setDisplay('splashScreen','flex');
+        alert('Maç sonrası ekran yüklenirken sorun oluştu. Ana menüye dönüldü. (' + e.message + ')');
+    }
 }
 
 function confirmExitWC26() {
@@ -12498,11 +12709,11 @@ function buildConfedKnockout() {
     const stageLabel = {
         'final': '🏆 FİNAL · 1-2. YER',
         '3rd':   '🥉 3-4. YER MAÇI',
-        '5th':   '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 5-6. YER MAÇI'
+        '5th':   '<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 5-6. YER MAÇI'
     }[confedStage];
     const allMatches = `
         <div style="font-size:10px;color:#aaa;margin-bottom:6px;">📋 ELEME TURU — TÜM MAÇLAR</div>
-        <div style="font-size:11px;color:#ffcc88;margin:2px 0;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgi)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 5-6. YER: ${getConfedName(confedKnockoutBracket['5th'][0].home)} vs ${getConfedName(confedKnockoutBracket['5th'][0].away)}</div>
+        <div style="font-size:11px;color:#ffcc88;margin:2px 0;"><svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> 5-6. YER: ${getConfedName(confedKnockoutBracket['5th'][0].home)} vs ${getConfedName(confedKnockoutBracket['5th'][0].away)}</div>
         <div style="font-size:11px;color:#cc9955;margin:2px 0;">🥉 3-4. YER: ${getConfedName(confedKnockoutBracket['3rd'][0].home)} vs ${getConfedName(confedKnockoutBracket['3rd'][0].away)}</div>
         <div style="font-size:11px;color:#ffd700;margin:2px 0;">🏆 FİNAL: ${getConfedName(confedKnockoutBracket.final[0].home)} vs ${getConfedName(confedKnockoutBracket.final[0].away)}</div>
         <div style="margin-top:6px;font-size:12px;color:#44ff88;">→ Sen: <b>${stageLabel}</b></div>`;
@@ -13231,15 +13442,250 @@ function splashStart() {
     const btn = document.getElementById('splashStartBtn');
     btn.disabled = true;
     btn.style.opacity = '0.4';
-    if (soundEnabled) playSplashMusic();  // sadece ses açıksa çal
+    if (soundEnabled) playSplashMusic();
     const splash = document.getElementById('splashScreen');
     splash.classList.add('go');
     splash.addEventListener('animationend', () => {
         stopSplashMusic();
         splash.remove();
         checkCooldownOnLoad();
+        // 🎯 Kategori ekranı göster
+        setDisplay('categoryScreen','flex');
+        setDisplay('modeScreen','none');
     });
 }
+
+// 🎯 Kategori filtreleme
+const FOOTBALL_CARD_SELECTORS = [
+    'selectMode(\'superlig\')', 'selectMode(\'ruslig\')', 'selectMode(\'saudilig\')',
+    'selectMode(\'ucl\')', 'selectMode(\'uel\')', 'selectMode(\'uecl\')',
+    'checkSuperCup()', 'checkRSCup()', 'checkFonbetCup()', 'checkZTKCup()',
+    'checkAsiaCup27()', 'checkEuro28()', 'checkNationsLeague()',
+    'selectMode(\'wc26\')', 'selectMode(\'wc2026\')', 'selectMode(\'confed\')',
+    'selectMode(\'futbol\')', 'selectMode(\'friendly\')',
+    'checkUCLChamp()', 'checkUELChamp()'
+];
+function _isFootballCard(card) {
+    const oc = card.getAttribute('onclick') || '';
+    return FOOTBALL_CARD_SELECTORS.some(s => oc.includes(s));
+}
+function selectCategory(cat) {
+    setDisplay('categoryScreen','none');
+    const cards = document.querySelectorAll('#modeScreen .mode-card');
+    cards.forEach(c => {
+        // data-removed kartları HER ZAMAN gizli kal (turnuva bitmiş vs.)
+        if (c.hasAttribute('data-removed')) { c.style.display = 'none'; return; }
+        const isFootball = _isFootballCard(c);
+        const show = (cat === 'football') ? isFootball : !isFootball;
+        c.style.display = show ? '' : 'none';
+    });
+    setDisplay('modeScreen','flex');
+    window._currentCategory = cat;
+    if (!document.getElementById('backToCategoryBtn')) {
+        const ms = document.getElementById('modeScreen');
+        const btn = document.createElement('button');
+        btn.id = 'backToCategoryBtn';
+        btn.textContent = '← Kategoriler';
+        btn.style.cssText = 'align-self:flex-start;padding:5px 12px;font-size:10px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;margin-bottom:6px;cursor:pointer;';
+        btn.onclick = function(){
+            setDisplay('modeScreen','none');
+            setDisplay('categoryScreen','flex');
+        };
+        if (ms && ms.firstChild) ms.insertBefore(btn, ms.firstChild);
+    }
+}
+window.selectCategory = selectCategory;
+
+// 🏠 Ana Ekran — splash'a geri dön
+function goToMainScreen() {
+    location.reload();
+}
+window.goToMainScreen = goToMainScreen;
+
+// 🌐 Dil Seçim Modal — tüm dilleri popup'ta gösterir
+const LANG_FLAGS = {
+    tr: '<rect width="30" height="20" fill="#e30a17"/><circle cx="13" cy="10" r="5" fill="#fff"/><circle cx="15" cy="10" r="4" fill="#e30a17"/><polygon points="20,10 21.2,8.2 21.5,10.3 23.3,10.7 21.6,11.2 21.7,13 20,11.8 18.3,13 18.5,11.2 16.8,10.7 18.6,10.3 18.9,8.2" fill="#fff"/>',
+    en: '<rect width="30" height="20" fill="#012169"/><polygon points="0,0 30,20" stroke="#fff" stroke-width="3"/><polygon points="30,0 0,20" stroke="#fff" stroke-width="3"/><polygon points="0,0 30,20" stroke="#C8102E" stroke-width="1.5"/><polygon points="30,0 0,20" stroke="#C8102E" stroke-width="1.5"/><rect x="13" width="4" height="20" fill="#fff"/><rect y="8" width="30" height="4" fill="#fff"/><rect x="13.5" width="3" height="20" fill="#C8102E"/><rect y="8.5" width="30" height="3" fill="#C8102E"/>',
+    de: '<rect width="30" height="6.67" fill="#000"/><rect y="6.67" width="30" height="6.66" fill="#DD0000"/><rect y="13.33" width="30" height="6.67" fill="#FFCE00"/>',
+    fr: '<rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/>',
+    es: '<rect width="30" height="20" fill="#c60b1e"/><rect y="5" width="30" height="10" fill="#f1bf00"/>',
+    it: '<rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE2B37"/>',
+    ru: '<rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.66" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/>',
+    ar: '<rect width="30" height="20" fill="#006C35"/><text x="15" y="14" font-size="10" text-anchor="middle" fill="#fff" font-weight="bold">۞</text>',
+    ja: '<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/>',
+    ko: '<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="5" fill="#003478"/><path d="M10 10 A5 5 0 0 1 20 10 A2.5 2.5 0 0 0 15 10 A2.5 2.5 0 0 1 10 10" fill="#C60C30"/><g fill="#000"><rect x="3" y="6" width="4" height="0.7"/><rect x="3" y="7.5" width="4" height="0.7"/><rect x="3" y="9" width="4" height="0.7"/></g>',
+    zh: '<rect width="30" height="20" fill="#DE2910"/><polygon points="5,3 6.2,6.5 10,6.5 7,8.5 8.1,12 5,10 1.9,12 3,8.5 0,6.5 3.8,6.5" fill="#FFDE00"/>',
+    pt: '<rect width="12" height="20" fill="#046A38"/><rect x="12" width="18" height="20" fill="#DA291C"/><circle cx="12" cy="10" r="3.5" fill="#FFCE00" stroke="#fff" stroke-width="0.6"/>',
+    uk: '<rect width="30" height="10" fill="#005BBB"/><rect y="10" width="30" height="10" fill="#FFD500"/>',
+    fa: '<rect width="30" height="6.67" fill="#239F40"/><rect y="6.67" width="30" height="6.66" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#DA0000"/>',
+    nl: '<rect width="30" height="6.67" fill="#AE1C28"/><rect y="6.67" width="30" height="6.66" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#21468B"/>',
+    sv: '<rect width="30" height="20" fill="#006AA7"/><rect x="9" width="3" height="20" fill="#FECC00"/><rect y="8.5" width="30" height="3" fill="#FECC00"/>',
+    no: '<rect width="30" height="20" fill="#BA0C2F"/><rect x="9" width="3" height="20" fill="#fff"/><rect y="8.5" width="30" height="3" fill="#fff"/><rect x="10" width="1" height="20" fill="#00205B"/><rect y="9.5" width="30" height="1" fill="#00205B"/>',
+    cs: '<rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#D7141A"/><polygon points="0,0 15,10 0,20" fill="#11457E"/>',
+    bs: '<rect width="30" height="20" fill="#002F6C"/><polygon points="0,20 30,0 30,20" fill="#FECC00"/>',
+    hr: '<rect width="30" height="6.67" fill="#FF0000"/><rect y="6.67" width="30" height="6.66" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#171796"/>',
+    uz: '<rect width="30" height="6.67" fill="#1EB53A"/><rect y="6.67" width="30" height="6.66" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#0099B5"/>',
+    ht: '<rect width="30" height="10" fill="#00209F"/><rect y="10" width="30" height="10" fill="#D21034"/>',
+    el: '<rect width="30" height="20" fill="#005BAE"/><rect y="2.2" width="30" height="2.2" fill="#fff"/><rect y="6.6" width="30" height="2.2" fill="#fff"/><rect y="11" width="30" height="2.2" fill="#fff"/><rect y="15.4" width="30" height="2.2" fill="#fff"/><rect width="11" height="13" fill="#005BAE"/><rect x="4" width="3" height="13" fill="#fff"/><rect y="5" width="11" height="3" fill="#fff"/>',
+    ka: '<rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#FF0000"/><rect y="8" width="30" height="4" fill="#FF0000"/>',
+    az: '<rect width="30" height="7" fill="#0092BC"/><rect y="7" width="30" height="6" fill="#E8192C"/><rect y="13" width="30" height="7" fill="#00AF66"/>'
+};
+function openLanguagePicker() {
+    let m = document.getElementById('langPickerModal');
+    if (!m) {
+        m = document.createElement('div');
+        m.id = 'langPickerModal';
+        m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+        const langs = [
+            ['tr','TR','#e30a17'], ['en','EN','#012169'], ['de','DE','#000'], ['fr','FR','#0055A4'],
+            ['es','ES','#c60b1e'], ['it','IT','#009246'], ['ru','RU','#0039A6'], ['ar','AR','#006C35'],
+            ['ja','JA','#BC002D'], ['ko','KO','#003478'], ['zh','ZH','#DE2910'], ['pt','PT','#046A38'],
+            ['uk','UK','#005BBB'], ['fa','FA','#239F40'], ['nl','NL','#AE1C28'], ['sv','SV','#006AA7'],
+            ['no','NO','#BA0C2F'], ['cs','CS','#11457E'], ['bs','BS','#002F6C'], ['hr','HR','#171796'],
+            ['uz','UZ','#1EB53A'], ['ht','HT','#00209F'], ['el','EL','#0D5EAF'], ['ka','KA','#FF0000'],
+            ['az','AZ','#00AF66']
+        ];
+        let btns = langs.map(([c,lbl,col]) => {
+            const flag = '<svg width="24" height="16" viewBox="0 0 30 20" style="border-radius:2px;border:1px solid rgba(0,0,0,0.2);display:block;">'+(LANG_FLAGS[c]||'<rect width="30" height="20" fill="#444"/>')+'</svg>';
+            return `<button onclick="setLang('${c}');document.getElementById('langPickerModal').style.display='none';" style="padding:8px 6px;font-size:11px;font-weight:bold;border-radius:10px;border:2px solid ${col};background:rgba(255,255,255,0.04);color:#fff;cursor:pointer;min-width:62px;display:flex;flex-direction:column;align-items:center;gap:3px;">${flag}<span style="font-size:11px;font-weight:900;letter-spacing:1px;">${lbl}</span></button>`;
+        }).join('');
+        m.innerHTML = '<div style="background:linear-gradient(135deg,#2a0810,#1a0408);border:2px solid #ff6666;border-radius:16px;padding:18px;max-width:380px;width:96%;text-align:center;">'
+            +'<div style="font-size:14px;color:#fca5a5;font-weight:bold;margin-bottom:10px;letter-spacing:1px;">🌐 Dil / Language</div>'
+            +'<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">'+btns+'</div>'
+            +'<button onclick="document.getElementById(\'langPickerModal\').style.display=\'none\';" style="margin-top:14px;padding:6px 18px;font-size:11px;background:#333;border:1px solid #888;border-radius:8px;color:#fff;cursor:pointer;">✕ Kapat</button>'
+            +'</div>';
+        document.body.appendChild(m);
+    }
+    m.style.display = 'flex';
+}
+window.openLanguagePicker = openLanguagePicker;
+
+// ⭐ AYT 2026 MATEMATİK MODLARI (Türev / İntegral / Logaritma) — bot karşılaşmalı
+const AYT_LABELS = {
+    tr: { turev: 'Türev', integral: 'İntegral', log: 'Logaritma', score: 'Skor', bot: 'Bot', you: 'Sen', q: 'Soru', back: '← Geri', submit: 'Cevapla', correct: '✅ Doğru!', wrong: '❌ Yanlış! Cevap:', botWon: '🤖 Bot kazandı!', youWon: '🏆 Kazandın!', tie: '🤝 Berabere!', round: 'Tur' },
+    en: { turev: 'Derivative', integral: 'Integral', log: 'Logarithm', score: 'Score', bot: 'Bot', you: 'You', q: 'Question', back: '← Back', submit: 'Answer', correct: '✅ Correct!', wrong: '❌ Wrong! Answer:', botWon: '🤖 Bot wins!', youWon: '🏆 You win!', tie: '🤝 Tie!', round: 'Round' },
+    de: { turev: 'Ableitung', integral: 'Integral', log: 'Logarithmus', score: 'Punkte', bot: 'Bot', you: 'Du', q: 'Frage', back: '← Zurück', submit: 'Antworten', correct: '✅ Richtig!', wrong: '❌ Falsch! Antwort:', botWon: '🤖 Bot gewinnt!', youWon: '🏆 Du gewinnst!', tie: '🤝 Unentschieden!', round: 'Runde' },
+    fr: { turev: 'Dérivée', integral: 'Intégrale', log: 'Logarithme', score: 'Score', bot: 'Bot', you: 'Toi', q: 'Question', back: '← Retour', submit: 'Répondre', correct: '✅ Correct!', wrong: '❌ Faux! Réponse:', botWon: '🤖 Bot gagne!', youWon: '🏆 Tu gagnes!', tie: '🤝 Égalité!', round: 'Manche' },
+    es: { turev: 'Derivada', integral: 'Integral', log: 'Logaritmo', score: 'Puntaje', bot: 'Bot', you: 'Tú', q: 'Pregunta', back: '← Atrás', submit: 'Responder', correct: '✅ ¡Correcto!', wrong: '❌ ¡Mal! Respuesta:', botWon: '🤖 ¡Gana Bot!', youWon: '🏆 ¡Ganaste!', tie: '🤝 ¡Empate!', round: 'Ronda' },
+    it: { turev: 'Derivata', integral: 'Integrale', log: 'Logaritmo', score: 'Punteggio', bot: 'Bot', you: 'Tu', q: 'Domanda', back: '← Indietro', submit: 'Rispondi', correct: '✅ Giusto!', wrong: '❌ Sbagliato! Risposta:', botWon: '🤖 Bot vince!', youWon: '🏆 Hai vinto!', tie: '🤝 Pareggio!', round: 'Turno' },
+    ru: { turev: 'Производная', integral: 'Интеграл', log: 'Логарифм', score: 'Счёт', bot: 'Бот', you: 'Ты', q: 'Вопрос', back: '← Назад', submit: 'Ответ', correct: '✅ Верно!', wrong: '❌ Неверно! Ответ:', botWon: '🤖 Бот победил!', youWon: '🏆 Ты выиграл!', tie: '🤝 Ничья!', round: 'Раунд' },
+    ar: { turev: 'المشتقة', integral: 'التكامل', log: 'اللوغاريتم', score: 'النتيجة', bot: 'البوت', you: 'أنت', q: 'سؤال', back: '← رجوع', submit: 'جواب', correct: '✅ صحيح!', wrong: '❌ خطأ! الجواب:', botWon: '🤖 فاز البوت!', youWon: '🏆 فزت!', tie: '🤝 تعادل!', round: 'جولة' },
+    ja: { turev: '微分', integral: '積分', log: '対数', score: 'スコア', bot: 'ボット', you: 'あなた', q: '問題', back: '← 戻る', submit: '回答', correct: '✅ 正解!', wrong: '❌ 不正解! 答え:', botWon: '🤖 ボット勝利!', youWon: '🏆 勝利!', tie: '🤝 引き分け!', round: 'ラウンド' },
+    ko: { turev: '미분', integral: '적분', log: '로그', score: '점수', bot: '봇', you: '당신', q: '문제', back: '← 뒤로', submit: '답하기', correct: '✅ 정답!', wrong: '❌ 오답! 정답:', botWon: '🤖 봇 승리!', youWon: '🏆 승리!', tie: '🤝 무승부!', round: '라운드' },
+    zh: { turev: '导数', integral: '积分', log: '对数', score: '分数', bot: '机器人', you: '你', q: '题目', back: '← 返回', submit: '提交', correct: '✅ 正确!', wrong: '❌ 错误! 答案:', botWon: '🤖 机器人赢!', youWon: '🏆 你赢了!', tie: '🤝 平局!', round: '回合' },
+};
+function _aytLang() {
+    const l = (typeof currentLang !== 'undefined') ? currentLang : (localStorage.getItem('lang') || 'tr');
+    return AYT_LABELS[l] || AYT_LABELS.tr;
+}
+function _aytGenTurev() {
+    const a = [2,3,4,5,6][Math.floor(Math.random()*5)];
+    const n = [2,3,4][Math.floor(Math.random()*3)];
+    const x0 = [1,2,3][Math.floor(Math.random()*3)];
+    return { q: 'f(x) = ' + a + 'x' + (n===2?'²':n===3?'³':'⁴') + ', f′(' + x0 + ') = ?', ans: a * n * Math.pow(x0, n-1) };
+}
+function _aytGenIntegral() {
+    const a = [2,4,6,8][Math.floor(Math.random()*4)];
+    const b = [1,2,3,5][Math.floor(Math.random()*4)];
+    const k = [2,3,4][Math.floor(Math.random()*3)];
+    return { q: '∫₀^' + k + ' (' + a + 'x + ' + b + ') dx = ?', ans: a*k*k/2 + b*k };
+}
+function _aytGenLog() {
+    const a = [2,3,5,10][Math.floor(Math.random()*4)];
+    const n = [2,3,4,5][Math.floor(Math.random()*4)];
+    const sub = String(a).split('').map(d=>['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'][+d]).join('');
+    return { q: 'log' + sub + '(' + Math.pow(a, n) + ') = ?', ans: n };
+}
+function playAYTTopic(topic) {
+    let m = document.getElementById('aytGameModal');
+    if (!m) {
+        m = document.createElement('div');
+        m.id = 'aytGameModal';
+        m.style.cssText = 'position:fixed;inset:0;background:rgba(5,0,15,0.92);z-index:99999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+        m.innerHTML = '<div style="background:linear-gradient(135deg,#180830,#0a0418);border:2px solid #c084fc;border-radius:16px;padding:18px;max-width:380px;width:96%;text-align:center;">'
+            +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
+            +'<button id="aytBackBtn" style="padding:5px 10px;font-size:10px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;cursor:pointer;">← Geri</button>'
+            +'<div id="aytTitle" style="font-size:14px;color:#c084fc;font-weight:bold;letter-spacing:1px;"></div>'
+            +'<div id="aytRound" style="font-size:10px;color:#aaa;">1/5</div>'
+            +'</div>'
+            +'<div style="display:flex;justify-content:space-around;background:rgba(0,0,0,0.4);border-radius:10px;padding:8px;margin-bottom:10px;">'
+            +'<div><div id="aytYouLabel" style="font-size:9px;color:#88ddaa;">Sen</div><div id="aytYouScore" style="font-size:22px;font-weight:900;color:#22c55e;">0</div></div>'
+            +'<div style="font-size:18px;color:#888;align-self:center;">vs</div>'
+            +'<div><div id="aytBotLabel" style="font-size:9px;color:#f87171;">Bot</div><div id="aytBotScore" style="font-size:22px;font-weight:900;color:#dc2626;">0</div></div>'
+            +'</div>'
+            +'<div id="aytQuestion" style="font-size:20px;color:#fff;font-weight:bold;margin:14px 0;padding:14px;background:rgba(255,255,255,0.05);border-radius:10px;font-family:Cambria,Georgia,serif;"></div>'
+            +'<div style="display:flex;gap:8px;justify-content:center;align-items:center;">'
+            +'<input type="number" id="aytInput" placeholder="= ?" style="flex:1;max-width:140px;padding:10px;font-size:18px;border-radius:10px;border:2px solid #c084fc;background:rgba(192,132,252,0.1);color:#fff;text-align:center;font-weight:bold;outline:none;">'
+            +'<button id="aytSubmit" style="padding:10px 18px;font-size:14px;font-weight:bold;background:#6b21a8;color:#fff;border:2px solid #c084fc;border-radius:10px;cursor:pointer;">✓</button>'
+            +'</div>'
+            +'<div id="aytFeedback" style="margin-top:10px;font-size:12px;font-weight:bold;min-height:18px;"></div>'
+            +'</div>';
+        document.body.appendChild(m);
+        document.getElementById('aytBackBtn').onclick = function(){ m.style.display='none'; };
+        document.getElementById('aytSubmit').onclick = aytSubmit;
+        document.getElementById('aytInput').onkeydown = function(e){ if(e.key==='Enter') aytSubmit(); };
+    }
+    const L = _aytLang();
+    window._aytState = { topic, you:0, bot:0, round:1, total:5 };
+    document.getElementById('aytTitle').textContent = '⭐ AYT ' + L[topic];
+    document.getElementById('aytYouLabel').textContent = L.you;
+    document.getElementById('aytBotLabel').textContent = L.bot;
+    document.getElementById('aytYouScore').textContent = '0';
+    document.getElementById('aytBotScore').textContent = '0';
+    document.getElementById('aytRound').textContent = '1/5';
+    document.getElementById('aytFeedback').textContent = '';
+    document.getElementById('aytBackBtn').textContent = L.back;
+    m.style.display = 'flex';
+    aytLoadQuestion();
+}
+function aytLoadQuestion() {
+    const s = window._aytState; if (!s) return;
+    const gen = s.topic==='turev' ? _aytGenTurev : s.topic==='integral' ? _aytGenIntegral : _aytGenLog;
+    const q = gen();
+    s.curAnswer = q.ans;
+    document.getElementById('aytQuestion').textContent = q.q;
+    const inp = document.getElementById('aytInput');
+    if (inp) { inp.value=''; inp.disabled=false; inp.focus(); }
+    const btn = document.getElementById('aytSubmit');
+    if (btn) btn.disabled = false;
+    document.getElementById('aytRound').textContent = s.round + '/' + s.total;
+}
+function aytSubmit() {
+    const s = window._aytState; if (!s) return;
+    const inp = document.getElementById('aytInput');
+    const val = parseInt(inp ? inp.value : '');
+    if (isNaN(val)) return;
+    inp.disabled = true;
+    document.getElementById('aytSubmit').disabled = true;
+    const L = _aytLang();
+    const fb = document.getElementById('aytFeedback');
+    if (val === s.curAnswer) {
+        s.you++;
+        document.getElementById('aytYouScore').textContent = s.you;
+        if (fb) { fb.style.color = '#22c55e'; fb.textContent = L.correct; }
+    } else {
+        if (fb) { fb.style.color = '#f87171'; fb.textContent = L.wrong + ' ' + s.curAnswer; }
+    }
+    setTimeout(()=>{
+        if (Math.random() < 0.65) {
+            s.bot++;
+            document.getElementById('aytBotScore').textContent = s.bot;
+        }
+        s.round++;
+        if (s.round > s.total) {
+            setTimeout(()=>{
+                let msg;
+                if (s.you > s.bot) msg = L.youWon;
+                else if (s.bot > s.you) msg = L.botWon;
+                else msg = L.tie;
+                if (fb) { fb.style.color = '#fbbf24'; fb.textContent = msg + ' ' + s.you + '-' + s.bot; }
+            }, 700);
+        } else {
+            setTimeout(aytLoadQuestion, 1100);
+        }
+    }, 600);
+}
+window.playAYTTopic = playAYTTopic;
 
 // Splash dil seçiciyi vurgula
 function markSplashLang(lang) {
@@ -13364,6 +13810,49 @@ function syncSoundBtns() {
 let wc26WaterBreaksLeft = [true, true, true]; // 3 hak
 let confedWaterBreaksLeft = [true, true, true];
 let friendlyWaterBreaksLeft = [true, true, true];
+
+// 🕐 3DK TEKNİK MOLA — ilk yarı 3 hak, 2.yarı 3 hak
+let matchTimeoutsLeft = { wc26: 3, confed: 3, friendly: 3, sc: 3, nl: 3, rsc: 3 };
+function resetMatchTimeouts(mode) {
+    matchTimeoutsLeft[mode] = 3;
+    const c = document.getElementById(mode+'timeoutCount');
+    if (c) c.textContent = '3';
+}
+function useMatchTimeout(mode) {
+    const left = matchTimeoutsLeft[mode] || 0;
+    if (left <= 0) return;
+    // Aktif break / oyun durmuşsa engelle
+    if (typeof wc26BreakActive !== 'undefined' && mode==='wc26' && wc26BreakActive) return;
+    matchTimeoutsLeft[mode] = left - 1;
+    const c = document.getElementById(mode+'timeoutCount');
+    if (c) c.textContent = matchTimeoutsLeft[mode];
+    const btn = document.getElementById(mode+'timeoutBtn');
+    if (btn) { btn.disabled = true; btn.style.opacity='0.5'; }
+    // Input/cevap disable
+    const inputId = mode==='wc26'?'wc26Input':mode==='confed'?'confedInput':mode==='friendly'?'friendlyInput':mode==='sc'?'scInput':mode==='nl'?'nlInput':mode==='rsc'?'rscInput':null;
+    const btnId   = mode==='wc26'?'wc26Btn':  mode==='confed'?'confedBtn':  mode==='friendly'?'friendlyAtBtn': mode==='sc'?'scBtn': mode==='nl'?'nlBtn': mode==='rsc'?'rscBtn':null;
+    const inp = inputId ? document.getElementById(inputId) : null;
+    const submitBtn = btnId ? document.getElementById(btnId) : null;
+    if (inp) inp.disabled = true;
+    if (submitBtn) submitBtn.disabled = true;
+    // Timer/duration label
+    const durId = mode==='wc26'?'wc26MatchDuration':mode==='confed'?'confedMatchDuration':mode==='friendly'?'friendlyMatchDuration':mode==='sc'?'scMatchDuration':mode==='nl'?'nlMatchDuration':mode==='rsc'?'rscMatchDuration':null;
+    const durEl = durId ? document.getElementById(durId) : null;
+    const origLabel = durEl ? durEl.innerHTML : '';
+    let cd = 3;
+    if (durEl) durEl.textContent = '🕐 3dk MOLA · ' + cd + 'sn';
+    const tv = setInterval(()=>{
+        cd--;
+        if (durEl) durEl.textContent = '🕐 3dk MOLA · ' + cd + 'sn';
+        if (cd <= 0) {
+            clearInterval(tv);
+            if (durEl) durEl.innerHTML = origLabel;
+            if (inp) inp.disabled = false;
+            if (submitBtn) submitBtn.disabled = false;
+            if (btn && matchTimeoutsLeft[mode] > 0) { btn.disabled = false; btn.style.opacity='1'; }
+        }
+    }, 1000);
+}
 
 function useWaterBreak(mode, idx) {
     const arr = mode === 'wc26' ? wc26WaterBreaksLeft
@@ -14290,14 +14779,17 @@ function makeTorchSVG(color) {
 function placeTorches(screenId, leftColor, rightColor) {
     const screen = document.getElementById(screenId);
     if (!screen) return;
-    // Saha divini bul
-    let saha = screen.querySelector('[style*="#1a4a1a"]')
-            || screen.querySelector('[style*="#1a3a1a"]')
-            || screen.querySelector('[style*="background:#1e4a1e"]')
-            || screen.querySelector('[style*="linear-gradient(180deg"]');
+    // Saha divini bul - top elementinin parent'ı KESİN saha
+    let saha = null;
+    const ballEl = screen.querySelector('[id$="Ball"]'); // wc26Ball, confedBall, nlBall
+    if (ballEl && ballEl.parentElement) {
+        saha = ballEl.parentElement;
+    }
+    // Fallback: style match
     if (!saha) {
-        // Son çare: ilk div
-        saha = screen.querySelector('div');
+        saha = screen.querySelector('[style*="#1a3a1a"]')
+            || screen.querySelector('[style*="#1a4a1a"]')
+            || screen.querySelector('[style*="linear-gradient(180deg,#1a"]');
     }
     if (!saha) return;
     saha.style.position = 'relative';
