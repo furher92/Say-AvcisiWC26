@@ -125,12 +125,12 @@
             text-align: center; margin-top: 8px; line-height: 1.8;
             padding: 8px 14px; border: 1px solid rgba(255,255,255,0.15);
             border-radius: 12px; background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(8px);
+            
         }
         .bayram-line { color:#e8e8e8; font-size:8px; }
         .splash-update2 { font-family:'Outfit',sans-serif; font-size:10px; font-weight:600; color:var(--accent); text-align:center; margin-top:5px; animation:blink 1.2s step-end infinite; letter-spacing:.5px; }
         .splash-update  { font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; color:#ff8c00; text-align:center; margin-top:4px; animation:blink 1.2s step-end infinite; }
-        .splash-lang    { font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; color:rgba(255,150,160,0.9); text-align:center; margin-top:5px; padding:5px 12px; border:1px solid rgba(255,80,100,0.3); border-radius:20px; background:rgba(255,30,60,0.1); backdrop-filter:blur(6px); }
+        .splash-lang    { font-family:'Outfit',sans-serif; font-size:10px; font-weight:500; color:rgba(255,150,160,0.9); text-align:center; margin-top:5px; padding:5px 12px; border:1px solid rgba(255,80,100,0.3); border-radius:20px; background:rgba(255,30,60,0.1);  }
         .splash-test    { font-family:'Outfit',sans-serif; font-size:10px; color:rgba(255,200,80,0.7); text-align:center; margin-top:4px; animation:blink 1.5s step-end infinite; }
 
         /* pixel-border — liquid glass */
@@ -140,7 +140,7 @@
                         inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.15);
             padding: 14px 18px;
             background: rgba(255,255,255,0.07);
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+             -webkit-
             border-radius: 20px; margin-bottom: 14px;
             transform: translateZ(0);
         }
@@ -202,13 +202,13 @@
         .timer-box {
             font-size:16px; margin:10px 0; font-weight:700; display:none;
             padding:10px 20px; border-radius:var(--radius-sm); border:1px solid currentColor;
-            background:rgba(255,255,255,0.06); backdrop-filter:blur(8px);
+            background:rgba(255,255,255,0.06); 
         }
         .guess-timer-box {
             font-size:14px; margin:7px 0; font-weight:600; display:none;
             padding:8px 16px; border-radius:var(--radius-sm);
             background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#fff;
-            backdrop-filter:blur(8px);
+            
         }
 
         .input-group { display:flex; flex-direction:column; align-items:center; width:100%; margin-bottom:12px; }
@@ -217,7 +217,7 @@
             border-radius:var(--radius-sm); border:1.5px solid rgba(255,255,255,0.18);
             background:rgba(255,255,255,0.08); color:#fff; width:65%;
             text-align:center; outline:none; transition:all 0.2s;
-            backdrop-filter:blur(8px);
+            
         }
         input:focus { border-color:var(--accent); background:rgba(255,255,255,0.12); box-shadow:0 0 0 3px rgba(255,68,102,0.2); }
         input::placeholder { color:rgba(255,255,255,0.25); font-weight:400; }
@@ -228,8 +228,8 @@
             border:1px solid rgba(255,255,255,0.2); border-radius:var(--radius-sm);
             cursor:pointer; transition:all 0.18s cubic-bezier(.4,0,.2,1);
             -webkit-tap-highlight-color:transparent; touch-action:manipulation;
-            backdrop-filter:blur(8px);
-            -webkit-backdrop-filter:blur(8px);
+            
+            -webkit-
             box-shadow:0 2px 10px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.12);
             touch-action: manipulation;
         }
@@ -247,7 +247,7 @@
             padding:12px 20px; font-size:13px; font-family:'Outfit',sans-serif; font-weight:700;
             border-radius:var(--radius-sm); border:1px solid transparent;
             cursor:pointer; transition:all 0.18s;
-            backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+             -webkit-
             box-shadow:0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
             position:relative; overflow:hidden;
         }
@@ -278,7 +278,7 @@
             border-radius:var(--radius); padding:16px 10px;
             width:100%; box-sizing:border-box; text-align:center;
             cursor:pointer; transition:all 0.2s cubic-bezier(.4,0,.2,1);
-            backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+             -webkit-
             -webkit-tap-highlight-color:transparent; touch-action:manipulation;
             box-shadow:0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.1);
             position:relative; overflow:hidden;
@@ -311,7 +311,7 @@
             padding:6px 12px; font-size:13px; font-family:'Outfit',sans-serif; font-weight:500;
             background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15);
             border-radius:20px; color:rgba(255,255,255,0.7); cursor:pointer; transition:all 0.18s;
-            z-index:10; backdrop-filter:blur(8px);
+            z-index:10; 
         }
         .home-btn:hover { background:rgba(255,255,255,0.13); color:#fff; transform:none; box-shadow:none; }
 
@@ -320,13 +320,13 @@
             font-family:'Outfit',sans-serif; font-weight:600;
             background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.18);
             color:#fff; border-radius:20px; cursor:pointer; transition:all 0.18s;
-            backdrop-filter:blur(8px); letter-spacing:.5px;
+             letter-spacing:.5px;
         }
         .stats-btn:hover { background:rgba(255,255,255,0.13); }
 
         #statsModal {
             display:none; position:fixed; inset:0;
-            background:rgba(0,0,0,0.7); backdrop-filter:blur(8px);
+            background:rgba(0,0,0,0.7); 
             z-index:1000; align-items:center; justify-content:center;
         }
         .stats-box {
@@ -402,13 +402,13 @@
         #graphicsModal {
             display: none; position: fixed; inset: 0;
             background: rgba(0,0,0,0.75);
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+             -webkit-
             z-index: 2000; align-items: center; justify-content: center;
         }
         #graphicsModal.open { display: flex; }
         #graphicsBox {
             background: linear-gradient(145deg,rgba(255,255,255,0.1),rgba(180,0,20,0.08));
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+             -webkit-
             border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
             padding: 22px 20px; width: 88%; max-width: 340px; color: #fff;
             box-shadow: 0 24px 64px rgba(0,0,0,0.7);
@@ -525,9 +525,6 @@
         <span style="--i:3;--c:#f59e0b">9</span>
         <span style="--i:4;--c:#ec4899">5</span>
         <span style="--i:5;--c:#fb923c">2</span>
-        <span style="--i:6;--c:#dc2626">8</span>
-        <span style="--i:7;--c:#fcd34d">4</span>
-        <span style="--i:8;--c:#f97316">6</span>
     </div>
     
     <svg class="trl-ball trl-ball-tridona" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -569,6 +566,13 @@
     
     <div class="trl-logo">
         <div class="trl-pre">⚡ BU OYUN BİR ⚡</div>
+        <!-- 🇹🇷 Türk Bayrağı -->
+        <svg viewBox="0 0 30 20" width="64" height="42" style="display:block;margin:0 auto 8px;border-radius:3px;box-shadow:0 0 20px rgba(227,10,23,0.6);">
+            <rect width="30" height="20" fill="#e30a17"/>
+            <circle cx="11" cy="10" r="5" fill="#fff"/>
+            <circle cx="12.5" cy="10" r="4" fill="#e30a17"/>
+            <polygon points="17,10 18.2,8 18.7,10 20,10.3 18.7,11 18.7,12.6 17,11.4 15.3,12.6 16,11 14.7,10.3 16,10 16.5,8" fill="#fff"/>
+        </svg>
         <div class="trl-title">SAYI<br>AVCISI</div>
         <div class="trl-subtitle">DENEYİMİDİR</div>
         <div class="trl-tagline">PRE-ALPHA <strong>3</strong> · 15 TEMMUZ ANMA</div>
@@ -599,7 +603,7 @@
     padding: 6px 14px; font-size: 10px; font-weight: 700;
     background: rgba(0,0,0,0.6); color: #fff;
     border: 1px solid rgba(255,100,100,0.25); border-radius: 16px;
-    letter-spacing: 2px; backdrop-filter: blur(8px);
+    letter-spacing: 2px; 
     animation: trlHintPulse 1.5s ease-in-out infinite, trlHintFadeOut 0.5s 4s forwards;
 }
 @keyframes trlHintPulse { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
@@ -626,7 +630,7 @@
 }
 .trl-nums span {
     position: absolute;
-    font-size: 64px; font-weight: 900;
+    font-size: 64px; font-weight: 900; will-change: transform, opacity;
     color: var(--c);
     text-shadow: 0 0 30px var(--c), 0 0 60px var(--c);
     opacity: 0;
@@ -638,12 +642,7 @@
     15% { opacity: 1; transform: scale(1.4); }
     100% {
         opacity: 0;
-        transform: 
-            translate(
-                calc(cos(var(--i) * 40deg) * 280px),
-                calc(sin(var(--i) * 40deg) * 280px)
-            )
-            scale(0.3) rotate(720deg);
+        transform: scale(0.3) rotate(720deg);
     }
 }
 .trl-ball {
@@ -652,6 +651,7 @@
     left: 50%; top: 50%;
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
+    will-change: transform, opacity;
 }
 .trl-ball-tridona { 
     animation: trlBallTridonaFly 2.5s ease-out 1.4s forwards;
@@ -739,7 +739,7 @@
     border: 1px solid rgba(255,100,100,0.3);
     border-radius: 20px; cursor: pointer;
     letter-spacing: 2px;
-    backdrop-filter: blur(8px);
+    
     z-index: 100;
 }
 .trl-skip:hover { background: rgba(255,100,100,0.18); }
@@ -751,6 +751,21 @@
 <script>
 let _audioCtx = null;
 let _trailerMusicStarted = false;
+// 🎵 Müzik unlock — sessiz audio + AudioContext warmup
+(function initAutoplayUnlock(){
+    try {
+        const silentWav = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=';
+        const a = document.createElement('audio');
+        a.src = silentWav;
+        a.autoplay = true;
+        a.muted = false;
+        a.volume = 0.01;
+        a.style.display = 'none';
+        document.documentElement.appendChild(a);
+        const p = a.play();
+        if (p) p.catch(()=>{});
+    } catch(e) {}
+})();
 function playTrailerSting() {
     if (_trailerMusicStarted) return;
     try {
@@ -807,12 +822,18 @@ function playTrailerSting() {
     } catch(e) { console.log('Audio:', e); _audioCtx=null; }
 }
 function tryStartTrailerMusic() { if (!_trailerMusicStarted) playTrailerSting(); }
-// 🚀 Müziği hemen başlatmaya çalış
-playTrailerSting();
-// İlk dokunuş/tıklamada da dene (autoplay engellenirse)
-['click','touchstart','keydown','pointerdown'].forEach(ev =>
-    document.addEventListener(ev, tryStartTrailerMusic, { once:true, capture:true })
-);
+// 🎬 Trailer'ı bu sefer atla (Ana Ekran reload sonrası)
+if (sessionStorage.getItem('sa_from_main')) {
+    // Ana Ekran'dan reload — trailer atla
+    sessionStorage.removeItem('sa_from_main');
+    const t = document.getElementById('introTrailer');
+    if (t) t.remove();
+} else {
+    playTrailerSting();
+    ['click','touchstart','keydown','pointerdown'].forEach(ev =>
+        document.addEventListener(ev, tryStartTrailerMusic, { once:true, capture:true })
+    );
+}
 
 function skipIntroTrailer() {
     const t = document.getElementById('introTrailer');
@@ -832,161 +853,6 @@ setTimeout(() => {
 <!-- ══════════ MATEMATİK ARKA PLAN ══════════ -->
 <div id="mathBg"></div>
 
-
-<!-- ══════════ MATEMATİK ARKA PLAN ══════════ -->
-<div id="mathBg"></div>
-
-<style>
-#introTrailer {
-    position: fixed; inset: 0; z-index: 999999;
-    background: radial-gradient(ellipse at center, #1a0408 0%, #000 70%);
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; overflow: hidden; cursor: pointer;
-    font-family: 'Outfit', 'Inter', sans-serif;
-    animation: trlFadeOut 0.8s 6.2s forwards;
-}
-.trl-bg-glow {
-    position: absolute; inset: 0;
-    background:
-        radial-gradient(circle at 30% 30%, rgba(220,38,38,0.4), transparent 40%),
-        radial-gradient(circle at 70% 70%, rgba(245,158,11,0.3), transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(34,197,94,0.2), transparent 50%);
-    animation: trlGlow 6s ease-in-out;
-    opacity: 0;
-}
-@keyframes trlGlow {
-    0% { opacity: 0; transform: scale(0.5); }
-    30% { opacity: 1; transform: scale(1); }
-    70% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 0; transform: scale(1.5); }
-}
-.trl-nums {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    pointer-events: none;
-}
-.trl-nums span {
-    position: absolute;
-    font-size: 64px; font-weight: 900;
-    color: var(--c);
-    text-shadow: 0 0 30px var(--c), 0 0 60px var(--c);
-    opacity: 0;
-    animation: trlNumExplode 1.6s ease-out forwards;
-    animation-delay: calc(var(--i) * 0.1s);
-}
-@keyframes trlNumExplode {
-    0% { opacity: 0; transform: translate(0, 0) scale(0); }
-    15% { opacity: 1; transform: scale(1.4); }
-    100% {
-        opacity: 0;
-        transform: 
-            translate(
-                calc(cos(var(--i) * 40deg) * 280px),
-                calc(sin(var(--i) * 40deg) * 280px)
-            )
-            scale(0.3) rotate(720deg);
-    }
-}
-/* Tridona — soldan, biraz yukarı */
-.trl-ball {
-    position: absolute;
-    width: 100px; height: 100px;
-    left: 50%; top: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-    filter: drop-shadow(0 0 30px rgba(255,80,80,0.8));
-}
-.trl-ball-tridona { animation: trlBallTridonaFly 2.5s ease-out 1.4s forwards; }
-@keyframes trlBallTridonaFly {
-    0% { left: -120px; top: 35%; transform: translate(0, -50%) scale(0.5) rotate(0); opacity: 0; }
-    20% { opacity: 1; }
-    50% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.5) rotate(720deg); opacity: 1; }
-    80% { opacity: 1; transform: translate(-50%, -50%) scale(3.2) rotate(1080deg); }
-    100% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0) rotate(1440deg); opacity: 0; }
-}
-/* UEFA Süper Kupa topu — sağdan, biraz aşağı */
-.trl-ball-sc { 
-    animation: trlBallScFly 2.5s ease-out 1.7s forwards; 
-    filter: drop-shadow(0 0 30px rgba(80,150,255,0.8));
-}
-@keyframes trlBallScFly {
-    0% { left: 120%; top: 65%; transform: translate(0, -50%) scale(0.5) rotate(0); opacity: 0; }
-    20% { opacity: 1; }
-    50% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.5) rotate(-720deg); opacity: 1; }
-    80% { opacity: 1; transform: translate(-50%, -50%) scale(3.2) rotate(-1080deg); }
-    100% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0) rotate(-1440deg); opacity: 0; }
-}
-.trl-flash {
-    position: absolute; inset: 0; background: white; opacity: 0;
-    animation: trlFlash 0.5s 3.9s ease-out;
-    pointer-events: none;
-}
-@keyframes trlFlash {
-    0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; }
-}
-.trl-logo {
-    position: relative; z-index: 10; text-align: center;
-    opacity: 0; transform: translateY(20px);
-    animation: trlLogoIn 1s 4.2s forwards;
-}
-@keyframes trlLogoIn { to { opacity: 1; transform: translateY(0); } }
-.trl-pre {
-    font-size: 10px; color: #888; letter-spacing: 6px;
-    margin-bottom: 8px; font-weight: 700;
-}
-.trl-title {
-    font-size: clamp(48px, 11vw, 88px);
-    font-weight: 900; letter-spacing: 4px; line-height: 0.95;
-    text-shadow: 0 0 30px rgba(220,38,38,0.8);
-    background: linear-gradient(180deg, #fff 0%, #fca5a5 40%, #dc2626 75%, #7a0011 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 6px;
-}
-.trl-subtitle {
-    font-size: 12px; color: #fca5a5; letter-spacing: 8px;
-    margin-bottom: 16px; font-weight: 500;
-}
-.trl-tagline {
-    font-size: 12px; color: #fbbf24; font-weight: 800;
-    letter-spacing: 4px; margin-bottom: 16px;
-}
-.trl-tagline strong {
-    color: #fff;
-    background: linear-gradient(135deg, #dc2626, #f59e0b);
-    padding: 2px 10px; border-radius: 6px; font-weight: 900;
-}
-.trl-pills { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
-.trl-pills span {
-    font-size: 10px; font-weight: 800; color: #fff;
-    padding: 4px 12px; border-radius: 20px;
-    letter-spacing: 2px; opacity: 0;
-    animation: trlPillIn 0.4s forwards;
-}
-.trl-pills span:nth-child(1) { animation-delay: 4.8s; }
-.trl-pills span:nth-child(2) { animation-delay: 5.0s; }
-.trl-pills span:nth-child(3) { animation-delay: 5.2s; }
-@keyframes trlPillIn { 
-    from { opacity: 0; transform: scale(0); } 
-    to { opacity: 1; transform: scale(1); } 
-}
-.trl-skip {
-    position: absolute; bottom: 24px; right: 24px;
-    padding: 8px 16px; font-size: 11px; font-weight: 700;
-    background: rgba(255,255,255,0.08);
-    color: #fff;
-    border: 1px solid rgba(255,100,100,0.3);
-    border-radius: 20px; cursor: pointer;
-    letter-spacing: 2px;
-    backdrop-filter: blur(8px);
-    z-index: 100;
-}
-.trl-skip:hover { background: rgba(255,100,100,0.18); }
-@keyframes trlFadeOut {
-    to { opacity: 0; pointer-events: none; }
-}
-</style>
 
 
 <!-- ══════════ MATEMATİK ARKA PLAN ══════════ -->
@@ -1337,41 +1203,41 @@ setTimeout(() => {
     </div>
     <!-- DİL SEÇİCİ — SPLASH -->
     <div id="splashLangSelector" style="display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:340px;margin-top:10px;">
-        <button onclick="setLang('tr');markSplashLang('tr')" id="splashLangTR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(8px);">🇹🇷</button>
-        <button onclick="setLang('en');markSplashLang('en')" id="splashLangEN" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇬🇧</button>
-        <button onclick="setLang('it');markSplashLang('it')" id="splashLangIT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇮🇹</button>
-        <button onclick="setLang('es');markSplashLang('es')" id="splashLangES" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇪🇸</button>
-        <button onclick="setLang('ka');markSplashLang('ka')" id="splashLangKA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇬🇪</button>
-        <button onclick="setLang('az');markSplashLang('az')" id="splashLangAZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇦🇿</button>
-        <button onclick="setLang('ja');markSplashLang('ja')" id="splashLangJA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇯🇵</button>
-        <button onclick="setLang('hk');markSplashLang('hk')" id="splashLangHK" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2010"/><g fill="white" transform="translate(15,10)"><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(0)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(72)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(144)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(216)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(288)"/></g></svg> HK</button>
-        <button onclick="setLang('mo');markSplashLang('mo')" id="splashLangMO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#00785A"/><g transform="translate(15,11)"><ellipse cx="0" cy="2" rx="4" ry="2.5" fill="white"/><ellipse cx="-2.5" cy="0" rx="2" ry="3" fill="white" transform="rotate(-20)"/><ellipse cx="2.5" cy="0" rx="2" ry="3" fill="white" transform="rotate(20)"/><rect x="-3" y="3" width="6" height="0.8" fill="white"/><rect x="-3.5" y="4.2" width="7" height="0.7" fill="white"/></g><g fill="#FFD700" font-size="3"><text x="15" y="4" text-anchor="middle">★ ★</text><text x="15" y="7" text-anchor="middle">★ ★ ★</text></g></svg> MO</button>
-        <button onclick="setLang('zh');markSplashLang('zh')" id="splashLangZH" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2910"/><polygon points="5,2 6.2,6 10,6 7,8.2 8.1,12 5,10 1.9,12 3,8.2 0,6 3.8,6" fill="#FFDE00"/></svg></button>
-        <button onclick="setLang('de');markSplashLang('de')" id="splashLangDE" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇩🇪</button>
-        <button onclick="setLang('fr');markSplashLang('fr')" id="splashLangFR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇫🇷</button>
-        <button onclick="setLang('el');markSplashLang('el')" id="splashLangEL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇬🇷</button>
-        <button onclick="setLang('ru');markSplashLang('ru')" id="splashLangRU" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></button>
-        <button onclick="setLang('ar');markSplashLang('ar')" id="splashLangAR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇸🇦</button>
-        <button onclick="setLang('pt');markSplashLang('pt')" id="splashLangPT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇧🇷</button>
-        <button onclick="setLang('uk');markSplashLang('uk')" id="splashLangUK" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇺🇦</button>
-        <button onclick="setLang('nl');markSplashLang('nl')" id="splashLangNL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg></button>
-        <button onclick="setLang('be');markSplashLang('be')" id="splashLangBE" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#FAE042"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> BE</button>
-        <button onclick="setLang('ko');markSplashLang('ko')" id="splashLangKO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇰🇷</button>
-        <button onclick="setLang('fa');markSplashLang('fa')" id="splashLangFA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇮🇷</button>
-        <button onclick="setLang('hr');markSplashLang('hr')" id="splashLangHR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇭🇷</button>
-        <button onclick="setLang('sv');markSplashLang('sv')" id="splashLangSV" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇸🇪</button>
-        <button onclick="setLang('no');markSplashLang('no')" id="splashLangNO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇳🇴</button>
-        <button onclick="setLang('cs');markSplashLang('cs')" id="splashLangCS" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇨🇿</button>
-        <button onclick="setLang('bs');markSplashLang('bs')" id="splashLangBS" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇧🇦</button>
-        <button onclick="setLang('uz');markSplashLang('uz')" id="splashLangUZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇺🇿</button>
-        <button onclick="setLang('ht');markSplashLang('ht')" id="splashLangHT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;backdrop-filter:blur(8px);">🇭🇹</button>
+        <button onclick="setLang('tr');markSplashLang('tr')" id="splashLangTR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;">🇹🇷</button>
+        <button onclick="setLang('en');markSplashLang('en')" id="splashLangEN" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇬🇧</button>
+        <button onclick="setLang('it');markSplashLang('it')" id="splashLangIT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇮🇹</button>
+        <button onclick="setLang('es');markSplashLang('es')" id="splashLangES" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇪🇸</button>
+        <button onclick="setLang('ka');markSplashLang('ka')" id="splashLangKA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇬🇪</button>
+        <button onclick="setLang('az');markSplashLang('az')" id="splashLangAZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇦🇿</button>
+        <button onclick="setLang('ja');markSplashLang('ja')" id="splashLangJA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇯🇵</button>
+        <button onclick="setLang('hk');markSplashLang('hk')" id="splashLangHK" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2010"/><g fill="white" transform="translate(15,10)"><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(0)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(72)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(144)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(216)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(288)"/></g></svg> HK</button>
+        <button onclick="setLang('mo');markSplashLang('mo')" id="splashLangMO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#00785A"/><g transform="translate(15,11)"><ellipse cx="0" cy="2" rx="4" ry="2.5" fill="white"/><ellipse cx="-2.5" cy="0" rx="2" ry="3" fill="white" transform="rotate(-20)"/><ellipse cx="2.5" cy="0" rx="2" ry="3" fill="white" transform="rotate(20)"/><rect x="-3" y="3" width="6" height="0.8" fill="white"/><rect x="-3.5" y="4.2" width="7" height="0.7" fill="white"/></g><g fill="#FFD700" font-size="3"><text x="15" y="4" text-anchor="middle">★ ★</text><text x="15" y="7" text-anchor="middle">★ ★ ★</text></g></svg> MO</button>
+        <button onclick="setLang('zh');markSplashLang('zh')" id="splashLangZH" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2910"/><polygon points="5,2 6.2,6 10,6 7,8.2 8.1,12 5,10 1.9,12 3,8.2 0,6 3.8,6" fill="#FFDE00"/></svg></button>
+        <button onclick="setLang('de');markSplashLang('de')" id="splashLangDE" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇩🇪</button>
+        <button onclick="setLang('fr');markSplashLang('fr')" id="splashLangFR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇫🇷</button>
+        <button onclick="setLang('el');markSplashLang('el')" id="splashLangEL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇬🇷</button>
+        <button onclick="setLang('ru');markSplashLang('ru')" id="splashLangRU" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg></button>
+        <button onclick="setLang('ar');markSplashLang('ar')" id="splashLangAR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇸🇦</button>
+        <button onclick="setLang('pt');markSplashLang('pt')" id="splashLangPT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇧🇷</button>
+        <button onclick="setLang('uk');markSplashLang('uk')" id="splashLangUK" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇺🇦</button>
+        <button onclick="setLang('nl');markSplashLang('nl')" id="splashLangNL" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg></button>
+        <button onclick="setLang('be');markSplashLang('be')" id="splashLangBE" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#FAE042"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> BE</button>
+        <button onclick="setLang('ko');markSplashLang('ko')" id="splashLangKO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇰🇷</button>
+        <button onclick="setLang('fa');markSplashLang('fa')" id="splashLangFA" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇮🇷</button>
+        <button onclick="setLang('hr');markSplashLang('hr')" id="splashLangHR" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇭🇷</button>
+        <button onclick="setLang('sv');markSplashLang('sv')" id="splashLangSV" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇸🇪</button>
+        <button onclick="setLang('no');markSplashLang('no')" id="splashLangNO" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇳🇴</button>
+        <button onclick="setLang('cs');markSplashLang('cs')" id="splashLangCS" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇨🇿</button>
+        <button onclick="setLang('bs');markSplashLang('bs')" id="splashLangBS" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇧🇦</button>
+        <button onclick="setLang('uz');markSplashLang('uz')" id="splashLangUZ" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇺🇿</button>
+        <button onclick="setLang('ht');markSplashLang('ht')" id="splashLangHT" style="padding:3px 8px;font-size:10px;font-weight:bold;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);cursor:pointer;">🇭🇹</button>
     </div>
     <!-- Ses & Tema butonları - Splash -->
     <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;margin-bottom:2px;">
         <button id="splashSoundBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
-            style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);" data-i18n="spBtnSes">🔊 Ses</button>
+            style="padding:7px 16px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;" data-i18n="spBtnSes">🔊 Ses</button>
         <button onclick="window.openGraphics()" title="Grafik Ayarları"
-            style="padding:7px 14px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;backdrop-filter:blur(6px);">🎮</button>
+            style="padding:7px 14px;font-family:'Press Start 2P',monospace;font-size:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.5);background:rgba(0,0,0,0.4);color:#fff;cursor:pointer;">🎮</button>
     </div>
 
     <button id="splashStartBtn" onclick="splashStart()" style="margin-top:16px;padding:14px 44px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;background:linear-gradient(135deg,#e30a17,#900010);color:#fff;border:1px solid rgba(255,100,120,0.5);border-radius:50px;cursor:pointer;box-shadow:0 4px 24px rgba(227,10,23,0.5),inset 0 1px 0 rgba(255,255,255,0.2);letter-spacing:2px;transition:all 0.2s;" data-i18n="spBtnStart">▶ BAŞLA</button>
@@ -1389,9 +1255,9 @@ setTimeout(() => {
     <!-- Ses & Tema Butonları (sabit köşe) -->
     <div id="settingsBar" style="position:fixed;top:8px;right:8px;z-index:500;display:flex;gap:6px;">
         <button id="soundToggleBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
-            style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">🔊</button>
+            style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;">🔊</button>
         <button onclick="window.openGraphics()" title="Grafik Ayarları"
-            style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">🎮</button>
+            style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.5);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;">🎮</button>
     </div>
 <div class="container">
     <div class="app-logo" style="display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;">
@@ -1507,34 +1373,34 @@ setTimeout(() => {
 
     <div id="modeScreen" style="display:none;flex-direction:column;align-items:center;width:100%;">
         <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;justify-content:center;">
-            <button id="langTR" onclick="setLang('tr')" style="padding:5px 14px;font-size:11px;font-weight:700;font-family:'Outfit',sans-serif;border-radius:20px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇹🇷 TR</button>
-            <button id="langEN" onclick="setLang('en')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇬🇧 EN</button>
-            <button id="langIT" onclick="setLang('it')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇮🇹 IT</button>
-            <button id="langES" onclick="setLang('es')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇪🇸 ES</button>
-            <button id="langKA" onclick="setLang('ka')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇬🇪 KA</button>
-            <button id="langAZ" onclick="setLang('az')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇦🇿 AZ</button>
-            <button id="langJA" onclick="setLang('ja')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇯🇵 JA</button>
-            <button id="langHK" onclick="setLang('hk')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2010"/><g fill="white" transform="translate(15,10)"><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(0)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(72)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(144)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(216)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(288)"/></g></svg> HK</button>
-            <button id="langMO" onclick="setLang('mo')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#00785A"/><g transform="translate(15,11)"><ellipse cx="0" cy="2" rx="4" ry="2.5" fill="white"/><ellipse cx="-2.5" cy="0" rx="2" ry="3" fill="white" transform="rotate(-20)"/><ellipse cx="2.5" cy="0" rx="2" ry="3" fill="white" transform="rotate(20)"/><rect x="-3" y="3" width="6" height="0.8" fill="white"/><rect x="-3.5" y="4.2" width="7" height="0.7" fill="white"/></g><g fill="#FFD700" font-size="3"><text x="15" y="4" text-anchor="middle">★ ★</text><text x="15" y="7" text-anchor="middle">★ ★ ★</text></g></svg> MO</button>
-            <button id="langZH" onclick="setLang('zh')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2910"/><polygon points="5,2 6.2,6 10,6 7,8.2 8.1,12 5,10 1.9,12 3,8.2 0,6 3.8,6" fill="#FFDE00"/></svg> ZH</button>
-            <button id="langDE" onclick="setLang('de')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇩🇪 DE</button>
-            <button id="langFR" onclick="setLang('fr')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇫🇷 FR</button>
-            <button id="langEL" onclick="setLang('el')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇬🇷 EL</button>
-            <button id="langRU" onclick="setLang('ru')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> RU</button>
-            <button id="langAR" onclick="setLang('ar')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇸🇦 AR</button>
-            <button id="langPT" onclick="setLang('pt')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇧🇷 PT</button>
-            <button id="langUK" onclick="setLang('uk')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇺🇦 UK</button>
-            <button id="langFA" onclick="setLang('fa')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇮🇷 FA</button>
-            <button id="langKO" onclick="setLang('ko')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇰🇷 KO</button>
-            <button id="langNL" onclick="setLang('nl')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg> NL</button>
-        <button id="langBE" onclick="setLang('be')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#FAE042"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> BE</button>
-            <button id="langSV" onclick="setLang('sv')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇸🇪 SV</button>
-            <button id="langNO" onclick="setLang('no')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇳🇴 NO</button>
-            <button id="langCS" onclick="setLang('cs')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇨🇿 CS</button>
-            <button id="langBS" onclick="setLang('bs')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇧🇦 BS</button>
-            <button id="langHR" onclick="setLang('hr')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇭🇷 HR</button>
-            <button id="langUZ" onclick="setLang('uz')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇺🇿 UZ</button>
-            <button id="langHT" onclick="setLang('ht')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">🇭🇹 HT</button>
+            <button id="langTR" onclick="setLang('tr')" style="padding:5px 14px;font-size:11px;font-weight:700;font-family:'Outfit',sans-serif;border-radius:20px;border:1.5px solid rgba(255,100,120,0.8);background:rgba(255,60,80,0.28);color:#fff;cursor:pointer;-webkit-">🇹🇷 TR</button>
+            <button id="langEN" onclick="setLang('en')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇬🇧 EN</button>
+            <button id="langIT" onclick="setLang('it')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇮🇹 IT</button>
+            <button id="langES" onclick="setLang('es')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇪🇸 ES</button>
+            <button id="langKA" onclick="setLang('ka')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇬🇪 KA</button>
+            <button id="langAZ" onclick="setLang('az')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇦🇿 AZ</button>
+            <button id="langJA" onclick="setLang('ja')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇯🇵 JA</button>
+            <button id="langHK" onclick="setLang('hk')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2010"/><g fill="white" transform="translate(15,10)"><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(0)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(72)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(144)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(216)"/><path d="M0-6 C1-4,3-3,2,0 C1-2,-1-2,-2,0 C-3-3,-1-4,0-6Z" transform="rotate(288)"/></g></svg> HK</button>
+            <button id="langMO" onclick="setLang('mo')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#00785A"/><g transform="translate(15,11)"><ellipse cx="0" cy="2" rx="4" ry="2.5" fill="white"/><ellipse cx="-2.5" cy="0" rx="2" ry="3" fill="white" transform="rotate(-20)"/><ellipse cx="2.5" cy="0" rx="2" ry="3" fill="white" transform="rotate(20)"/><rect x="-3" y="3" width="6" height="0.8" fill="white"/><rect x="-3.5" y="4.2" width="7" height="0.7" fill="white"/></g><g fill="#FFD700" font-size="3"><text x="15" y="4" text-anchor="middle">★ ★</text><text x="15" y="7" text-anchor="middle">★ ★ ★</text></g></svg> MO</button>
+            <button id="langZH" onclick="setLang('zh')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2910"/><polygon points="5,2 6.2,6 10,6 7,8.2 8.1,12 5,10 1.9,12 3,8.2 0,6 3.8,6" fill="#FFDE00"/></svg> ZH</button>
+            <button id="langDE" onclick="setLang('de')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇩🇪 DE</button>
+            <button id="langFR" onclick="setLang('fr')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇫🇷 FR</button>
+            <button id="langEL" onclick="setLang('el')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇬🇷 EL</button>
+            <button id="langRU" onclick="setLang('ru')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-"><svg width="16" height="11" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039A6"/><rect y="13.33" width="30" height="6.67" fill="#D52B1E"/></svg> RU</button>
+            <button id="langAR" onclick="setLang('ar')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇸🇦 AR</button>
+            <button id="langPT" onclick="setLang('pt')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇧🇷 PT</button>
+            <button id="langUK" onclick="setLang('uk')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇺🇦 UK</button>
+            <button id="langFA" onclick="setLang('fa')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇮🇷 FA</button>
+            <button id="langKO" onclick="setLang('ko')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇰🇷 KO</button>
+            <button id="langNL" onclick="setLang('nl')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="30" height="7" fill="#AE1C28"/><rect y="7" width="30" height="6" fill="#fff"/><rect y="13" width="30" height="7" fill="#21468B"/></svg> NL</button>
+        <button id="langBE" onclick="setLang('be')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-"><svg width="16" height="11" viewBox="0 0 30 20"><rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#FAE042"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg> BE</button>
+            <button id="langSV" onclick="setLang('sv')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇸🇪 SV</button>
+            <button id="langNO" onclick="setLang('no')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇳🇴 NO</button>
+            <button id="langCS" onclick="setLang('cs')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇨🇿 CS</button>
+            <button id="langBS" onclick="setLang('bs')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇧🇦 BS</button>
+            <button id="langHR" onclick="setLang('hr')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇭🇷 HR</button>
+            <button id="langUZ" onclick="setLang('uz')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇺🇿 UZ</button>
+            <button id="langHT" onclick="setLang('ht')" style="padding:5px 14px;font-size:11px;font-weight:500;font-family:'Outfit',sans-serif;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);cursor:pointer;-webkit-">🇭🇹 HT</button>
         </div>
         <p id="selectGameTxt" style="color:rgba(255,180,180,0.7);margin:4px 0 12px;font-size:13px;font-weight:500;font-family:'Outfit',sans-serif;letter-spacing:.5px;">Oyun seç:</p>
         <div style="display:grid;grid-template-columns:repeat(2,1fr); min-height:0;gap:12px;width:100%;max-width:320px;">
@@ -2479,7 +2345,6 @@ setTimeout(() => {
             <button id="wc26wb0" onclick="useWaterBreak('wc26',0)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="15dk Su Molası">💧 15dk</button>
             <button id="wc26wb1" onclick="useWaterBreak('wc26',1)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="45dk Su Molası">💧 45dk</button>
             <button id="wc26wb2" onclick="useWaterBreak('wc26',2)" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#003a5c;color:#aaddff;border:1px solid #44aaff;border-radius:8px;cursor:pointer;" title="90dk Su Molası">💧 90dk</button>
-            <button id="wc26timeoutBtn" onclick="useMatchTimeout('wc26')" style="padding:5px 10px;font-size:11px;font-weight:bold;background:#3a1a0a;color:#ffaa66;border:1px solid #ff8844;border-radius:8px;cursor:pointer;" title="3 Dakika Teknik Mola">🕐 3dk (<span id="wc26timeoutCount">3</span>)</button>
         </div>
     </div>
     <div id="futbolDiffScreen" style="display:none;flex-direction:column;align-items:center;width:100%;">
@@ -12015,6 +11880,13 @@ function isMyCountryStillIn() {
 
 // SONRAKİ MAÇ
 function playNextWC26Match() {
+    // 🐛 FIX: Eleme/şampiyon durumlarında crash etmeden çık
+    if (wc26Stage === 'eliminated' || wc26Stage === 'champion') {
+        // Buton da gizlensin
+        const nb = document.getElementById('wc26NextMatchBtn');
+        if (nb) nb.style.display = 'none';
+        return;
+    }
     if (wc26Stage === 'group') {
         const nextMyMatch = getNextMyMatch();
         if (nextMyMatch) {
@@ -12311,6 +12183,9 @@ function advanceToNextKnockoutStage() {
         // Oyuncu elendi, ama turnuvayı simüle bitir
         wc26Stage = 'eliminated';
         setHTML('wc26TourneyMsg','<div style="font-size:18px;">😔</div><div style="color:#ff6666;font-weight:bold;">ELENDIN!</div><div style="color:#fff;">'+getTeamName(wc26MyCountry)+' eve döndü</div><div style="display:flex;gap:6px;justify-content:center;margin-top:10px;"><button onclick="backToModeSelect()" style="padding:7px 14px;font-size:12px;background:#fff;color:#e30a17;border:2px solid #fff;border-radius:8px;cursor:pointer;font-weight:bold;">🏠 Ana Ekran</button></div>');
+        // 🐛 FIX: Eleminite olunca "Sonraki Maçı Oyna" butonunu gizle
+        const _nb = document.getElementById('wc26NextMatchBtn');
+        if (_nb) _nb.style.display = 'none';
         gameStats.totalGames=(gameStats.totalGames||0)+1;
         gameStats.loses=(gameStats.loses||0)+1;
         saveStats();
@@ -12709,40 +12584,47 @@ function handleWC26Result(playerCorrect) {
     if (wc26BreakActive) return;
     wc26WaitingForAnswer = false;
     const animMsg = document.getElementById('wc26AnimMsg');
+    let throwInDelay = 1300; // Varsayılan sonraki soru gecikmesi
     if (playerCorrect) {
-        wc26CurMyScore++;
-        setText('wc26MatchMyScore', wc26CurMyScore);
-        playSound && playSound('win');
-        playSound('win');
-        if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
-        // 🚩 Oto-SAOT: %30 ofsayt → gol iptal
-        if (Math.random() < 0.30) {
+        // 🚩 Oto-SAOT karar — gol işlemeden ÖNCE (atomik): offside ise skor hiç artmaz
+        const offside = Math.random() < 0.30;
+        if (offside) {
+            throwInDelay = 2400; // SAOT animasyonu için süre tanı
+            // Önce "GOL?" göster, sonra ofsayt → skor değişmez
+            if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL?';animMsg.style.color='#ffd060';animMsg.style.opacity='1';}
+            playSound && playSound('win');
             setTimeout(()=>{
-                wc26CurMyScore--;
-                setText('wc26MatchMyScore', wc26CurMyScore);
                 if (animMsg){animMsg.innerHTML = '<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span><br><span style="color:#f87171;font-weight:900;">OFSAYT! Gol iptal</span>';animMsg.style.color='#f87171';animMsg.style.opacity='1';}
-                setTimeout(()=>{ if(animMsg)animMsg.style.opacity='0'; }, 1500);
-            }, 1400);
+            }, 900);
+        } else {
+            // Geçerli gol — skor artar
+            wc26CurMyScore++;
+            setText('wc26MatchMyScore', wc26CurMyScore);
+            playSound && playSound('win');
+            playSound('win');
+            if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
         }
     } else {
         // Rakip golü — güce göre şans
         const oppGoals = Math.random() < (wc26CurOppStrength/110) ? 1 : 0;
         if (oppGoals > 0) {
-            wc26CurOppScore++;
-            setText('wc26MatchOppScore', wc26CurOppScore);
-            playSound('wrong');
-            if (animMsg){animMsg.innerHTML ='❌ Rakip GOL';animMsg.style.color='#ff6666';animMsg.style.opacity='1';}
-            // 🚩 Oto-SAOT (rakip golü için de) — %30
-            if (Math.random() < 0.30) {
+            // 🚩 Oto-SAOT karar — rakip golü için de atomik
+            const oppOffside = Math.random() < 0.30;
+            if (oppOffside) {
+                throwInDelay = 2400;
+                if (animMsg){animMsg.innerHTML ='❌ Rakip GOL?';animMsg.style.color='#ffaa44';animMsg.style.opacity='1';}
+                playSound('wrong');
                 setTimeout(()=>{
-                    wc26CurOppScore--;
-                    setText('wc26MatchOppScore', wc26CurOppScore);
                     if (animMsg){animMsg.innerHTML = '<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span><br><span style="color:#88ddaa;font-weight:900;">OFSAYT! Rakip golü iptal</span>';animMsg.style.color='#88ddaa';animMsg.style.opacity='1';}
-                    setTimeout(()=>{ if(animMsg)animMsg.style.opacity='0'; }, 1500);
-                }, 1400);
+                }, 900);
+            } else {
+                // Geçerli rakip golü
+                wc26CurOppScore++;
+                setText('wc26MatchOppScore', wc26CurOppScore);
+                playSound('wrong');
+                if (animMsg){animMsg.innerHTML ='❌ Rakip GOL';animMsg.style.color='#ff6666';animMsg.style.opacity='1';}
             }
         } else {
-            // Gol olmadı — rakip VAR denesin mi?
             const usedOppVAR = tryOppVAR();
             if (usedOppVAR) {
                 setText('wc26MatchOppScore', wc26CurOppScore);
@@ -12754,7 +12636,7 @@ function handleWC26Result(playerCorrect) {
         }
     }
     setHTML('wc26Message','Cevap: '+wc26CurAnswer);
-    setTimeout(()=>{ if(animMsg) animMsg.style.opacity='0'; if(!wc26BreakActive) maybeThrowIn(); }, 1300);
+    setTimeout(()=>{ if(animMsg) animMsg.style.opacity='0'; if(!wc26BreakActive) maybeThrowIn(); }, throwInDelay);
 }
 
 function endWC26Match() {
@@ -14201,7 +14083,7 @@ function showAdOverlay(durationMs) {
     if (m) m.remove();
     m = document.createElement('div');
     m.id = 'matchAdOverlay';
-    m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99998;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);animation:adFadeIn 0.3s;';
+    m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99998;display:flex;align-items:center;justify-content:center;animation:adFadeIn 0.3s;';
     m.innerHTML = '<div style="background:linear-gradient(135deg,'+ad.color+',#000);padding:24px 32px;border-radius:14px;border:2px solid '+ad.color+';text-align:center;max-width:280px;box-shadow:0 0 40px '+ad.color+'88;animation:adPop 0.5s ease-out;">'
         +'<div style="font-size:10px;color:#fff8;letter-spacing:2px;margin-bottom:6px;">— REKLAM —</div>'
         +'<div style="font-size:48px;margin:8px 0;">'+ad.emoji+'</div>'
@@ -14224,6 +14106,7 @@ window.showAdOverlay = showAdOverlay;
 
 // 🏠 Ana Ekran — splash'a geri dön
 function goToMainScreen() {
+    sessionStorage.setItem('sa_from_main','1');
     location.reload();
 }
 window.goToMainScreen = goToMainScreen;
@@ -14262,7 +14145,7 @@ function openLanguagePicker() {
     if (old) old.remove();
     const m = document.createElement('div');
     m.id = 'langPickerModal';
-    m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+    m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;';
     const langs = [
         ['tr','TR','#e30a17'], ['en','EN','#012169'], ['de','DE','#000'], ['fr','FR','#0055A4'],
         ['es','ES','#c60b1e'], ['it','IT','#009246'], ['ru','RU','#0039A6'], ['ar','AR','#006C35'],
@@ -14353,7 +14236,7 @@ function showAYTDiffPicker(topic) {
     const topicColors = {turev:'#f472b6', integral:'#c084fc', log:'#5eead4'};
     const m = document.createElement('div');
     m.id = 'aytDiffModal';
-    m.style.cssText = 'position:fixed;inset:0;background:rgba(5,0,15,0.92);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+    m.style.cssText = 'position:fixed;inset:0;background:rgba(5,0,15,0.92);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;';
     const diffs = [
         ['easy','🟢 Kolay','#22c55e','rgba(34,197,94,0.18)','5 tur · Bot %50'],
         ['medium','🟡 Orta','#facc15','rgba(250,204,21,0.18)','5 tur · Bot %65'],
@@ -14390,7 +14273,7 @@ function _startAYTGame(topic, diff) {
     if (!m) {
         m = document.createElement('div');
         m.id = 'aytGameModal';
-        m.style.cssText = 'position:fixed;inset:0;background:rgba(5,0,15,0.92);z-index:99999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+        m.style.cssText = 'position:fixed;inset:0;background:rgba(5,0,15,0.92);z-index:99999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;';
         m.innerHTML = '<div style="background:linear-gradient(135deg,#180830,#0a0418);border:2px solid #c084fc;border-radius:16px;padding:18px;max-width:380px;width:96%;text-align:center;">'
             +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
             +'<button id="aytBackBtn" style="padding:5px 10px;font-size:10px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;cursor:pointer;">← Geri</button>'
@@ -14617,12 +14500,19 @@ function useMatchTimeout(mode) {
     // Aktif break / oyun durmuşsa engelle
     if (typeof wc26BreakActive !== 'undefined' && mode==='wc26' && wc26BreakActive) return;
     matchTimeoutsLeft[mode] = left - 1;
-    // 📺 REKLAM overlay (WC26 modu için eğlenceli sahte reklam)
-    if (mode === 'wc26' && typeof showAdOverlay === 'function') showAdOverlay(3000);
     const c = document.getElementById(mode+'timeoutCount');
     if (c) c.textContent = matchTimeoutsLeft[mode];
     const btn = document.getElementById(mode+'timeoutBtn');
     if (btn) { btn.disabled = true; btn.style.opacity='0.5'; }
+    // 🐛 FIX: Mola boyunca bot ve soru sayacını DURDUR (yoksa rakip cevaplayıp gol atıyor)
+    if (mode === 'wc26') {
+        wc26BreakActive = true;
+        wc26WaitingForAnswer = false;
+        if (typeof wc26CurTimerVar !== 'undefined') clearInterval(wc26CurTimerVar);
+        if (typeof wc26BotTimer !== 'undefined') clearTimeout(wc26BotTimer);
+        if (typeof updateWC26WaterBreakBtns === 'function') updateWC26WaterBreakBtns();
+        if (typeof updateWC26VarBtn === 'function') updateWC26VarBtn();
+    }
     // Input/cevap disable
     const inputId = mode==='wc26'?'wc26Input':mode==='confed'?'confedInput':mode==='friendly'?'friendlyInput':mode==='sc'?'scInput':mode==='nl'?'nlInput':mode==='rsc'?'rscInput':null;
     const btnId   = mode==='wc26'?'wc26Btn':  mode==='confed'?'confedBtn':  mode==='friendly'?'friendlyAtBtn': mode==='sc'?'scBtn': mode==='nl'?'nlBtn': mode==='rsc'?'rscBtn':null;
@@ -14634,7 +14524,7 @@ function useMatchTimeout(mode) {
     const durId = mode==='wc26'?'wc26MatchDuration':mode==='confed'?'confedMatchDuration':mode==='friendly'?'friendlyMatchDuration':mode==='sc'?'scMatchDuration':mode==='nl'?'nlMatchDuration':mode==='rsc'?'rscMatchDuration':null;
     const durEl = durId ? document.getElementById(durId) : null;
     const origLabel = durEl ? durEl.innerHTML : '';
-    let cd = 3;
+    let cd = (mode === "wc26" || mode === "rsc") ? 30 : 3;
     if (durEl) durEl.textContent = '🕐 3dk MOLA · ' + cd + 'sn';
     const tv = setInterval(()=>{
         cd--;
@@ -14645,6 +14535,30 @@ function useMatchTimeout(mode) {
             if (inp) inp.disabled = false;
             if (submitBtn) submitBtn.disabled = false;
             if (btn && matchTimeoutsLeft[mode] > 0) { btn.disabled = false; btn.style.opacity='1'; }
+            // 🐛 FIX: Mola bitti — bot/soru timer'larını yeniden başlat (sadece WC26 için)
+            if (mode === 'wc26') {
+                wc26BreakActive = false;
+                if (typeof updateWC26WaterBreakBtns === 'function') updateWC26WaterBreakBtns();
+                if (typeof updateWC26VarBtn === 'function') updateWC26VarBtn();
+                // Mevcut soru için kalan zamanı yeniden başlat
+                if (typeof wc26CurAnswer !== 'undefined' && wc26CurAnswer !== null && !wc26WaitingForAnswer) {
+                    wc26WaitingForAnswer = true;
+                    let t = 20;
+                    setText('wc26GuessCountdown', t);
+                    setDisplay('wc26GuessTimerBox','block');
+                    wc26CurTimerVar = setInterval(() => {
+                        t--;
+                        setText('wc26GuessCountdown', t);
+                        if (t<=0) {
+                            clearInterval(wc26CurTimerVar);
+                            clearTimeout(wc26BotTimer);
+                            wc26WaitingForAnswer = false;
+                            handleWC26Result(false);
+                        }
+                    }, 1000);
+                    if (typeof startBotTimer === 'function') startBotTimer(wc26CurOppStrength || 70, t);
+                }
+            }
         }
     }, 1000);
 }
@@ -14657,6 +14571,9 @@ function useWaterBreak(mode, idx) {
     arr[idx] = false;
     const btn = document.getElementById(mode + 'wb' + idx);
     if (btn) { btn.style.opacity = '0.3'; btn.disabled = true; btn.textContent = '💦'; }
+
+    // 📺 REKLAM — Su molasında 10 saniyelik reklam göster (WC26)
+    if (mode === 'wc26' && typeof showAdOverlay === 'function') showAdOverlay(10000);
 
     // Tüm timer'ları hemen durdur (BUG FIX: bot timer'lar da durdurulmalı)
     if (mode === 'wc26') {
@@ -14691,7 +14608,7 @@ function useWaterBreak(mode, idx) {
         ? document.getElementById('confedMatchDuration')
         : document.getElementById('friendlyMatchDuration');
     const origHTML = timerEl ? timerEl.innerHTML : '';
-    let countdown = 15;
+    let countdown = 10;
 
     const wbInterval = setInterval(() => {
         countdown--;
@@ -14950,22 +14867,38 @@ function startBotTimer(oppStrength, totalTime) {
 
 function triggerBotAnswer(oppStrength) {
     if (!wc26WaitingForAnswer) return;
+    if (wc26BreakActive) return; // 🐛 FIX: mola sırasında bot atak yapmasın
     wc26WaitingForAnswer = false;
     wc26BotThinking = false;
     clearTimeout(wc26BotTimer);
 
     var prof = getBotProfile(oppStrength);
-    // Maçın durumuna göre bot daha motive olabilir (gerideyse daha sert dener)
     var scoreDiff = wc26CurOppScore - wc26CurMyScore;
     var motivationBonus = scoreDiff < 0 ? 0.08 : scoreDiff > 1 ? -0.05 : 0;
     var botCorrect = Math.random() < (prof.acc + motivationBonus);
 
     var oppScoreEl = document.getElementById('wc26MatchOppScore');
+    var animMsg = document.getElementById('wc26AnimMsg');
+    var throwInDelay = 1200;
     if (botCorrect) {
-        wc26CurOppScore++;
-        if (oppScoreEl) oppScoreEl.textContent = wc26CurOppScore;
-        setHTML('wc26Message', '<span style="color:#ff4444;">' + prof.goalMsg + '</span>');
+        // 🚩 Oto-SAOT karar — rakip golü için de atomik (bug fix: önceden bot her zaman %100 gol atıyordu)
+        var oppOffside = Math.random() < 0.30;
+        if (oppOffside) {
+            throwInDelay = 2400;
+            if (animMsg) { animMsg.innerHTML = '❌ Rakip GOL?'; animMsg.style.color = '#ffaa44'; animMsg.style.opacity = '1'; }
+            setHTML('wc26Message', '<span style="color:#ffaa44;">' + prof.goalMsg + ' — VAR ofsayt</span>');
+            setTimeout(function() {
+                if (animMsg) { animMsg.innerHTML = '<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span><br><span style="color:#88ddaa;font-weight:900;">OFSAYT! Rakip golü iptal</span>'; animMsg.style.color = '#88ddaa'; animMsg.style.opacity = '1'; }
+            }, 900);
+        } else {
+            // Geçerli rakip golü
+            wc26CurOppScore++;
+            if (oppScoreEl) oppScoreEl.textContent = wc26CurOppScore;
+            if (animMsg) { animMsg.innerHTML = '❌ Rakip GOL'; animMsg.style.color = '#ff6666'; animMsg.style.opacity = '1'; }
+            setHTML('wc26Message', '<span style="color:#ff4444;">' + prof.goalMsg + '</span>');
+        }
     } else {
+        if (animMsg) { animMsg.innerHTML = '⚠ Rakip kaçırdı'; animMsg.style.color = '#aaa'; animMsg.style.opacity = '1'; }
         setHTML('wc26Message', '<span style="color:#888;">' + prof.passMsg + '</span>');
     }
     document.querySelectorAll('.wc26-opt-btn').forEach(function(b) { b.disabled = true; });
@@ -14974,9 +14907,11 @@ function triggerBotAnswer(oppStrength) {
     clearInterval(wc26CurTimerVar);
     setDisplay('wc26GuessTimerBox','none');
     setTimeout(function() {
+        if (animMsg) animMsg.style.opacity = '0';
         if (inp) { inp.disabled = false; inp.value = ''; }
-        nextWC26Question();
-    }, 1200);
+        // 🐛 FIX: maybeThrowIn kullan (handleWC26Result gibi) — son soru/kale vuruşu/aut çalışsın
+        if (!wc26BreakActive) maybeThrowIn();
+    }, throwInDelay);
 }
 
 let wc26WaitingForAnswer = false;
@@ -15806,11 +15741,16 @@ function triggerThrowIn(type) {
 
 // handleWC26Result içinde %15 ihtimalle aut/kale tetikle
 function maybeThrowIn() {
+    // 🐛 FIX: Yarı/maç sonu (son soru) ise throw-in animasyonu atla — direkt faza geç
+    if (wc26CurQNum >= wc26CurTotalQ) {
+        nextWC26Question();
+        return;
+    }
     const r = Math.random();
     if (r < 0.08) triggerThrowIn('aut');
     else if (r < 0.15) triggerThrowIn('kale');
-    // %7 ofsayt kontrolü
-    else if (r < 0.22 && wc26CurMyScore > 0) triggerSemiAutoOffside();
+    // 🐛 FIX: triggerSemiAutoOffside KALDIRILDI — rastgele eski golleri iptal ediyordu (skor bug'ı).
+    //         SAOT artık handleWC26Result içinde atomik (gol atılınca anında karar veriliyor)
     else nextWC26Question();
 }
 
@@ -15855,7 +15795,7 @@ function maybeThrowIn() {
     </div>
 
 
-    <div id="confedWaterBreak" style="display:none;position:fixed;inset:0;background:rgba(0,0,120,0.88);z-index:3000;align-items:center;justify-content:center;flex-direction:column;backdrop-filter:blur(8px);">
+    <div id="confedWaterBreak" style="display:none;position:fixed;inset:0;background:rgba(0,0,120,0.88);z-index:3000;align-items:center;justify-content:center;flex-direction:column;">
         <div style="font-size:48px;">💧</div>
         <div style="font-family:'Outfit',sans-serif;font-weight:900;font-size:22px;color:#fff;margin-top:8px;">SU MOLASI</div>
         <div style="font-family:'Outfit',sans-serif;font-size:14px;color:rgba(255,255,255,0.7);margin-top:4px;">15 Dakika</div>
