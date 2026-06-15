@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- 🚫 CACHE BYPASS — her açılışta taze HTML çek -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Sayı Avcısı - Pre-Alpha 4</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700;800&display=swap');
@@ -16275,19 +16279,33 @@ function maybeThrowIn() {
     };
     document.getElementById('updateNotice').style.display = 'block';
   }
+  // Sayfa açılış zamanını kaydet (sessiz auto-update için)
+  var _saPageOpenTime = Date.now();
   function check(){
     fetch(VERSION_URL, {cache:'no-store'})
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(data){
         if (!data || !data.latest) return;
-        if (data.latest !== CURRENT_VERSION) showUpdate(data);
+        if (data.latest === CURRENT_VERSION) return;
+        // Eğer sayfa daha 6 saniyeden eskiyse (henüz oyun başlamadı/splash açık)
+        // → kullanıcıyı rahatsız etmeden SESSİZCE yenile
+        var elapsed = Date.now() - _saPageOpenTime;
+        if (elapsed < 6000) {
+          var url = (data.url || location.href.split('?')[0]) + '?v=' + encodeURIComponent(data.latest) + '&t=' + Date.now();
+          try { localStorage.removeItem('sa_skip_ver'); } catch(e){}
+          location.replace(url);
+          return;
+        }
+        // Oyun zaten başladıysa bildirim göster (oyuncuyu kesme)
+        showUpdate(data);
       })
       .catch(function(){});
   }
+  // Daha erken kontrol et (sessiz auto-update şansı için)
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(check, 2500);
+    setTimeout(check, 800);
   } else {
-    window.addEventListener('load', function(){ setTimeout(check, 2500); });
+    window.addEventListener('load', function(){ setTimeout(check, 800); });
   }
 })();
 </script>
