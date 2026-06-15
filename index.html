@@ -8,6 +8,25 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Sayı Avcısı - Pre-Alpha 4</title>
+    <!-- 🔄 Service Worker — Network-first cache stratejisi (cache problemi çözümü) -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('./sw.js').then(function(reg) {
+                // Yeni sürüm gelirse kontrolü ele almak için
+                reg.addEventListener('updatefound', function() {
+                    var nw = reg.installing;
+                    if (nw) nw.addEventListener('statechange', function() {
+                        if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+                            // Yeni SW kuruldu, hemen aktif olsun
+                            nw.postMessage('SKIP_WAITING');
+                        }
+                    });
+                });
+            }).catch(function(){});
+        });
+    }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
