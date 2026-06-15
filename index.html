@@ -513,6 +513,10 @@
     <link rel="apple-touch-icon" href="logo.png">
 </head>
 <body>
+<!-- 🐛 FIX: Trailer yüklenmeden önce kırmızı body background flash'ini engelle (Android) -->
+<style>html,body{background:#000 !important;}</style>
+<div id="preTrailerCover" style="position:fixed;inset:0;background:#000;z-index:9999998;pointer-events:none;"></div>
+<script>setTimeout(function(){var c=document.getElementById('preTrailerCover');if(c)c.remove();},150);</script>
 
 <!-- ══════════ 🎬 PRE-ALPHA 3 BAŞLANGIÇ TRAILER'I ══════════ -->
 <div id="introTrailer" class="started" onclick="tryStartTrailerMusic()">
@@ -839,13 +843,13 @@ function skipIntroTrailer() {
     if (t) { 
         t.style.animation = 'trlFadeOut 0.4s forwards';
         setTimeout(() => { try{t.remove();}catch(e){} }, 450);
-        if (_audioCtx) { try{_audioCtx.close();}catch(e){} }
+        if (_audioCtx && _audioCtx.state !== 'closed') { try{var _p=_audioCtx.close(); if(_p&&_p.catch)_p.catch(function(){});}catch(e){} _audioCtx=null; }
     }
 }
 setTimeout(() => {
     const t = document.getElementById('introTrailer');
     if (t) { try{t.remove();}catch(e){} }
-    if (_audioCtx) { try{_audioCtx.close();}catch(e){} }
+    if (_audioCtx && _audioCtx.state !== 'closed') { try{var _p=_audioCtx.close(); if(_p&&_p.catch)_p.catch(function(){});}catch(e){} _audioCtx=null; }
 }, 7400);
 </script>
 
@@ -1296,11 +1300,7 @@ setTimeout(() => {
     <h1 id="mainTitle" style="font-family:'Outfit',sans-serif;font-weight:900;font-size:24px;letter-spacing:3px;color:#fff;text-shadow:0 0 20px rgba(255,30,60,0.5);">Dünya Kupası</h1>
     <div id="prealphaSubtitle" style="font-size:9px;color:#fff;margin-top:-8px;margin-bottom:8px;font-weight:bold;letter-spacing:1px;"><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> PRE-ALPHA 3 · 15 TEMMUZ ANMA <svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#e30a17"/><circle cx="14" cy="10" r="4.5" fill="#fff"/><circle cx="15.5" cy="10" r="3.6" fill="#e30a17"/><polygon points="20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2" fill="#fff"/></svg><svg width="14" height="10" viewBox="0 0 30 20" style="vertical-align:middle;display:inline-block;border:1px solid rgba(0,0,0,0.2);border-radius:2px;"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="2" fill="#e30a17"/><rect y="16" width="30" height="2" fill="#e30a17"/><circle cx="11" cy="10" r="4" fill="#e30a17"/><circle cx="12" cy="10" r="3.2" fill="#fff"/><polygon points="18,10 18.7,8.2 19,10.2 21,10.5 19.3,10.8 19.5,12.7 18,11.6 16.5,12.7 16.7,10.8 15,10.5 17,10.2 17.3,8.2" fill="#e30a17"/></svg> ∞</div>
 
-    <!-- Ses & Tema - Ana Ekran -->
-    <div style="display:flex;gap:8px;justify-content:center;margin-bottom:8px;margin-top:2px;">
-        <button id="mainSoundBtn" onclick="toggleSound()" title="Ses Aç/Kapat"
-            style="padding:5px 14px;font-size:11px;font-weight:bold;border-radius:8px;border:2px solid rgba(255,255,255,0.35);background:rgba(0,0,0,0.35);color:#fff;cursor:pointer;" data-i18n="spBtnSes">🔊 Ses</button>
-    </div>
+    <!-- 🐛 FIX: Duplicate Ses butonu kaldırıldı — sağ üst köşedeki settingsBar'da zaten var -->
     <!-- MOD SEÇİM EKRANI -->
     <!-- CONİFA ŞAMPİYON - ANA EKRAN -->
     <div id="mainChampionBanner" style="display:none;background:linear-gradient(135deg,rgba(255,180,0,0.15),rgba(200,100,0,0.1));border:1px solid #ffaa00;border-radius:10px;padding:6px 14px;margin-bottom:8px;text-align:center;width:100%;box-sizing:border-box;">
@@ -1565,7 +1565,7 @@ setTimeout(() => {
                 <div class="mode-name" style="color:#ffaa66;" id="modeNameConfed">Bağımsız Avrupa Kupası</div>
                 <div class="mode-desc" id="descConfed"><div style="display:flex;gap:3px;justify-content:center;align-items:center;margin-top:3px;"><svg width="20" height="13" viewBox="0 0 30 20" style="vertical-align:middle;border-radius:1px;border:1px solid rgba(0,0,0,0.2);"><rect width="30" height="20" fill="#009B48"/><rect x="10" width="4" height="20" fill="#fff"/><rect y="7" width="30" height="6" fill="#fff"/><rect x="11" width="2" height="20" fill="#C8102E"/><rect y="8" width="30" height="4" fill="#C8102E"/></svg></div><div style="font-size:9px;color:#aaa;margin:-1px 0 2px;">Padania · İtalya</div><span style="color:#ffaa66;">6 takım · 3-6 Haziran 2026</span><br><span id="confedCountdownBadge" style="font-size:9px;color:#ffcc88;background:rgba(255,200,100,0.2);padding:1px 5px;border-radius:4px;">⏰ ...</span></div>
             </div>
-            <!-- 🏆 AVRUPA SÜPER KUPASI 2026 (Paris FC vs Birmingham United) -->
+            <!-- 🏆 AVRUPA SÜPER KUPASI 2026 (Paris FC vs Aston Villa Park) -->
             <div class="mode-card" id="modeCardSuperCup" onclick="checkSuperCup()" style="border-color:rgba(150,200,255,0.7);">
                 <div class="mode-icon"><svg viewBox="0 0 100 100" style="width:42px;height:42px;display:block;">
 <defs>
@@ -1594,7 +1594,7 @@ setTimeout(() => {
 <rect x="40" y="83" width="20" height="2" fill="#506080"/>
 </svg></div>
                 <div class="mode-name" style="color:#aaccff;" id="modeNameSuperCup">Avrupa Süper Kupası</div>
-                <div class="mode-desc" id="descSuperCup"><span style="color:#aaccff;display:inline-flex;align-items:center;gap:3px;flex-wrap:wrap;justify-content:center;"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:2px;flex-shrink:0;"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg> Paris FC vs <svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:2px;flex-shrink:0;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg> Birmingham U. · 12 Ağu 2026</span><br><span id="superCupCountdownBadge" style="font-size:9px;color:#aaccff;background:rgba(100,150,255,0.25);padding:1px 5px;border-radius:4px;font-weight:700;">✓ AÇIK</span></div>
+                <div class="mode-desc" id="descSuperCup"><span style="color:#aaccff;display:inline-flex;align-items:center;gap:3px;flex-wrap:wrap;justify-content:center;"><svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:2px;flex-shrink:0;"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg> Paris FC vs <svg width="20" height="14" viewBox="0 0 30 20" style="vertical-align:middle;border:1px solid rgba(255,255,255,0.3);border-radius:2px;flex-shrink:0;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg> Aston Villa Park · 12 Ağu 2026</span><br><span id="superCupCountdownBadge" style="font-size:9px;color:#aaccff;background:rgba(100,150,255,0.25);padding:1px 5px;border-radius:4px;font-weight:700;">✓ AÇIK</span></div>
             </div>
             <!-- 🌏 ASYA KUPASI 2027 (locked, 7 Ocak 2027'de açılır) -->
             <div class="mode-card" id="modeCardAsia27" onclick="checkAsiaCup27()" style="border-color:rgba(255,180,0,0.4);opacity:0.6;">
@@ -2321,7 +2321,7 @@ setTimeout(() => {
         <div style="position:relative;width:280px;height:160px;background:linear-gradient(180deg,#1a3a1a,#2a5a2a);border:2px solid #fff;border-radius:8px;margin:4px 0;overflow:hidden;contain:layout paint;">
             <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,0.25);z-index:1;"></div>
             <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;z-index:1;"></div>
-            <div id="wc26Ball" style="position:absolute;left:130px;top:58px;transition:all 0.5s ease;z-index:2;"><svg viewBox="0 0 100 100" width="24" height="24" style="display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><defs><clipPath id="tif"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgif" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tif)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg></div>
+            <div id="wc26Ball" style="position:absolute;left:122px;top:52px;transition:all 0.5s ease;z-index:2;"><svg viewBox="0 0 100 100" width="36" height="36" style="display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><defs><clipPath id="tif"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgif" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="10" stroke-linecap="round" clip-path="url(#tif)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="10" stroke-linecap="round" clip-path="url(#tif)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="10" stroke-linecap="round" clip-path="url(#tif)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#000" stroke-width="2"/></svg></div>
             <div id="wc26AnimMsg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;opacity:0;transition:opacity 0.3s;pointer-events:none;text-shadow:2px 2px 0 #000;z-index:5;"></div>
         </div>
         <!-- Soru -->
@@ -6749,7 +6749,7 @@ function setLang(lang) {
         // 🏆 Avrupa Süper Kupası mod adı
         superCupName: { tr:'Avrupa Süper Kupası', en:'European Super Cup', it:'Supercoppa Europea', es:'Supercopa de Europa', ka:'ევროპის სუპერ თასი', az:'Avropa Super Kuboku', ja:'ヨーロッパスーパーカップ', zh:'欧洲超级杯', de:'Europäischer Superpokal', fr:'Supercoupe d\u2019Europe', el:'Ευρωπαϊκό Σούπερ Καπ', ru:'Суперкубок Европы', ar:'كأس السوبر الأوروبي', pt:'Supertaça Europeia', uk:'Суперкубок Європи', fa:'سوپر جام اروپا', ko:'유러피언 슈퍼컵', nl:'Europese Supercup', sv:'Europeiska supercupen', no:'Europeisk supercup', cs:'Evropský Superpohár', bs:'Evropski Superkup', hr:'Europski Superkup', uz:'Yevropa Superkubogi', ht:'Super Koup Ewopeyen' },
         // Süper Kupa desc
-        superCupDesc: { tr:'Paris FC vs Birmingham U. · 12 Ağu 2026', en:'Paris FC vs Birmingham U. · Aug 12, 2026', it:'Paris FC vs Birmingham U. · 12 Ago 2026', es:'Paris FC vs Birmingham U. · 12 Ago 2026', ka:'Paris FC vs Birmingham U. · 12 აგვ 2026', az:'Paris FC vs Birmingham U. · 12 Avq 2026', ja:'Paris FC vs Birmingham U. · 2026年8月12日', zh:'Paris FC vs Birmingham U. · 2026年8月12日', de:'Paris FC vs Birmingham U. · 12. Aug 2026', fr:'Paris FC vs Birmingham U. · 12 Août 2026', el:'Paris FC vs Birmingham U. · 12 Αυγ 2026', ru:'Paris FC vs Birmingham U. · 12 Авг 2026', ar:'Paris FC vs Birmingham U. · 12 أغسطس 2026', pt:'Paris FC vs Birmingham U. · 12 Ago 2026', uk:'Paris FC vs Birmingham U. · 12 Сер 2026', fa:'Paris FC vs Birmingham U. · ۱۲ آگوست ۲۰۲۶', ko:'Paris FC vs Birmingham U. · 2026.08.12', nl:'Paris FC vs Birmingham U. · 12 Aug 2026', sv:'Paris FC vs Birmingham U. · 12 Aug 2026', no:'Paris FC vs Birmingham U. · 12 Aug 2026', cs:'Paris FC vs Birmingham U. · 12. Srp 2026', bs:'Paris FC vs Birmingham U. · 12. Avg 2026', hr:'Paris FC vs Birmingham U. · 12. Kol 2026', uz:'Paris FC vs Birmingham U. · 12-Avgust 2026', ht:'Paris FC vs Birmingham U. · 12 Out 2026' },
+        superCupDesc: { tr:'Paris FC vs Aston Villa Park · 12 Ağu 2026', en:'Paris FC vs Aston Villa Park · Aug 12, 2026', it:'Paris FC vs Aston Villa Park · 12 Ago 2026', es:'Paris FC vs Aston Villa Park · 12 Ago 2026', ka:'Paris FC vs Aston Villa Park · 12 აგვ 2026', az:'Paris FC vs Aston Villa Park · 12 Avq 2026', ja:'Paris FC vs Aston Villa Park · 2026年8月12日', zh:'Paris FC vs Aston Villa Park · 2026年8月12日', de:'Paris FC vs Aston Villa Park · 12. Aug 2026', fr:'Paris FC vs Aston Villa Park · 12 Août 2026', el:'Paris FC vs Aston Villa Park · 12 Αυγ 2026', ru:'Paris FC vs Aston Villa Park · 12 Авг 2026', ar:'Paris FC vs Aston Villa Park · 12 أغسطس 2026', pt:'Paris FC vs Aston Villa Park · 12 Ago 2026', uk:'Paris FC vs Aston Villa Park · 12 Сер 2026', fa:'Paris FC vs Aston Villa Park · ۱۲ آگوست ۲۰۲۶', ko:'Paris FC vs Aston Villa Park · 2026.08.12', nl:'Paris FC vs Aston Villa Park · 12 Aug 2026', sv:'Paris FC vs Aston Villa Park · 12 Aug 2026', no:'Paris FC vs Aston Villa Park · 12 Aug 2026', cs:'Paris FC vs Aston Villa Park · 12. Srp 2026', bs:'Paris FC vs Aston Villa Park · 12. Avg 2026', hr:'Paris FC vs Aston Villa Park · 12. Kol 2026', uz:'Paris FC vs Aston Villa Park · 12-Avgust 2026', ht:'Paris FC vs Aston Villa Park · 12 Out 2026' },
         asia27Name: { tr:'Asya Kupası 2027', en:'Asia Cup 2027', it:'Coppa Asia 2027', es:'Copa Asia 2027', ka:'აზიის თასი 2027', az:'Asiya Kuboku 2027', ja:'アジアカップ2027', zh:'亚洲杯2027', de:'Asien-Cup 2027', fr:'Coupe d\u2019Asie 2027', el:'Κύπελλο Ασίας 2027', ru:'Кубок Азии 2027', ar:'كأس آسيا 2027', pt:'Copa da Ásia 2027', uk:'Кубок Азії 2027', fa:'جام ملت\u200cهای آسیا ۲۰۲۷', ko:'아시안컵 2027', nl:'Azië Cup 2027', sv:'Asien-Cupen 2027', no:'Asia-Cupen 2027', cs:'Asijský Pohár 2027', bs:'Azijski Kup 2027', hr:'Azijski Kup 2027', uz:'Osiyo Kubogi 2027', ht:'Koup Azi 2027' },
         asia27Desc: { tr:'24 Asya ülkesi · 7-20 Ocak 2027', en:'24 Asian countries · Jan 7-20, 2027', it:'24 paesi asiatici · 7-20 Gen 2027', es:'24 países asiáticos · 7-20 Ene 2027', ka:'24 აზიური ქვეყანა · 7-20 იან 2027', az:'24 Asiya ölkəsi · 7-20 Yan 2027', ja:'24アジア国 · 2027年1月7-20日', zh:'24个亚洲国家 · 2027年1月7-20日', de:'24 asiatische Länder · 7.-20. Jan 2027', fr:'24 pays asiatiques · 7-20 Jan 2027', el:'24 ασιατικές χώρες · 7-20 Ιαν 2027', ru:'24 страны Азии · 7-20 Янв 2027', ar:'24 دولة آسيوية · 7-20 يناير 2027', pt:'24 países asiáticos · 7-20 Jan 2027', uk:'24 країни Азії · 7-20 Січ 2027', fa:'۲۴ کشور آسیایی · ۷-۲۰ ژانویه ۲۰۲۷', ko:'24개 아시아 국가 · 2027.01.07-20', nl:'24 Aziatische landen · 7-20 Jan 2027', sv:'24 asiatiska länder · 7-20 Jan 2027', no:'24 asiatiske land · 7-20 Jan 2027', cs:'24 asijských zemí · 7.-20. Led 2027', bs:'24 azijske zemlje · 7-20 Jan 2027', hr:'24 azijske zemlje · 7-20 Sij 2027', uz:'24 Osiyo davlati · 7-20 yanvar 2027', ht:'24 peyi Azyatik · 7-20 Jan 2027' },
         euro28Desc: { tr:'24 Avrupa ülkesi', en:'24 European nations', it:'24 nazioni europee', es:'24 naciones europeas', ka:'24 ევროპული ქვეყანა', az:'24 Avropa ölkəsi', ja:'24のヨーロッパ国家', zh:'24个欧洲国家', de:'24 europäische Nationen', fr:'24 nations européennes', el:'24 ευρωπαϊκές χώρες', ru:'24 европейские страны', ar:'24 دولة أوروبية', pt:'24 nações europeias', uk:'24 європейські країни', fa:'۲۴ کشور اروپایی', ko:'24개 유럽 국가', nl:'24 Europese landen', sv:'24 europeiska nationer', no:'24 europeiske nasjoner', cs:'24 evropských zemí', bs:'24 evropske zemlje', hr:'24 europske zemlje', uz:'24 Yevropa davlati', ht:'24 nasyon Ewopeyen' },
@@ -6816,7 +6816,7 @@ function setLang(lang) {
         // Bayrakları metnin içine ekle
         const replaced = scDescText
             .replace('Paris FC', flagFR + ' Paris FC')
-            .replace('Birmingham U.', flagENG + ' Birmingham U.');
+            .replace('Aston Villa Park', flagENG + ' Aston Villa Park');
         scDescEl.innerHTML = '<span style="color:#aaccff;display:inline-flex;align-items:center;gap:3px;flex-wrap:wrap;justify-content:center;">'+replaced+'</span><br><span id="superCupCountdownBadge" style="font-size:9px;color:#aaccff;background:rgba(100,150,255,0.25);padding:1px 5px;border-radius:4px;font-weight:700;">✓ AÇIK</span>';
         if (typeof updateTournamentCountdowns === 'function') updateTournamentCountdowns();
     }
@@ -7102,7 +7102,7 @@ function checkSuperCup() {
 }
 
 function showSuperCupTeamPicker() {
-    // 2 takım: Paris FC (Fransa) ve Birmingham U. (İngiltere)
+    // 2 takım: Paris FC (Fransa) ve Aston Villa Park (İngiltere)
     const flagFR = '<svg width="40" height="26" viewBox="0 0 30 20" style="border:1px solid rgba(255,255,255,0.3);border-radius:3px;"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg>';
     const flagEN = '<svg width="40" height="26" viewBox="0 0 30 20" style="border:1px solid rgba(255,255,255,0.3);border-radius:3px;"><rect width="30" height="20" fill="#fff"/><rect x="13" width="4" height="20" fill="#CE1124"/><rect y="8" width="30" height="4" fill="#CE1124"/></svg>';
     
@@ -7148,7 +7148,7 @@ function showSuperCupTeamPicker() {
     html += '<div style="font-size:9px;color:#aaccff;">⭐ UEFA ŞAMPİYONU</div>';
     html += '<div style="font-size:8px;color:#888;">Strength: 88</div>';
     html += '</button>';
-    // Birmingham U. - lisansız logo (Aston Villa esinli)
+    // Aston Villa Park - lisansız logo (Aston Villa esinli)
     html += '<button onclick="startSuperCupMatch(\'BHU\')" style="background:linear-gradient(180deg,#7e1c3a,#5a0820);border:2px solid #fff;border-radius:12px;padding:18px 24px;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:inherit;min-width:150px;">';
     html += `<svg viewBox="0 0 70 80" width="56" height="64" style="display:block;">
 <path d="M 6 8 L 64 8 L 64 50 Q 64 70 35 78 Q 6 70 6 50 Z" fill="#7e1c3a" stroke="#3a0814" stroke-width="1.2"/>
@@ -7170,7 +7170,7 @@ function showSuperCupTeamPicker() {
 <text x="35" y="65" text-anchor="middle" font-size="4" font-weight="900" fill="#ffd200" font-family="sans-serif" letter-spacing="0.5">BIRMINGHAM</text>
 <text x="35" y="72" text-anchor="middle" font-size="3.5" font-weight="700" fill="#fff" font-family="sans-serif">U. 1874</text>
 </svg>`;
-    html += '<div style="font-size:14px;font-weight:900;">Birmingham U.</div>';
+    html += '<div style="font-size:14px;font-weight:900;">Aston Villa Park</div>';
     html += '<div style="font-size:9px;color:#ffcccc;">⭐ AVRUPA LİGİ ŞAMPİYONU</div>';
     html += '<div style="font-size:8px;color:#888;">Strength: 84</div>';
     html += '</button>';
@@ -7253,7 +7253,7 @@ function cleanupSuperCupState() {
     // Topları default Tridona'ya geri çevir
     const ballEl = document.getElementById('wc26Ball');
     if (ballEl && ballEl.getAttribute('data-supercup') === '1') {
-        ballEl.innerHTML = `<svg viewBox="0 0 100 100" width="24" height="24" style="display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><defs><clipPath id="tifR"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgifR" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgifR)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tifR)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tifR)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tifR)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>`;
+        ballEl.innerHTML = `<svg viewBox="0 0 100 100" width="36" height="36" style="display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><defs><clipPath id="tifR"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgifR" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#tgifR)"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#tifR)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#tifR)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#tifR)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>`;
         ballEl.removeAttribute('data-supercup');
     }
     // wc26MatchDuration ve wc26Btn topları sadece SVG kısmını Tridona'ya çevir (metni koru)
@@ -7285,11 +7285,11 @@ function startSuperCupMatch(myCode) {
     };
     const birminghamU = {
         code: 'BHU',
-        name: 'Birmingham U.',
+        name: 'Aston Villa Park',
         strength: 84,
         color: '#7e1c3a',
         flag: '<svg viewBox="0 0 70 80" width="28" height="32" style="display:inline-block;vertical-align:middle;"><path d="M 6 8 L 64 8 L 64 50 Q 64 70 35 78 Q 6 70 6 50 Z" fill="#7e1c3a" stroke="#3a0814" stroke-width="1.2"/><path d="M 12 14 L 58 14 L 58 50 Q 58 65 35 71 Q 12 65 12 50 Z" fill="#a5cee8" stroke="#3a0814" stroke-width="0.4"/><polygon points="20,22 21.5,26 25.5,26 22.5,28.5 23.5,32.5 20,30 16.5,32.5 17.5,28.5 14.5,26 18.5,26" fill="#fff" stroke="#3a0814" stroke-width="0.3"/><g transform="translate(40 44)"><ellipse cx="0" cy="2" rx="11" ry="8" fill="#ffd200" stroke="#3a0814" stroke-width="0.5"/><circle cx="7" cy="-7" r="4.5" fill="#ffd200" stroke="#3a0814" stroke-width="0.5"/></g><rect x="10" y="60" width="50" height="7" fill="#3a0814"/><text x="35" y="65" text-anchor="middle" font-size="4" font-weight="900" fill="#ffd200" font-family="sans-serif">BIRMINGHAM</text></svg>',
-        names: { tr:'Birmingham U.' }
+        names: { tr:'Aston Villa Park' }
     };
     
     // Oyuncunun takımı
@@ -7324,7 +7324,7 @@ function startSuperCupMatch(myCode) {
             // İlk yarı = 45 dk - 3 soru default
             startWC26Match(matchObj, 3);
             // Süper Kupa - sahadaki topu UEFA Süper Kupa topuyla değiştir (çoklu retry ile garantile)
-            const _superCupBallSVG = `<svg viewBox="0 0 100 100" width="24" height="24" style="display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><defs><clipPath id="scbf"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="scbg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8eef5"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#scbg)"/><polygon points="10,38 30,18 38,40 18,58" fill="#1e40af" clip-path="url(#scbf)"/><polygon points="30,18 52,8 56,28 38,38" fill="#22c55e" clip-path="url(#scbf)"/><polygon points="56,12 78,18 82,42 60,32" fill="#1e40af" clip-path="url(#scbf)"/><polygon points="64,40 86,46 80,68 60,58" fill="#22c55e" clip-path="url(#scbf)"/><polygon points="20,68 44,66 50,88 26,92" fill="#1e40af" clip-path="url(#scbf)"/><polygon points="50,68 70,72 68,90 48,90" fill="#22c55e" clip-path="url(#scbf)"/><circle cx="58" cy="50" r="6" fill="#1e40af" clip-path="url(#scbf)"/><circle cx="58" cy="50" r="3.5" fill="#22c55e"/><circle cx="40" cy="45" r="4" fill="#22c55e" clip-path="url(#scbf)"/><circle cx="40" cy="45" r="2" fill="#1e40af"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>`;
+            const _superCupBallSVG = `<svg viewBox="0 0 100 100" width="36" height="36" style="display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><defs><clipPath id="scbf"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="scbg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8eef5"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#scbg)"/><polygon points="10,38 30,18 38,40 18,58" fill="#1e40af" clip-path="url(#scbf)"/><polygon points="30,18 52,8 56,28 38,38" fill="#22c55e" clip-path="url(#scbf)"/><polygon points="56,12 78,18 82,42 60,32" fill="#1e40af" clip-path="url(#scbf)"/><polygon points="64,40 86,46 80,68 60,58" fill="#22c55e" clip-path="url(#scbf)"/><polygon points="20,68 44,66 50,88 26,92" fill="#1e40af" clip-path="url(#scbf)"/><polygon points="50,68 70,72 68,90 48,90" fill="#22c55e" clip-path="url(#scbf)"/><circle cx="58" cy="50" r="6" fill="#1e40af" clip-path="url(#scbf)"/><circle cx="58" cy="50" r="3.5" fill="#22c55e"/><circle cx="40" cy="45" r="4" fill="#22c55e" clip-path="url(#scbf)"/><circle cx="40" cy="45" r="2" fill="#1e40af"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>`;
             // UI'daki diğer toplar için 16x16 versiyon
             const _superCupBallSVG_small = `<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="scbs"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="scbsg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8eef5"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#scbsg)"/><polygon points="10,38 30,18 38,40 18,58" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="30,18 52,8 56,28 38,38" fill="#22c55e" clip-path="url(#scbs)"/><polygon points="56,12 78,18 82,42 60,32" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="64,40 86,46 80,68 60,58" fill="#22c55e" clip-path="url(#scbs)"/><polygon points="20,68 44,66 50,88 26,92" fill="#1e40af" clip-path="url(#scbs)"/><polygon points="50,68 70,72 68,90 48,90" fill="#22c55e" clip-path="url(#scbs)"/><circle cx="58" cy="50" r="6" fill="#1e40af" clip-path="url(#scbs)"/><circle cx="58" cy="50" r="3.5" fill="#22c55e"/><circle cx="40" cy="45" r="4" fill="#22c55e" clip-path="url(#scbs)"/><circle cx="40" cy="45" r="2" fill="#1e40af"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg>`;
             
@@ -7398,7 +7398,7 @@ function checkUCLChamp() {
 
 // 🟠 Avrupa Ligi Şampiyonu — bilgi gösterir
 function checkUELChamp() {
-    alert('🏆 AVRUPA KULÜPLER KUPASI 2 · 2025-26\n\n🇬🇧 Birmingham United\n⭐ Şampiyon!\n\nDetaylı turnuva: Pre-Alpha 4\'te');
+    alert('🏆 AVRUPA KULÜPLER KUPASI 2 · 2025-26\n\n🇬🇧 Aston Villa Park\n⭐ Şampiyon!\n\nDetaylı turnuva: Pre-Alpha 4\'te');
 }
 
 // 🌏 Asya Kupası 2027 — 7 Ocak 2027'de açılır
@@ -9604,7 +9604,7 @@ function uclBlocked() {
     const L_bl = LANG[currentLang]||LANG['tr'];
     if(animMsg){animMsg.innerHTML =L_bl.uclBlock||'🧤 KURTARMA!';animMsg.style.color='#00e5aa';animMsg.style.opacity='1';}
     setTimeout(()=>{
-        if(animMsg) animMsg.style.opacity='0';
+        if(animMsg){animMsg.style.opacity='0';setTimeout(function(){if(animMsg&&animMsg.style.opacity==='0')animMsg.innerHTML='';},400);}
         if(top){top.style.left='30px';top.style.top='69px';top.style.fontSize='22px';}
         uclAnimating=false;
         if(uclInPenalty){
@@ -9634,7 +9634,7 @@ function uclMissed(isPenalty) {
     const L_ms = LANG[currentLang]||LANG['tr'];
     if(animMsg){animMsg.innerHTML =L_ms.uclGoal||'⚽ GOL!';animMsg.style.color='#e74c3c';animMsg.style.opacity='1';}
     setTimeout(()=>{
-        if(animMsg) animMsg.style.opacity='0';
+        if(animMsg){animMsg.style.opacity='0';setTimeout(function(){if(animMsg&&animMsg.style.opacity==='0')animMsg.innerHTML='';},400);}
         if(top){top.style.left='30px';top.style.top='69px';top.style.fontSize='22px';}
         uclAnimating=false;
         if(uclInPenalty){
@@ -10750,7 +10750,7 @@ function friendlyBlock() {
     if(top){top.style.left='220px';top.style.top='65px';top.style.fontSize='14px';}
     if(animMsg){animMsg.innerHTML =L.uclGoal||'<svg viewBox="0 0 100 100" width="16" height="16" style="display:inline-block;vertical-align:middle;margin:0 2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"><defs><clipPath id="ti"><circle cx="50" cy="50" r="46"/></clipPath><radialGradient id="tgi" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ddd"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="#fff"/><path d="M18 12 Q58 2 76 34 Q88 56 66 78 Q50 92 22 82" fill="none" stroke="#E8001C" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M82 18 Q97 46 86 72 Q74 92 44 95 Q18 93 6 70" fill="none" stroke="#00A651" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><path d="M12 38 Q2 64 14 82 Q28 97 56 96 Q78 94 91 80" fill="none" stroke="#0057A8" stroke-width="11" stroke-linecap="round" clip-path="url(#ti)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#bbb" stroke-width="1.5"/></svg> GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
     setTimeout(()=>{
-        if(animMsg) animMsg.style.opacity='0';
+        if(animMsg){animMsg.style.opacity='0';setTimeout(function(){if(animMsg&&animMsg.style.opacity==='0')animMsg.innerHTML='';},400);}
         if(top){top.style.left='30px';top.style.top='69px';top.style.fontSize='22px';}
         friendlyShot++;
         setText('friendlyShotNum', Math.min(friendlyShot+1, FRIENDLY_SHOTS));
@@ -10771,7 +10771,7 @@ function friendlyOppScore() {
     if(top){top.style.left='200px';top.style.top=kal?kal.style.top:'60px';top.style.fontSize='14px';}
     if(animMsg){animMsg.innerHTML =L.uclBlock||'🧤 KURTARMA!';animMsg.style.color='#ff6666';animMsg.style.opacity='1';}
     setTimeout(()=>{
-        if(animMsg) animMsg.style.opacity='0';
+        if(animMsg){animMsg.style.opacity='0';setTimeout(function(){if(animMsg&&animMsg.style.opacity==='0')animMsg.innerHTML='';},400);}
         if(top){top.style.left='30px';top.style.top='69px';top.style.fontSize='22px';}
         friendlyShot++;
         setText('friendlyShotNum', Math.min(friendlyShot+1, FRIENDLY_SHOTS));
@@ -12669,6 +12669,40 @@ function submitWC26Answer() {
     handleWC26Result(Math.abs(val-wc26CurAnswer)<0.11);
 }
 
+// ⚠ SAOT İtiraz Sistemi — oyuncu SAOT golünü iade etmek isteyince
+function challengeSAOT() {
+    if (!window._saotChallengeActive) return;
+    window._saotChallengeActive = false;
+    if (window._saotChallengeTimer) clearTimeout(window._saotChallengeTimer);
+    const animMsg = document.getElementById('wc26AnimMsg');
+    // %50 itiraz kabul olur
+    const accepted = Math.random() < 0.50;
+    if (accepted) {
+        // İtiraz kabul edildi → gol geçerli
+        wc26CurMyScore++;
+        setText('wc26MatchMyScore', wc26CurMyScore);
+        playSound && playSound('win');
+        if (animMsg) {
+            animMsg.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;gap:3px;">'
+                +'<span style="font-size:12px;color:#22c55e;font-weight:900;">📺 İTİRAZ KABUL!</span>'
+                +'<span style="font-size:15px;color:#fbbf24;font-weight:900;text-shadow:0 0 10px #fbbf24;">⚽ GOL GEÇERLİ!</span>'
+                +'</div>';
+            animMsg.style.opacity='1';
+        }
+    } else {
+        // İtiraz reddedildi
+        if (animMsg) {
+            animMsg.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;gap:3px;">'
+                +'<span style="font-size:12px;color:#f87171;font-weight:900;">📺 İTİRAZ REDDEDİLDİ</span>'
+                +'<span style="font-size:13px;color:#fca5a5;">Ofsayt geçerli</span>'
+                +'</div>';
+            animMsg.style.opacity='1';
+        }
+    }
+    setTimeout(()=>{ if(animMsg){animMsg.style.opacity='0';setTimeout(function(){if(animMsg&&animMsg.style.opacity==='0')animMsg.innerHTML='';},400);} }, 1500);
+}
+window.challengeSAOT = challengeSAOT;
+
 function handleWC26Result(playerCorrect) {
     // Su molası veya devre arası sırasında sonuç işleme — sadece break aktifken atla
     if (wc26BreakActive) return;
@@ -12677,16 +12711,29 @@ function handleWC26Result(playerCorrect) {
     let throwInDelay = 1300; // Varsayılan sonraki soru gecikmesi
     if (playerCorrect) {
         // 🚩 Oto-SAOT karar — gol işlemeden ÖNCE (atomik): offside ise skor hiç artmaz
-        // 🐛 FIX: İlk gol asla iptal edilmez (kritik adillik), oran 30→15%
         const playerHasGoals = wc26CurMyScore > 0;
         const offside = playerHasGoals && Math.random() < 0.15;
         if (offside) {
-            throwInDelay = 2400; // SAOT animasyonu için süre tanı
-            // Önce "GOL?" göster, sonra ofsayt → skor değişmez
+            throwInDelay = 4500; // 🐛 FIX: İtiraz butonu için süre tanı
             if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL?';animMsg.style.color='#ffd060';animMsg.style.opacity='1';}
             playSound && playSound('win');
             setTimeout(()=>{
-                if (animMsg){animMsg.innerHTML = '<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span><br><span style="color:#f87171;font-weight:900;">OFSAYT! Gol iptal</span>';animMsg.style.color='#f87171';animMsg.style.opacity='1';}
+                if (animMsg){
+                    animMsg.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;">'
+                        +'<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span>'
+                        +'<span style="font-size:14px;color:#f87171;font-weight:900;">OFSAYT! Gol iptal</span>'
+                        +'<button id="saotChallengeBtn" onclick="challengeSAOT()" style="margin-top:4px;padding:4px 10px;font-size:10px;background:#fbbf24;color:#1a0d00;border:1px solid #fff;border-radius:6px;cursor:pointer;font-weight:bold;pointer-events:auto;">⚠ İTİRAZ ET (3sn)</button>'
+                        +'</div>';
+                    animMsg.style.pointerEvents = 'auto';
+                    animMsg.style.opacity='1';
+                }
+                // 3 saniye sonra itiraz şansı biter
+                window._saotChallengeTimer = setTimeout(()=>{
+                    const b = document.getElementById('saotChallengeBtn');
+                    if (b) b.disabled = true;
+                    window._saotChallengeActive = false;
+                }, 3000);
+                window._saotChallengeActive = true;
             }, 900);
         } else {
             // Geçerli gol — skor artar
@@ -12695,42 +12742,36 @@ function handleWC26Result(playerCorrect) {
             playSound && playSound('win');
             playSound('win');
             if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
+            window._wc26GoalScoredThisTurn = true; // 🐛 FIX: gol sonrası AUT/kale vuruşu olmasın
         }
     } else {
-        // Rakip golü — güce göre şans
-        const oppGoals = Math.random() < (wc26CurOppStrength/110) ? 1 : 0;
-        if (oppGoals > 0) {
-            // 🚩 Oto-SAOT karar — rakip golü için de atomik
-            // 🐛 FIX: İlk gol asla iptal edilmez, oran 30→15%
-            const oppHasGoals = wc26CurOppScore > 0;
-            const oppOffside = oppHasGoals && Math.random() < 0.15;
-            if (oppOffside) {
-                throwInDelay = 2400;
-                if (animMsg){animMsg.innerHTML ='❌ Rakip GOL?';animMsg.style.color='#ffaa44';animMsg.style.opacity='1';}
-                playSound('wrong');
-                setTimeout(()=>{
-                    if (animMsg){animMsg.innerHTML = '<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span><br><span style="color:#88ddaa;font-weight:900;">OFSAYT! Rakip golü iptal</span>';animMsg.style.color='#88ddaa';animMsg.style.opacity='1';}
-                }, 900);
-            } else {
-                // Geçerli rakip golü
-                wc26CurOppScore++;
-                setText('wc26MatchOppScore', wc26CurOppScore);
-                playSound('wrong');
-                if (animMsg){animMsg.innerHTML ='❌ Rakip GOL';animMsg.style.color='#ff6666';animMsg.style.opacity='1';}
-            }
+        // 🐛 FIX: Yanlış cevap → rakibe DİREKT GOL VERME (çok agresifti).
+        //         Yerine AUT veya KORNER animasyonu göster (rakip atak yaptı ama gol olmadı)
+        //         Rakip yine gol atabilir AMA sadece kendi cevap turunda (triggerBotAnswer)
+        const r2 = Math.random();
+        if (r2 < 0.45) {
+            // AUT
+            if (animMsg){animMsg.innerHTML ='🚩 AUT!';animMsg.style.color='#aaccff';animMsg.style.opacity='1';}
+            playSound && playSound('click');
+        } else if (r2 < 0.80) {
+            // KORNER
+            if (animMsg){animMsg.innerHTML ='⛳ KORNER!';animMsg.style.color='#fbbf24';animMsg.style.opacity='1';}
+            playSound && playSound('click');
         } else {
+            // Rakip VAR — zayıf şans (eski fonksiyon)
             const usedOppVAR = tryOppVAR();
             if (usedOppVAR) {
                 setText('wc26MatchOppScore', wc26CurOppScore);
-                playSound('wrong');
-                if (animMsg){animMsg.innerHTML ='📺 Rakip VAR! GOL!';animMsg.style.color='#ff8844';animMsg.style.opacity='1';}
+                playSound && playSound('wrong');
+                if (animMsg){animMsg.innerHTML ='📺 Rakip VAR!';animMsg.style.color='#ff8844';animMsg.style.opacity='1';}
+                window._wc26GoalScoredThisTurn = true;
             } else {
-                if (animMsg){animMsg.innerHTML ='⚠ Kaçtı!';animMsg.style.color='#ffaa33';animMsg.style.opacity='1';}
+                if (animMsg){animMsg.innerHTML ='⚠ Top dışarı';animMsg.style.color='#ffaa33';animMsg.style.opacity='1';}
             }
         }
     }
     setHTML('wc26Message','Cevap: '+wc26CurAnswer);
-    setTimeout(()=>{ if(animMsg) animMsg.style.opacity='0'; if(!wc26BreakActive) maybeThrowIn(); }, throwInDelay);
+    setTimeout(()=>{ if(animMsg){animMsg.style.opacity='0';setTimeout(function(){if(animMsg&&animMsg.style.opacity==='0')animMsg.innerHTML='';},400);} if(!wc26BreakActive) maybeThrowIn(); }, throwInDelay);
 }
 
 function endWC26Match() {
@@ -13350,7 +13391,7 @@ function nextConfedQuestion() {
             if(animMsg){animMsg.innerHTML=cProf.passMsg;animMsg.style.color='#ffaa33';animMsg.style.opacity='1';}
         }
         setHTML('confedMessage','Cevap: '+confedCurAnswer);
-        setTimeout(function(){ if(animMsg) animMsg.style.opacity='0'; nextConfedQuestion(); }, 1300);
+        setTimeout(function(){ if(animMsg){animMsg.style.opacity='0';setTimeout(function(){if(animMsg&&animMsg.style.opacity==='0')animMsg.innerHTML='';},400);} nextConfedQuestion(); }, 1300);
     }, cDelay);
 }
 
@@ -13383,7 +13424,7 @@ function handleConfedResult(playerCorrect) {
         }
     }
     setHTML('confedMessage','Cevap: '+confedCurAnswer);
-    setTimeout(()=>{ if(animMsg) animMsg.style.opacity='0'; nextConfedQuestion(); }, 1300);
+    setTimeout(()=>{ if(animMsg){animMsg.style.opacity='0';setTimeout(function(){if(animMsg&&animMsg.style.opacity==='0')animMsg.innerHTML='';},400);} nextConfedQuestion(); }, 1300);
 }
 
 function endConfedMatch() {
@@ -13783,6 +13824,7 @@ function renderMatchSchedule(scheduleType) {
 function checkGuess() {
     if (gameOver) return;
     const cfg = DIFFICULTY[currentDifficulty];
+    if (!cfg) return; // 🐛 FIX: difficulty seçilmemişse boş çık (Enter herhangi bir ekranda crash etmesin)
     const L = LANG[(currentLang==='hk'||currentLang==='mo')?'zh':currentLang] || LANG['tr'];
     const inputField = document.getElementById('guessInput');
     const guess = parseInt(inputField.value);
@@ -13875,7 +13917,11 @@ function checkGuess() {
 
 // Enter ile tahmin
 document.addEventListener('keydown', e => {
-    if (e.key === 'Enter') checkGuess();
+    if (e.key !== 'Enter') return;
+    // 🐛 FIX: Sadece Sayı Tahmin oyun ekranı görünüyorsa çalış (her ekranda crash etmesin)
+    const gs = document.getElementById('gameScreen');
+    if (!gs || gs.style.display === 'none' || gs.style.display === '') return;
+    checkGuess();
 });
 
 // ══════════ COOLDOWN YÜKLENME KONTROLÜ ══════════
@@ -14144,7 +14190,7 @@ function applyMatchWeather(fieldElementId, dateOverride) {
         }
     } else if (w.type==='leaves' || w.type==='petals') {
         bgTint = w.type==='leaves' ? 'background:linear-gradient(180deg,rgba(180,80,20,0.10),rgba(120,60,10,0.05));' : 'background:linear-gradient(180deg,rgba(255,180,200,0.10),transparent);';
-        label = w.type==='leaves' ? '🍂 SONBAHAR' : '🌸 İLKBAHAR';
+        label = w.type==='leaves' ? '🍂' : '🌸';
         const colors = w.type==='leaves' ? ['#d97706','#f59e0b','#dc2626','#92400e'] : ['#fbcfe8','#f9a8d4','#fda4af','#fff'];
         for (let i=0;i<15;i++) {
             const left = Math.random()*100, dur = 4+Math.random()*3, delay = Math.random()*4;
@@ -14153,13 +14199,30 @@ function applyMatchWeather(fieldElementId, dateOverride) {
         }
     } else if (w.type==='sun') {
         bgTint = 'background:radial-gradient(circle at 20% 10%, rgba(255,200,80,0.10), transparent 70%);';
-        label = '☀️ YAZ · GÜNEŞLİ';
+        label = '☀️';
     } else {
-        label = '⛅ AÇIK';
+        label = '⛅';
     }
-    overlay.innerHTML = `<div style="position:absolute;inset:0;${bgTint}"></div>${particles}<div style="position:absolute;top:4px;right:6px;font-size:8px;font-weight:bold;color:#fff;background:rgba(0,0,0,0.5);padding:2px 6px;border-radius:4px;letter-spacing:1px;">${label}</div>`;
+    overlay.innerHTML = `<div style="position:absolute;inset:0;${bgTint}"></div>${particles}`;
     if (field.style.position !== 'absolute' && field.style.position !== 'relative') field.style.position = 'relative';
     field.appendChild(overlay);
+    // 🌦️ Hava butonu — saha DIŞINA, sahanın hemen üstüne sağ köşeye
+    const parent = field.parentNode;
+    if (parent) {
+        // Eski hava butonu varsa kaldır
+        const oldBtn = parent.querySelector('.wx-info-btn');
+        if (oldBtn) oldBtn.remove();
+        // Saha hizasında, sahanın hemen üzerinde göster
+        const wxBtn = document.createElement('button');
+        wxBtn.className = 'wx-info-btn';
+        wxBtn.setAttribute('data-info', weatherInfo(w.type));
+        wxBtn.onclick = function(){ alert(this.dataset.info||'Hava: '+this.textContent); };
+        wxBtn.style.cssText = 'position:absolute;top:-26px;right:0;font-size:14px;background:rgba(0,0,0,0.7);border:1px solid rgba(255,255,255,0.3);border-radius:50%;width:22px;height:22px;color:#fff;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;z-index:10;';
+        wxBtn.textContent = label;
+        // Parent relative olmalı
+        if (getComputedStyle(parent).position === 'static') parent.style.position = 'relative';
+        parent.appendChild(wxBtn);
+    }
     return w;
 }
 (function injectWeatherCSS(){
@@ -14170,6 +14233,19 @@ function applyMatchWeather(fieldElementId, dateOverride) {
     document.head.appendChild(s);
 })();
 window.applyMatchWeather = applyMatchWeather;
+// 🌦️ Hava durumu açıklamaları (butona basılınca popup)
+function weatherInfo(type) {
+    const M = {
+        snow:'❄️ Kış · Kar yağıyor — Maç soğuk koşullarda',
+        rain:'🌧 Yağmur — Çim ıslak, top kayar',
+        leaves:'🍂 Sonbahar — Yapraklar düşüyor',
+        petals:'🌸 İlkbahar — Çiçek tohumları havada',
+        sun:'☀️ Yaz · Güneşli — Sıcak hava, oyuncular yorulur',
+        clear:'⛅ Açık hava — Ideal maç koşulları'
+    };
+    return M[type] || '⛅ Hava durumu';
+}
+window.weatherInfo = weatherInfo;
 
 // 📺 REKLAM SİSTEMİ — molalarda sahte eğlenceli reklam
 const FAKE_ADS = [
@@ -14815,7 +14891,14 @@ function useWC26VAR() {
             wc26CurMyScore++;
             setText('wc26MatchMyScore', wc26CurMyScore);
             playSound('win');
-            resultHTML = '<div style="background:rgba(0,80,0,0.9);border:2px solid #44ff88;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#44ff88;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#44ff88;margin-top:4px;">✅ GOL GEÇERLİ!</div><div style="font-size:11px;color:#aaffaa;margin-top:2px;">+1 gol</div></div>';
+            resultHTML = '<div style="background:rgba(0,80,0,0.9);border:2px solid #44ff88;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#44ff88;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#44ff88;margin-top:4px;">✅ GOL GEÇERLİ!</div><div style="font-size:11px;color:#aaffaa;margin-top:2px;">🏆 ALTIN GOL — MAÇ BİTTİ!</div></div>';
+            // 🐛 FIX: VAR golü = altın gol — maç direkt biter
+            window._wc26VarGoldenGoal = true;
+            setHTML('wc26Message', resultHTML);
+            setTimeout(() => {
+                if (typeof endWC26Match === 'function') endWC26Match();
+            }, 2500);
+            return;
         } else if (roll < 0.75) {
             playSound('wrong');
             resultHTML = '<div style="background:rgba(60,50,0,0.9);border:2px solid #FFD700;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#FFD700;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#FFD700;margin-top:4px;">🟨 SARI KART</div><div style="font-size:11px;color:#ffeeaa;margin-top:2px;">5sn bekliyorsun...</div></div>';
@@ -14843,7 +14926,8 @@ function useWC26VAR() {
 // ══════ RAKİP VAR SİSTEMİ ══════
 function tryOppVAR() {
     if (wc26OppVarUsed >= wc26VarMax) return false;
-    const oppVarChance = 0.25 + (wc26CurOppStrength / 400);
+    // 🐛 FIX: Şans 0.25-0.50 → 0.05-0.20 (çok agresifti, rakip her sefer VAR'dan gol atıyordu)
+    const oppVarChance = 0.05 + (wc26CurOppStrength / 800);
     if (Math.random() > oppVarChance) return false;
     wc26OppVarUsed++;
 
@@ -14852,6 +14936,14 @@ function tryOppVAR() {
     const btn = document.getElementById('wc26Btn');
 
     if (roll < 0.50) {
+        // 🚩 SAOT kontrolü: ilk gol değilse %15 ofsayt
+        const hasGoals = wc26CurOppScore > 0;
+        const saotOffside = hasGoals && Math.random() < 0.15;
+        if (saotOffside) {
+            // VAR'dan gol denedi ama SAOT iptal etti
+            setHTML('wc26Message', '<span style="color:#fbbf24;font-size:13px;">📺 Rakip VAR → 🚩 SAOT OFSAYT! Gol iptal (' + wc26OppVarUsed + '/' + wc26VarMax + ')</span>');
+            return true; // VAR kullanıldı ama gol olmadı, animasyon caller'da
+        }
         // Rakip GOL GEÇERLİ
         wc26CurOppScore++;
         setHTML('wc26Message', '<span style="color:#ff8844;font-size:13px;">📺 Rakip VAR → ✅ Gol geçerli! (' + wc26OppVarUsed + '/' + wc26VarMax + ')</span>');
@@ -14930,10 +15022,11 @@ let wc26BotThinking = false; // Bot "düşünüyor" animasyonu aktif mi
 // 90+  (elit)  : çok hızlı, neredeyse hep doğru, seni geçer
 
 function getBotProfile(str) {
-    if (str >= 90) return { tier:'elit',   minF:0.25, maxF:0.55, acc:0.88, thinkMs:800,  passMsg:'🧠 Geçti!', goalMsg:'⚡ Rakip anında cevapladı! +1 Gol' };
-    if (str >= 80) return { tier:'iyi',    minF:0.40, maxF:0.68, acc:0.72, thinkMs:1000, passMsg:'🤔 Pas!',   goalMsg:'⚡ Rakip hızlı cevapladı! +1 Gol' };
-    if (str >= 70) return { tier:'orta',   minF:0.52, maxF:0.78, acc:0.55, thinkMs:1200, passMsg:'😅 Kaçtı!', goalMsg:'⚡ Rakip buldu! +1 Gol' };
-    return              { tier:'zayıf',  minF:0.65, maxF:0.90, acc:0.38, thinkMs:1500, passMsg:'😕 Bilemedi!', goalMsg:'😤 Rakip zorlanarak buldu! +1 Gol' };
+    // 🐛 FIX: Bot doğruluğu düşürüldü — rakip fazla gol atıyordu
+    if (str >= 90) return { tier:'elit',   minF:0.25, maxF:0.55, acc:0.72, thinkMs:800,  passMsg:'🧠 Geçti!', goalMsg:'⚡ Rakip anında cevapladı! +1 Gol' };
+    if (str >= 80) return { tier:'iyi',    minF:0.40, maxF:0.68, acc:0.58, thinkMs:1000, passMsg:'🤔 Pas!',   goalMsg:'⚡ Rakip hızlı cevapladı! +1 Gol' };
+    if (str >= 70) return { tier:'orta',   minF:0.52, maxF:0.78, acc:0.42, thinkMs:1200, passMsg:'😅 Kaçtı!', goalMsg:'⚡ Rakip buldu! +1 Gol' };
+    return              { tier:'zayıf',  minF:0.65, maxF:0.90, acc:0.28, thinkMs:1500, passMsg:'😕 Bilemedi!', goalMsg:'😤 Rakip zorlanarak buldu! +1 Gol' };
 }
 
 function startBotTimer(oppStrength, totalTime) {
@@ -14987,9 +15080,9 @@ function triggerBotAnswer(oppStrength) {
     var throwInDelay = 1200;
     if (botCorrect) {
         // 🚩 Oto-SAOT karar — rakip golü için de atomik
-        // 🐛 FIX: İlk gol asla iptal edilmez, oran 30→15%
+        // 🐛 FIX: Bot golüne %25 SAOT (player'a %15) — rakip daha çok ofsayt riski
         var oppHasGoals = wc26CurOppScore > 0;
-        var oppOffside = oppHasGoals && Math.random() < 0.15;
+        var oppOffside = oppHasGoals && Math.random() < 0.25;
         if (oppOffside) {
             throwInDelay = 2400;
             if (animMsg) { animMsg.innerHTML = '❌ Rakip GOL?'; animMsg.style.color = '#ffaa44'; animMsg.style.opacity = '1'; }
@@ -15003,6 +15096,7 @@ function triggerBotAnswer(oppStrength) {
             if (oppScoreEl) oppScoreEl.textContent = wc26CurOppScore;
             if (animMsg) { animMsg.innerHTML = '❌ Rakip GOL'; animMsg.style.color = '#ff6666'; animMsg.style.opacity = '1'; }
             setHTML('wc26Message', '<span style="color:#ff4444;">' + prof.goalMsg + '</span>');
+            window._wc26GoalScoredThisTurn = true; // 🐛 FIX
         }
     } else {
         if (animMsg) { animMsg.innerHTML = '⚠ Rakip kaçırdı'; animMsg.style.color = '#aaa'; animMsg.style.opacity = '1'; }
@@ -15857,11 +15951,15 @@ function maybeThrowIn() {
         nextWC26Question();
         return;
     }
+    // 🐛 FIX: Gol atıldıysa throw-in/kale vuruşu olmaz (gerçekte kickoff olur)
+    if (window._wc26GoalScoredThisTurn) {
+        window._wc26GoalScoredThisTurn = false; // bayrağı temizle
+        nextWC26Question();
+        return;
+    }
     const r = Math.random();
     if (r < 0.08) triggerThrowIn('aut');
     else if (r < 0.15) triggerThrowIn('kale');
-    // 🐛 FIX: triggerSemiAutoOffside KALDIRILDI — rastgele eski golleri iptal ediyordu (skor bug'ı).
-    //         SAOT artık handleWC26Result içinde atomik (gol atılınca anında karar veriliyor)
     else nextWC26Question();
 }
 
@@ -15914,6 +16012,70 @@ function maybeThrowIn() {
         <button onclick="document.getElementById('confedWaterBreak').style.display='none'" style="margin-top:16px;padding:8px 20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:#fff;cursor:pointer;font-family:'Outfit',sans-serif;">Geç ⏭</button>
     </div>
 <!-- __SPLASH_INIT_HOOK__ -->
+
+<!-- ============ UPDATE CHECK SYSTEM ============ -->
+<div id="updateNotice" style="display:none;position:fixed;left:50%;top:24px;transform:translateX(-50%);z-index:99999;max-width:92vw;width:380px;background:linear-gradient(135deg,#a30016,#3a0008);border:1px solid rgba(255,255,255,0.18);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,0.6),0 0 28px rgba(255,30,60,0.35);padding:16px 18px;font-family:'Outfit',sans-serif;color:#fff;backdrop-filter:blur(10px);animation:updSlide .4s ease;">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+    <div style="font-size:24px;">🎉</div>
+    <div style="font-weight:800;font-size:16px;flex:1;" id="updTitle">Yeni Sürüm Mevcut!</div>
+    <div onclick="document.getElementById('updateNotice').style.display='none'" style="cursor:pointer;opacity:.6;font-size:18px;padding:2px 6px;">✕</div>
+  </div>
+  <div id="updBody" style="font-size:13px;opacity:.9;line-height:1.5;margin-bottom:12px;">
+    <span id="updVerLine"></span>
+    <div id="updNotes" style="margin-top:6px;font-size:12px;opacity:.75;"></div>
+  </div>
+  <div style="display:flex;gap:8px;">
+    <button id="updBtn" style="flex:1;padding:10px;background:#fff;color:#a30016;border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-weight:800;cursor:pointer;font-size:13px;">Güncelle</button>
+    <button id="updLaterBtn" style="padding:10px 14px;background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.2);border-radius:10px;font-family:'Outfit',sans-serif;cursor:pointer;font-size:13px;">Sonra</button>
+  </div>
+</div>
+<style>@keyframes updSlide{from{opacity:0;transform:translateX(-50%) translateY(-20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}</style>
+<script>
+(function(){
+  const CURRENT_VERSION = "PreAlpha3";
+  const VERSION_URL = "https://furher92.github.io/Say-AvcisiWC26/version.json?t=" + Date.now();
+  const I18N = {
+    tr: {title:"🎉 Yeni Sürüm Mevcut!", line:(v)=>"Mevcut: <b>"+CURRENT_VERSION+"</b> → Yeni: <b>"+v+"</b>", btn:"Güncelle", later:"Sonra"},
+    en: {title:"🎉 New Version Available!", line:(v)=>"Current: <b>"+CURRENT_VERSION+"</b> → New: <b>"+v+"</b>", btn:"Update", later:"Later"}
+  };
+  function showUpdate(data){
+    try { if (localStorage.getItem('sa_skip_ver') === data.latest) return; } catch(e){}
+    window.__SA_LATEST_VER = data.latest;
+    var lang = 'tr';
+    try { lang = localStorage.getItem('sa_lang') || 'tr'; } catch(e){}
+    var t = I18N[lang] || I18N.tr;
+    document.getElementById('updTitle').textContent = t.title;
+    document.getElementById('updVerLine').innerHTML = t.line(data.latest);
+    document.getElementById('updNotes').textContent = (data.notes && (data.notes[lang] || data.notes.tr || data.notes.en)) || '';
+    document.getElementById('updBtn').textContent = t.btn;
+    document.getElementById('updLaterBtn').textContent = t.later;
+    document.getElementById('updBtn').onclick = function(){
+      var url = (data.url || location.href.split('?')[0]) + '?v=' + encodeURIComponent(data.latest) + '&t=' + Date.now();
+      location.href = url;
+    };
+    document.getElementById('updLaterBtn').onclick = function(){
+      document.getElementById('updateNotice').style.display='none';
+      try { localStorage.setItem('sa_skip_ver', data.latest); } catch(e){}
+    };
+    document.getElementById('updateNotice').style.display = 'block';
+  }
+  function check(){
+    fetch(VERSION_URL, {cache:'no-store'})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(data){
+        if (!data || !data.latest) return;
+        if (data.latest !== CURRENT_VERSION) showUpdate(data);
+      })
+      .catch(function(){});
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(check, 2500);
+  } else {
+    window.addEventListener('load', function(){ setTimeout(check, 2500); });
+  }
+})();
+</script>
+<!-- ============ /UPDATE CHECK SYSTEM ============ -->
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   try {
