@@ -1,8 +1,8 @@
 {
-  "latest": "PreAlpha4",
-  "url": "https://furher92.github.io/Say-AvcisiWC26/",
-  "notes": {
-    "tr": "⚽ Top seçme modu (3 Trionda varyantı: Klasik · Pembe-Yeşil · Mavi) · 🏆 Turnuva ortasında top değiştirebilirsin · 📏 Saha topu küçültüldü · 🎨 Dinamik tema: Mavi (Futbol) · Yeşil (Dünya Kupası) · 🎬 Yeni trailer rozeti",
-    "en": "⚽ Ball selection mode (3 Trionda variants: Classic · Pink-Green · Blue) · 🏆 Change ball mid-tournament · 📏 Smaller field ball · 🎨 Dynamic theme: Blue (Football) · Green (World Cup) · 🎬 New trailer badge"
-  }
+    "latest": "PreAlpha4",
+    "url": "https://furher92.github.io/Say-AvcisiWC26/",
+    "notes": {
+        "tr": "⚙ Top seçme modu (3 Trionda varyantı: Klasik · Pembe-Yeşil · Mavi) · 🏆 Turnuvada ortasında top değiştirebilirsin · ↘ Saha topu küçültüldü · 🎨 Dinamik tema: Mavi (Futbol) · Yeşil (Dünya Kupası) · 🆕 Yeni trailer rozeti · 📊 Dünya Kupası 2026 grup puan durumları gerçek verilerle güncellendi · 🎨 Kategoriler arası geçişte futbol (mavi) teması artık korunuyor · 🎬 Açılış animasyonu (trailer) düşük performanslı cihazlarda takılma sorunu giderildi · 🔧 favicon.ico 404 hatası düzeltildi",
+        "en": "⚙ Ball selection mode (3 Trionda variants: Classic · Pink-Green · Blue) · 🏆 Change ball mid-tournament · ↘ Smaller field ball · 🎨 Dynamic theme: Blue (Football) · Green (World Cup) · 🆕 New trailer badge · 📊 World Cup 2026 group standings updated with real data · 🎨 Football (blue) theme now persists when navigating between categories · 🎬 Fixed intro trailer stutter on low-performance devices · 🔧 Fixed favicon.ico 404 error"
+    }
 }

@@ -581,8 +581,7 @@
         }
     </style>
     <!-- PWA: Ana Ekran İkonu -->
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23e30a17'/%3E%3Ccircle cx='14' cy='10' r='4.5' fill='%23fff'/%3E%3Ccircle cx='15.5' cy='10' r='3.6' fill='%23e30a17'/%3E%3Cpolygon points='20,10 21,8.2 21.4,10.1 23.2,10.6 21.6,11 21.7,12.8 20,11.6 18.3,12.8 18.4,11 16.8,10.6 18.6,10.1 19,8.2' fill='%23fff'/%3E%3C/svg%3E">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#7a0011">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -739,22 +738,36 @@
     filter: drop-shadow(0 0 30px rgba(255,80,80,0.8));
 }
 @keyframes trlBallTridonaFly {
-    0% { left: -120px; top: 35%; transform: translate(0, -50%) scale(0.5) rotate(0); opacity: 0; }
+    0% { transform: translate(-50%, -50%) translateX(-220vw) translateY(-15vh) scale(0.5) rotate(0); opacity: 0; }
     20% { opacity: 1; }
-    50% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.5) rotate(720deg); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(2.5) rotate(720deg); opacity: 1; }
     80% { opacity: 1; transform: translate(-50%, -50%) scale(3.2) rotate(1080deg); }
-    100% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0) rotate(1440deg); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(0) rotate(1440deg); opacity: 0; }
 }
 .trl-ball-sc { 
     animation: trlBallScFly 2.5s ease-out 1.7s forwards; 
     filter: drop-shadow(0 0 30px rgba(80,150,255,0.8));
 }
 @keyframes trlBallScFly {
-    0% { left: 120%; top: 65%; transform: translate(0, -50%) scale(0.5) rotate(0); opacity: 0; }
+    0% { transform: translate(-50%, -50%) translateX(220vw) translateY(15vh) scale(0.5) rotate(0); opacity: 0; }
     20% { opacity: 1; }
-    50% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.5) rotate(-720deg); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(2.5) rotate(-720deg); opacity: 1; }
     80% { opacity: 1; transform: translate(-50%, -50%) scale(3.2) rotate(-1080deg); }
-    100% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0) rotate(-1440deg); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(0) rotate(-1440deg); opacity: 0; }
+}
+/* 🐛 FIX: düşük performans cihazlarda (örn. standalone PWA / eski Android) trailer'ı
+   sadeleştir — dönme + ölçek animasyonlarını kaldır, sadece fade yap. "Tıkır tıkır"
+   takılmanın ana sebebi bu ağır eşzamanlı transform'lardı. */
+.perf-low .trl-ball-tridona, .perf-low .trl-ball-sc {
+    animation: trlBallFadeSimple 1.6s ease-out 1.4s forwards !important;
+    filter: none !important;
+}
+.perf-low .trl-nums span { animation-duration: 1s !important; }
+.perf-low .trl-bg-glow { animation: none !important; opacity: 0.3 !important; }
+@keyframes trlBallFadeSimple {
+    0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+    30% { opacity: 1; transform: translate(-50%, -50%) scale(1.4); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 .trl-flash {
     position: absolute; inset: 0; background: white; opacity: 0;
@@ -11852,9 +11865,43 @@ function initWC26Tournament() {
         });
     });
 
+    // 📊 SABİT PUAN DURUMU — görsellerdeki gerçek turnuva sonuçları
+    // Format: [code, O, G, B, M, GF, GA] — Pts hesaplanır (G*3+B)
+    const WC26_FIXED_STANDINGS = {
+        A: [['MEX',2,2,0,0,3,0],['KOR',2,1,0,1,2,2],['CZE',2,0,1,1,2,3],['RSA',2,0,1,1,1,3]],
+        B: [['CAN',2,1,1,0,7,1],['SUI',2,1,1,0,5,2],['BIH',2,0,1,1,2,5],['QAT',2,0,1,1,1,7]],
+        C: [['BRA',2,1,1,0,4,1],['MAR',2,1,1,0,2,1],['SCO',2,0,1,1,1,1],['HAI',2,0,0,2,0,4]],
+        D: [['USA',2,2,0,0,6,1],['AUS',2,1,0,1,2,2],['PAR',2,1,0,1,2,4],['TUR',2,0,0,2,0,3]],
+        E: [['GER',2,2,0,0,9,2],['CIV',2,1,0,1,2,2],['ECU',2,0,1,1,0,1],['CUW',2,0,1,1,1,7]],
+        F: [['NED',2,1,1,0,7,3],['JPN',2,1,1,0,6,2],['SWE',2,1,0,1,6,6],['TUN',2,0,0,2,1,9]],
+        G: [['NZL',1,0,1,0,2,2],['IRN',1,0,1,0,2,2],['BEL',1,0,1,0,1,1],['EGY',1,0,1,0,1,1]],
+        H: [['URU',1,0,1,0,1,1],['KSA',1,0,1,0,1,1],['ESP',1,0,1,0,0,0],['CPV',1,0,1,0,0,0]],
+        I: [['NOR',1,1,0,0,4,1],['FRA',1,1,0,0,3,1],['SEN',1,0,0,1,1,3],['IRQ',1,0,0,1,1,4]],
+        J: [['ARG',1,1,0,0,3,0],['AUT',1,1,0,0,3,1],['JOR',1,0,0,1,1,3],['ALG',1,0,0,1,0,3]],
+        K: [['POR',1,0,1,0,1,1],['COD',1,0,1,0,1,1],['COL',1,1,0,0,3,1],['UZB',1,0,0,1,1,3]],
+        L: [['ENG',1,1,0,0,4,2],['GHA',1,1,0,0,1,0],['PAN',1,0,0,1,0,1],['CRO',1,0,0,1,2,4]],
+    };
+    Object.keys(WC26_FIXED_STANDINGS).forEach(label => {
+        const rows = WC26_FIXED_STANDINGS[label];
+        rows.forEach(([code, P, W, D, L, GF, GA]) => {
+            const s = wc26Standings[label] && wc26Standings[label].find(x => x.team.code === code);
+            if (s) {
+                s.P = P; s.W = W; s.D = D; s.L = L; s.GF = GF; s.GA = GA;
+                s.Pts = W * 3 + D;
+            }
+        });
+        // Bu gruptaki oynanmış round'ları "played" işaretle ki tekrar simüle edilmesinler
+        const playedRounds = rows[0][1]; // O sütunu = oynanan maç sayısı = oynanan round sayısı
+        wc26GroupMatches.forEach(m => {
+            if (m.group === label && m.round <= playedRounds) {
+                m.played = true;
+            }
+        });
+    });
+
     wc26Stage = 'group';
     wc26CurrentMatchIdx = 0;
-    wc26AllGroupMatchesPlayed = 0;
+    wc26AllGroupMatchesPlayed = wc26GroupMatches.filter(m => m.played).length;
 
     setDisplay('wc26CountryScreen','none');
     setDisplay('wc26TournamentScreen','flex');
@@ -14293,7 +14340,8 @@ function selectCategory(cat) {
         btn.textContent = '← Kategoriler';
         btn.style.cssText = 'align-self:flex-start;padding:5px 12px;font-size:10px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.2);border-radius:6px;color:#fff;margin-bottom:6px;cursor:pointer;';
         btn.onclick = function(){
-            setGameTheme('red'); // Kategorilere dönerken kırmızıya geri
+            // 🐛 FIX: Tema artık sıfırlanmıyor — futbol kategorisinden geri dönülünce
+            // mavi tema korunsun, kategori ekranı kırmızı/mavi farkı görsel olarak etkilemesin
             setDisplay('modeScreen','none');
             setDisplay('categoryScreen','flex'); try{ if(typeof applyCategoryI18n==='function') applyCategoryI18n(); }catch(e){}
         };
