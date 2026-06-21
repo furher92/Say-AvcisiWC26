@@ -8,6 +8,10 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Sayı Avcısı - Pre-Alpha 4</title>
+    <!-- 🐛 FIX: Bazı tarayıcılarda eski sekme başlığı (örn. önceki sürümden kalan
+         "Pre-Alpha 3") yeni başlıkla birleşip çift görünebiliyor. Title'ı script ile
+         zorla doğru değere sabitliyoruz — kaynağı ne olursa olsun garanti ediyoruz. -->
+    <script>document.title = 'Sayı Avcısı - Pre-Alpha 4';</script>
     <!-- 🔄 Service Worker — Network-first cache stratejisi (cache problemi çözümü) -->
     <script>
     if ('serviceWorker' in navigator) {
@@ -24,6 +28,9 @@
                     });
                 });
             }).catch(function(){});
+            // 🐛 FIX: title'ı sayfa tam yüklendikten sonra tekrar sabitle (SW devreye
+            // girip sayfayı güncellediğinde olası eski başlık kalıntısını da temizler)
+            document.title = 'Sayı Avcısı - Pre-Alpha 4';
         });
     }
     </script>
