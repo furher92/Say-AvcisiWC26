@@ -7635,8 +7635,13 @@ function returnToSplash() {
 }
 
 function backToModeSelect() {
-    // 🎨 Tema kırmızıya geri dön
-    setGameTheme('red');
+    // 🎨 Tema: futbol kategorisindeysek mavi kalsın, değilsek kırmızı.
+    // (Önceden hep kırmızıya dönüyordu, bu yüzden futbol modeScreen'i kırmızı oluyordu.)
+    if (window._currentCategory === 'football') {
+        setGameTheme('blue');
+    } else {
+        setGameTheme('red');
+    }
     // Süper Kupa state'ini temizle (reload YOK - mod ekranına git)
     if (typeof cleanupSuperCupState === 'function') cleanupSuperCupState();
     
@@ -11877,15 +11882,15 @@ function initWC26Tournament() {
     const WC26_FIXED_STANDINGS = {
         A: [['MEX',2,2,0,0,3,0],['KOR',2,1,0,1,2,2],['CZE',2,0,1,1,2,3],['RSA',2,0,1,1,1,3]],
         B: [['CAN',2,1,1,0,7,1],['SUI',2,1,1,0,5,2],['BIH',2,0,1,1,2,5],['QAT',2,0,1,1,1,7]],
-        C: [['BRA',2,1,1,0,4,1],['MAR',2,1,1,0,2,1],['SCO',2,0,1,1,1,1],['HAI',2,0,0,2,0,4]],
+        C: [['BRA',2,1,1,0,4,1],['MAR',2,1,1,0,2,1],['SCO',2,1,0,1,1,1],['HAI',2,0,0,2,0,4]],
         D: [['USA',2,2,0,0,6,1],['AUS',2,1,0,1,2,2],['PAR',2,1,0,1,2,4],['TUR',2,0,0,2,0,3]],
         E: [['GER',2,2,0,0,9,2],['CIV',2,1,0,1,2,2],['ECU',2,0,1,1,0,1],['CUW',2,0,1,1,1,7]],
         F: [['NED',2,1,1,0,7,3],['JPN',2,1,1,0,6,2],['SWE',2,1,0,1,6,6],['TUN',2,0,0,2,1,9]],
-        G: [['NZL',1,0,1,0,2,2],['IRN',1,0,1,0,2,2],['BEL',1,0,1,0,1,1],['EGY',1,0,1,0,1,1]],
-        H: [['URU',1,0,1,0,1,1],['KSA',1,0,1,0,1,1],['ESP',1,0,1,0,0,0],['CPV',1,0,1,0,0,0]],
+        G: [['EGY',2,1,1,0,4,2],['IRN',2,0,2,0,2,2],['BEL',2,0,2,0,1,1],['NZL',2,0,1,1,3,5]],
+        H: [['ESP',2,1,1,0,4,0],['URU',2,0,2,0,3,3],['CPV',2,0,2,0,2,2],['KSA',2,0,1,1,1,5]],
         I: [['NOR',1,1,0,0,4,1],['FRA',1,1,0,0,3,1],['SEN',1,0,0,1,1,3],['IRQ',1,0,0,1,1,4]],
         J: [['ARG',1,1,0,0,3,0],['AUT',1,1,0,0,3,1],['JOR',1,0,0,1,1,3],['ALG',1,0,0,1,0,3]],
-        K: [['POR',1,0,1,0,1,1],['COD',1,0,1,0,1,1],['COL',1,1,0,0,3,1],['UZB',1,0,0,1,1,3]],
+        K: [['COL',1,1,0,0,3,1],['COD',1,0,1,0,1,1],['POR',1,0,1,0,1,1],['UZB',1,0,0,1,1,3]],
         L: [['ENG',1,1,0,0,4,2],['GHA',1,1,0,0,1,0],['PAN',1,0,0,1,0,1],['CRO',1,0,0,1,2,4]],
     };
     Object.keys(WC26_FIXED_STANDINGS).forEach(label => {
@@ -12500,7 +12505,7 @@ let wc26QuestionTimer = null; // soru zamanlayıcısı
 // WC26 Duration sistemi
 let wc26Duration = 45;
 let wc26QuestionCount = 3;
-const WC26_DUR_MAP = { 45:2, 90:1, 105:1, 120:1 }; // 1.yarı=2soru, 2.yarı=1soru, uzatma=1soru
+const WC26_DUR_MAP = { 45:3, 90:3, 105:3, 120:3 }; // her yarı/uzatma 3 soru
 
 function setWC26Duration(min) {
     wc26Duration = min;
@@ -12968,6 +12973,7 @@ function challengeSAOT() {
         wc26CurMyScore++;
         setText('wc26MatchMyScore', wc26CurMyScore);
         playSound && playSound('win');
+        wc26ShootBall('me'); // ⚽ top sağ kaleye şut
         if (animMsg) {
             animMsg.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;gap:3px;">'
                 +'<span style="font-size:12px;color:#22c55e;font-weight:900;">📺 İTİRAZ KABUL!</span>'
@@ -12989,6 +12995,34 @@ function challengeSAOT() {
 }
 window.challengeSAOT = challengeSAOT;
 
+// ⚽ GOL ŞUT ANİMASYONU — gol atılınca top kaleye fırlayıp ortaya döner
+// taraf: 'me' → oyuncu attı (sağ kaleye), 'opp' → rakip attı (sol kaleye)
+function wc26ShootBall(taraf) {
+    const ball = document.getElementById('wc26Ball');
+    if (!ball) return;
+    // Saha 280px geniş, 160px yüksek. Orta nokta left:128 top:58.
+    const ortaLeft = 128, ortaTop = 58;
+    const hedefLeft = (taraf === 'opp') ? 4 : 250;   // sol kale : sağ kale
+    const hedefTop = 70;                             // file ortası hizası
+    // Mevcut transition'ı sakla
+    const oldTransition = ball.style.transition;
+    // 1) Topu kaleye fırlat (hızlı), dönerken büyüsün
+    ball.style.transition = 'all 0.35s cubic-bezier(.22,.9,.3,1)';
+    ball.style.left = hedefLeft + 'px';
+    ball.style.top = hedefTop + 'px';
+    ball.style.transform = 'scale(1.5) rotate(360deg)';
+    // 2) 0.5sn sonra ortaya geri dön (yavaş)
+    setTimeout(() => {
+        ball.style.transition = 'all 0.6s ease';
+        ball.style.left = ortaLeft + 'px';
+        ball.style.top = ortaTop + 'px';
+        ball.style.transform = 'scale(1) rotate(0deg)';
+    }, 500);
+    // 3) Animasyon bitince orijinal transition'a dön
+    setTimeout(() => { ball.style.transition = oldTransition || 'all 0.5s ease'; }, 1200);
+}
+window.wc26ShootBall = wc26ShootBall;
+
 function handleWC26Result(playerCorrect) {
     // Su molası veya devre arası sırasında sonuç işleme — sadece break aktifken atla
     if (wc26BreakActive) return;
@@ -12996,39 +13030,20 @@ function handleWC26Result(playerCorrect) {
     const animMsg = document.getElementById('wc26AnimMsg');
     let throwInDelay = 1300; // Varsayılan sonraki soru gecikmesi
     if (playerCorrect) {
-        // 🚩 Oto-SAOT karar — gol işlemeden ÖNCE (atomik): offside ise skor hiç artmaz
-        const playerHasGoals = wc26CurMyScore > 0;
-        const offside = playerHasGoals && Math.random() < 0.15;
-        if (offside) {
-            throwInDelay = 4500; // 🐛 FIX: İtiraz butonu için süre tanı
-            if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL?';animMsg.style.color='#ffd060';animMsg.style.opacity='1';}
-            playSound && playSound('win');
-            setTimeout(()=>{
-                if (animMsg){
-                    animMsg.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;">'
-                        +'<span style="font-size:11px;color:#44dd66;">🚩 SAOT</span>'
-                        +'<span style="font-size:14px;color:#f87171;font-weight:900;">OFSAYT! Gol iptal</span>'
-                        +'<button id="saotChallengeBtn" onclick="challengeSAOT()" style="margin-top:4px;padding:4px 10px;font-size:10px;background:#fbbf24;color:#1a0d00;border:1px solid #fff;border-radius:6px;cursor:pointer;font-weight:bold;pointer-events:auto;">⚠ İTİRAZ ET (3sn)</button>'
-                        +'</div>';
-                    animMsg.style.pointerEvents = 'auto';
-                    animMsg.style.opacity='1';
-                }
-                // 3 saniye sonra itiraz şansı biter
-                window._saotChallengeTimer = setTimeout(()=>{
-                    const b = document.getElementById('saotChallengeBtn');
-                    if (b) b.disabled = true;
-                    window._saotChallengeActive = false;
-                }, 3000);
-                window._saotChallengeActive = true;
-            }, 900);
-        } else {
-            // Geçerli gol — skor artar
-            wc26CurMyScore++;
-            setText('wc26MatchMyScore', wc26CurMyScore);
-            playSound && playSound('win');
-            playSound('win');
-            if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
-            window._wc26GoalScoredThisTurn = true; // 🐛 FIX: gol sonrası AUT/kale vuruşu olmasın
+        // Gol her zaman önce sayılır (skor artar + şut animasyonu)
+        wc26CurMyScore++;
+        setText('wc26MatchMyScore', wc26CurMyScore);
+        playSound && playSound('win');
+        if (animMsg){animMsg.innerHTML = getMatchBallSVG_small() + ' GOL!';animMsg.style.color='#66dd66';animMsg.style.opacity='1';}
+        wc26ShootBall('me'); // ⚽ top sağ kaleye şut
+        window._wc26GoalScoredThisTurn = true; // 🐛 FIX: gol sonrası AUT/kale vuruşu olmasın
+
+        // 🚩 YARI OTOMATİK OFSAYTİ — ilk gol değilse %35 ihtimalle inceleme devreye girer.
+        // İnceleme ofsayt bulursa golü geri alır; oyuncu itiraz edebilir.
+        const playerHasGoals = wc26CurMyScore > 1; // bu golden önce de gol varsa
+        if (playerHasGoals && Math.random() < 0.35) {
+            setTimeout(() => { triggerSemiAutoOffside('me'); }, 700);
+            return; // SAOT akışı sıradaki soruyu kendisi tetikleyecek
         }
     } else {
         // 🐛 FIX: Yanlış cevap → rakibe DİREKT GOL VERME (çok agresifti).
@@ -13887,6 +13902,40 @@ const WC26_SCHEDULE = [
     { date:'2026-06-21', time:'22:00', home:'BEL', away:'IRN', stage:'Grup G' },
     { date:'2026-06-22', time:'01:00', home:'URU', away:'CPV', stage:'Grup H' },
     { date:'2026-06-22', time:'04:00', home:'NZL', away:'EGY', stage:'Grup G' },
+    // 2. MAÇ GÜNÜ (devam) — I, J, K, L grupları
+    { date:'2026-06-22', time:'20:00', home:'ARG', away:'AUT', stage:'Grup J' },
+    { date:'2026-06-23', time:'00:00', home:'FRA', away:'IRQ', stage:'Grup I' },
+    { date:'2026-06-23', time:'03:00', home:'NOR', away:'SEN', stage:'Grup I' },
+    { date:'2026-06-23', time:'06:00', home:'JOR', away:'ALG', stage:'Grup J' },
+    { date:'2026-06-23', time:'20:00', home:'POR', away:'UZB', stage:'Grup K' },
+    { date:'2026-06-23', time:'23:00', home:'ENG', away:'GHA', stage:'Grup L' },
+    { date:'2026-06-24', time:'02:00', home:'PAN', away:'CRO', stage:'Grup L' },
+    { date:'2026-06-24', time:'05:00', home:'COL', away:'COD', stage:'Grup K' },
+    // 3. MAÇ GÜNÜ
+    { date:'2026-06-24', time:'22:00', home:'BIH', away:'QAT', stage:'Grup B' },
+    { date:'2026-06-24', time:'22:00', home:'SUI', away:'CAN', stage:'Grup B' },
+    { date:'2026-06-25', time:'01:00', home:'MAR', away:'HAI', stage:'Grup C' },
+    { date:'2026-06-25', time:'01:00', home:'SCO', away:'BRA', stage:'Grup C' },
+    { date:'2026-06-25', time:'04:00', home:'CZE', away:'MEX', stage:'Grup A' },
+    { date:'2026-06-25', time:'04:00', home:'RSA', away:'KOR', stage:'Grup A' },
+    { date:'2026-06-25', time:'23:00', home:'CUW', away:'CIV', stage:'Grup E' },
+    { date:'2026-06-25', time:'23:00', home:'ECU', away:'GER', stage:'Grup E' },
+    { date:'2026-06-26', time:'02:00', home:'JPN', away:'SWE', stage:'Grup F' },
+    { date:'2026-06-26', time:'02:00', home:'TUN', away:'NED', stage:'Grup F' },
+    { date:'2026-06-26', time:'05:00', home:'PAR', away:'AUS', stage:'Grup D' },
+    { date:'2026-06-26', time:'05:00', home:'TUR', away:'USA', stage:'Grup D' },
+    { date:'2026-06-26', time:'22:00', home:'NOR', away:'FRA', stage:'Grup I' },
+    { date:'2026-06-26', time:'22:00', home:'SEN', away:'IRQ', stage:'Grup I' },
+    { date:'2026-06-27', time:'03:00', home:'URU', away:'ESP', stage:'Grup H' },
+    { date:'2026-06-27', time:'03:00', home:'CPV', away:'KSA', stage:'Grup H' },
+    { date:'2026-06-27', time:'06:00', home:'EGY', away:'IRN', stage:'Grup G' },
+    { date:'2026-06-27', time:'06:00', home:'NZL', away:'BEL', stage:'Grup G' },
+    { date:'2026-06-28', time:'00:00', home:'CRO', away:'GHA', stage:'Grup L' },
+    { date:'2026-06-28', time:'00:00', home:'PAN', away:'ENG', stage:'Grup L' },
+    { date:'2026-06-28', time:'02:30', home:'COD', away:'UZB', stage:'Grup K' },
+    { date:'2026-06-28', time:'02:30', home:'COL', away:'POR', stage:'Grup K' },
+    { date:'2026-06-28', time:'05:00', home:'ALG', away:'AUT', stage:'Grup J' },
+    { date:'2026-06-28', time:'05:00', home:'JOR', away:'ARG', stage:'Grup J' },
 ];
 
 // CONIFA Avrupa Şampiyonası 2026 — 3-6 Haziran
@@ -15240,6 +15289,7 @@ function tryOppVAR() {
         }
         // Rakip GOL GEÇERLİ
         wc26CurOppScore++;
+        wc26ShootBall('opp'); // ⚽ top sol kaleye şut
         setHTML('wc26Message', '<span style="color:#ff8844;font-size:13px;">📺 Rakip VAR → ✅ Gol geçerli! (' + wc26OppVarUsed + '/' + wc26VarMax + ')</span>');
     } else if (roll < 0.75) {
         // Rakibe SARI KART — oyuncu 5sn beklemez, rakip bekler (bir soruyu atla)
@@ -15388,6 +15438,7 @@ function triggerBotAnswer(oppStrength) {
             // Geçerli rakip golü
             wc26CurOppScore++;
             if (oppScoreEl) oppScoreEl.textContent = wc26CurOppScore;
+            wc26ShootBall('opp'); // ⚽ top sol kaleye şut
             if (animMsg) { animMsg.innerHTML = '❌ Rakip GOL'; animMsg.style.color = '#ff6666'; animMsg.style.opacity = '1'; }
             setHTML('wc26Message', '<span style="color:#ff4444;">' + prof.goalMsg + '</span>');
             window._wc26GoalScoredThisTurn = true; // 🐛 FIX
@@ -16117,10 +16168,13 @@ function generateMatchStats(myScore, oppScore, myTeam, oppTeam, matchType) {
 // ════ YARI OTOMATİK OFSAYTİ (FIFA 2026) ════
 let _saoActive = false;
 let _saoTimer = null;
+let _saoChallengeUsable = false;
+let _saoCurTaraf = 'me';
 
-function triggerSemiAutoOffside() {
+function triggerSemiAutoOffside(taraf) {
     if (_saoActive) return;
     _saoActive = true;
+    _saoCurTaraf = taraf || 'me';
     clearTimeout(_saoTimer);
     clearInterval(wc26CurTimerVar);
     clearTimeout(wc26BotTimer);
@@ -16134,31 +16188,48 @@ function triggerSemiAutoOffside() {
     if (btn) btn.disabled = true;
     setDisplay('wc26GuessTimerBox','none');
 
+    const kimAtti = (_saoCurTaraf === 'opp') ? 'Rakip golü' : 'Golün';
     setHTML('wc26Message',
         '<div style="background:rgba(0,20,60,0.95);border:2px solid #4488ff;border-radius:12px;padding:10px;text-align:center;">'
         + '<div style="font-size:11px;color:#4488ff;font-weight:700;letter-spacing:1px;">📡 YARI OTOMATİK OFSAYTİ</div>'
         + '<div style="font-size:20px;margin:4px 0;">🚩</div>'
-        + '<div style="font-size:12px;color:#fff;font-weight:bold;">OFSAYTİ İNCELENİYOR...</div>'
-        + '<div style="font-size:10px;color:#aac;margin-top:4px;">VAR görüntü analizi yapılıyor</div>'
+        + '<div style="font-size:12px;color:#fff;font-weight:bold;">'+kimAtti+' İNCELENİYOR...</div>'
+        + '<div style="font-size:10px;color:#aac;margin-top:4px;">VAR hakemi görüntü analizi yapıyor</div>'
         + '</div>'
     );
 
     setTimeout(() => {
-        const isOffside = Math.random() < 0.55; // %55 ofsayt
+        const isOffside = Math.random() < 0.45; // %45 ofsayt çıkar
         if (isOffside) {
             playSound && playSound('wrong');
+            const cm = Math.floor(Math.random()*50)+1;
+            // Ofsayt çıkınca golü geri al (hangi taraf attıysa)
+            if (_saoCurTaraf === 'opp') {
+                if (wc26CurOppScore > 0) { wc26CurOppScore--; setText('wc26MatchOppScore', wc26CurOppScore); }
+            } else {
+                if (wc26CurMyScore > 0) { wc26CurMyScore--; setText('wc26MatchMyScore', wc26CurMyScore); }
+            }
+            // Oyuncunun kendi golü iptal olduysa İTİRAZ tuşu çıksın
+            const itirazBtn = (_saoCurTaraf === 'me')
+                ? '<button id="saoChallengeBtn" onclick="challengeSAO()" style="margin-top:6px;padding:5px 14px;font-size:11px;background:#fbbf24;color:#1a0d00;border:1px solid #fff;border-radius:7px;cursor:pointer;font-weight:bold;pointer-events:auto;">⚠ İTİRAZ ET (3sn)</button>'
+                : '';
             setHTML('wc26Message',
-                '<div style="background:rgba(60,0,0,0.95);border:2px solid #ff3333;border-radius:12px;padding:10px;text-align:center;">'
+                '<div style="background:rgba(60,0,0,0.95);border:2px solid #ff3333;border-radius:12px;padding:10px;text-align:center;pointer-events:auto;">'
                 + '<div style="font-size:11px;color:#ff4444;font-weight:700;">📡 YARI OTOMATİK OFSAYTİ</div>'
                 + '<div style="font-size:20px;margin:4px 0;">🚩 OFSAYTİ!</div>'
                 + '<div style="font-size:12px;color:#fff;font-weight:bold;">Gol iptal edildi</div>'
-                + '<div style="font-size:10px;color:#ffaaaa;margin-top:2px;">Oyuncu '+(Math.floor(Math.random()*50)+1)+' cm ofsayttaydı</div>'
+                + '<div style="font-size:10px;color:#ffaaaa;margin-top:2px;">Oyuncu '+cm+' cm ofsayttaydı</div>'
+                + itirazBtn
                 + '</div>'
             );
-            // Varsa son golü geri al
-            if (wc26CurMyScore > 0) {
-                wc26CurMyScore--;
-                setText('wc26MatchMyScore', wc26CurMyScore);
+            if (_saoCurTaraf === 'me') {
+                // 3 saniye itiraz penceresi
+                _saoChallengeUsable = true;
+                _saoTimer = setTimeout(() => {
+                    _saoChallengeUsable = false;
+                    _saoFinish(inp, btn);
+                }, 3000);
+                return; // itiraz penceresi bitene kadar bekle
             }
         } else {
             playSound && playSound('win');
@@ -16170,18 +16241,56 @@ function triggerSemiAutoOffside() {
                 + '</div>'
             );
         }
-        setTimeout(() => {
-            _saoActive = false;
-            wc26BreakActive = false;
-            setHTML('wc26Message', '');
-            if (inp) inp.disabled = false;
-            if (btn) btn.disabled = false;
-            if (typeof updateWC26WaterBreakBtns === 'function') updateWC26WaterBreakBtns();
-            if (typeof updateWC26VarBtn === 'function') updateWC26VarBtn();
-            nextWC26Question();
-        }, 2000);
+        setTimeout(() => { _saoFinish(inp, btn); }, 2000);
     }, 2500);
 }
+
+// İtiraz penceresini ve SAOT'u kapat, sıradaki soruya geç
+function _saoFinish(inp, btn) {
+    _saoActive = false;
+    _saoChallengeUsable = false;
+    wc26BreakActive = false;
+    setHTML('wc26Message', '');
+    if (inp) inp.disabled = false;
+    if (btn) btn.disabled = false;
+    if (typeof updateWC26WaterBreakBtns === 'function') updateWC26WaterBreakBtns();
+    if (typeof updateWC26VarBtn === 'function') updateWC26VarBtn();
+    nextWC26Question();
+}
+
+// Oyuncu ofsayt kararına itiraz eder — %50 kabul, kabul olursa gol geri gelir
+function challengeSAO() {
+    if (!_saoChallengeUsable) return;
+    _saoChallengeUsable = false;
+    if (_saoTimer) clearTimeout(_saoTimer);
+    const inp = document.getElementById('wc26Input');
+    const btn = document.getElementById('wc26Btn');
+    const accepted = Math.random() < 0.50;
+    if (accepted) {
+        // İtiraz kabul → gol geri gelir
+        wc26CurMyScore++;
+        setText('wc26MatchMyScore', wc26CurMyScore);
+        playSound && playSound('win');
+        wc26ShootBall && wc26ShootBall('me');
+        setHTML('wc26Message',
+            '<div style="background:rgba(0,60,0,0.95);border:2px solid #44ff88;border-radius:12px;padding:10px;text-align:center;">'
+            + '<div style="font-size:11px;color:#44ff88;font-weight:700;">📺 İTİRAZ KABUL EDİLDİ</div>'
+            + '<div style="font-size:18px;margin:4px 0;">⚽ GOL GEÇERLİ!</div>'
+            + '<div style="font-size:11px;color:#fff;">VAR tekrar inceledi, ofsayt yokmuş</div>'
+            + '</div>'
+        );
+    } else {
+        setHTML('wc26Message',
+            '<div style="background:rgba(60,0,0,0.95);border:2px solid #ff3333;border-radius:12px;padding:10px;text-align:center;">'
+            + '<div style="font-size:11px;color:#ff6666;font-weight:700;">📺 İTİRAZ REDDEDİLDİ</div>'
+            + '<div style="font-size:14px;margin:4px 0;color:#fff;font-weight:bold;">Ofsayt kararı geçerli</div>'
+            + '</div>'
+        );
+    }
+    setTimeout(() => { _saoFinish(inp, btn); }, 1800);
+}
+window.challengeSAO = challengeSAO;
+window.triggerSemiAutoOffside = triggerSemiAutoOffside;
 
 // ════ 5 SANİYE AUT / KALE VURUŞU KURALI (WC26) ════
 let _throwInActive = false;
