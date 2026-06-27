@@ -11880,18 +11880,19 @@ function initWC26Tournament() {
     // 📊 SABİT PUAN DURUMU — görsellerdeki gerçek turnuva sonuçları
     // Format: [code, O, G, B, M, GF, GA] — Pts hesaplanır (G*3+B)
     const WC26_FIXED_STANDINGS = {
-        A: [['MEX',2,2,0,0,3,0],['KOR',2,1,0,1,2,2],['CZE',2,0,1,1,2,3],['RSA',2,0,1,1,1,3]],
-        B: [['CAN',2,1,1,0,7,1],['SUI',2,1,1,0,5,2],['BIH',2,0,1,1,2,5],['QAT',2,0,1,1,1,7]],
-        C: [['BRA',2,1,1,0,4,1],['MAR',2,1,1,0,2,1],['SCO',2,1,0,1,1,1],['HAI',2,0,0,2,0,4]],
-        D: [['USA',2,2,0,0,6,1],['AUS',2,1,0,1,2,2],['PAR',2,1,0,1,2,4],['TUR',2,0,0,2,0,3]],
-        E: [['GER',2,2,0,0,9,2],['CIV',2,1,0,1,2,2],['ECU',2,0,1,1,0,1],['CUW',2,0,1,1,1,7]],
-        F: [['NED',2,1,1,0,7,3],['JPN',2,1,1,0,6,2],['SWE',2,1,0,1,6,6],['TUN',2,0,0,2,1,9]],
-        G: [['EGY',2,1,1,0,4,2],['IRN',2,0,2,0,2,2],['BEL',2,0,2,0,1,1],['NZL',2,0,1,1,3,5]],
-        H: [['ESP',2,1,1,0,4,0],['URU',2,0,2,0,3,3],['CPV',2,0,2,0,2,2],['KSA',2,0,1,1,1,5]],
-        I: [['NOR',1,1,0,0,4,1],['FRA',1,1,0,0,3,1],['SEN',1,0,0,1,1,3],['IRQ',1,0,0,1,1,4]],
-        J: [['ARG',1,1,0,0,3,0],['AUT',1,1,0,0,3,1],['JOR',1,0,0,1,1,3],['ALG',1,0,0,1,0,3]],
-        K: [['COL',1,1,0,0,3,1],['COD',1,0,1,0,1,1],['POR',1,0,1,0,1,1],['UZB',1,0,0,1,1,3]],
-        L: [['ENG',1,1,0,0,4,2],['GHA',1,1,0,0,1,0],['PAN',1,0,0,1,0,1],['CRO',1,0,0,1,2,4]],
+        // A-I: 3 maç oynandı · J-L: 2 maç oynandı (görsellerdeki güncel sonuçlar)
+        A: [['MEX',3,3,0,0,6,0],['RSA',3,1,1,1,2,3],['KOR',3,1,0,2,2,3],['CZE',3,0,1,2,2,6]],
+        B: [['SUI',3,2,1,0,7,3],['CAN',3,1,1,1,8,3],['BIH',3,1,1,1,5,6],['QAT',3,0,1,2,2,10]],
+        C: [['BRA',3,2,1,0,7,1],['MAR',3,2,1,0,6,3],['SCO',3,1,0,2,1,4],['HAI',3,0,0,3,2,8]],
+        D: [['USA',3,2,0,1,8,4],['AUS',3,1,1,1,2,2],['PAR',3,1,1,1,2,4],['TUR',3,1,0,2,3,5]],
+        E: [['GER',3,2,0,1,10,4],['CIV',3,2,0,1,4,2],['ECU',3,1,1,1,2,2],['CUW',3,0,1,2,1,9]],
+        F: [['NED',3,2,1,0,10,4],['JPN',3,1,2,0,7,3],['SWE',3,1,1,1,7,7],['TUN',3,0,0,3,2,12]],
+        G: [['BEL',3,1,2,0,6,2],['EGY',3,1,2,0,5,3],['IRN',3,0,3,0,3,3],['NZL',3,0,1,2,4,10]],
+        H: [['ESP',3,2,1,0,5,0],['CPV',3,0,3,0,2,2],['URU',3,0,2,1,3,4],['KSA',3,0,2,1,1,5]],
+        I: [['FRA',3,3,0,0,10,2],['NOR',3,2,0,1,8,7],['SEN',3,1,0,2,8,6],['IRQ',3,0,0,3,1,12]],
+        J: [['ARG',2,2,0,0,5,1],['AUT',2,1,0,1,3,3],['ALG',2,1,0,1,2,4],['JOR',2,0,0,2,2,4]],
+        K: [['POR',2,1,1,0,3,1],['COL',2,1,1,0,2,1],['COD',2,0,1,1,1,2],['UZB',2,0,1,1,1,3]],
+        L: [['ENG',2,2,0,0,4,0],['GHA',2,1,0,1,3,3],['CRO',2,1,0,1,3,4],['PAN',2,0,0,2,1,4]],
     };
     Object.keys(WC26_FIXED_STANDINGS).forEach(label => {
         const rows = WC26_FIXED_STANDINGS[label];
@@ -15225,41 +15226,65 @@ function useWC26VAR() {
         + '</div></div>'
     );
 
+    // VAR çeşitli kararlar verir — maç ASLA burada bitmez.
+    // Olasılıklar: gol onayı, gol iptali (ofsayt/faul), penaltı, sarı/kırmızı kart, karar yok.
     const roll = Math.random();
-    const delay = roll < 0.50 ? 2000 : roll < 0.75 ? 4000 : 4000;
+    const delay = 2500; // VAR monitör inceleme süresi
 
     setTimeout(() => {
         let resultHTML = '';
-        if (roll < 0.50) {
+        let waitTime = 2200;
+
+        if (roll < 0.22) {
+            // ✅ GOL ONAYI — incelendi, gol geçerli (skor zaten varsa değişmez, yoksa +1)
             wc26CurMyScore++;
             setText('wc26MatchMyScore', wc26CurMyScore);
             playSound('win');
-            resultHTML = '<div style="background:rgba(0,80,0,0.9);border:2px solid #44ff88;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#44ff88;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#44ff88;margin-top:4px;">✅ GOL GEÇERLİ!</div><div style="font-size:11px;color:#aaffaa;margin-top:2px;">🏆 ALTIN GOL — MAÇ BİTTİ!</div></div>';
-            // 🐛 FIX: VAR golü = altın gol — maç direkt biter
-            window._wc26VarGoldenGoal = true;
-            setHTML('wc26Message', resultHTML);
-            setTimeout(() => {
-                if (typeof endWC26Match === 'function') endWC26Match();
-            }, 2500);
-            return;
-        } else if (roll < 0.75) {
+            if (typeof wc26ShootBall === 'function') wc26ShootBall('me');
+            resultHTML = '<div style="background:rgba(0,80,0,0.9);border:2px solid #44ff88;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#44ff88;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#44ff88;margin-top:4px;">✅ GOL GEÇERLİ!</div><div style="font-size:11px;color:#aaffaa;margin-top:2px;">İnceleme tamamlandı, gol sayıldı</div></div>';
+        } else if (roll < 0.40) {
+            // 🎯 PENALTI KAZANDIN — gole çevirme şansı (otomatik %75 gol)
+            playSound('win');
+            const penGol = Math.random() < 0.75;
+            if (penGol) {
+                wc26CurMyScore++;
+                setText('wc26MatchMyScore', wc26CurMyScore);
+                if (typeof wc26ShootBall === 'function') wc26ShootBall('me');
+                resultHTML = '<div style="background:rgba(0,60,40,0.9);border:2px solid #44ffcc;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#44ffcc;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#44ffcc;margin-top:4px;">🎯 PENALTI → GOL!</div><div style="font-size:11px;color:#aaffdd;margin-top:2px;">VAR penaltı verdi, ağları havalandırdın</div></div>';
+            } else {
+                resultHTML = '<div style="background:rgba(40,40,0,0.9);border:2px solid #ffdd44;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#ffdd44;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#ffdd44;margin-top:4px;">🎯 PENALTI KAÇTI!</div><div style="font-size:11px;color:#ffeeaa;margin-top:2px;">VAR penaltı verdi ama kaleci kurtardı</div></div>';
+            }
+        } else if (roll < 0.58) {
+            // 🚩 GOL İPTAL — VAR ofsayt/faul buldu, varsa son golü geri al
             playSound('wrong');
-            resultHTML = '<div style="background:rgba(60,50,0,0.9);border:2px solid #FFD700;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#FFD700;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#FFD700;margin-top:4px;">🟨 SARI KART</div><div style="font-size:11px;color:#ffeeaa;margin-top:2px;">5sn bekliyorsun...</div></div>';
+            if (wc26CurMyScore > 0) {
+                wc26CurMyScore--;
+                setText('wc26MatchMyScore', wc26CurMyScore);
+            }
+            resultHTML = '<div style="background:rgba(70,0,0,0.9);border:2px solid #ff5555;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#ff5555;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#ff5555;margin-top:4px;">🚩 GOL İPTAL!</div><div style="font-size:11px;color:#ffaaaa;margin-top:2px;">VAR ofsayt/faul buldu, gol sayılmadı</div></div>';
+        } else if (roll < 0.74) {
+            // 🟨 SARI KART (rakibe) — oyuncuya avantaj, bekleme yok
+            playSound('wrong');
+            resultHTML = '<div style="background:rgba(60,50,0,0.9);border:2px solid #FFD700;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#FFD700;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#FFD700;margin-top:4px;">🟨 RAKİBE SARI KART</div><div style="font-size:11px;color:#ffeeaa;margin-top:2px;">VAR faul tespit etti</div></div>';
+        } else if (roll < 0.88) {
+            // 🟥 KIRMIZI KART (rakibe)
+            playSound('wrong');
+            resultHTML = '<div style="background:rgba(80,0,0,0.9);border:2px solid #ff2222;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#ff4444;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#ff4444;margin-top:4px;">🟥 RAKİBE KIRMIZI KART</div><div style="font-size:11px;color:#ffaaaa;margin-top:2px;">VAR ciddi faul gördü, rakip 10 kişi</div></div>';
         } else {
-            playSound('wrong');
-            resultHTML = '<div style="background:rgba(80,0,0,0.9);border:2px solid #ff2222;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#ff4444;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#ff4444;margin-top:4px;">🟥 KIRMIZI KART</div><div style="font-size:11px;color:#ffaaaa;margin-top:2px;">10sn bekliyorsun...</div></div>';
+            // 🔵 KARAR YOK — VAR oyunu devam ettirdi
+            resultHTML = '<div style="background:rgba(0,20,60,0.9);border:2px solid #4488ff;border-radius:12px;padding:10px;text-align:center;"><div style="font-size:13px;color:#88bbff;font-weight:bold;">📺 VAR KARARI</div><div style="font-size:18px;font-weight:900;color:#88bbff;margin-top:4px;">🔵 KARAR YOK</div><div style="font-size:11px;color:#bbddff;margin-top:2px;">İnceleme yapıldı, oyun devam</div></div>';
         }
+
         setHTML('wc26Message', resultHTML);
 
-        const waitTime = roll < 0.50 ? 1500 : roll < 0.75 ? 5000 : 10000;
-        // BUG FIX: VAR bekleyişi boyunca phase advance olmasın - wc26BreakActive ile koru
+        // BUG FIX: VAR bekleyişi boyunca phase advance olmasın
         wc26BreakActive = true;
         setTimeout(() => {
             if (inp) { inp.disabled = false; inp.value = ''; }
             if (btn) btn.disabled = false;
             setHTML('wc26Message', '');
             wc26BreakActive = false;
-            // BUG FIX: nextWC26Question yerine loadWC26Question kullan (phase geçişi yapmaz)
+            // nextWC26Question yerine loadWC26Question (phase geçişi yapmaz, maç bitmez)
             if (typeof loadWC26Question === 'function') loadWC26Question();
             else nextWC26Question();
         }, waitTime);
