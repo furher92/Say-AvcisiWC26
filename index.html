@@ -12230,27 +12230,28 @@ function advanceToKnockout() {
                            away:a||{code:'?',flag:'',strength:70,names:{tr:'?'}},
                            played:false, homeGoals:0, awayGoals:0});
 
+    // Görseldeki resmi Son 32 bracket — takım koduna göre sabit eşleşmeler
+    const qt = (code) => WC26_TEAMS.find(t => t.code === code) ||
+        { code:code, flag:'', strength:70, names:{tr:code} };
     const r32 = [
-        // Pathway 1 (Sol köşe)
-        mk(W['A'], S['B']),   // 1A vs 2B
-        mk(W['C'], S['D']),   // 1C vs 2D
-        mk(W['E'], S['F']),   // 1E vs 2F
-        mk(W['G'], S['H']),   // 1G vs 2H
-        // Pathway 2 (Sağ köşe)
-        mk(W['B'], S['A']),   // 1B vs 2A
-        mk(W['D'], S['C']),   // 1D vs 2C
-        mk(W['F'], S['E']),   // 1F vs 2E
-        mk(W['H'], S['G']),   // 1H vs 2G
-        // Pathway 3
-        mk(W['I'], S['J']),   // 1I vs 2J
-        mk(W['K'], S['L']),   // 1K vs 2L
-        mk(W['J'], S['I']),   // 1J vs 2I
-        mk(W['L'], S['K']),   // 1L vs 2K
-        // En iyi 8 üçüncü — 4 slot kalan eşleşmelere dağıtıldı
-        mk(T['t1'], T['t2']),
-        mk(T['t3'], T['t4']),
-        mk(T['t5'], T['t6']),
-        mk(T['t7'], T['t8']),
+        // SOL YARI (üst → alt)
+        mk(qt('GER'), qt('PAR')),   // Almanya - Paraguay
+        mk(qt('FRA'), qt('SWE')),   // Fransa - İsveç
+        mk(qt('RSA'), qt('CAN')),   // Güney Afrika - Kanada
+        mk(qt('NED'), qt('MAR')),   // Hollanda - Fas
+        mk(qt('POR'), qt('CRO')),   // Portekiz - Hırvatistan
+        mk(qt('ESP'), qt('AUT')),   // İspanya - Avusturya
+        mk(qt('USA'), qt('BIH')),   // ABD - Bosna Hersek
+        mk(qt('BEL'), qt('SEN')),   // Belçika - Senegal
+        // SAĞ YARI (üst → alt)
+        mk(qt('BRA'), qt('JPN')),   // Brezilya - Japonya
+        mk(qt('CIV'), qt('NOR')),   // Fildişi Sahili - Norveç
+        mk(qt('MEX'), qt('ECU')),   // Meksika - Ekvador
+        mk(qt('ENG'), qt('COD')),   // İngiltere - DR Kongo
+        mk(qt('ARG'), qt('CPV')),   // Arjantin - Yeşil Burun
+        mk(qt('AUS'), qt('EGY')),   // Avustralya - Mısır
+        mk(qt('SUI'), qt('ALG')),   // İsviçre - Cezayir
+        mk(qt('COL'), qt('GHA')),   // Kolombiya - Gana
     ];
 
     wc26KnockoutBracket = { r32, r16:[], qf:[], sf:[], '3rd':[], final:[] };
@@ -13948,6 +13949,23 @@ const WC26_SCHEDULE = [
     { date:'2026-06-28', time:'02:30', home:'COL', away:'POR', stage:'Grup K' },
     { date:'2026-06-28', time:'05:00', home:'ALG', away:'AUT', stage:'Grup J' },
     { date:'2026-06-28', time:'05:00', home:'JOR', away:'ARG', stage:'Grup J' },
+    // ══════════ SON 32 ══════════
+    { date:'2026-06-28', time:'22:00', home:'RSA', away:'CAN', stage:'Son 32' },
+    { date:'2026-06-29', time:'20:00', home:'BRA', away:'JPN', stage:'Son 32' },
+    { date:'2026-06-29', time:'23:30', home:'GER', away:'PAR', stage:'Son 32' },
+    { date:'2026-06-30', time:'04:00', home:'NED', away:'MAR', stage:'Son 32' },
+    { date:'2026-06-30', time:'20:00', home:'CIV', away:'NOR', stage:'Son 32' },
+    { date:'2026-07-01', time:'00:00', home:'FRA', away:'SWE', stage:'Son 32' },
+    { date:'2026-07-01', time:'04:00', home:'MEX', away:'ECU', stage:'Son 32' },
+    { date:'2026-07-01', time:'19:00', home:'ENG', away:'COD', stage:'Son 32' },
+    { date:'2026-07-01', time:'23:00', home:'BEL', away:'SEN', stage:'Son 32' },
+    { date:'2026-07-02', time:'03:00', home:'USA', away:'BIH', stage:'Son 32' },
+    { date:'2026-07-02', time:'22:00', home:'ESP', away:'AUT', stage:'Son 32' },
+    { date:'2026-07-03', time:'02:00', home:'POR', away:'CRO', stage:'Son 32' },
+    { date:'2026-07-03', time:'06:00', home:'SUI', away:'ALG', stage:'Son 32' },
+    { date:'2026-07-03', time:'21:00', home:'AUS', away:'EGY', stage:'Son 32' },
+    { date:'2026-07-04', time:'01:00', home:'ARG', away:'CPV', stage:'Son 32' },
+    { date:'2026-07-04', time:'04:30', home:'COL', away:'GHA', stage:'Son 32' },
 ];
 
 // CONIFA Avrupa Şampiyonası 2026 — 3-6 Haziran
